@@ -8,6 +8,7 @@
 #include "Light.h"
 #include "Resources.h"
 #include "InstancingManager.h"
+#include "ImGuiManager.h"
 
 void Engine::Init(const WindowInfo& info)
 {
@@ -36,6 +37,7 @@ void Engine::Init(const WindowInfo& info)
 	GET_SINGLE(Input)->Init(info.hwnd);
 	GET_SINGLE(Timer)->Init();
 	GET_SINGLE(Resources)->Init();
+	GET_SINGLE(ImGuiManager)->Init(info.hwnd, _device);
 }
 
 void Engine::Update()
@@ -55,6 +57,7 @@ void Engine::Render()
 	RenderBegin();
 
 	GET_SINGLE(SceneManager)->Render();
+	GET_SINGLE(ImGuiManager)->Render();
 
 	RenderEnd();
 }
