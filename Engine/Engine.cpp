@@ -8,7 +8,6 @@
 #include "Light.h"
 #include "Resources.h"
 #include "InstancingManager.h"
-#include "ImGuiManager.h"
 
 void Engine::Init(const WindowInfo& info)
 {
@@ -25,6 +24,7 @@ void Engine::Init(const WindowInfo& info)
 	_rootSignature->Init();
 	_graphicsDescHeap->Init(256);
 	_computeDescHeap->Init();
+	_imguiManager = std::make_shared<ImGuiManager>(info.hwnd, _device);
 
 	CreateConstantBuffer(CBV_REGISTER::b0, sizeof(LightParams), 1);
 	CreateConstantBuffer(CBV_REGISTER::b1, sizeof(TransformParams), 256);
@@ -37,7 +37,6 @@ void Engine::Init(const WindowInfo& info)
 	GET_SINGLE(Input)->Init(info.hwnd);
 	GET_SINGLE(Timer)->Init();
 	GET_SINGLE(Resources)->Init();
-	GET_SINGLE(ImGuiManager)->Init(info.hwnd, _device);
 }
 
 void Engine::Update()
@@ -57,7 +56,9 @@ void Engine::Render()
 	RenderBegin();
 
 	GET_SINGLE(SceneManager)->Render();
-	GET_SINGLE(ImGuiManager)->Render();
+
+	_imguiManager->Render();
+	_imguiManager->SetPipeline(_graphicsCmdQueue);
 
 	RenderEnd();
 }
@@ -79,7 +80,7 @@ void Engine::ResizeWindow(int32 width, int32 height)
 
 	RECT rect = { 0, 0, width, height };
 	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-	::SetWindowPos(_window.hwnd, 0, 100, 100, width, height, 0);
+	::SetWindowPos(_window.hwnd, 0, 100, 100, rect.right - rect.left, rect.bottom - rect.top, 0);
 }
 
 void Engine::ShowFps()

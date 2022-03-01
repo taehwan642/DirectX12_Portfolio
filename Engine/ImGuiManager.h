@@ -1,16 +1,18 @@
 #pragma once
 
 class Device;
+class GraphicsCommandQueue;
+
 class ImGuiManager
 {
-	DECLARE_SINGLE(ImGuiManager);
-
 public:
-	static ID3D12DescriptorHeap* srvDescHeap;
+	ImGuiManager(HWND hwnd, std::shared_ptr<Device> device);
+	~ImGuiManager();
 
-public:
-	void Init(HWND hwnd, std::shared_ptr<Device> device);
 	void Render();
-	void Destroy();
+	void SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdq);
+
+private:
+	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 };
 

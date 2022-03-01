@@ -4,16 +4,15 @@
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx12.h"
 #include "Device.h"
+#include "CommandQueue.h"
 
-ID3D12DescriptorHeap* ImGuiManager::srvDescHeap = NULL;
-
-void ImGuiManager::Init(HWND hwnd, std::shared_ptr<Device> device)
+ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
     D3D12_DESCRIPTOR_HEAP_DESC desc = {};
     desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
     desc.NumDescriptors = 1;
     desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-    assert(device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&srvDescHeap)) == S_OK);
+    assert(device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) == S_OK);
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -29,9 +28,17 @@ void ImGuiManager::Init(HWND hwnd, std::shared_ptr<Device> device)
     // Setup Platform/Renderer backends
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX12_Init(device->GetDevice().Get(), 2,
-        DXGI_FORMAT_R8G8B8A8_UNORM, srvDescHeap,
-        srvDescHeap->GetCPUDescriptorHandleForHeapStart(),
-        srvDescHeap->GetGPUDescriptorHandleForHeapStart());
+        DXGI_FORMAT_R8G8B8A8_UNORM, _srvDescHeap.Get(),
+        _srvDescHeap->GetCPUDescriptorHandleForHeapStart(),
+        _srvDescHeap->GetGPUDescriptorHandleForHeapStart());
+}
+
+ImGuiManager::~ImGuiManager()
+{
+    // Cleanup
+    ImGui_ImplDX12_Shutdown();
+    ImGui_ImplWin32_Shutdown();
+    ImGui::DestroyContext();
 }
 
 void ImGuiManager::Render()
@@ -64,10 +71,9 @@ void ImGuiManager::Render()
     ImGui::Render();
 }
 
-void ImGuiManager::Destroy()
+void ImGuiManager::SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdqueue)
 {
-    // Cleanup
-    ImGui_ImplDX12_Shutdown();
-    ImGui_ImplWin32_Shutdown();
-    ImGui::DestroyContext();
+    ID3D12DescriptorHeap* heaps[] = { _srvDescHeap.Get() };
+    cmdqueue->GetGraphicsCmdList()->SetDescriptorHeaps(1, heaps);
+    ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), cmdqueue->GetGraphicsCmdList().Get());
 }

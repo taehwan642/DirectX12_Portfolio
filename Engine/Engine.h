@@ -10,6 +10,7 @@
 #include "TableDescriptorHeap.h"
 #include "Texture.h"
 #include "RenderTargetGroup.h"
+#include "ImGuiManager.h"
 
 class Engine
 {
@@ -58,5 +59,7 @@ private:
 
 	vector<shared_ptr<ConstantBuffer>> _constantBuffers;
 	array<shared_ptr<RenderTargetGroup>, RENDER_TARGET_GROUP_COUNT> _rtGroups;
+
+	std::shared_ptr<ImGuiManager> _imguiManager;
 };
 

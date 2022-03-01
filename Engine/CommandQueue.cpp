@@ -2,10 +2,6 @@
 #include "CommandQueue.h"
 #include "SwapChain.h"
 #include "Engine.h"
-#include "ImGuiManager.h"
-#include "imgui.h"
-#include "imgui_impl_win32.h"
-#include "imgui_impl_dx12.h"
 
 // ************************
 // GraphicsCommandQueue
@@ -88,9 +84,6 @@ void GraphicsCommandQueue::RenderBegin()
 void GraphicsCommandQueue::RenderEnd()
 {
 	int8 backIndex = _swapChain->GetBackBufferIndex();
-
-	_cmdList->SetDescriptorHeaps(1, &ImGuiManager::srvDescHeap);
-	ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), _cmdList.Get());
 
 	D3D12_RESOURCE_BARRIER barrier = CD3DX12_RESOURCE_BARRIER::Transition(
 		GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::SWAP_CHAIN)->GetRTTexture(backIndex)->GetTex2D().Get(),
