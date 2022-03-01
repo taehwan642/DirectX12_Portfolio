@@ -20,14 +20,14 @@ enum
 
 struct RenderTarget
 {
-	shared_ptr<Texture> target;
+	std::shared_ptr<Texture> target;
 	float clearColor[4];
 };
 
 class RenderTargetGroup
 {
 public:
-	void Create(RENDER_TARGET_GROUP_TYPE groupType, vector<RenderTarget>& rtVec, shared_ptr<Texture> dsTexture);
+	void Create(RENDER_TARGET_GROUP_TYPE groupType, std::vector<RenderTarget>& rtVec, std::shared_ptr<Texture> dsTexture);
 
 	void OMSetRenderTargets(uint32 count, uint32 offset);
 	void OMSetRenderTargets();
@@ -35,17 +35,17 @@ public:
 	void ClearRenderTargetView(uint32 index);
 	void ClearRenderTargetView();
 
-	shared_ptr<Texture> GetRTTexture(uint32 index) { return _rtVec[index].target; }
-	shared_ptr<Texture> GetDSTexture() { return _dsTexture; }
+	std::shared_ptr<Texture> GetRTTexture(uint32 index) { return _rtVec[index].target; }
+	std::shared_ptr<Texture> GetDSTexture() { return _dsTexture; }
 
 	void WaitTargetToResource();
 	void WaitResourceToTarget();
 
 private:
 	RENDER_TARGET_GROUP_TYPE		_groupType;
-	vector<RenderTarget>			_rtVec;
+	std::vector<RenderTarget>			_rtVec;
 	uint32							_rtCount;
-	shared_ptr<Texture>				_dsTexture;
+	std::shared_ptr<Texture>				_dsTexture;
 	ComPtr<ID3D12DescriptorHeap>	_rtvHeap;
 
 private:

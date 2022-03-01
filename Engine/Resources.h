@@ -14,51 +14,51 @@ public:
 	void Init();
 
 	template<typename T>
-	shared_ptr<T> Load(const wstring& key, const wstring& path);
+	std::shared_ptr<T> Load(const std::wstring& key, const std::wstring& path);
 
 	template<typename T>
-	bool Add(const wstring& key, shared_ptr<T> object);
+	bool Add(const std::wstring& key, std::shared_ptr<T> object);
 
 	template<typename T>
-	shared_ptr<T> Get(const wstring& Key);
+	std::shared_ptr<T> Get(const std::wstring& Key);
 
 	template<typename T>
 	OBJECT_TYPE GetObjectType();
 
-	shared_ptr<Mesh> LoadPointMesh();
-	shared_ptr<Mesh> LoadRectangleMesh();
-	shared_ptr<Mesh> LoadCubeMesh();
-	shared_ptr<Mesh> LoadSphereMesh();
-	shared_ptr<Mesh> LoadTerrainMesh(int32 sizeX = 15, int32 sizeZ = 15);
+	std::shared_ptr<Mesh> LoadPointMesh();
+	std::shared_ptr<Mesh> LoadRectangleMesh();
+	std::shared_ptr<Mesh> LoadCubeMesh();
+	std::shared_ptr<Mesh> LoadSphereMesh();
+	std::shared_ptr<Mesh> LoadTerrainMesh(int32 sizeX = 15, int32 sizeZ = 15);
 
-	shared_ptr<Texture> CreateTexture(const wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
+	std::shared_ptr<Texture> CreateTexture(const std::wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
 		const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
 		D3D12_RESOURCE_FLAGS resFlags = D3D12_RESOURCE_FLAG_NONE, Vec4 clearColor = Vec4());
 
-	shared_ptr<Texture> CreateTextureFromResource(const wstring& name, ComPtr<ID3D12Resource> tex2D);
+	std::shared_ptr<Texture> CreateTextureFromResource(const std::wstring& name, ComPtr<ID3D12Resource> tex2D);
 	
-	shared_ptr<class MeshData> LoadFBX(const wstring& path);
+	std::shared_ptr<class MeshData> LoadFBX(const std::wstring& path);
 
 private:
 	void CreateDefaultShader();
 	void CreateDefaultMaterial();
 
 private:
-	using KeyObjMap = std::map<wstring/*key*/, shared_ptr<Object>>;
-	array<KeyObjMap, OBJECT_TYPE_COUNT> _resources;
+	using KeyObjMap = std::map<std::wstring/*key*/, std::shared_ptr<Object>>;
+	std::array<KeyObjMap, OBJECT_TYPE_COUNT> _resources;
 };
 
 template<typename T>
-inline shared_ptr<T> Resources::Load(const wstring& key, const wstring& path)
+inline std::shared_ptr<T> Resources::Load(const std::wstring& key, const std::wstring& path)
 {
 	OBJECT_TYPE objectType = GetObjectType<T>();
 	KeyObjMap& keyObjMap = _resources[static_cast<uint8>(objectType)];
 
 	auto findIt = keyObjMap.find(key);
 	if (findIt != keyObjMap.end())
-		return static_pointer_cast<T>(findIt->second);
+		return std::static_pointer_cast<T>(findIt->second);
 
-	shared_ptr<T> object = make_shared<T>();
+	std::shared_ptr<T> object = std::make_shared<T>();
 	object->Load(path);
 	keyObjMap[key] = object;
 
@@ -66,7 +66,7 @@ inline shared_ptr<T> Resources::Load(const wstring& key, const wstring& path)
 }
 
 template<typename T>
-bool Resources::Add(const wstring& key, shared_ptr<T> object)
+bool Resources::Add(const std::wstring& key, std::shared_ptr<T> object)
 {
 	OBJECT_TYPE objectType = GetObjectType<T>();
 	KeyObjMap& keyObjMap = _resources[static_cast<uint8>(objectType)];
@@ -81,14 +81,14 @@ bool Resources::Add(const wstring& key, shared_ptr<T> object)
 }
 
 template<typename T>
-shared_ptr<T> Resources::Get(const wstring& key)
+std::shared_ptr<T> Resources::Get(const std::wstring& key)
 {
 	OBJECT_TYPE objectType = GetObjectType<T>();
 	KeyObjMap& keyObjMap = _resources[static_cast<uint8>(objectType)];
 
 	auto findIt = keyObjMap.find(key);
 	if (findIt != keyObjMap.end())
-		return static_pointer_cast<T>(findIt->second);
+		return std::static_pointer_cast<T>(findIt->second);
 
 	return nullptr;
 }

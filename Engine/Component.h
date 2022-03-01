@@ -43,17 +43,17 @@ public:
 	COMPONENT_TYPE GetType() { return _type; }
 	bool IsValid() { return _gameObject.expired() == false; }
 
-	shared_ptr<GameObject> GetGameObject();
-	shared_ptr<Transform> GetTransform();
-	shared_ptr<MeshRenderer> GetMeshRenderer();
-	shared_ptr<Animator> GetAnimator();
+	std::shared_ptr<GameObject> GetGameObject();
+	std::shared_ptr<Transform> GetTransform();
+	std::shared_ptr<MeshRenderer> GetMeshRenderer();
+	std::shared_ptr<Animator> GetAnimator();
 
 private:
 	friend class GameObject;
-	void SetGameObject(shared_ptr<GameObject> gameObject) { _gameObject = gameObject; }
+	void SetGameObject(std::shared_ptr<GameObject> gameObject) { _gameObject = gameObject; }
 
 protected:
 	COMPONENT_TYPE _type;
-	weak_ptr<GameObject> _gameObject;
+	std::weak_ptr<GameObject> _gameObject;
 };
 

@@ -4,7 +4,7 @@
 #include "Device.h"
 
 
-void RenderTargetGroup::Create(RENDER_TARGET_GROUP_TYPE groupType, vector<RenderTarget>& rtVec, shared_ptr<Texture> dsTexture)
+void RenderTargetGroup::Create(RENDER_TARGET_GROUP_TYPE groupType, std::vector<RenderTarget>& rtVec, std::shared_ptr<Texture> dsTexture)
 {
 	_groupType = groupType;
 	_rtVec = rtVec;

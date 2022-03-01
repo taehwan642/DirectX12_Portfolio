@@ -16,7 +16,7 @@ Mesh::~Mesh()
 
 }
 
-void Mesh::Create(const vector<Vertex>& vertexBuffer, const vector<uint32>& indexBuffer)
+void Mesh::Create(const std::vector<Vertex>& vertexBuffer, const std::vector<uint32>& indexBuffer)
 {
 	CreateVertexBuffer(vertexBuffer);
 	CreateIndexBuffer(indexBuffer);
@@ -32,7 +32,7 @@ void Mesh::Render(uint32 instanceCount, uint32 idx)
 	GRAPHICS_CMD_LIST->DrawIndexedInstanced(_vecIndexInfo[idx].count, instanceCount, 0, 0, 0);
 }
 
-void Mesh::Render(shared_ptr<InstancingBuffer>& buffer, uint32 idx)
+void Mesh::Render(std::shared_ptr<InstancingBuffer>& buffer, uint32 idx)
 {
 	D3D12_VERTEX_BUFFER_VIEW bufferViews[] = { _vertexBufferView, buffer->GetBufferView() };
 	GRAPHICS_CMD_LIST->IASetVertexBuffers(0, 2, bufferViews);
@@ -43,17 +43,17 @@ void Mesh::Render(shared_ptr<InstancingBuffer>& buffer, uint32 idx)
 	GRAPHICS_CMD_LIST->DrawIndexedInstanced(_vecIndexInfo[idx].count, buffer->GetCount(), 0, 0, 0);
 }
 
-shared_ptr<Mesh> Mesh::CreateFromFBX(const FbxMeshInfo* meshInfo, FBXLoader& loader)
+std::shared_ptr<Mesh> Mesh::CreateFromFBX(const FbxMeshInfo* meshInfo, FBXLoader& loader)
 {
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->CreateVertexBuffer(meshInfo->vertices);
 
-	for (const vector<uint32>& buffer : meshInfo->indices)
+	for (const std::vector<uint32>& buffer : meshInfo->indices)
 	{
 		if (buffer.empty())
 		{
 			// FBX 파일이 이상하다. IndexBuffer가 없으면 에러 나니까 임시 처리
-			vector<uint32> defaultBuffer{ 0 };
+			std::vector<uint32> defaultBuffer{ 0 };
 			mesh->CreateIndexBuffer(defaultBuffer);
 		}
 		else
@@ -68,7 +68,7 @@ shared_ptr<Mesh> Mesh::CreateFromFBX(const FbxMeshInfo* meshInfo, FBXLoader& loa
 	return mesh;
 }
 
-void Mesh::CreateVertexBuffer(const vector<Vertex>& buffer)
+void Mesh::CreateVertexBuffer(const std::vector<Vertex>& buffer)
 {
 	_vertexCount = static_cast<uint32>(buffer.size());
 	uint32 bufferSize = _vertexCount * sizeof(Vertex);
@@ -97,7 +97,7 @@ void Mesh::CreateVertexBuffer(const vector<Vertex>& buffer)
 	_vertexBufferView.SizeInBytes = bufferSize; // 버퍼의 크기	
 }
 
-void Mesh::CreateIndexBuffer(const vector<uint32>& buffer)
+void Mesh::CreateIndexBuffer(const std::vector<uint32>& buffer)
 {
 	uint32 indexCount = static_cast<uint32>(buffer.size());
 	uint32 bufferSize = indexCount * sizeof(uint32);
@@ -141,8 +141,8 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 {
 #pragma region AnimClip
 	uint32 frameCount = 0;
-	vector<shared_ptr<FbxAnimClipInfo>>& animClips = loader.GetAnimClip();
-	for (shared_ptr<FbxAnimClipInfo>& ac : animClips)
+	std::vector<std::shared_ptr<FbxAnimClipInfo>>& animClips = loader.GetAnimClip();
+	for (std::shared_ptr<FbxAnimClipInfo>& ac : animClips)
 	{
 		AnimClipInfo info = {};
 
@@ -189,8 +189,8 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 #pragma endregion
 
 #pragma region Bones
-	vector<shared_ptr<FbxBoneInfo>>& bones = loader.GetBones();
-	for (shared_ptr<FbxBoneInfo>& bone : bones)
+	std::vector<std::shared_ptr<FbxBoneInfo>>& bones = loader.GetBones();
+	for (std::shared_ptr<FbxBoneInfo>& bone : bones)
 	{
 		BoneInfo boneInfo = {};
 		boneInfo.parentIdx = bone->parentIndex;
@@ -205,12 +205,12 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 	{
 		// BoneOffet 행렬
 		const int32 boneCount = static_cast<int32>(_bones.size());
-		vector<Matrix> offsetVec(boneCount);
+		std::vector<Matrix> offsetVec(boneCount);
 		for (size_t b = 0; b < boneCount; b++)
 			offsetVec[b] = _bones[b].matOffset;
 
 		// OffsetMatrix StructuredBuffer 세팅
-		_offsetBuffer = make_shared<StructuredBuffer>();
+		_offsetBuffer = std::make_shared<StructuredBuffer>();
 		_offsetBuffer->Init(sizeof(Matrix), static_cast<uint32>(offsetVec.size()), offsetVec.data());
 
 		const int32 animCount = static_cast<int32>(_animClips.size());
@@ -219,7 +219,7 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 			AnimClipInfo& animClip = _animClips[i];
 
 			// 애니메이션 프레임 정보
-			vector<AnimFrameParams> frameParams;
+			std::vector<AnimFrameParams> frameParams;
 			frameParams.resize(_bones.size() * animClip.frameCount);
 
 			for (int32 b = 0; b < boneCount; b++)
@@ -239,7 +239,7 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 			}
 
 			// StructuredBuffer 세팅
-			_frameBuffer.push_back(make_shared<StructuredBuffer>());
+			_frameBuffer.push_back(std::make_shared<StructuredBuffer>());
 			_frameBuffer.back()->Init(sizeof(AnimFrameParams), static_cast<uint32>(frameParams.size()), frameParams.data());
 		}
 	}

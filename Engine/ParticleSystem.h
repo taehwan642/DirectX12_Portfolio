@@ -32,17 +32,17 @@ public:
 	void Render();
 
 public:
-	virtual void Load(const wstring& path) override { }
-	virtual void Save(const wstring& path) override { }
+	virtual void Load(const std::wstring& path) override { }
+	virtual void Save(const std::wstring& path) override { }
 
 private:
-	shared_ptr<StructuredBuffer>	_particleBuffer;
-	shared_ptr<StructuredBuffer>	_computeSharedBuffer;
+	std::shared_ptr<StructuredBuffer>	_particleBuffer;
+	std::shared_ptr<StructuredBuffer>	_computeSharedBuffer;
 	uint32							_maxParticle = 1000;
 
-	shared_ptr<Material>		_computeMaterial;
-	shared_ptr<Material>		_material;
-	shared_ptr<Mesh>			_mesh;
+	std::shared_ptr<Material>		_computeMaterial;
+	std::shared_ptr<Material>		_material;
+	std::shared_ptr<Mesh>			_mesh;
 
 	float				_createInterval = 0.005f;
 	float				_accTime = 0.f;

@@ -12,10 +12,10 @@ Texture::~Texture()
 
 }
 
-void Texture::Load(const wstring& path)
+void Texture::Load(const std::wstring& path)
 {
 	// 파일 확장자 얻기
-	wstring ext = fs::path(path).extension();
+	std::wstring ext = std::filesystem::path(path).extension();
 
 	if (ext == L".dds" || ext == L".DDS")
 		::LoadFromDDSFile(path.c_str(), DDS_FLAGS_NONE, nullptr, _image);
@@ -30,7 +30,7 @@ void Texture::Load(const wstring& path)
 
 	_desc = _tex2D->GetDesc();
 
-	vector<D3D12_SUBRESOURCE_DATA> subResources;
+	std::vector<D3D12_SUBRESOURCE_DATA> subResources;
 
 	hr = ::PrepareUpload(DEVICE.Get(),
 		_image.GetImages(),

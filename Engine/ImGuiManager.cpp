@@ -31,6 +31,10 @@ ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
         DXGI_FORMAT_R8G8B8A8_UNORM, _srvDescHeap.Get(),
         _srvDescHeap->GetCPUDescriptorHandleForHeapStart(),
         _srvDescHeap->GetGPUDescriptorHandleForHeapStart());
+
+    // TEST
+    float3* f = new float3();
+    positions.push_back(f);
 }
 
 ImGuiManager::~ImGuiManager()
@@ -39,6 +43,8 @@ ImGuiManager::~ImGuiManager()
     ImGui_ImplDX12_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
+
+    delete positions[0];
 }
 
 void ImGuiManager::Render()
@@ -56,7 +62,7 @@ void ImGuiManager::Render()
 
     ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
 
-    ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+    ImGui::SliderFloat3("Position", reinterpret_cast<float*>(positions[0]), 0.0f, 10000.f);            // Edit 1 float using a slider from 0.0f to 1.0f
     ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
     if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)

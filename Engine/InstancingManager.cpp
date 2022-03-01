@@ -6,11 +6,11 @@
 #include "Transform.h"
 #include "Camera.h"
 
-void InstancingManager::Render(vector<shared_ptr<GameObject>>& gameObjects)
+void InstancingManager::Render(std::vector<std::shared_ptr<GameObject>>& gameObjects)
 {
-	map<uint64, vector<shared_ptr<GameObject>>> cache;
+	std::map<uint64, std::vector<std::shared_ptr<GameObject>>> cache;
 
-	for (shared_ptr<GameObject>& gameObject : gameObjects)
+	for (std::shared_ptr<GameObject>& gameObject : gameObjects)
 	{
 		const uint64 instanceId = gameObject->GetMeshRenderer()->GetInstanceID();
 		cache[instanceId].push_back(gameObject);
@@ -18,7 +18,7 @@ void InstancingManager::Render(vector<shared_ptr<GameObject>>& gameObjects)
 
 	for (auto& pair : cache)
 	{
-		const vector<shared_ptr<GameObject>>& vec = pair.second;
+		const std::vector<std::shared_ptr<GameObject>>& vec = pair.second;
 
 		if (vec.size() == 1)
 		{
@@ -28,7 +28,7 @@ void InstancingManager::Render(vector<shared_ptr<GameObject>>& gameObjects)
 		{
 			const uint64 instanceId = pair.first;
 
-			for (const shared_ptr<GameObject>& gameObject : vec)
+			for (const std::shared_ptr<GameObject>& gameObject : vec)
 			{
 				InstancingParams params;
 				params.matWorld = gameObject->GetTransform()->GetLocalToWorldMatrix();
@@ -38,7 +38,7 @@ void InstancingManager::Render(vector<shared_ptr<GameObject>>& gameObjects)
 				AddParam(instanceId, params);
 			}
 
-			shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
+			std::shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
 			vec[0]->GetMeshRenderer()->Render(buffer);
 		}
 	}
@@ -48,7 +48,7 @@ void InstancingManager::ClearBuffer()
 {
 	for (auto& pair : _buffers)
 	{
-		shared_ptr<InstancingBuffer>& buffer = pair.second;
+		std::shared_ptr<InstancingBuffer>& buffer = pair.second;
 		buffer->Clear();
 	}
 }
@@ -56,7 +56,7 @@ void InstancingManager::ClearBuffer()
 void InstancingManager::AddParam(uint64 instanceId, InstancingParams& data)
 {
 	if (_buffers.find(instanceId) == _buffers.end())
-		_buffers[instanceId] = make_shared<InstancingBuffer>();
+		_buffers[instanceId] = std::make_shared<InstancingBuffer>();
 
 	_buffers[instanceId]->AddData(data);
 }

@@ -24,7 +24,7 @@ void Transform::FinalUpdate()
 	_matLocal = matScale * matRotation * matTranslation;
 	_matWorld = _matLocal;
 
-	shared_ptr<Transform> parent = GetParent().lock();
+	std::shared_ptr<Transform> parent = GetParent().lock();
 	if (parent != nullptr)
 	{
 		_matWorld *= parent->GetLocalToWorldMatrix();

@@ -8,7 +8,7 @@ class InstancingManager
 	DECLARE_SINGLE(InstancingManager);
 
 public:
-	void Render(vector<shared_ptr<GameObject>>& gameObjects);
+	void Render(std::vector<std::shared_ptr<GameObject>>& gameObjects);
 
 	void ClearBuffer();
 	void Clear() { _buffers.clear(); }
@@ -17,6 +17,6 @@ private:
 	void AddParam(uint64 instanceId, InstancingParams& data);
 
 private:
-	map<uint64/*instanceId*/, shared_ptr<InstancingBuffer>> _buffers;
+	std::map<uint64/*instanceId*/, std::shared_ptr<InstancingBuffer>> _buffers;
 };
 

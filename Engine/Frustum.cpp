@@ -8,7 +8,7 @@ void Frustum::FinalUpdate()
 	Matrix matProjectionInv = Camera::S_MatProjection.Invert();
 	Matrix matInv = matProjectionInv * matViewInv;
 
-	vector<Vec3> worldPos =
+	std::vector<Vec3> worldPos =
 	{
 		::XMVector3TransformCoord(Vec3(-1.f, 1.f, 0.f), matInv),
 		::XMVector3TransformCoord(Vec3(1.f, 1.f, 0.f), matInv),

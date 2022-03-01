@@ -63,7 +63,7 @@ private:
 
 private:
 	HWND _hwnd;
-	vector<KEY_STATE> _states;
+	std::vector<KEY_STATE> _states;
 	POINT _mousePos = {};
 };
 

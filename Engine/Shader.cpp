@@ -12,7 +12,7 @@ Shader::~Shader()
 
 }
 
-void Shader::CreateGraphicsShader(const wstring& path, ShaderInfo info, ShaderArg arg)
+void Shader::CreateGraphicsShader(const std::wstring& path, ShaderInfo info, ShaderArg arg)
 {
 	_info = info;
 
@@ -176,7 +176,7 @@ void Shader::CreateGraphicsShader(const wstring& path, ShaderInfo info, ShaderAr
 	DEVICE->CreateGraphicsPipelineState(&_graphicsPipelineDesc, IID_PPV_ARGS(&_pipelineState));
 }
 
-void Shader::CreateComputeShader(const wstring& path, const string& name, const string& version)
+void Shader::CreateComputeShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	_info.shaderType = SHADER_TYPE::COMPUTE;
 
@@ -198,7 +198,7 @@ void Shader::Update()
 	}	
 }
 
-void Shader::CreateShader(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob>& blob, D3D12_SHADER_BYTECODE& shaderByteCode)
+void Shader::CreateShader(const std::wstring& path, const std::string& name, const std::string& version, ComPtr<ID3DBlob>& blob, D3D12_SHADER_BYTECODE& shaderByteCode)
 {
 	uint32 compileFlag = 0;
 #ifdef _DEBUG
@@ -214,27 +214,27 @@ void Shader::CreateShader(const wstring& path, const string& name, const string&
 	shaderByteCode = { blob->GetBufferPointer(), blob->GetBufferSize() };
 }
 
-void Shader::CreateVertexShader(const wstring& path, const string& name, const string& version)
+void Shader::CreateVertexShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	CreateShader(path, name, version, _vsBlob, _graphicsPipelineDesc.VS);
 }
 
-void Shader::CreateHullShader(const wstring& path, const string& name, const string& version)
+void Shader::CreateHullShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	CreateShader(path, name, version, _hsBlob, _graphicsPipelineDesc.HS);
 }
 
-void Shader::CreateDomainShader(const wstring& path, const string& name, const string& version)
+void Shader::CreateDomainShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	CreateShader(path, name, version, _dsBlob, _graphicsPipelineDesc.DS);
 }
 
-void Shader::CreateGeometryShader(const wstring& path, const string& name, const string& version)
+void Shader::CreateGeometryShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	CreateShader(path, name, version, _gsBlob, _graphicsPipelineDesc.GS);
 }
 
-void Shader::CreatePixelShader(const wstring& path, const string& name, const string& version)
+void Shader::CreatePixelShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	CreateShader(path, name, version, _psBlob, _graphicsPipelineDesc.PS);
 }

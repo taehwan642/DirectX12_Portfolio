@@ -10,9 +10,9 @@
 
 Light::Light() : Component(COMPONENT_TYPE::LIGHT)
 {
-	_shadowCamera = make_shared<GameObject>();
-	_shadowCamera->AddComponent(make_shared<Transform>());
-	_shadowCamera->AddComponent(make_shared<Camera>());
+	_shadowCamera = std::make_shared<GameObject>();
+	_shadowCamera->AddComponent(std::make_shared<Transform>());
+	_shadowCamera->AddComponent(std::make_shared<Camera>());
 	uint8 layerIndex = GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI");
 	_shadowCamera->GetCamera()->SetCullingMaskLayerOnOff(layerIndex, true); // UI´Â ¾È ÂïÀ½
 }
@@ -40,7 +40,7 @@ void Light::Render()
 
 	if (static_cast<LIGHT_TYPE>(_lightInfo.lightType) == LIGHT_TYPE::DIRECTIONAL_LIGHT)
 	{
-		shared_ptr<Texture> shadowTex = GET_SINGLE(Resources)->Get<Texture>(L"ShadowTarget");
+		std::shared_ptr<Texture> shadowTex = GET_SINGLE(Resources)->Get<Texture>(L"ShadowTarget");
 		_lightMaterial->SetTexture(2, shadowTex);
 
 		Matrix matVP = _shadowCamera->GetCamera()->GetViewMatrix() * _shadowCamera->GetCamera()->GetProjectionMatrix();

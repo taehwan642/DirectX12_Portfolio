@@ -9,35 +9,35 @@ void Resources::Init()
 	CreateDefaultMaterial();
 }
 
-shared_ptr<Mesh> Resources::LoadPointMesh()
+std::shared_ptr<Mesh> Resources::LoadPointMesh()
 {
-	shared_ptr<Mesh> findMesh = Get<Mesh>(L"Point");
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"Point");
 	if (findMesh)
 		return findMesh;
 
-	vector<Vertex> vec(1);
+	std::vector<Vertex> vec(1);
 	vec[0] = Vertex(Vec3(0, 0, 0), Vec2(0.5f, 0.5f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
 
-	vector<uint32> idx(1);
+	std::vector<uint32> idx(1);
 	idx[0] = 0;
 
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Create(vec, idx);
 	Add(L"Point", mesh);
 
 	return mesh;
 }
 
-shared_ptr<Mesh> Resources::LoadRectangleMesh()
+std::shared_ptr<Mesh> Resources::LoadRectangleMesh()
 {
-	shared_ptr<Mesh> findMesh = Get<Mesh>(L"Rectangle");
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"Rectangle");
 	if (findMesh)
 		return findMesh;
 
 	float w2 = 0.5f;
 	float h2 = 0.5f;
 
-	vector<Vertex> vec(4);
+	std::vector<Vertex> vec(4);
 
 	// 앞면
 	vec[0] = Vertex(Vec3(-w2, -h2, 0), Vec2(0.0f, 1.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
@@ -45,22 +45,22 @@ shared_ptr<Mesh> Resources::LoadRectangleMesh()
 	vec[2] = Vertex(Vec3(+w2, +h2, 0), Vec2(1.0f, 0.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
 	vec[3] = Vertex(Vec3(+w2, -h2, 0), Vec2(1.0f, 1.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
 
-	vector<uint32> idx(6);
+	std::vector<uint32> idx(6);
 
 	// 앞면
 	idx[0] = 0; idx[1] = 1; idx[2] = 2;
 	idx[3] = 0; idx[4] = 2; idx[5] = 3;
 
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Create(vec, idx);
 	Add(L"Rectangle", mesh);
 
 	return mesh;
 }
 
-shared_ptr<Mesh> Resources::LoadCubeMesh()
+std::shared_ptr<Mesh> Resources::LoadCubeMesh()
 {
-	shared_ptr<Mesh> findMesh = Get<Mesh>(L"Cube");
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"Cube");
 	if (findMesh)
 		return findMesh;
 
@@ -68,7 +68,7 @@ shared_ptr<Mesh> Resources::LoadCubeMesh()
 	float h2 = 0.5f;
 	float d2 = 0.5f;
 
-	vector<Vertex> vec(24);
+	std::vector<Vertex> vec(24);
 
 	// 앞면
 	vec[0] = Vertex(Vec3(-w2, -h2, -d2), Vec2(0.0f, 1.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
@@ -101,7 +101,7 @@ shared_ptr<Mesh> Resources::LoadCubeMesh()
 	vec[22] = Vertex(Vec3(+w2, +h2, +d2), Vec2(1.0f, 0.0f), Vec3(1.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 1.0f));
 	vec[23] = Vertex(Vec3(+w2, -h2, +d2), Vec2(1.0f, 1.0f), Vec3(1.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 1.0f));
 
-	vector<uint32> idx(36);
+	std::vector<uint32> idx(36);
 
 	// 앞면
 	idx[0] = 0; idx[1] = 1; idx[2] = 2;
@@ -122,16 +122,16 @@ shared_ptr<Mesh> Resources::LoadCubeMesh()
 	idx[30] = 20; idx[31] = 21; idx[32] = 22;
 	idx[33] = 20; idx[34] = 22; idx[35] = 23;
 
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Create(vec, idx);
 	Add(L"Cube", mesh);
 
 	return mesh;
 }
 
-shared_ptr<Mesh> Resources::LoadSphereMesh()
+std::shared_ptr<Mesh> Resources::LoadSphereMesh()
 {
-	shared_ptr<Mesh> findMesh = Get<Mesh>(L"Sphere");
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"Sphere");
 	if (findMesh)
 		return findMesh;
 
@@ -139,7 +139,7 @@ shared_ptr<Mesh> Resources::LoadSphereMesh()
 	uint32 stackCount = 20; // 가로 분할
 	uint32 sliceCount = 20; // 세로 분할
 
-	vector<Vertex> vec;
+	std::vector<Vertex> vec;
 
 	Vertex v;
 
@@ -193,7 +193,7 @@ shared_ptr<Mesh> Resources::LoadSphereMesh()
 	v.tangent = Vec3(1.0f, 0.0f, 0.0f);
 	vec.push_back(v);
 
-	vector<uint32> idx(36);
+	std::vector<uint32> idx(36);
 
 	// 북극 인덱스
 	for (uint32 i = 0; i <= sliceCount; ++i)
@@ -240,16 +240,16 @@ shared_ptr<Mesh> Resources::LoadSphereMesh()
 		idx.push_back(lastRingStartIndex + i + 1);
 	}
 
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Create(vec, idx);
 	Add(L"Sphere", mesh);
 
 	return mesh;
 }
 
-shared_ptr<Mesh> Resources::LoadTerrainMesh(int32 sizeX, int32 sizeZ)
+std::shared_ptr<Mesh> Resources::LoadTerrainMesh(int32 sizeX, int32 sizeZ)
 {
-	vector<Vertex> vec;
+	std::vector<Vertex> vec;
 
 	for (int32 z = 0; z < sizeZ + 1; z++)
 	{
@@ -265,7 +265,7 @@ shared_ptr<Mesh> Resources::LoadTerrainMesh(int32 sizeX, int32 sizeZ)
 		}
 	}
 
-	vector<uint32> idx;
+	std::vector<uint32> idx;
 
 	for (int32 z = 0; z < sizeZ; z++)
 	{
@@ -286,44 +286,44 @@ shared_ptr<Mesh> Resources::LoadTerrainMesh(int32 sizeX, int32 sizeZ)
 		}
 	}
 
-	shared_ptr<Mesh> findMesh = Get<Mesh>(L"Terrain");
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"Terrain");
 	if (findMesh)
 	{
 		findMesh->Create(vec, idx);
 		return findMesh;
 	}
 
-	shared_ptr<Mesh> mesh = make_shared<Mesh>();
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 	mesh->Create(vec, idx);
 	Add(L"Terrain", mesh);
 	return mesh;
 }
 
-shared_ptr<Texture> Resources::CreateTexture(const wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
+std::shared_ptr<Texture> Resources::CreateTexture(const std::wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
 	const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
 	D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor)
 {
-	shared_ptr<Texture> texture = make_shared<Texture>();
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 	texture->Create(format, width, height, heapProperty, heapFlags, resFlags, clearColor);
 	Add(name, texture);
 
 	return texture;
 }
 
-shared_ptr<Texture> Resources::CreateTextureFromResource(const wstring& name, ComPtr<ID3D12Resource> tex2D)
+std::shared_ptr<Texture> Resources::CreateTextureFromResource(const std::wstring& name, ComPtr<ID3D12Resource> tex2D)
 {
-	shared_ptr<Texture> texture = make_shared<Texture>();
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 	texture->CreateFromResource(tex2D);
 	Add(name, texture);
 
 	return texture;
 }
 
-shared_ptr<MeshData> Resources::LoadFBX(const wstring& path)
+std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path)
 {
-	wstring key = path;
+	std::wstring key = path;
 
-	shared_ptr<MeshData> meshData = Get<MeshData>(key);
+	std::shared_ptr<MeshData> meshData = Get<MeshData>(key);
 	if (meshData)
 		return meshData;
 
@@ -345,7 +345,7 @@ void Resources::CreateDefaultShader()
 			DEPTH_STENCIL_TYPE::LESS_EQUAL
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\skybox.fx", info);
 		Add<Shader>(L"Skybox", shader);
 	}
@@ -357,7 +357,7 @@ void Resources::CreateDefaultShader()
 			SHADER_TYPE::DEFERRED
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\deferred.fx", info);
 		Add<Shader>(L"Deferred", shader);
 	}
@@ -369,7 +369,7 @@ void Resources::CreateDefaultShader()
 			SHADER_TYPE::FORWARD,
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\forward.fx", info);
 		Add<Shader>(L"Forward", shader);
 	}
@@ -392,7 +392,7 @@ void Resources::CreateDefaultShader()
 			"PS_Tex"
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\forward.fx", info, arg);
 		Add<Shader>(L"Texture", shader);
 	}
@@ -416,7 +416,7 @@ void Resources::CreateDefaultShader()
 			"PS_DirLight"
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\lighting.fx", info, arg);
 		Add<Shader>(L"DirLight", shader);
 	}
@@ -440,7 +440,7 @@ void Resources::CreateDefaultShader()
 			"PS_PointLight"
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\lighting.fx", info, arg);
 		Add<Shader>(L"PointLight", shader);
 	}
@@ -463,14 +463,14 @@ void Resources::CreateDefaultShader()
 			"PS_Final"
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\lighting.fx", info, arg);
 		Add<Shader>(L"Final", shader);
 	}
 
 	// Compute Shader
 	{
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateComputeShader(L"..\\Resources\\Shader\\compute.fx", "CS_Main", "cs_5_0");
 		Add<Shader>(L"ComputeShader", shader);
 	}
@@ -495,14 +495,14 @@ void Resources::CreateDefaultShader()
 			"PS_Main"
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\particle.fx", info, arg);
 		Add<Shader>(L"Particle", shader);
 	}
 
 	// ComputeParticle
 	{
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateComputeShader(L"..\\Resources\\Shader\\particle.fx", "CS_Main", "cs_5_0");
 		Add<Shader>(L"ComputeParticle", shader);
 	}
@@ -516,7 +516,7 @@ void Resources::CreateDefaultShader()
 			DEPTH_STENCIL_TYPE::LESS,
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\shadow.fx", info);
 		Add<Shader>(L"Shadow", shader);
 	}
@@ -541,7 +541,7 @@ void Resources::CreateDefaultShader()
 			"PS_Main",
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\tessellation.fx", info, arg);
 		Add<Shader>(L"Tessellation", shader);
 	}
@@ -566,14 +566,14 @@ void Resources::CreateDefaultShader()
 			"PS_Main",
 		};
 
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\terrain.fx", info, arg);
 		Add<Shader>(L"Terrain", shader);
 	}
 
 	// ComputeAnimation
 	{
-		shared_ptr<Shader> shader = make_shared<Shader>();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateComputeShader(L"..\\Resources\\Shader\\animation.fx", "CS_Main", "cs_5_0");
 		Add<Shader>(L"ComputeAnimation", shader);
 	}
@@ -583,16 +583,16 @@ void Resources::CreateDefaultMaterial()
 {
 	// Skybox
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Skybox");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Skybox");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"Skybox", material);
 	}
 
 	// DirLight
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"DirLight");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"DirLight");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, GET_SINGLE(Resources)->Get<Texture>(L"PositionTarget"));
 		material->SetTexture(1, GET_SINGLE(Resources)->Get<Texture>(L"NormalTarget"));
@@ -604,8 +604,8 @@ void Resources::CreateDefaultMaterial()
 		const WindowInfo& window = GEngine->GetWindow();
 		Vec2 resolution = { static_cast<float>(window.width), static_cast<float>(window.height) };
 
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"PointLight");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"PointLight");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, GET_SINGLE(Resources)->Get<Texture>(L"PositionTarget"));
 		material->SetTexture(1, GET_SINGLE(Resources)->Get<Texture>(L"NormalTarget"));
@@ -615,8 +615,8 @@ void Resources::CreateDefaultMaterial()
 
 	// Final
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Final");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Final");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, GET_SINGLE(Resources)->Get<Texture>(L"DiffuseTarget"));
 		material->SetTexture(1, GET_SINGLE(Resources)->Get<Texture>(L"DiffuseLightTarget"));
@@ -626,24 +626,24 @@ void Resources::CreateDefaultMaterial()
 
 	// Compute Shader
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeShader");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeShader");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"ComputeShader", material);
 	}
 
 	// Particle
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Particle");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Particle");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"Particle", material);
 	}
 
 	// ComputeParticle
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeParticle");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeParticle");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 
 		Add<Material>(L"ComputeParticle", material);
@@ -651,10 +651,10 @@ void Resources::CreateDefaultMaterial()
 
 	// GameObject
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Deferred");
-		shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Leather", L"..\\Resources\\Texture\\Leather.jpg");
-		shared_ptr<Texture> texture2 = GET_SINGLE(Resources)->Load<Texture>(L"Leather_Normal", L"..\\Resources\\Texture\\Leather_Normal.jpg");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Deferred");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Leather", L"..\\Resources\\Texture\\Leather.jpg");
+		std::shared_ptr<Texture> texture2 = GET_SINGLE(Resources)->Load<Texture>(L"Leather_Normal", L"..\\Resources\\Texture\\Leather_Normal.jpg");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
 		material->SetTexture(1, texture2);
@@ -663,25 +663,25 @@ void Resources::CreateDefaultMaterial()
 
 	// Shadow
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Shadow");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Shadow");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"Shadow", material);
 	}
 
 	// Tessellation
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Tessellation");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Tessellation");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"Tessellation", material);
 	}
 
 	// Terrain
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Terrain");
-		shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Terrain", L"..\\Resources\\Texture\\Terrain\\terrain.png");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Terrain");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Terrain", L"..\\Resources\\Texture\\Terrain\\terrain.png");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
 		Add<Material>(L"Terrain", material);
@@ -689,8 +689,8 @@ void Resources::CreateDefaultMaterial()
 
 	// ComputeAnimation
 	{
-		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeAnimation");
-		shared_ptr<Material> material = make_shared<Material>();
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeAnimation");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 
 		Add<Material>(L"ComputeAnimation", material);

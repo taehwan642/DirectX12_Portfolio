@@ -1,8 +1,5 @@
 #pragma once
 
-// std::byte 사용하지 않음
-#define _HAS_STD_BYTE 0
-
 // 각종 include
 #include <windows.h>
 #include <tchar.h>
@@ -12,10 +9,8 @@
 #include <array>
 #include <list>
 #include <map>
-using namespace std;
 
 #include <filesystem>
-namespace fs = std::filesystem;
 
 #include "d3dx12.h"
 #include "SimpleMath.h"
@@ -165,6 +160,8 @@ public:								\
 #define GRAPHICS_ROOT_SIGNATURE		GEngine->GetRootSignature()->GetGraphicsRootSignature()
 #define COMPUTE_ROOT_SIGNATURE		GEngine->GetRootSignature()->GetComputeRootSignature()
 
+#define IMGUIMANAGER		GEngine->GetImGuiManager()
+
 #define INPUT				GET_SINGLE(Input)
 #define DELTA_TIME			GET_SINGLE(Timer)->GetDeltaTime()
 
@@ -187,8 +184,8 @@ struct AnimFrameParams
 	Vec4	translation;
 };
 
-extern unique_ptr<class Engine> GEngine;
+extern std::unique_ptr<class Engine> GEngine;
 
 // Utils
-wstring s2ws(const string& s);
-string ws2s(const wstring& s);
+std::wstring s2ws(const std::string& s);
+std::string ws2s(const std::wstring& s);

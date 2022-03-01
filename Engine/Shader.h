@@ -49,11 +49,11 @@ struct ShaderInfo
 
 struct ShaderArg
 {
-	const string vs = "VS_Main";
-	const string hs;
-	const string ds;
-	const string gs;
-	const string ps = "PS_Main";
+	const std::string vs = "VS_Main";
+	const std::string hs;
+	const std::string ds;
+	const std::string gs;
+	const std::string ps = "PS_Main";
 };
 
 class Shader : public Object
@@ -62,8 +62,8 @@ public:
 	Shader();
 	virtual ~Shader();
 
-	void CreateGraphicsShader(const wstring& path, ShaderInfo info = ShaderInfo(), ShaderArg arg = ShaderArg());
-	void CreateComputeShader(const wstring& path, const string& name, const string& version);
+	void CreateGraphicsShader(const std::wstring& path, ShaderInfo info = ShaderInfo(), ShaderArg arg = ShaderArg());
+	void CreateComputeShader(const std::wstring& path, const std::string& name, const std::string& version);
 	
 	void Update();
 
@@ -72,12 +72,12 @@ public:
 	static D3D12_PRIMITIVE_TOPOLOGY_TYPE GetTopologyType(D3D_PRIMITIVE_TOPOLOGY topology);
 
 private:
-	void CreateShader(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob>& blob, D3D12_SHADER_BYTECODE& shaderByteCode);
-	void CreateVertexShader(const wstring& path, const string& name, const string& version);
-	void CreateHullShader(const wstring& path, const string& name, const string& version);
-	void CreateDomainShader(const wstring& path, const string& name, const string& version);
-	void CreateGeometryShader(const wstring& path, const string& name, const string& version);
-	void CreatePixelShader(const wstring& path, const string& name, const string& version);
+	void CreateShader(const std::wstring& path, const std::string& name, const std::string& version, ComPtr<ID3DBlob>& blob, D3D12_SHADER_BYTECODE& shaderByteCode);
+	void CreateVertexShader(const std::wstring& path, const std::string& name, const std::string& version);
+	void CreateHullShader(const std::wstring& path, const std::string& name, const std::string& version);
+	void CreateDomainShader(const std::wstring& path, const std::string& name, const std::string& version);
+	void CreateGeometryShader(const std::wstring& path, const std::string& name, const std::string& version);
+	void CreatePixelShader(const std::wstring& path, const std::string& name, const std::string& version);
 
 private:
 	ShaderInfo _info;

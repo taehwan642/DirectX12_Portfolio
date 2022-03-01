@@ -14,24 +14,24 @@ class SceneManager
 public:
 	void Update();
 	void Render();
-	void LoadScene(wstring sceneName);
+	void LoadScene(std::wstring sceneName);
 
-	void SetLayerName(uint8 index, const wstring& name);
-	const wstring& IndexToLayerName(uint8 index) { return _layerNames[index]; }
-	uint8 LayerNameToIndex(const wstring& name);
+	void SetLayerName(uint8 index, const std::wstring& name);
+	const std::wstring& IndexToLayerName(uint8 index) { return _layerNames[index]; }
+	uint8 LayerNameToIndex(const std::wstring& name);
 
-	shared_ptr<class GameObject> Pick(int32 screenX, int32 screenY);
+	std::shared_ptr<class GameObject> Pick(int32 screenX, int32 screenY);
 
 public:
-	shared_ptr<Scene> GetActiveScene() { return _activeScene; }
+	std::shared_ptr<Scene> GetActiveScene() { return _activeScene; }
 
 private:
-	shared_ptr<Scene> LoadTestScene();
+	std::shared_ptr<Scene> LoadTestScene();
 
 private:
-	shared_ptr<Scene> _activeScene;
+	std::shared_ptr<Scene> _activeScene;
 
-	array<wstring, MAX_LAYER> _layerNames;
-	map<wstring, uint8> _layerIndex;
+	std::array<std::wstring, MAX_LAYER> _layerNames;
+	std::map<std::wstring, uint8> _layerIndex;
 };
 

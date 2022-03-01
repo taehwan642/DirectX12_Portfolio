@@ -5,16 +5,16 @@ struct FbxMaterialInfo
 	Vec4			diffuse;
 	Vec4			ambient;
 	Vec4			specular;
-	wstring			name;
-	wstring			diffuseTexName;
-	wstring			normalTexName;
-	wstring			specularTexName;
+	std::wstring			name;
+	std::wstring			diffuseTexName;
+	std::wstring			normalTexName;
+	std::wstring			specularTexName;
 };
 
 struct BoneWeight
 {
-	using Pair = pair<int32, double>;
-	vector<Pair> boneWeights;
+	using Pair = std::pair<int32, double>;
+	std::vector<Pair> boneWeights;
 
 	void AddWeights(uint32 index, double weight)
 	{
@@ -44,11 +44,11 @@ struct BoneWeight
 
 struct FbxMeshInfo
 {
-	wstring								name;
-	vector<Vertex>						vertices;
-	vector<vector<uint32>>				indices;
-	vector<FbxMaterialInfo>				materials;
-	vector<BoneWeight>					boneWeights; // »À °¡ÁßÄ¡
+	std::wstring								name;
+	std::vector<Vertex>						vertices;
+	std::vector<std::vector<uint32>>				indices;
+	std::vector<FbxMaterialInfo>				materials;
+	std::vector<BoneWeight>					boneWeights; // »À °¡ÁßÄ¡
 	bool								hasAnimation;
 };
 
@@ -60,18 +60,18 @@ struct FbxKeyFrameInfo
 
 struct FbxBoneInfo
 {
-	wstring					boneName;
+	std::wstring					boneName;
 	int32					parentIndex;
 	FbxAMatrix				matOffset;
 };
 
 struct FbxAnimClipInfo
 {
-	wstring			name;
+	std::wstring			name;
 	FbxTime			startTime;
 	FbxTime			endTime;
 	FbxTime::EMode	mode;
-	vector<vector<FbxKeyFrameInfo>>	keyFrames;
+	std::vector<std::vector<FbxKeyFrameInfo>>	keyFrames;
 };
 
 class FBXLoader
@@ -81,15 +81,15 @@ public:
 	~FBXLoader();
 
 public:
-	void LoadFbx(const wstring& path);
+	void LoadFbx(const std::wstring& path);
 
 public:
 	int32 GetMeshCount() { return static_cast<int32>(_meshes.size()); }
 	const FbxMeshInfo& GetMesh(int32 idx) { return _meshes[idx]; }
-	vector<shared_ptr<FbxBoneInfo>>& GetBones() { return _bones; }
-	vector<shared_ptr<FbxAnimClipInfo>>& GetAnimClip() { return _animClips; }
+	std::vector<std::shared_ptr<FbxBoneInfo>>& GetBones() { return _bones; }
+	std::vector<std::shared_ptr<FbxAnimClipInfo>>& GetAnimClip() { return _animClips; }
 private:
-	void Import(const wstring& path);
+	void Import(const std::wstring& path);
 
 	void ParseNode(FbxNode* root);
 	void LoadMesh(FbxMesh* mesh);
@@ -99,7 +99,7 @@ private:
 	void		GetTangent(FbxMesh* mesh, FbxMeshInfo* container, int32 idx, int32 vertexCounter);
 	void		GetUV(FbxMesh* mesh, FbxMeshInfo* container, int32 idx, int32 vertexCounter);
 	Vec4		GetMaterialData(FbxSurfaceMaterial* surface, const char* materialName, const char* factorName);
-	wstring		GetTextureRelativeName(FbxSurfaceMaterial* surface, const char* materialProperty);
+	std::wstring		GetTextureRelativeName(FbxSurfaceMaterial* surface, const char* materialProperty);
 
 	void CreateTextures();
 	void CreateMaterials();
@@ -114,7 +114,7 @@ private:
 	void LoadOffsetMatrix(FbxCluster* cluster, const FbxAMatrix& matNodeTransform, int32 boneIdx, FbxMeshInfo* meshInfo);
 	void LoadKeyframe(int32 animIndex, FbxNode* node, FbxCluster* cluster, const FbxAMatrix& matNodeTransform, int32 boneIdx, FbxMeshInfo* container);
 
-	int32 FindBoneIndex(string name);
+	int32 FindBoneIndex(std::string name);
 	FbxAMatrix GetTransform(FbxNode* node);
 
 	void FillBoneWeight(FbxMesh* mesh, FbxMeshInfo* meshInfo);
@@ -123,10 +123,10 @@ private:
 	FbxManager* _manager = nullptr;
 	FbxScene* _scene = nullptr;
 	FbxImporter* _importer = nullptr;
-	wstring			_resourceDirectory;
+	std::wstring			_resourceDirectory;
 
-	vector<FbxMeshInfo>					_meshes;
-	vector<shared_ptr<FbxBoneInfo>>		_bones;
-	vector<shared_ptr<FbxAnimClipInfo>>	_animClips;
+	std::vector<FbxMeshInfo>					_meshes;
+	std::vector<std::shared_ptr<FbxBoneInfo>>		_bones;
+	std::vector<std::shared_ptr<FbxAnimClipInfo>>	_animClips;
 	FbxArray<FbxString*>				_animNames;
 };

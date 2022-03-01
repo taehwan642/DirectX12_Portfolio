@@ -17,7 +17,7 @@ MeshRenderer::~MeshRenderer()
 
 }
 
-void MeshRenderer::SetMaterial(shared_ptr<Material> material, uint32 idx)
+void MeshRenderer::SetMaterial(std::shared_ptr<Material> material, uint32 idx)
 {
 	if (_materials.size() <= static_cast<size_t>(idx))
 		_materials.resize(static_cast<size_t>(idx + 1));
@@ -29,7 +29,7 @@ void MeshRenderer::Render()
 {
 	for (uint32 i = 0; i < _materials.size(); i++)
 	{
-		shared_ptr<Material>& material = _materials[i];
+		std::shared_ptr<Material>& material = _materials[i];
 
 		if (material == nullptr || material->GetShader() == nullptr)
 			continue;
@@ -47,11 +47,11 @@ void MeshRenderer::Render()
 	}
 }
 
-void MeshRenderer::Render(shared_ptr<InstancingBuffer>& buffer)
+void MeshRenderer::Render(std::shared_ptr<InstancingBuffer>& buffer)
 {
 	for (uint32 i = 0; i < _materials.size(); i++)
 	{
-		shared_ptr<Material>& material = _materials[i];
+		std::shared_ptr<Material>& material = _materials[i];
 
 		if (material == nullptr || material->GetShader() == nullptr)
 			continue;

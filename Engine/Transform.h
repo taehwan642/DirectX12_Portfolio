@@ -36,8 +36,8 @@ public:
 	static Vec3 DecomposeRotationMatrix(const Matrix& rotation);
 
 public:
-	void SetParent(shared_ptr<Transform> parent) { _parent = parent; }
-	weak_ptr<Transform> GetParent() { return _parent; }
+	void SetParent(std::shared_ptr<Transform> parent) { _parent = parent; }
+	std::weak_ptr<Transform> GetParent() { return _parent; }
 
 private:
 	// Parent ±âÁØ
@@ -48,6 +48,6 @@ private:
 	Matrix _matLocal= {};
 	Matrix _matWorld = {};
 
-	weak_ptr<Transform> _parent;
+	std::weak_ptr<Transform> _parent;
 };
 

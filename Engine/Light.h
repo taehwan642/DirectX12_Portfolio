@@ -64,9 +64,9 @@ private:
 	LightInfo _lightInfo = {};
 
 	int8 _lightIndex = -1;
-	shared_ptr<class Mesh> _volumeMesh;
-	shared_ptr<class Material> _lightMaterial;
+	std::shared_ptr<class Mesh> _volumeMesh;
+	std::shared_ptr<class Material> _lightMaterial;
 
-	shared_ptr<GameObject> _shadowCamera;
+	std::shared_ptr<GameObject> _shadowCamera;
 };
 

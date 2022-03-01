@@ -33,5 +33,5 @@ private:
 	D3D12_VERTEX_BUFFER_VIEW	_bufferView;
 
 	uint32						_maxCount = 0;
-	vector<InstancingParams>	_data;
+	std::vector<InstancingParams>	_data;
 };

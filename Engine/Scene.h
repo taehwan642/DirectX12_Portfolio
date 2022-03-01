@@ -12,7 +12,7 @@ public:
 	void LateUpdate();
 	void FinalUpdate();
 
-	shared_ptr<class Camera> GetMainCamera();
+	std::shared_ptr<class Camera> GetMainCamera();
 
 	void Render();
 
@@ -29,14 +29,14 @@ private:
 	void PushLightData();
 
 public:
-	void AddGameObject(shared_ptr<GameObject> gameObject);
-	void RemoveGameObject(shared_ptr<GameObject> gameObject);
+	void AddGameObject(std::shared_ptr<GameObject> gameObject);
+	void RemoveGameObject(std::shared_ptr<GameObject> gameObject);
 
-	const vector<shared_ptr<GameObject>>& GetGameObjects() { return _gameObjects; }
+	const std::vector<std::shared_ptr<GameObject>>& GetGameObjects() { return _gameObjects; }
 
 private:
-	vector<shared_ptr<GameObject>>		_gameObjects;
-	vector<shared_ptr<class Camera>>	_cameras;
-	vector<shared_ptr<class Light>>		_lights;
+	std::vector<std::shared_ptr<GameObject>>		_gameObjects;
+	std::vector<std::shared_ptr<class Camera>>	_cameras;
+	std::vector<std::shared_ptr<class Light>>		_lights;
 };
 

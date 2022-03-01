@@ -22,13 +22,13 @@ GameObject::~GameObject()
 
 void GameObject::Awake()
 {
-	for (shared_ptr<Component>& component : _components)
+	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
 			component->Awake();
 	}
 
-	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Awake();
 	}
@@ -36,13 +36,13 @@ void GameObject::Awake()
 
 void GameObject::Start()
 {
-	for (shared_ptr<Component>& component : _components)
+	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
 			component->Start();
 	}
 
-	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
 	}
@@ -50,13 +50,13 @@ void GameObject::Start()
 
 void GameObject::Update()
 {
-	for (shared_ptr<Component>& component : _components)
+	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
 			component->Update();
 	}
 
-	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Update();
 	}
@@ -64,13 +64,13 @@ void GameObject::Update()
 
 void GameObject::LateUpdate()
 {
-	for (shared_ptr<Component>& component : _components)
+	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
 			component->LateUpdate();
 	}
 
-	for (shared_ptr<MonoBehaviour>& script : _scripts)
+	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
 	}
@@ -78,69 +78,69 @@ void GameObject::LateUpdate()
 
 void GameObject::FinalUpdate()
 {
-	for (shared_ptr<Component>& component : _components)
+	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
 			component->FinalUpdate();
 	}
 }
 
-shared_ptr<Component> GameObject::GetFixedComponent(COMPONENT_TYPE type)
+std::shared_ptr<Component> GameObject::GetFixedComponent(COMPONENT_TYPE type)
 {
 	uint8 index = static_cast<uint8>(type);
 	assert(index < FIXED_COMPONENT_COUNT);
 	return _components[index];
 }
 
-shared_ptr<Transform> GameObject::GetTransform()
+std::shared_ptr<Transform> GameObject::GetTransform()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TRANSFORM);
-	return static_pointer_cast<Transform>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TRANSFORM);
+	return std::static_pointer_cast<Transform>(component);
 }
 
-shared_ptr<MeshRenderer> GameObject::GetMeshRenderer()
+std::shared_ptr<MeshRenderer> GameObject::GetMeshRenderer()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::MESH_RENDERER);
-	return static_pointer_cast<MeshRenderer>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::MESH_RENDERER);
+	return std::static_pointer_cast<MeshRenderer>(component);
 }
 
-shared_ptr<Camera> GameObject::GetCamera()
+std::shared_ptr<Camera> GameObject::GetCamera()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::CAMERA);
-	return static_pointer_cast<Camera>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::CAMERA);
+	return std::static_pointer_cast<Camera>(component);
 }
 
-shared_ptr<Light> GameObject::GetLight()
+std::shared_ptr<Light> GameObject::GetLight()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::LIGHT);
-	return static_pointer_cast<Light>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::LIGHT);
+	return std::static_pointer_cast<Light>(component);
 }
 
-shared_ptr<ParticleSystem> GameObject::GetParticleSystem()
+std::shared_ptr<ParticleSystem> GameObject::GetParticleSystem()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::PARTICLE_SYSTEM);
-	return static_pointer_cast<ParticleSystem>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::PARTICLE_SYSTEM);
+	return std::static_pointer_cast<ParticleSystem>(component);
 }
 
-shared_ptr<Terrain> GameObject::GetTerrain()
+std::shared_ptr<Terrain> GameObject::GetTerrain()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TERRAIN);
-	return static_pointer_cast<Terrain>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TERRAIN);
+	return std::static_pointer_cast<Terrain>(component);
 }
 
-shared_ptr<BaseCollider> GameObject::GetCollider()
+std::shared_ptr<BaseCollider> GameObject::GetCollider()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::COLLIDER);
-	return static_pointer_cast<BaseCollider>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::COLLIDER);
+	return std::static_pointer_cast<BaseCollider>(component);
 }
 
-shared_ptr<Animator> GameObject::GetAnimator()
+std::shared_ptr<Animator> GameObject::GetAnimator()
 {
-	shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::ANIMATOR);
-	return static_pointer_cast<Animator>(component);
+	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::ANIMATOR);
+	return std::static_pointer_cast<Animator>(component);
 }
 
-void GameObject::AddComponent(shared_ptr<Component> component)
+void GameObject::AddComponent(std::shared_ptr<Component> component)
 {
 	component->SetGameObject(shared_from_this());
 
@@ -151,6 +151,6 @@ void GameObject::AddComponent(shared_ptr<Component> component)
 	}
 	else
 	{
-		_scripts.push_back(dynamic_pointer_cast<MonoBehaviour>(component));
+		_scripts.push_back(std::dynamic_pointer_cast<MonoBehaviour>(component));
 	}
 }

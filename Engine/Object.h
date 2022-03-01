@@ -27,8 +27,8 @@ public:
 
 	OBJECT_TYPE GetType() { return _objectType; }
 
-	void SetName(const wstring& name) { _name = name; }
-	const wstring& GetName() { return _name; }
+	void SetName(const std::wstring& name) { _name = name; }
+	const std::wstring& GetName() { return _name; }
 
 	uint32 GetID() { return _id; }
 
@@ -36,12 +36,12 @@ public:
 
 protected:
 	friend class Resources;
-	virtual void Load(const wstring& path) { }
-	virtual void Save(const wstring& path) { }
+	virtual void Load(const std::wstring& path) { }
+	virtual void Save(const std::wstring& path) { }
 
 protected:
 	OBJECT_TYPE _objectType = OBJECT_TYPE::NONE;
-	wstring _name;
+	std::wstring _name;
 
 protected:
 	uint32 _id = 0;

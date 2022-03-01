@@ -18,7 +18,7 @@ FBXLoader::~FBXLoader()
 		_manager->Destroy();
 }
 
-void FBXLoader::LoadFbx(const wstring& path)
+void FBXLoader::LoadFbx(const std::wstring& path)
 {
 	// 파일 데이터 로드
 	Import(path);
@@ -35,7 +35,7 @@ void FBXLoader::LoadFbx(const wstring& path)
 	CreateMaterials();
 }
 
-void FBXLoader::Import(const wstring& path)
+void FBXLoader::Import(const std::wstring& path)
 {
 	// FBX SDK 관리자 객체 생성
 	_manager = FbxManager::Create();
@@ -48,11 +48,11 @@ void FBXLoader::Import(const wstring& path)
 	_scene = FbxScene::Create(_manager, "");
 
 	// 나중에 Texture 경로 계산할 때 쓸 것
-	_resourceDirectory = fs::path(path).parent_path().wstring() + L"\\" + fs::path(path).filename().stem().wstring() + L".fbm";
+	_resourceDirectory = std::filesystem::path(path).parent_path().wstring() + L"\\" + std::filesystem::path(path).filename().stem().wstring() + L".fbm";
 
 	_importer = FbxImporter::Create(_manager, "");
 
-	string strPath = ws2s(path);
+	std::string strPath = ws2s(path);
 	_importer->Initialize(strPath.c_str(), -1, _manager->GetIOSettings());
 
 	_importer->Import(_scene);
@@ -261,9 +261,9 @@ Vec4 FBXLoader::GetMaterialData(FbxSurfaceMaterial* surface, const char* materia
 	return ret;
 }
 
-wstring FBXLoader::GetTextureRelativeName(FbxSurfaceMaterial* surface, const char* materialProperty)
+std::wstring FBXLoader::GetTextureRelativeName(FbxSurfaceMaterial* surface, const char* materialProperty)
 {
-	string name;
+	std::string name;
 
 	FbxProperty textureProperty = surface->FindProperty(materialProperty);
 	if (textureProperty.IsValid())
@@ -289,27 +289,27 @@ void FBXLoader::CreateTextures()
 		{
 			// DiffuseTexture
 			{
-				wstring relativePath = _meshes[i].materials[j].diffuseTexName.c_str();
-				wstring filename = fs::path(relativePath).filename();
-				wstring fullPath = _resourceDirectory + L"\\" + filename;
+				std::wstring relativePath = _meshes[i].materials[j].diffuseTexName.c_str();
+				std::wstring filename = std::filesystem::path(relativePath).filename();
+				std::wstring fullPath = _resourceDirectory + L"\\" + filename;
 				if (filename.empty() == false)
 					GET_SINGLE(Resources)->Load<Texture>(filename, fullPath);
 			}
 
 			// NormalTexture
 			{
-				wstring relativePath = _meshes[i].materials[j].normalTexName.c_str();
-				wstring filename = fs::path(relativePath).filename();
-				wstring fullPath = _resourceDirectory + L"\\" + filename;
+				std::wstring relativePath = _meshes[i].materials[j].normalTexName.c_str();
+				std::wstring filename = std::filesystem::path(relativePath).filename();
+				std::wstring fullPath = _resourceDirectory + L"\\" + filename;
 				if (filename.empty() == false)
 					GET_SINGLE(Resources)->Load<Texture>(filename, fullPath);
 			}
 
 			// SpecularTexture
 			{
-				wstring relativePath = _meshes[i].materials[j].specularTexName.c_str();
-				wstring filename = fs::path(relativePath).filename();
-				wstring fullPath = _resourceDirectory + L"\\" + filename;
+				std::wstring relativePath = _meshes[i].materials[j].specularTexName.c_str();
+				std::wstring filename = std::filesystem::path(relativePath).filename();
+				std::wstring fullPath = _resourceDirectory + L"\\" + filename;
 				if (filename.empty() == false)
 					GET_SINGLE(Resources)->Load<Texture>(filename, fullPath);
 			}
@@ -323,34 +323,34 @@ void FBXLoader::CreateMaterials()
 	{
 		for (size_t j = 0; j < _meshes[i].materials.size(); j++)
 		{
-			shared_ptr<Material> material = make_shared<Material>();
-			wstring key = _meshes[i].materials[j].name;
+			std::shared_ptr<Material> material = std::make_shared<Material>();
+			std::wstring key = _meshes[i].materials[j].name;
 			material->SetName(key);
 			material->SetShader(GET_SINGLE(Resources)->Get<Shader>(L"Deferred"));
 
 			{
-				wstring diffuseName = _meshes[i].materials[j].diffuseTexName.c_str();
-				wstring filename = fs::path(diffuseName).filename();
-				wstring key = filename;
-				shared_ptr<Texture> diffuseTexture = GET_SINGLE(Resources)->Get<Texture>(key);
+				std::wstring diffuseName = _meshes[i].materials[j].diffuseTexName.c_str();
+				std::wstring filename = std::filesystem::path(diffuseName).filename();
+				std::wstring key = filename;
+				std::shared_ptr<Texture> diffuseTexture = GET_SINGLE(Resources)->Get<Texture>(key);
 				if (diffuseTexture)
 					material->SetTexture(0, diffuseTexture);
 			}
 
 			{
-				wstring normalName = _meshes[i].materials[j].normalTexName.c_str();
-				wstring filename = fs::path(normalName).filename();
-				wstring key = filename;
-				shared_ptr<Texture> normalTexture = GET_SINGLE(Resources)->Get<Texture>(key);
+				std::wstring normalName = _meshes[i].materials[j].normalTexName.c_str();
+				std::wstring filename = std::filesystem::path(normalName).filename();
+				std::wstring key = filename;
+				std::shared_ptr<Texture> normalTexture = GET_SINGLE(Resources)->Get<Texture>(key);
 				if (normalTexture)
 					material->SetTexture(1, normalTexture);
 			}
 
 			{
-				wstring specularName = _meshes[i].materials[j].specularTexName.c_str();
-				wstring filename = fs::path(specularName).filename();
-				wstring key = filename;
-				shared_ptr<Texture> specularTexture = GET_SINGLE(Resources)->Get<Texture>(key);
+				std::wstring specularName = _meshes[i].materials[j].specularTexName.c_str();
+				std::wstring filename = std::filesystem::path(specularName).filename();
+				std::wstring key = filename;
+				std::shared_ptr<Texture> specularTexture = GET_SINGLE(Resources)->Get<Texture>(key);
 				if (specularTexture)
 					material->SetTexture(2, specularTexture);
 			}
@@ -366,7 +366,7 @@ void FBXLoader::LoadBones(FbxNode* node, int32 idx, int32 parentIdx)
 
 	if (attribute && attribute->GetAttributeType() == FbxNodeAttribute::eSkeleton)
 	{
-		shared_ptr<FbxBoneInfo> bone = make_shared<FbxBoneInfo>();
+		std::shared_ptr<FbxBoneInfo> bone = std::make_shared<FbxBoneInfo>();
 		bone->boneName = s2ws(node->GetName());
 		bone->parentIndex = parentIdx;
 		_bones.push_back(bone);
@@ -388,7 +388,7 @@ void FBXLoader::LoadAnimationInfo()
 		if (animStack == nullptr)
 			continue;
 
-		shared_ptr<FbxAnimClipInfo> animClip = make_shared<FbxAnimClipInfo>();
+		std::shared_ptr<FbxAnimClipInfo> animClip = std::make_shared<FbxAnimClipInfo>();
 		animClip->name = s2ws(animStack->GetName());
 		animClip->keyFrames.resize(_bones.size()); // 키프레임은 본의 개수만큼
 
@@ -547,9 +547,9 @@ void FBXLoader::LoadKeyframe(int32 animIndex, FbxNode* node, FbxCluster* cluster
 	}
 }
 
-int32 FBXLoader::FindBoneIndex(string name)
+int32 FBXLoader::FindBoneIndex(std::string name)
 {
-	wstring boneName = wstring(name.begin(), name.end());
+	std::wstring boneName = std::wstring(name.begin(), name.end());
 
 	for (UINT i = 0; i < _bones.size(); ++i)
 	{

@@ -7,7 +7,7 @@ public:
 	Texture();
 	virtual ~Texture();
 
-	virtual void Load(const wstring& path) override;
+	virtual void Load(const std::wstring& path) override;
 
 public:
 	void Create(DXGI_FORMAT format, uint32 width, uint32 height,

@@ -8,15 +8,15 @@
 
 ParticleSystem::ParticleSystem() : Component(COMPONENT_TYPE::PARTICLE_SYSTEM)
 {
-	_particleBuffer = make_shared<StructuredBuffer>();
+	_particleBuffer = std::make_shared<StructuredBuffer>();
 	_particleBuffer->Init(sizeof(ParticleInfo), _maxParticle);
 
-	_computeSharedBuffer = make_shared<StructuredBuffer>();
+	_computeSharedBuffer = std::make_shared<StructuredBuffer>();
 	_computeSharedBuffer->Init(sizeof(ComputeSharedInfo), 1);
 
 	_mesh = GET_SINGLE(Resources)->LoadPointMesh();
 	_material = GET_SINGLE(Resources)->Get<Material>(L"Particle");
-	shared_ptr<Texture> tex = GET_SINGLE(Resources)->Load<Texture>(
+	std::shared_ptr<Texture> tex = GET_SINGLE(Resources)->Load<Texture>(
 		L"Bubbles", L"..\\Resources\\Texture\\Particle\\bubble.png");
 
 	_material->SetTexture(0, tex);

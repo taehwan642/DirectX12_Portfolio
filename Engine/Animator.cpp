@@ -10,7 +10,7 @@
 Animator::Animator() : Component(COMPONENT_TYPE::ANIMATOR)
 {
 	_computeMaterial = GET_SINGLE(Resources)->Get<Material>(L"ComputeAnimation");
-	_boneFinalMatrix = make_shared<StructuredBuffer>();
+	_boneFinalMatrix = std::make_shared<StructuredBuffer>();
 }
 
 Animator::~Animator()
@@ -32,7 +32,7 @@ void Animator::FinalUpdate()
 	_frameRatio = static_cast<float>(_frame - _frame);
 }
 
-void Animator::SetAnimClip(const vector<AnimClipInfo>* animClips)
+void Animator::SetAnimClip(const std::vector<AnimClipInfo>* animClips)
 {
 	_animClips = animClips;
 }
@@ -44,7 +44,7 @@ void Animator::PushData()
 		_boneFinalMatrix->Init(sizeof(Matrix), boneCount);
 
 	// Compute Shader
-	shared_ptr<Mesh> mesh = GetGameObject()->GetMeshRenderer()->GetMesh();
+	std::shared_ptr<Mesh> mesh = GetGameObject()->GetMeshRenderer()->GetMesh();
 	mesh->GetBoneFrameDataBuffer(_clipIndex)->PushComputeSRVData(SRV_REGISTER::t8);
 	mesh->GetBoneOffsetBuffer()->PushComputeSRVData(SRV_REGISTER::t9);
 
