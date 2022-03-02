@@ -5,6 +5,8 @@
 #include "MeshRenderer.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Mesh.h"
+#include "Material.h"
 
 void InstancingManager::Render(std::vector<std::shared_ptr<GameObject>>& gameObjects)
 {
@@ -22,7 +24,22 @@ void InstancingManager::Render(std::vector<std::shared_ptr<GameObject>>& gameObj
 
 		if (vec.size() == 1)
 		{
-			vec[0]->GetMeshRenderer()->Render();
+			if (vec[0]->GetMeshRenderer()->GetMaterial(0)->_params.intParams[0] == 1)
+			{
+				for (int i = 0; i < vec[0]->GetMeshRenderer()->GetMesh()->GetSubsetCount(); ++i)
+				{
+					vec[0]->GetMeshRenderer()->GetMaterial(i)->SetInt(0, 0);
+				}
+
+				vec[0]->GetMeshRenderer()->Render();
+				
+				for (int i = 0; i < vec[0]->GetMeshRenderer()->GetMesh()->GetSubsetCount(); ++i)
+				{
+					vec[0]->GetMeshRenderer()->GetMaterial(i)->SetInt(0, 1);
+				}
+			}
+			else
+				vec[0]->GetMeshRenderer()->Render();
 		}
 		else
 		{

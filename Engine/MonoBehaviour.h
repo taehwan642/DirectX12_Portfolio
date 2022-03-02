@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 
+class ImGuiManager;
 class MonoBehaviour : public Component
 {
 public:
@@ -8,6 +9,10 @@ public:
 	virtual ~MonoBehaviour();
 
 private:
-	virtual void FinalUpdate() sealed { }
+	virtual void FinalUpdate() final { }
+
+private:
+	friend class ImGuiManager;
+	std::wstring _className = L"";
 };
 

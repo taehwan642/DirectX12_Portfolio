@@ -3,6 +3,7 @@
 
 class Material;
 class StructuredBuffer;
+class ImGuiManager;
 
 struct IndexBufferInfo
 {
@@ -65,6 +66,8 @@ public:
 	std::shared_ptr<StructuredBuffer>	GetBoneOffsetBuffer() { return  _offsetBuffer; }
 
 private:
+	friend class ImGuiManager;
+	
 	ComPtr<ID3D12Resource>		_vertexBuffer;
 	D3D12_VERTEX_BUFFER_VIEW	_vertexBufferView = {};
 	uint32 _vertexCount = 0;

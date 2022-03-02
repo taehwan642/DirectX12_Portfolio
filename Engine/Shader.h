@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 
+class ImGuiManager;
+
 enum class SHADER_TYPE : uint8
 {
 	DEFERRED,
@@ -80,6 +82,8 @@ private:
 	void CreatePixelShader(const std::wstring& path, const std::string& name, const std::string& version);
 
 private:
+	friend class ImGuiManager;
+
 	ShaderInfo _info;
 	ComPtr<ID3D12PipelineState>			_pipelineState;
 

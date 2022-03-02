@@ -3,6 +3,7 @@
 
 class Mesh;
 class Material;
+class ImGuiManager;
 
 // [32][32]
 union InstanceID
@@ -34,6 +35,8 @@ public:
 	uint64 GetInstanceID();
 
 private:
+	friend class ImGuiManager;
+
 	std::shared_ptr<Mesh> _mesh;
 	std::vector<std::shared_ptr<Material>> _materials;
 };

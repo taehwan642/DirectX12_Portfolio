@@ -33,7 +33,7 @@ void Camera::FinalUpdate()
 	else
 		_matProjection = ::XMMatrixOrthographicLH(_width * _scale, _height * _scale, _near, _far);
 
-	_frustum.FinalUpdate();
+	_frustum.FinalUpdate(_matView, _matProjection);
 }
 
 void Camera::SortGameObject()
@@ -120,6 +120,8 @@ void Camera::Render_Deferred()
 	S_MatView = _matView;
 	S_MatProjection = _matProjection;
 
+	// Instancing그룹의 Deferred
+	// Non-Instancing 그룹의 Deferred로 나눠야함.
 	GET_SINGLE(InstancingManager)->Render(_vecDeferred);
 }
 
