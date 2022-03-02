@@ -24,6 +24,7 @@ public:
 	ComPtr<ID3D12DescriptorHeap> GetUAV() { return _uavHeap; }
 
 	D3D12_CPU_DESCRIPTOR_HANDLE GetSRVHandle() { return _srvHeapBegin; }
+	D3D12_GPU_DESCRIPTOR_HANDLE GetSRVGPUHandle() { return _srvGPUHeapBegin; }
 	D3D12_CPU_DESCRIPTOR_HANDLE GetUAVHandle() { return _uavHeapBegin; }
 
 	float GetWidth() { return static_cast<float>(_desc.Width); }
@@ -41,6 +42,7 @@ private:
 
 private:
 	D3D12_CPU_DESCRIPTOR_HANDLE		_srvHeapBegin = {};
+	D3D12_GPU_DESCRIPTOR_HANDLE		_srvGPUHeapBegin = {};
 	D3D12_CPU_DESCRIPTOR_HANDLE		_uavHeapBegin = {};
 };
 

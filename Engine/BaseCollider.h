@@ -4,11 +4,14 @@
 enum class ColliderType
 {
 	Sphere,
+	END
 };
 
 class BaseCollider : public Component
 {
 public:
+	static bool _drawCollider[static_cast<int>(ColliderType::END)];
+
 	BaseCollider(ColliderType colliderType);
 	virtual ~BaseCollider();
 

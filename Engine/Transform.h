@@ -21,6 +21,7 @@ public:
 
 	const Matrix& GetLocalToWorldMatrix() { return _matWorld; }
 	Vec3 GetWorldPosition() { return _matWorld.Translation(); }
+	Vec3 GetWorldScale() { return Vec3(_matWorld.Right().Length(), _matWorld.Up().Length(), _matWorld.Backward().Length()); }
 
 	Vec3 GetRight() { return _matWorld.Right(); }
 	Vec3 GetUp() { return _matWorld.Up(); }

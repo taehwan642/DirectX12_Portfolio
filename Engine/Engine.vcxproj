@@ -189,6 +189,7 @@
     <ClInclude Include="EnginePch.h" />
     <ClInclude Include="FBXLoader.h" />
     <ClInclude Include="Frustum.h" />
+    <ClInclude Include="GameManagerScript.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ImGuiManager.h" />
     <ClInclude Include="Input.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="RaycastManager.h" />
     <ClInclude Include="RenderTargetGroup.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="RootSignature.h" />
@@ -254,6 +256,7 @@
     <ClCompile Include="EnginePch.cpp" />
     <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="GameManagerScript.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ImGuiManager.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -273,6 +276,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="RaycastManager.cpp" />
     <ClCompile Include="RenderTargetGroup.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="RootSignature.cpp" />

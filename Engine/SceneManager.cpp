@@ -42,7 +42,8 @@ void SceneManager::LoadScene(std::wstring sceneName)
 	// TODO : 기존 Scene 정리
 	// TODO : 파일에서 Scene 정보 로드
 
-	_activeScene = LoadTestScene();
+	// TEST
+	/*_activeScene = */LoadTestScene();
 
 	_activeScene->Awake();
 	_activeScene->Start();
@@ -67,55 +68,6 @@ uint8 SceneManager::LayerNameToIndex(const std::wstring& name)
 	return findIt->second;
 }
 
-std::shared_ptr<GameObject> SceneManager::Pick(int32 screenX, int32 screenY)
-{
-	std::shared_ptr<Camera> camera = GetActiveScene()->GetMainCamera();
-
-	float width = static_cast<float>(GEngine->GetWindow().width);
-	float height = static_cast<float>(GEngine->GetWindow().height);
-
-	Matrix projectionMatrix = camera->GetProjectionMatrix();
-
-	// ViewSpace에서 Picking 진행
-	float viewX = (+2.0f * screenX / width - 1.0f) / projectionMatrix(0, 0);
-	float viewY = (-2.0f * screenY / height + 1.0f) / projectionMatrix(1, 1);
-
-	Matrix viewMatrix = camera->GetViewMatrix();
-	Matrix viewMatrixInv = viewMatrix.Invert();
-
-	auto& gameObjects = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
-
-	float minDistance = FLT_MAX;
-	std::shared_ptr<GameObject> picked;
-
-	for (auto& gameObject : gameObjects)
-	{
-		if (gameObject->GetCollider() == nullptr)
-			continue;
-
-		// ViewSpace에서의 Ray 정의
-		Vec4 rayOrigin = Vec4(0.0f, 0.0f, 0.0f, 1.0f);
-		Vec4 rayDir = Vec4(viewX, viewY, 1.0f, 0.0f);
-
-		// WorldSpace에서의 Ray 정의
-		rayOrigin = XMVector3TransformCoord(rayOrigin, viewMatrixInv);
-		rayDir = XMVector3TransformNormal(rayDir, viewMatrixInv);
-		rayDir.Normalize();
-
-		// WorldSpace에서 연산
-		float distance = 0.f;
-		if (gameObject->GetCollider()->Intersects(rayOrigin, rayDir, OUT distance) == false)
-			continue;
-
-		if (distance < minDistance)
-		{
-			minDistance = distance;
-			picked = gameObject;
-		}
-	}
-
-	return picked;
-}
 std::shared_ptr<Scene> SceneManager::LoadTestScene()
 {
 #pragma region LayerMask
@@ -144,6 +96,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 #pragma endregion
 
 	std::shared_ptr<Scene> scene = std::make_shared<Scene>();
+	_activeScene = scene;
 	
 #pragma region Camera
 	{
@@ -179,6 +132,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> skybox = std::make_shared<GameObject>();
 		skybox->AddComponent(std::make_shared<Transform>());
+		skybox->SetName(L"SkyBox");
 		skybox->SetCheckFrustum(false);
 		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
 		{
@@ -215,15 +169,18 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			meshRenderer->SetMaterial(material);
 			material->SetInt(0, 1);
 		}
+		std::shared_ptr<SphereCollider> coll1 = std::make_shared<SphereCollider>();
+		obj->AddComponent(coll1);
+		coll1->Render();
+
 		obj->AddComponent(meshRenderer);
 		scene->AddGameObject(obj);
 
 		std::shared_ptr<GameObject> obj2 = std::make_shared<GameObject>();
 		obj2->SetName(L"Cube2");
 		obj2->AddComponent(std::make_shared<Transform>());
-		obj2->GetTransform()->SetLocalScale(Vec3(1.f, 1.f, 1.f));
-		obj2->GetTransform()->SetLocalPosition(Vec3(0, 3.f, 0.f));
-		obj2->GetTransform()->SetParent(obj->GetTransform());
+		obj2->GetTransform()->SetLocalScale(Vec3(20.f, 20.f, 20.f));
+		obj2->GetTransform()->SetLocalPosition(Vec3(0, 100.f, 0.f));
 		obj2->SetStatic(false);
 		std::shared_ptr<MeshRenderer> meshRenderer2 = std::make_shared<MeshRenderer>();
 		{
@@ -234,6 +191,9 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"GameObject");
 			meshRenderer2->SetMaterial(material);
 		}
+		std::shared_ptr<SphereCollider> coll2 = std::make_shared<SphereCollider>();
+		obj2->AddComponent(coll2);
+		coll2->Render();
 		obj2->AddComponent(meshRenderer2);
 		scene->AddGameObject(obj2);
 	}
@@ -243,6 +203,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 		obj->SetLayerIndex(GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI")); // UI
+		obj->SetName(L"RenderTarget UI " + std::to_wstring(i)); // UI
 		obj->AddComponent(std::make_shared<Transform>());
 		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
 		obj->GetTransform()->SetLocalPosition(Vec3(-550.f + (i * 120), 300.f, 500.f));
@@ -275,6 +236,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 #pragma region Directional Light
 	{
 		std::shared_ptr<GameObject> light = std::make_shared<GameObject>();
+		light->SetName(L"DirLight");
 		light->AddComponent(std::make_shared<Transform>());
 		light->GetTransform()->SetLocalPosition(Vec3(500, 1000, 500));
 		light->AddComponent(std::make_shared<Light>());

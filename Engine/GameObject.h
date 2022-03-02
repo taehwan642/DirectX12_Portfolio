@@ -11,6 +11,7 @@ class ParticleSystem;
 class Terrain;
 class BaseCollider;
 class Animator;
+class ImGuiManager;
 
 class GameObject : public Object, public std::enable_shared_from_this<GameObject>
 {
@@ -47,6 +48,8 @@ public:
 	bool IsStatic() { return _static; }
 
 private:
+	friend class ImGuiManager;
+
 	std::array<std::shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;
 

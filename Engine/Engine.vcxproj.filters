@@ -16,9 +16,6 @@
     <Filter Include="Object">
       <UniqueIdentifier>{dd23f47d-3ac2-4f96-9bfe-4a6fac248639}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Test">
-      <UniqueIdentifier>{1cfe4b64-4ca1-4958-b16f-73f8ae1985c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Component">
       <UniqueIdentifier>{915d1c10-9db1-4fdb-887a-d0160f593ea1}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     </Filter>
     <Filter Include="Utils\imgui">
       <UniqueIdentifier>{b046bffd-8731-4997-9c4b-7c5cb2ce419f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{1cfe4b64-4ca1-4958-b16f-73f8ae1985c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +91,7 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="TestCameraScript.cpp">
-      <Filter>Object\Test</Filter>
+      <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Manager</Filter>
@@ -154,7 +154,7 @@
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="TestDragon.cpp">
-      <Filter>Object\Test</Filter>
+      <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="..\Library\Include\Imgui\imgui.cpp">
       <Filter>Utils\imgui</Filter>
@@ -179,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="ImGuiManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="RaycastManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManagerScript.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,7 +249,7 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="TestCameraScript.h">
-      <Filter>Object\Test</Filter>
+      <Filter>Script</Filter>
     </ClInclude>
     <ClInclude Include="Resources.h">
       <Filter>Manager</Filter>
@@ -306,7 +312,7 @@
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="TestDragon.h">
-      <Filter>Object\Test</Filter>
+      <Filter>Script</Filter>
     </ClInclude>
     <ClInclude Include="..\Library\Include\Imgui\imgui.h">
       <Filter>Utils\imgui</Filter>
@@ -334,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="ImGuiManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="RaycastManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManagerScript.h">
+      <Filter>Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

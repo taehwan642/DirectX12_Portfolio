@@ -74,6 +74,7 @@ void Texture::Load(const std::wstring& path)
 	DEVICE->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&_srvHeap));
 
 	_srvHeapBegin = _srvHeap->GetCPUDescriptorHandleForHeapStart();
+	_srvGPUHeapBegin = _srvHeap->GetGPUDescriptorHandleForHeapStart();
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 	srvDesc.Format = _image.GetMetadata().format;
@@ -189,6 +190,7 @@ void Texture::CreateFromResource(ComPtr<ID3D12Resource> tex2D)
 		DEVICE->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&_srvHeap));
 
 		_srvHeapBegin = _srvHeap->GetCPUDescriptorHandleForHeapStart();
+		_srvGPUHeapBegin = _srvHeap->GetGPUDescriptorHandleForHeapStart();
 
 		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;

@@ -55,6 +55,7 @@ void Engine::Render()
 {
 	RenderBegin();
 
+	_imguiManager->_drawCall = 0;
 	GET_SINGLE(SceneManager)->Render();
 
 	_imguiManager->Render();

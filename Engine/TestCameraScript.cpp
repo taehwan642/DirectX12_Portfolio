@@ -6,6 +6,9 @@
 #include "Input.h"
 #include "Timer.h"
 #include "SceneManager.h"
+#include "RaycastManager.h"
+#include "ImGuiManager.h"
+#include "Engine.h"
 
 TestCameraScript::TestCameraScript()
 {
@@ -62,7 +65,11 @@ void TestCameraScript::LateUpdate()
 	if (INPUT->GetButtonDown(KEY_TYPE::RBUTTON))
 	{
 		const POINT& pos = INPUT->GetMousePos();
-		GET_SINGLE(SceneManager)->Pick(pos.x, pos.y);
+		std::shared_ptr<GameObject> pickedObject = GET_SINGLE(RaycastManager)->Pick(pos.x, pos.y);
+		if (pickedObject != nullptr)
+			IMGUIMANAGER->_currentGameObject = pickedObject;
+		else
+			IMGUIMANAGER->_currentGameObject = nullptr;
 	}
 
 	GetTransform()->SetLocalPosition(pos);
