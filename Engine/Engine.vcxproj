@@ -183,6 +183,7 @@
     <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="CubeCollider.h" />
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Engine.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshCollider.h" />
     <ClInclude Include="MeshData.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="MonoBehaviour.h" />
@@ -217,6 +219,7 @@
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="TableDescriptorHeap.h" />
     <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TerrainScript.h" />
     <ClInclude Include="TestCameraScript.h" />
     <ClInclude Include="TestDragon.h" />
     <ClInclude Include="Texture.h" />
@@ -251,6 +254,7 @@
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
+    <ClCompile Include="CubeCollider.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EnginePch.cpp" />
@@ -265,6 +269,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshCollider.cpp" />
     <ClCompile Include="MeshData.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="MonoBehaviour.cpp" />
@@ -289,6 +294,7 @@
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="TableDescriptorHeap.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TerrainScript.cpp" />
     <ClCompile Include="TestCameraScript.cpp" />
     <ClCompile Include="TestDragon.cpp" />
     <ClCompile Include="Texture.cpp" />

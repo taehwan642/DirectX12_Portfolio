@@ -1,7 +1,6 @@
 #pragma once
 
 class SwapChain;
-class DescriptorHeap;
 
 // ************************
 // GraphicsCommandQueue

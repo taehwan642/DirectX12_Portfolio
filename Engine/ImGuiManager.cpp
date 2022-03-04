@@ -20,6 +20,7 @@
 #include "Material.h"
 #include "Shader.h"
 #include "SphereCollider.h"
+#include "CubeCollider.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -171,8 +172,19 @@ void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphe
 {
     ImGui::Text("Type : Sphere");
 
-    ImGui::Text("Radius : %f", &sphereCollider->_radius);
-    ImGui::Text("Center : %f %f %f", &sphereCollider->_center.x, &sphereCollider->_center.y, &sphereCollider->_center.z);
+    ImGui::Text("Radius : %f", sphereCollider->_boundingSphere.Radius);
+    ImGui::Text("Center : %f %f %f", sphereCollider->_boundingSphere.Center.x, sphereCollider->_boundingSphere.Center.y, sphereCollider->_boundingSphere.Center.z);
+}
+
+void ImGuiManager::RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider)
+{
+    ImGui::Text("Type : Cube");
+
+    ImGui::Text("Center : %f %f %f", cubeCollider->_boundingBox.Center.x, cubeCollider->_boundingBox.Center.y, cubeCollider->_boundingBox.Center.z);
+    ImGui::Text("Scale : %f %f %f", 
+        cubeCollider->_boundingBox.Extents.x, 
+        cubeCollider->_boundingBox.Extents.y,
+        cubeCollider->_boundingBox.Extents.z);
 }
 
 void ImGuiManager::RenderClientData()
@@ -408,8 +420,16 @@ void ImGuiManager::RenderInspector()
                 switch (collider->_colliderType)
                 {
                 case ColliderType::Sphere:
+                {
                     std::shared_ptr<SphereCollider> sphereCollider = std::static_pointer_cast<SphereCollider>(collider);
                     RenderSphereColliderData(sphereCollider);
+                }
+                    break;
+                case ColliderType::Cube:
+                {
+                    std::shared_ptr<CubeCollider> cubeCollider = std::static_pointer_cast<CubeCollider>(collider);
+                    RenderCubeColliderData(cubeCollider);
+                }
                     break;
                 }
                 

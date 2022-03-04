@@ -47,6 +47,18 @@ public:
 	void SetStatic(bool flag) { _static = flag; }
 	bool IsStatic() { return _static; }
 
+	template<typename T>
+	std::shared_ptr<T> GetComponent()
+	{
+		for (auto& iter : _scripts)
+		{
+			if (std::dynamic_pointer_cast<T>(iter) != nullptr)
+			{
+				return std::dynamic_pointer_cast<T>(iter);
+			}
+		}
+	}
+
 private:
 	friend class ImGuiManager;
 

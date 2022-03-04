@@ -19,6 +19,8 @@
 #include "TestDragon.h"
 
 #include "ImGuiManager.h"
+#include "CubeCollider.h"
+#include "TerrainScript.h"
 
 void SceneManager::Update()
 {
@@ -131,6 +133,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 #pragma region Sphere
 	{
 		std::shared_ptr<GameObject> sphere = std::make_shared<GameObject>();
+		sphere->SetName(L"Sphere");
 		sphere->AddComponent(std::make_shared<Transform>());
 		sphere->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
 		sphere->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 500.f));
@@ -154,11 +157,12 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 #pragma endregion
 
 #pragma region Cube
-	{
 		std::shared_ptr<GameObject> cube = std::make_shared<GameObject>();
 		cube->AddComponent(std::make_shared<Transform>());
 		cube->GetTransform()->SetLocalScale(Vec3(50.f, 50.f, 50.f));
 		cube->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 150.f));
+		cube->AddComponent(std::make_shared<CubeCollider>());
+		cube->SetName(L"BlueCube");
 		cube->SetStatic(false);
 		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
 		{
@@ -171,12 +175,12 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		}
 		cube->AddComponent(meshRenderer);
 		scene->AddGameObject(cube);
-	}
 #pragma endregion
 
 #pragma region Terrain
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+		obj->SetName(L"Terrain");
 		obj->AddComponent(std::make_shared<Transform>());
 		obj->AddComponent(std::make_shared<Terrain>());
 		obj->AddComponent(std::make_shared<MeshRenderer>());
@@ -258,6 +262,34 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		scene->AddGameObject(obj2);
 	}
 
+#pragma region Plane
+	{
+		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(std::make_shared<CubeCollider>());
+		std::shared_ptr<TerrainScript> tsc = std::make_shared<TerrainScript>();
+		tsc->_testObject = cube;
+		obj->AddComponent(tsc); 
+		obj->SetName(L"Plane");
+		
+		obj->GetTransform()->SetLocalScale(Vec3(1000.f, 1.f, 1000.f));
+		obj->GetTransform()->SetLocalPosition(Vec3(0.f, 300.f, 500.f));
+		obj->SetStatic(true);
+		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
+		{
+			std::shared_ptr<Mesh> mesh = GET_SINGLE(Resources)->LoadCubeMesh();
+			meshRenderer->SetMesh(mesh);
+		}
+		{
+			std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"GameObject")->Clone();
+			material->SetInt(0, 0);
+			meshRenderer->SetMaterial(material);
+		}
+		obj->AddComponent(meshRenderer);
+		scene->AddGameObject(obj);
+	}
+#pragma endregion
+
 #pragma region UI_Test
 	for (int32 i = 0; i < 6; i++)
 	{
@@ -314,6 +346,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> light = std::make_shared<GameObject>();
 		light->AddComponent(std::make_shared<Transform>());
+		light->SetName(L"Point Light");
 		light->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
 		light->AddComponent(std::make_shared<Light>());
 		light->GetLight()->SetLightType(LIGHT_TYPE::POINT_LIGHT);
@@ -329,6 +362,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 #pragma region ParticleSystem
 	{
 		std::shared_ptr<GameObject> particle = std::make_shared<GameObject>();
+		particle->SetName(L"Particle");
 		particle->AddComponent(std::make_shared<Transform>());
 		particle->AddComponent(std::make_shared<ParticleSystem>());
 		particle->SetCheckFrustum(false);

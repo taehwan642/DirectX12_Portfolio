@@ -186,6 +186,13 @@
     <ClCompile Include="GameManagerScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="CubeCollider.cpp">
+      <Filter>Object\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainScript.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -347,6 +354,13 @@
     <ClInclude Include="GameManagerScript.h">
       <Filter>Script</Filter>
     </ClInclude>
+    <ClInclude Include="CubeCollider.h">
+      <Filter>Object\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

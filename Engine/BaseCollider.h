@@ -9,7 +9,7 @@ class GameObject;
 enum class ColliderType
 {
 	Sphere,
-	END
+	Cube
 };
 
 class BaseCollider : public Component

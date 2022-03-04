@@ -34,23 +34,26 @@ std::shared_ptr<GameObject> RaycastManager::Pick(int32 screenX, int32 screenY)
 			continue;
 
 		// ViewSpace에서의 Ray 정의
-		Vec4 rayOrigin = Vec4(0.0f, 0.0f, 0.0f, 1.0f);
-		Vec4 rayDir = Vec4(viewX, viewY, 1.0f, 0.0f);
+		Vec4 tempRayOrigin = Vec4(0.0f, 0.0f, 0.0f, 1.0f);
+		Vec4 tempRayDir = Vec4(viewX, viewY, 1.0f, 0.0f);
 
 		// WorldSpace에서의 Ray 정의
-		rayOrigin = XMVector3TransformCoord(rayOrigin, viewMatrixInv);
-		rayDir = XMVector3TransformNormal(rayDir, viewMatrixInv);
-		rayDir.Normalize();
+		tempRayOrigin = XMVector3TransformCoord(tempRayOrigin, viewMatrixInv);
+		tempRayDir = XMVector3TransformNormal(tempRayDir, viewMatrixInv);
+		tempRayDir.Normalize();
 
 		// WorldSpace에서 연산
-		float distance = 0.f;
-		if (gameObject->GetCollider()->Intersects(rayOrigin, rayDir, OUT distance) == false)
+		float tempDistance = 0.f;
+		if (gameObject->GetCollider()->Intersects(tempRayOrigin, tempRayDir, OUT tempDistance) == false)
 			continue;
 
-		if (distance < minDistance)
+		if (tempDistance < minDistance)
 		{
-			minDistance = distance;
+			minDistance = tempDistance;
 			picked = gameObject;
+			rayOrigin = tempRayOrigin;
+			rayDir = tempRayDir;
+			distance = tempDistance;
 		}
 	}
 
