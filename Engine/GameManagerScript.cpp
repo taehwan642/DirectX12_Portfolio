@@ -3,6 +3,7 @@
 
 GameManagerScript::GameManagerScript()
 {
+	_className = s2ws(typeid(this).name());
 }
 
 GameManagerScript::~GameManagerScript()

@@ -12,6 +12,7 @@
 
 TestCameraScript::TestCameraScript()
 {
+	_className = s2ws(typeid(decltype(this)).name());//L"TestCameraScript";
 }
 
 TestCameraScript::~TestCameraScript()

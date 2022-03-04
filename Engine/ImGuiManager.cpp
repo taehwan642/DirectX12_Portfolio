@@ -19,6 +19,7 @@
 #include "Animator.h"
 #include "Material.h"
 #include "Shader.h"
+#include "SphereCollider.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -69,6 +70,111 @@ void ImGuiManager::SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdqueue)
     ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), cmdqueue->GetGraphicsCmdList().Get());
 }
 
+void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
+{
+    ImGui::Text("Mesh VertexCount : %d", mesh->_vertexCount);
+    ImGui::Text("Mesh SubsetCount : %d", mesh->GetSubsetCount());
+}
+
+void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Material> material)
+{
+    ImGui::Text("Material Index : %d", materialIndex);
+
+    ImGui::InputInt4("Int Params", material->_params.intParams.data());
+    ImGui::InputFloat4("Float Params", material->_params.floatParams.data());
+    ImGui::InputInt4("Texture On Params", material->_params.texOnParams.data());
+
+    if (ImGui::BeginMenu("Vector2"))
+    {
+        ImGui::InputFloat2("0", reinterpret_cast<float*>(&material->_params.vec2Params[0]));
+        ImGui::InputFloat2("1", reinterpret_cast<float*>(&material->_params.vec2Params[1]));
+        ImGui::InputFloat2("2", reinterpret_cast<float*>(&material->_params.vec2Params[2]));
+        ImGui::InputFloat2("3", reinterpret_cast<float*>(&material->_params.vec2Params[3]));
+        ImGui::EndMenu();
+    }
+
+    if (ImGui::BeginMenu("Vector4"))
+    {
+        ImGui::InputFloat4("0", reinterpret_cast<float*>(&material->_params.vec4Params[0]));
+        ImGui::InputFloat4("1", reinterpret_cast<float*>(&material->_params.vec4Params[1]));
+        ImGui::InputFloat4("2", reinterpret_cast<float*>(&material->_params.vec4Params[2]));
+        ImGui::InputFloat4("3", reinterpret_cast<float*>(&material->_params.vec4Params[3]));
+        ImGui::EndMenu();
+    }
+
+    if (ImGui::BeginMenu("Shader"))
+    {
+        // ShaderInfo 출력
+        ImGui::Text("Shader Info :");
+        ImGui::SameLine();
+        switch (material->GetShader()->GetShaderType())
+        {
+        case SHADER_TYPE::DEFERRED:
+            ImGui::Text("Deffered");
+            break;
+        case SHADER_TYPE::FORWARD:
+            ImGui::Text("Forward");
+            break;
+        case SHADER_TYPE::LIGHTING:
+            ImGui::Text("Lighting");
+            break;
+        case SHADER_TYPE::PARTICLE:
+            ImGui::Text("Particle");
+            break;
+        case SHADER_TYPE::COMPUTE:
+            ImGui::Text("Compute");
+            break;
+        case SHADER_TYPE::SHADOW:
+            ImGui::Text("Shadow");
+            break;
+        }
+
+        if (ImGui::BeginMenu("Shader Pipeline"))
+        {
+            if (material->GetShader()->_vsBlob != nullptr)
+                ImGui::Text("Vertex Shader");
+            if (material->GetShader()->_hsBlob != nullptr)
+                ImGui::Text("Hull Shader");
+            if (material->GetShader()->_dsBlob != nullptr)
+                ImGui::Text("Domain Shader");
+            if (material->GetShader()->_gsBlob != nullptr)
+                ImGui::Text("Geometry Shader");
+            if (material->GetShader()->_psBlob != nullptr)
+                ImGui::Text("Pixel Shader");
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenu();
+    }
+}
+
+void ImGuiManager::RenderCameraData(std::shared_ptr<Camera> camera)
+{
+    switch (camera->_type)
+    {
+    case PROJECTION_TYPE::PERSPECTIVE:
+        ImGui::Text("PERSPECTIVE");
+        break;
+    case PROJECTION_TYPE::ORTHOGRAPHIC:
+        ImGui::Text("ORTHOGRAPHIC");
+        break;
+    }
+    ImGui::InputFloat("Near", &camera->_near);
+    ImGui::InputFloat("Far", &camera->_far);
+    ImGui::InputFloat("Fov", &camera->_fov);
+    ImGui::InputFloat("Scale", &camera->_scale);
+    ImGui::InputFloat("Width", &camera->_width);
+    ImGui::InputFloat("Height", &camera->_height);
+}
+
+void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider)
+{
+    ImGui::Text("Type : Sphere");
+
+    ImGui::Text("Radius : %f", &sphereCollider->_radius);
+    ImGui::Text("Center : %f %f %f", &sphereCollider->_center.x, &sphereCollider->_center.y, &sphereCollider->_center.z);
+}
+
 void ImGuiManager::RenderClientData()
 {
     ImGui::Begin("Client Data");
@@ -85,9 +191,14 @@ void ImGuiManager::RenderHierarchy()
     ImGui::Begin("Hierarchy");
 
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
+    int tempName = 0;
     for (auto& iter : vec)
     {
-        std::string tempString = std::string(iter->GetName().begin(), iter->GetName().end());
+        std::string tempString = std::to_string(tempName);
+        ++tempName;
+        if (iter->GetName().empty() == false)
+            tempString = std::string(iter->GetName().begin(), iter->GetName().end());
+
         if (ImGui::Button(tempString.c_str()))
         {
             _currentGameObject = iter;
@@ -115,29 +226,12 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("Transform"))
             {
                 std::shared_ptr<Transform> trans = _currentGameObject->GetTransform();
-                float position[3];
-                Vec3 pos = trans->GetLocalPosition();
-                position[0] = pos.x;
-                position[1] = pos.y;
-                position[2] = pos.z;
 
-                ImGui::InputFloat3("Position", position);
+                ImGui::DragFloat3("Position", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalPosition())));
 
-                float rotation[3];
-                Vec3 rot = trans->GetLocalRotation();
-                rotation[0] = rot.x;
-                rotation[1] = rot.y;
-                rotation[2] = rot.z;
+                ImGui::DragFloat3("Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalRotation())), 0.1f);
 
-                ImGui::InputFloat3("Rotation", rotation);
-
-                float scale[3];
-                Vec3 sc = trans->GetLocalScale();
-                scale[0] = sc.x;
-                scale[1] = sc.y;
-                scale[2] = sc.z;
-
-                ImGui::InputFloat3("Scale", scale);
+                ImGui::DragFloat3("Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalScale())));
 
                 // TODO : 부모 출력
 
@@ -152,78 +246,12 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("MeshRenderer"))
             {
                 std::shared_ptr<MeshRenderer> mr = _currentGameObject->GetMeshRenderer();
-                ImGui::Text("Mesh VertexCount : %d", mr->GetMesh()->_vertexCount);
-                ImGui::Text("Mesh SubsetCount : %d", mr->GetMesh()->GetSubsetCount());
+                RenderMeshData(mr->GetMesh());
 
                 int n = 0;
                 for (auto& iter : mr->_materials)
                 {
-                    ImGui::Text("Material : %d", n);
-
-                    ImGui::Text("Int Params : %d %d %d %d", iter->_params.intParams[0], iter->_params.intParams[1], iter->_params.intParams[2], iter->_params.intParams[3]);
-                    ImGui::Text("Float Params : %f %f %f %f", iter->_params.floatParams[0], iter->_params.floatParams[1], iter->_params.floatParams[2], iter->_params.floatParams[3]);
-                    ImGui::Text("Texture On Params : %d %d %d %d", iter->_params.texOnParams[0], iter->_params.texOnParams[1], iter->_params.texOnParams[2], iter->_params.texOnParams[3]);
-                    if (ImGui::BeginMenu("Vector2"))
-                    {
-                        ImGui::Text("%f %f", iter->_params.vec2Params[0].x, iter->_params.vec2Params[0].y);
-                        ImGui::Text("%f %f", iter->_params.vec2Params[1].x, iter->_params.vec2Params[1].y);
-                        ImGui::Text("%f %f", iter->_params.vec2Params[2].x, iter->_params.vec2Params[2].y);
-                        ImGui::Text("%f %f", iter->_params.vec2Params[3].x, iter->_params.vec2Params[3].y);
-                        ImGui::EndMenu();
-                    }
-                    if (ImGui::BeginMenu("Vector4"))
-                    {
-                        ImGui::Text("%f %f %f %f", iter->_params.vec4Params[0].x, iter->_params.vec4Params[0].y, iter->_params.vec4Params[0].z, iter->_params.vec4Params[0].w);
-                        ImGui::Text("%f %f %f %f", iter->_params.vec4Params[1].x, iter->_params.vec4Params[1].y, iter->_params.vec4Params[1].z, iter->_params.vec4Params[1].w);
-                        ImGui::Text("%f %f %f %f", iter->_params.vec4Params[2].x, iter->_params.vec4Params[2].y, iter->_params.vec4Params[2].z, iter->_params.vec4Params[2].w);
-                        ImGui::Text("%f %f %f %f", iter->_params.vec4Params[3].x, iter->_params.vec4Params[3].y, iter->_params.vec4Params[3].z, iter->_params.vec4Params[3].w);
-                        ImGui::EndMenu();
-                    }
-
-                    if (ImGui::BeginMenu("Shader"))
-                    {
-                        // ShaderInfo 출력
-                        ImGui::Text("Shader Info :");
-                        ImGui::SameLine();
-                        switch (iter->GetShader()->GetShaderType())
-                        {
-                        case SHADER_TYPE::DEFERRED:
-                            ImGui::Text("Deffered");
-                            break;
-                        case SHADER_TYPE::FORWARD:
-                            ImGui::Text("Forward");
-                            break;
-                        case SHADER_TYPE::LIGHTING:
-                            ImGui::Text("Lighting");
-                            break;
-                        case SHADER_TYPE::PARTICLE:
-                            ImGui::Text("Particle");
-                            break;
-                        case SHADER_TYPE::COMPUTE:
-                            ImGui::Text("Compute");
-                            break;
-                        case SHADER_TYPE::SHADOW:
-                            ImGui::Text("Shadow");
-                            break;
-                        }
-
-                        if (ImGui::BeginMenu("Shader Pipeline"))
-                        {
-                            if (iter->GetShader()->_vsBlob != nullptr)
-                                ImGui::Text("Vertex Shader");
-                            if (iter->GetShader()->_hsBlob != nullptr)
-                                ImGui::Text("Hull Shader");
-                            if (iter->GetShader()->_dsBlob != nullptr)
-                                ImGui::Text("Domain Shader");
-                            if (iter->GetShader()->_gsBlob != nullptr)
-                                ImGui::Text("Geometry Shader");
-                            if (iter->GetShader()->_psBlob != nullptr)
-                                ImGui::Text("Pixel Shader");
-                            ImGui::EndMenu();
-                        }
-
-                        ImGui::EndMenu();
-                    }
+                    RenderMaterialData(n, iter);
                     ++n;
                 }
 
@@ -239,22 +267,8 @@ void ImGuiManager::RenderInspector()
             {
                 std::shared_ptr<Camera> camera = _currentGameObject->GetCamera();
                 
-                switch (camera->_type)
-                {
-                case PROJECTION_TYPE::PERSPECTIVE:
-                    ImGui::Text("PERSPECTIVE");
-                    break;
-                case PROJECTION_TYPE::ORTHOGRAPHIC:
-                    ImGui::Text("ORTHOGRAPHIC");
-                    break;
-                }
-                ImGui::Text("Near : %f", camera->_near);
-                ImGui::Text("Far : %f", camera->_far);
-                ImGui::Text("Fov : %f", camera->_fov);
-                ImGui::Text("Scale : %f", camera->_scale);
-                ImGui::Text("Width : %f", camera->_width);
-                ImGui::Text("Height : %f", camera->_height);
-
+                RenderCameraData(camera);
+                
                 ImGui::EndMenu();
             }
         }
@@ -263,36 +277,180 @@ void ImGuiManager::RenderInspector()
         if (_currentGameObject->GetLight() != nullptr)
         {
             // light type 출력, light position, rotation 출력
+            if (ImGui::BeginMenu("Light"))
+            {
+                std::shared_ptr<Light> light = _currentGameObject->GetLight();
 
+                std::string meshType = "";
+                switch (light->GetLightType())
+                {
+                case LIGHT_TYPE::DIRECTIONAL_LIGHT:
+                    ImGui::Text("Directional Light");
+                    meshType = "Rectangle";
+                    break;
+                case LIGHT_TYPE::POINT_LIGHT:
+                    ImGui::Text("Point Light");
+                    meshType = "Sphere";
+                    break;
+                case LIGHT_TYPE::SPOT_LIGHT:
+                    ImGui::Text("Spot Light");
+                    meshType = "Sphere";
+                    break;
+                }
+
+                ImGui::Text("LightIndex : %d", light->_lightIndex);
+                if (ImGui::BeginMenu("LightInfo"))
+                {
+                    if (ImGui::BeginMenu("LightColor"))
+                    {
+                        ImGui::DragFloat4("Diffuse", reinterpret_cast<float*>(&light->_lightInfo.color.diffuse), 0.1f);
+
+                        ImGui::DragFloat4("Ambient", reinterpret_cast<float*>(&light->_lightInfo.color.ambient), 0.1f);
+
+                        ImGui::DragFloat4("Specular", reinterpret_cast<float*>(&light->_lightInfo.color.specular), 0.1f);
+
+                        ImGui::EndMenu();
+                    }
+
+                    ImGui::Text("Position : %f %f %f", light->_lightInfo.position.x, light->_lightInfo.position.y, light->_lightInfo.position.z);
+
+                    static float direction[3];
+                    direction[0] = light->_lightInfo.direction.x;
+                    direction[1] = light->_lightInfo.direction.y;
+                    direction[2] = light->_lightInfo.direction.z;
+
+                    ImGui::DragFloat3("Direction", direction, 0.1f);
+                    // ONLY FOR DEBUG
+                    light->SetLightDirection(Vec3(direction[0], direction[1], direction[2]));
+
+                    ImGui::DragFloat("Range", &light->_lightInfo.range, 0.1f);
+                    ImGui::DragFloat("Angle", &light->_lightInfo.angle, 0.1f);
+
+                    ImGui::EndMenu();
+                }
+
+                // Material
+                if (ImGui::BeginMenu("Light Material"))
+                {
+                    RenderMaterialData(0, light->_lightMaterial);
+                    ImGui::EndMenu();
+                }
+
+                // Camera
+                if (ImGui::BeginMenu("Shadow Camera"))
+                {
+                    RenderCameraData(light->_shadowCamera->GetCamera());
+                    ImGui::EndMenu();
+                }
+
+                // Mesh
+                ImGui::Text("MeshType : %s", meshType.c_str());
+                RenderMeshData(light->_volumeMesh);
+
+                ImGui::EndMenu();
+            }
         }
 
 	    // PARTICLE_SYSTEM
         if (_currentGameObject->GetParticleSystem() != nullptr)
         {
-            // 멤버변수 모두 출력
+            if (ImGui::BeginMenu("Particle System"))
+            {
+                std::shared_ptr<ParticleSystem> particle = _currentGameObject->GetParticleSystem();
+                ImGui::InputInt("Max Particle", reinterpret_cast<int*>(&particle->_maxParticle));
+                ImGui::InputFloat("Create Interval", &particle->_createInterval);
+                ImGui::Text("Accumulated Time : %f", &particle->_accTime);
+                ImGui::InputFloat("Min LifeTime", &particle->_minLifeTime);
+                ImGui::InputFloat("Max LifeTime", &particle->_maxLifeTime);
+                ImGui::InputFloat("Min Speed", &particle->_minSpeed);
+                ImGui::InputFloat("Max Speed", &particle->_maxSpeed);
+                ImGui::InputFloat("Start Scale", &particle->_startScale);
+                ImGui::InputFloat("End Scale", &particle->_endScale);
+
+                RenderMeshData(particle->_mesh);
+                if (ImGui::BeginMenu("Particle Material"))
+                {
+                    RenderMaterialData(0, particle->_material);
+                    ImGui::EndMenu();
+                }
+                if (ImGui::BeginMenu("Compute Material"))
+                {
+                    RenderMaterialData(0, particle->_computeMaterial);
+                    ImGui::EndMenu();
+                }
+
+                ImGui::EndMenu();
+            }
         }
 
 	    // TERRAIN
         if (_currentGameObject->GetTerrain() != nullptr)
         {
             // width, height, 사용된 heightmap 가능하다면 출력
+            if (ImGui::BeginMenu("Terrain"))
+            {
+                std::shared_ptr<Terrain> terrain = _currentGameObject->GetTerrain();
+                ImGui::Text("Vertex Num X : %d", terrain->_sizeX);
+                ImGui::Text("Vertex Num Z : %d", terrain->_sizeZ);
+                ImGui::Text("Max Tesselation : %f", terrain->_maxTesselation);
+                ImGui::EndMenu();
+            }
         }
 
 	    // COLLIDER
         if (_currentGameObject->GetCollider() != nullptr)
         {
             // Collider 렌더할지 출력, Radius, Center 등 출력
+            if (ImGui::BeginMenu("Collider"))
+            {
+                std::shared_ptr<BaseCollider> collider = _currentGameObject->GetCollider();
+                
+                switch (collider->_colliderType)
+                {
+                case ColliderType::Sphere:
+                    std::shared_ptr<SphereCollider> sphereCollider = std::static_pointer_cast<SphereCollider>(collider);
+                    RenderSphereColliderData(sphereCollider);
+                    break;
+                }
+                
+                std::string s = (collider->_draw == true ? "Press To Turn Off DrawMode" : "Press To Turn On DrawMode");
+                if (ImGui::Button(s.c_str()))
+                {
+                    collider->_draw = !collider->_draw;
+                }
+                
+                if (ImGui::CollapsingHeader("ColliderMeshData"))
+                {
+                    if (ImGui::BeginMenu("Mesh"))
+                    {
+                        RenderMeshData(collider->_mesh);
+                        ImGui::EndMenu();
+                    }
+
+                    if (ImGui::BeginMenu("Material"))
+                    {
+                        RenderMaterialData(0, collider->_material);
+                        ImGui::EndMenu();
+                    }
+                }
+
+                ImGui::EndMenu();
+            }
         }
 
 	    // ANIMATOR
         if (_currentGameObject->GetAnimator() != nullptr)
         {
             // 이건 일단 보류.
+            if (ImGui::BeginMenu("Animator"))
+            {
+                ImGui::EndMenu();
+            }
         }
 
         for (auto& iter : _currentGameObject->_scripts)
         {
-            ImGui::Text("%s", typeid(iter).name());
+            ImGui::Text("%s", ws2s(iter->_className).c_str());
         }
     }
     else

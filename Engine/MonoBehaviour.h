@@ -8,11 +8,11 @@ public:
 	MonoBehaviour();
 	virtual ~MonoBehaviour();
 
-private:
-	virtual void FinalUpdate() final { }
-
-private:
+protected:
 	friend class ImGuiManager;
 	std::wstring _className = L"";
+
+private:
+	virtual void FinalUpdate() final { }
 };
 

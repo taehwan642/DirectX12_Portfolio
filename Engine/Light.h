@@ -1,6 +1,8 @@
 #pragma once
 #include "Component.h"
 
+class ImGuiManager;
+
 enum class LIGHT_TYPE : uint8
 {
 	DIRECTIONAL_LIGHT,
@@ -61,6 +63,8 @@ public:
 	void SetLightIndex(int8 index) { _lightIndex = index; }
 
 private:
+	friend class ImGuiManager;
+
 	LightInfo _lightInfo = {};
 
 	int8 _lightIndex = -1;

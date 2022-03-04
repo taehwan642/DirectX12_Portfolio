@@ -3,6 +3,10 @@
 class Device;
 class GraphicsCommandQueue;
 class GameObject;
+class Material;
+class Camera;
+class Mesh;
+class SphereCollider;
 
 struct float3
 {
@@ -30,9 +34,14 @@ private:
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 
 private:
+	void RenderMeshData(std::shared_ptr<Mesh> mesh);
+	void RenderMaterialData(int materialIndex, std::shared_ptr<Material> material);
+	void RenderCameraData(std::shared_ptr<Camera> camera);
+	void RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider);
+
+private:
 	void RenderClientData();
 	void RenderHierarchy();
 	void RenderInspector();
-
 };
 

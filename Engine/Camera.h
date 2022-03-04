@@ -73,6 +73,7 @@ private:
 	std::vector<std::shared_ptr<GameObject>>	_vecForward;
 	std::vector<std::shared_ptr<GameObject>>	_vecParticle;
 	std::vector<std::shared_ptr<GameObject>>	_vecShadow;
+	std::vector<std::shared_ptr<GameObject>>	_vecColliderMesh;
 
 public:
 	// TEMP

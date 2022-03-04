@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 
+class ImGuiManager;
 class Terrain : public Component
 {
 public:
@@ -12,6 +13,8 @@ public:
 	virtual void FinalUpdate() override;
 
 private:
+	friend class ImGuiManager;
+
 	int32 _sizeX = 15;
 	int32 _sizeZ = 15;
 	float _maxTesselation = 4.f;

@@ -128,6 +128,69 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	}
 #pragma endregion
 
+#pragma region Sphere
+	{
+		std::shared_ptr<GameObject> sphere = std::make_shared<GameObject>();
+		sphere->AddComponent(std::make_shared<Transform>());
+		sphere->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
+		sphere->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 500.f));
+		sphere->AddComponent(std::make_shared<SphereCollider>());
+		sphere->SetStatic(false);
+		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
+		{
+			std::shared_ptr<Mesh> sphereMesh = GET_SINGLE(Resources)->LoadSphereMesh();
+			meshRenderer->SetMesh(sphereMesh);
+		}
+		{
+			std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"SphereMaterial");
+			meshRenderer->SetMaterial(material);
+		}
+		sphere->AddComponent(meshRenderer);
+		// 구 Mesh를 처음에 만들 때 size 1이면 반지름 0.5로 세팅했음.
+		std::dynamic_pointer_cast<SphereCollider>(sphere->GetCollider())->SetRadius(0.5f);
+		std::dynamic_pointer_cast<SphereCollider>(sphere->GetCollider())->SetCenter(Vec3(0.f, 0.f, 0.f));
+		scene->AddGameObject(sphere);
+	}
+#pragma endregion
+
+#pragma region Cube
+	{
+		std::shared_ptr<GameObject> cube = std::make_shared<GameObject>();
+		cube->AddComponent(std::make_shared<Transform>());
+		cube->GetTransform()->SetLocalScale(Vec3(50.f, 50.f, 50.f));
+		cube->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 150.f));
+		cube->SetStatic(false);
+		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
+		{
+			std::shared_ptr<Mesh> cubeMesh = GET_SINGLE(Resources)->LoadCubeMesh();
+			meshRenderer->SetMesh(cubeMesh);
+		}
+		{
+			std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"CubeMaterial");
+			meshRenderer->SetMaterial(material);
+		}
+		cube->AddComponent(meshRenderer);
+		scene->AddGameObject(cube);
+	}
+#pragma endregion
+
+#pragma region Terrain
+	{
+		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(std::make_shared<Terrain>());
+		obj->AddComponent(std::make_shared<MeshRenderer>());
+
+		obj->GetTransform()->SetLocalScale(Vec3(50.f, 250.f, 50.f));
+		obj->GetTransform()->SetLocalPosition(Vec3(-500.f, -100.f, -500.f));
+		obj->SetStatic(true);
+		obj->GetTerrain()->Init(64, 64);
+		obj->SetCheckFrustum(false);
+
+		scene->AddGameObject(obj);
+	}
+#pragma endregion
+
 #pragma region SkyBox
 	{
 		std::shared_ptr<GameObject> skybox = std::make_shared<GameObject>();
@@ -171,8 +234,6 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		}
 		std::shared_ptr<SphereCollider> coll1 = std::make_shared<SphereCollider>();
 		obj->AddComponent(coll1);
-		coll1->Render();
-
 		obj->AddComponent(meshRenderer);
 		scene->AddGameObject(obj);
 
@@ -193,7 +254,6 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		}
 		std::shared_ptr<SphereCollider> coll2 = std::make_shared<SphereCollider>();
 		obj2->AddComponent(coll2);
-		coll2->Render();
 		obj2->AddComponent(meshRenderer2);
 		scene->AddGameObject(obj2);
 	}
@@ -240,13 +300,40 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		light->AddComponent(std::make_shared<Transform>());
 		light->GetTransform()->SetLocalPosition(Vec3(0, 300, 0));
 		light->AddComponent(std::make_shared<Light>());
-		light->GetLight()->SetLightDirection(Vec3(0.f, -1.f, 0.f));
+		light->GetLight()->SetLightDirection(Vec3(0.f, -1.f, 1.f));
 		light->GetLight()->SetLightType(LIGHT_TYPE::DIRECTIONAL_LIGHT);
 		light->GetLight()->SetDiffuse(Vec3(1.f, 1.f, 1.f));
 		light->GetLight()->SetAmbient(Vec3(0.5f, 0.5f, 0.5f));
-		light->GetLight()->SetSpecular(Vec3(0.6f, 0.6f, 0.6f));
+		light->GetLight()->SetSpecular(Vec3(0.3f, 0.3f, 0.3f));
 
 		scene->AddGameObject(light);
+	}
+#pragma endregion
+
+#pragma region Point Light
+	{
+		std::shared_ptr<GameObject> light = std::make_shared<GameObject>();
+		light->AddComponent(std::make_shared<Transform>());
+		light->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
+		light->AddComponent(std::make_shared<Light>());
+		light->GetLight()->SetLightType(LIGHT_TYPE::POINT_LIGHT);
+		light->GetLight()->SetDiffuse(Vec3(0.0f, 0.5f, 0.0f));
+		light->GetLight()->SetAmbient(Vec3(0.0f, 0.3f, 0.0f));
+		light->GetLight()->SetSpecular(Vec3(0.0f, 0.3f, 0.0f));
+		light->GetLight()->SetLightRange(200.f);
+
+		scene->AddGameObject(light);
+	}
+#pragma endregion
+
+#pragma region ParticleSystem
+	{
+		std::shared_ptr<GameObject> particle = std::make_shared<GameObject>();
+		particle->AddComponent(std::make_shared<Transform>());
+		particle->AddComponent(std::make_shared<ParticleSystem>());
+		particle->SetCheckFrustum(false);
+		particle->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 100.f));
+		scene->AddGameObject(particle);
 	}
 #pragma endregion
 

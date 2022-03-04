@@ -9,20 +9,11 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-int SphereCollider::num = 0;
+int SphereCollider::_num = 0;
 
 SphereCollider::SphereCollider() : BaseCollider(ColliderType::Sphere)
 {
-
-}
-
-SphereCollider::~SphereCollider()
-{
-
-}
-
-void SphereCollider::Render()
-{
+	// ONLY FOR DEBUG.
 	std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"WireFrame");
 	_material = std::make_shared<Material>();
 	_material->SetShader(shader);
@@ -30,20 +21,29 @@ void SphereCollider::Render()
 	std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
 	meshRenderer->SetMaterial(_material);
 	meshRenderer->SetMesh(_mesh);
-	_gameObject = std::make_shared<GameObject>();
-	_gameObject->SetName(L"SphereCollider" + std::to_wstring(num));
-	num++;
-	_gameObject->AddComponent(std::make_shared<Transform>());
-	Vec3 pos = GetTransform()->GetLocalPosition();
-	_gameObject->GetTransform()->SetLocalPosition(pos);
-	Vec3 scale = GetTransform()->GetLocalScale() * 1.3f;
-	_gameObject->GetTransform()->SetLocalScale(scale);
-	_gameObject->AddComponent(meshRenderer);
-	GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(_gameObject);
+	_colliderMeshGameObject = std::make_shared<GameObject>();
+	_colliderMeshGameObject->SetName(L"SphereCollider" + std::to_wstring(_num));
+	_num++;
+	_colliderMeshGameObject->AddComponent(std::make_shared<Transform>());
+	_colliderMeshGameObject->AddComponent(meshRenderer);
+}
+
+SphereCollider::~SphereCollider()
+{
+
 }
 
 void SphereCollider::FinalUpdate()
 {
+	if (_draw)
+	{
+		Vec3 meshPos = GetTransform()->GetLocalPosition();
+		_colliderMeshGameObject->GetTransform()->SetLocalPosition(meshPos);
+		Vec3 meshScale = GetTransform()->GetLocalScale() * 1.3f;
+		_colliderMeshGameObject->GetTransform()->SetLocalScale(meshScale);
+		_colliderMeshGameObject->GetTransform()->FinalUpdate();
+	}
+
 	_boundingSphere.Center = GetGameObject()->GetTransform()->GetWorldPosition();
 
 	Vec3 scale = GetGameObject()->GetTransform()->GetLocalScale();

@@ -86,12 +86,12 @@ void Engine::ResizeWindow(int32 width, int32 height)
 
 void Engine::ShowFps()
 {
-	uint32 fps = GET_SINGLE(Timer)->GetFps();
+	/*uint32 fps = GET_SINGLE(Timer)->GetFps();
 
 	WCHAR text[100] = L"";
 	::wsprintf(text, L"FPS : %d", fps);
 
-	::SetWindowText(_window.hwnd, text);
+	::SetWindowText(_window.hwnd, text);*/
 }
 
 void Engine::CreateConstantBuffer(CBV_REGISTER reg, uint32 bufferSize, uint32 count)

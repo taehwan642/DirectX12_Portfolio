@@ -10,6 +10,8 @@
 #include "Shader.h"
 #include "ParticleSystem.h"
 #include "InstancingManager.h"
+#include "BaseCollider.h"
+#include "SphereCollider.h"
 
 Matrix Camera::S_MatView;
 Matrix Camera::S_MatProjection;
@@ -44,6 +46,7 @@ void Camera::SortGameObject()
 	_vecForward.clear();
 	_vecDeferred.clear();
 	_vecParticle.clear();
+	_vecColliderMesh.clear();
 
 	for (auto& gameObject : gameObjects)
 	{
@@ -70,6 +73,11 @@ void Camera::SortGameObject()
 			{
 			case SHADER_TYPE::DEFERRED:
 				_vecDeferred.push_back(gameObject);
+				if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
+				{
+					std::shared_ptr<GameObject> gm = gameObject->GetCollider()->GetColliderMesh();
+					_vecColliderMesh.push_back(gm);
+				}
 				break;
 			case SHADER_TYPE::FORWARD:
 				_vecForward.push_back(gameObject);
@@ -123,6 +131,10 @@ void Camera::Render_Deferred()
 	// Instancing그룹의 Deferred
 	// Non-Instancing 그룹의 Deferred로 나눠야함.
 	GET_SINGLE(InstancingManager)->Render(_vecDeferred);
+	for (auto& iter : _vecColliderMesh)
+	{
+		iter->GetMeshRenderer()->Render();
+	}
 }
 
 void Camera::Render_Forward()
