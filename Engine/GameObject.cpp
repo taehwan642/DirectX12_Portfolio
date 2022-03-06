@@ -148,9 +148,24 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 	if (index < FIXED_COMPONENT_COUNT)
 	{
 		_components[index] = component;
+		if (index == static_cast<uint8>(COMPONENT_TYPE::TRANSFORM))
+			_transform = std::static_pointer_cast<Transform>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER))
+			_meshRenderer = std::static_pointer_cast<MeshRenderer>(component);
 	}
 	else
 	{
 		_scripts.push_back(std::dynamic_pointer_cast<MonoBehaviour>(component));
+	}
+}
+
+void GameObject::ConvertData(ConvertType type)
+{
+	for (size_t i = 0; i < _components.size(); ++i)
+	{
+		if (_components[i] == nullptr)
+			continue;
+
+		_components[i]->ConvertData(type);
 	}
 }

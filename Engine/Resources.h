@@ -44,6 +44,8 @@ private:
 	void CreateDefaultMaterial();
 
 private:
+	friend class ImGuiManager;
+
 	using KeyObjMap = std::map<std::wstring/*key*/, std::shared_ptr<Object>>;
 	std::array<KeyObjMap, OBJECT_TYPE_COUNT> _resources;
 };

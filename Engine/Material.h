@@ -36,6 +36,8 @@ struct MaterialParams
 	std::array<Vec2, MATERIAL_ARG_COUNT> vec2Params;
 	std::array<Vec4, MATERIAL_ARG_COUNT> vec4Params;
 	std::array<Matrix, MATERIAL_ARG_COUNT> matrixParams;
+
+	//RTTR_ENABLE()
 };
 
 class Material : public Object
@@ -65,12 +67,17 @@ public:
 
 	std::shared_ptr<Material> Clone();
 
+	virtual void ConvertData(ConvertType type) override;
+
 private:
 	friend class ImGuiManager;
 	friend class InstancingManager;
 
 	std::shared_ptr<Shader>	_shader;
 	MaterialParams		_params;
+
 	std::array<std::shared_ptr<Texture>, MATERIAL_ARG_COUNT> _textures;
+
+	RTTR_REGISTRATION_FRIEND
 };
 

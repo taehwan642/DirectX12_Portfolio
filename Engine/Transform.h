@@ -40,6 +40,8 @@ public:
 	void SetParent(std::shared_ptr<Transform> parent) { _parent = parent; }
 	std::weak_ptr<Transform> GetParent() { return _parent; }
 
+	virtual void ConvertData(ConvertType type) override;
+
 private:
 	// Parent 기준
 	Vec3 _localPosition = {};
@@ -50,5 +52,9 @@ private:
 	Matrix _matWorld = {};
 
 	std::weak_ptr<Transform> _parent;
-};
 
+	RTTR_REGISTRATION_FRIEND 
+	// private인 경우 RTTR_REGISTRRATION_FRIEND 해줘야함. 없는 경우
+	// RTTR_ENABLE()
+
+};

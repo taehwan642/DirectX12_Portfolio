@@ -85,14 +85,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Output\</OutDir>
-    <IncludePath>$(SolutionDir)Library/Include/imgui/;$(SolutionDir)Library/Include/FBX/;$(SolutionDir)Library/Include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Library/Include/Json/;$(SolutionDir)Library/Include/imgui/;$(SolutionDir)Library/Include/FBX/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Library/Lib/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Output\</OutDir>
-    <IncludePath>$(SolutionDir)Library/Include/FBX/;$(SolutionDir)Library/Include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Library/Include/Json/;$(SolutionDir)Library/Include/imgui/;$(SolutionDir)Library/Include/FBX/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Library/Lib/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -137,6 +137,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/Include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -159,6 +160,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/Include/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -189,6 +191,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EnginePch.h" />
     <ClInclude Include="FBXLoader.h" />
+    <ClInclude Include="from_json.h" />
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameManagerScript.h" />
     <ClInclude Include="GameObject.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="InstancingBuffer.h" />
     <ClInclude Include="InstancingManager.h" />
+    <ClInclude Include="JsonManager.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
@@ -210,6 +214,7 @@
     <ClInclude Include="RenderTargetGroup.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="RootSignature.h" />
+    <ClInclude Include="RttrRegistration.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shader.h" />
@@ -224,6 +229,7 @@
     <ClInclude Include="TestDragon.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="to_json.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +265,10 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EnginePch.cpp" />
     <ClCompile Include="FBXLoader.cpp" />
+    <ClCompile Include="from_json.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameManagerScript.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -266,6 +276,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InstancingBuffer.cpp" />
     <ClCompile Include="InstancingManager.cpp" />
+    <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -299,6 +310,10 @@
     <ClCompile Include="TestDragon.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="to_json.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>

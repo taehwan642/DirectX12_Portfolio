@@ -59,6 +59,8 @@ public:
 		}
 	}
 
+	virtual void ConvertData(ConvertType type) override;
+
 private:
 	friend class ImGuiManager;
 
@@ -68,5 +70,11 @@ private:
 	bool _checkFrustum = true;
 	uint8 _layerIndex = 0;
 	bool _static = true;
+
+	std::shared_ptr<Transform> _transform;
+	std::shared_ptr<MeshRenderer> _meshRenderer;
+
+	RTTR_REGISTRATION_FRIEND
 };
+
 

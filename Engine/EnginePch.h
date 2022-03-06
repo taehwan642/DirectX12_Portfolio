@@ -1,5 +1,8 @@
 #pragma once
 
+#include <rttr/registration>
+#include <rttr/registration_friend>
+
 // 각종 include
 #include <windows.h>
 #include <tchar.h>
@@ -30,6 +33,7 @@ using namespace Microsoft::WRL;
 #include <DirectXTex/DirectXTex.inl>
 
 #include "FBX/fbxsdk.h"
+#include <Json/json.h>
 
 // 각종 lib
 #pragma comment(lib, "d3d12")
@@ -51,6 +55,18 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "FBX\\release\libfbxsdk-md.lib")
 #pragma comment(lib, "FBX\\release\libxml2-md.lib")
 #pragma comment(lib, "FBX\\release\\zlib-md.lib")
+#endif
+
+#ifdef _DEBUG
+#pragma comment(lib, "Json\\debug\\jsoncpp.lib")
+#else
+#pragma comment(lib, "Json\\release\jsoncpp.lib")
+#endif
+
+#ifdef _DEBUG
+#pragma comment(lib, "Rttr\\debug\\rttr_core_d.lib")
+#else
+#pragma comment(lib, "Rttr\\release\rttr_core.lib")
 #endif
 
 // 각종 typedef
@@ -123,6 +139,11 @@ struct WindowInfo
 	bool	windowed; // 창모드 or 전체화면
 };
 
+enum class ConvertType : byte
+{
+	Load, Save
+};
+
 struct Vertex
 {
 	Vertex() {}
@@ -139,6 +160,8 @@ struct Vertex
 	Vec4 weights;
 	Vec4 indices;
 };
+
+#include "RttrRegistration.h"
 
 #define DECLARE_SINGLE(type)		\
 private:							\

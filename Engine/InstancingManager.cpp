@@ -43,20 +43,30 @@ void InstancingManager::Render(std::vector<std::shared_ptr<GameObject>>& gameObj
 		}
 		else
 		{
-			const uint64 instanceId = pair.first;
-
-			for (const std::shared_ptr<GameObject>& gameObject : vec)
+			if (vec[0]->GetMeshRenderer()->GetMaterial(0)->_params.intParams[0] == 0)
 			{
-				InstancingParams params;
-				params.matWorld = gameObject->GetTransform()->GetLocalToWorldMatrix();
-				params.matWV = params.matWorld * Camera::S_MatView;
-				params.matWVP = params.matWorld * Camera::S_MatView * Camera::S_MatProjection;
-
-				AddParam(instanceId, params);
+				for (auto& iter : pair.second)
+				{
+					iter->GetMeshRenderer()->Render();
+				}
 			}
+			else
+			{
+				const uint64 instanceId = pair.first;
 
-			std::shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
-			vec[0]->GetMeshRenderer()->Render(buffer);
+				for (const std::shared_ptr<GameObject>& gameObject : vec)
+				{
+					InstancingParams params;
+					params.matWorld = gameObject->GetTransform()->GetLocalToWorldMatrix();
+					params.matWV = params.matWorld * Camera::S_MatView;
+					params.matWVP = params.matWorld * Camera::S_MatView * Camera::S_MatProjection;
+
+					AddParam(instanceId, params);
+				}
+
+				std::shared_ptr<InstancingBuffer>& buffer = _buffers[instanceId];
+				vec[0]->GetMeshRenderer()->Render(buffer);
+			}
 		}
 	}
 }

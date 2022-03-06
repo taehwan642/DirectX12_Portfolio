@@ -22,6 +22,8 @@
 #include "CubeCollider.h"
 #include "TerrainScript.h"
 
+#include "JsonManager.h"
+
 void SceneManager::Update()
 {
 	if (_activeScene == nullptr)
@@ -153,6 +155,8 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		std::dynamic_pointer_cast<SphereCollider>(sphere->GetCollider())->SetRadius(0.5f);
 		std::dynamic_pointer_cast<SphereCollider>(sphere->GetCollider())->SetCenter(Vec3(0.f, 0.f, 0.f));
 		scene->AddGameObject(sphere);
+
+		GET_SINGLE(JsonManager)->Save("../", sphere);
 	}
 #pragma endregion
 

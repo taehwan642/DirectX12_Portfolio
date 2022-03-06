@@ -33,11 +33,13 @@ public:
 	uint32 GetID() { return _id; }
 
 	// TODO : Instantiate
+	virtual void ConvertData(ConvertType type) { }
 
 protected:
 	friend class Resources;
 	virtual void Load(const std::wstring& path) { }
 	virtual void Save(const std::wstring& path) { }
+
 
 protected:
 	OBJECT_TYPE _objectType = OBJECT_TYPE::NONE;

@@ -21,6 +21,8 @@
 #include "Shader.h"
 #include "SphereCollider.h"
 #include "CubeCollider.h"
+#include "Resources.h"
+#include "JsonManager.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -80,6 +82,62 @@ void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
 void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Material> material)
 {
     ImGui::Text("Material Index : %d", materialIndex);
+
+    if (ImGui::BeginMenu("Textures"))
+    {
+        int item_current_idx[MATERIAL_ARG_COUNT]{};
+
+        std::vector<std::string> stringVec;
+        stringVec.push_back("NONE");
+        int value = 1; // stringVec의 size는 이 때 1이니까.
+        for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)])
+        {
+            for (int i = 0; i < MATERIAL_ARG_COUNT; ++i)
+            {
+                if (material->_textures[i] == nullptr)
+                    continue;
+                if (material->_textures[i] == iter.second)
+                {
+                    item_current_idx[i] = value;
+                }
+            }
+            stringVec.push_back(ws2s(iter.first));
+            ++value;
+        }
+
+        for (int i = 0; i < MATERIAL_ARG_COUNT; ++i)
+        {
+            std::string combo_preview_value = stringVec[item_current_idx[i]];  // Pass in the preview value visible before opening the combo (it could be anything)
+            std::string comboName = "Selected Texture " + std::to_string(i);
+            if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+            {
+                for (int n = 0; n < stringVec.size(); n++)
+                {
+                    const bool is_selected = (item_current_idx[i] == n);
+                    if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                    {
+                        item_current_idx[i] = n;
+                        if (n != 0)
+                        {
+                            std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)].find(s2ws(stringVec[n]))->second;
+                            material->_textures[i] = std::static_pointer_cast<Texture>(obj);
+                            material->_params.texOnParams[i] = 1;
+                        }
+                        else
+                        {
+                            material->_params.texOnParams[i] = 0;
+                        }
+                    }
+
+                    if (is_selected)
+                        ImGui::SetItemDefaultFocus();
+                }
+                ImGui::EndCombo();
+            }
+        }
+        ImGui::EndMenu();
+    }
+        
 
     ImGui::InputInt4("Int Params", material->_params.intParams.data());
     ImGui::InputFloat4("Float Params", material->_params.floatParams.data());
@@ -229,6 +287,16 @@ void ImGuiManager::RenderInspector()
         std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
         ImGui::Text("Selected Object : %s", tempString.c_str());
 
+        if (ImGui::Button("Save"))
+        {
+            //GET_SINGLE(JsonManager)->Save("../Output/Test", _currentGameObject);
+        }
+
+        // Text 적을 수 있게 해야함.
+        if (ImGui::Button("Load"))
+        {
+            GET_SINGLE(JsonManager)->Load("../", _currentGameObject);
+        }
         // Component들 출력
 
         // TRANSFORM
@@ -263,6 +331,9 @@ void ImGuiManager::RenderInspector()
                 int n = 0;
                 for (auto& iter : mr->_materials)
                 {
+                    if(iter->GetShader()->GetShaderType() == SHADER_TYPE::DEFERRED)
+                        ImGui::Text("Set Material's int 0 param to 1 for Instancing");
+
                     RenderMaterialData(n, iter);
                     ++n;
                 }

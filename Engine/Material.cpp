@@ -73,3 +73,15 @@ std::shared_ptr<Material> Material::Clone()
 
 	return material;
 }
+
+void Material::ConvertData(ConvertType type)
+{
+	if (type == ConvertType::Save)
+	{
+		
+	}
+	else
+	{
+
+	}
+}

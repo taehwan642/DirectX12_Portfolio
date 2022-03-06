@@ -31,6 +31,9 @@
     <Filter Include="Script">
       <UniqueIdentifier>{1cfe4b64-4ca1-4958-b16f-73f8ae1985c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils\rttr">
+      <UniqueIdentifier>{7d5186e8-5f66-4444-95b8-c4ffbb875f45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -192,7 +195,18 @@
     <ClCompile Include="TerrainScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
-    <ClCompile Include="MeshCollider.cpp" />
+    <ClCompile Include="JsonManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="to_json.cpp">
+      <Filter>Utils\rttr</Filter>
+    </ClCompile>
+    <ClCompile Include="from_json.cpp">
+      <Filter>Utils\rttr</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCollider.cpp">
+      <Filter>Object\Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -360,7 +374,21 @@
     <ClInclude Include="TerrainScript.h">
       <Filter>Script</Filter>
     </ClInclude>
-    <ClInclude Include="MeshCollider.h" />
+    <ClInclude Include="JsonManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="to_json.h">
+      <Filter>Utils\rttr</Filter>
+    </ClInclude>
+    <ClInclude Include="from_json.h">
+      <Filter>Utils\rttr</Filter>
+    </ClInclude>
+    <ClInclude Include="RttrRegistration.h">
+      <Filter>Utils\rttr</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCollider.h">
+      <Filter>Object\Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

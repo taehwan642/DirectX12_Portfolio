@@ -34,10 +34,14 @@ public:
 
 	uint64 GetInstanceID();
 
+	virtual void ConvertData(ConvertType type) override;
+
 private:
 	friend class ImGuiManager;
 
 	std::shared_ptr<Mesh> _mesh;
 	std::vector<std::shared_ptr<Material>> _materials;
+
+	RTTR_REGISTRATION_FRIEND
 };
 
