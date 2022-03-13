@@ -14,12 +14,15 @@ public:
 
 private:
 	friend class ImGuiManager;
+	friend class RTTRTerrainValue;
 
 	int32 _sizeX = 15;
 	int32 _sizeZ = 15;
 	float _maxTesselation = 4.f;
 
 	std::shared_ptr<class Material> _material;
+
+	RTTR_REGISTRATION_FRIEND
 };
 
 

@@ -319,7 +319,7 @@ std::shared_ptr<Texture> Resources::CreateTextureFromResource(const std::wstring
 	return texture;
 }
 
-std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path)
+std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path, bool jsonLoad)
 {
 	std::wstring key = path;
 
@@ -327,8 +327,7 @@ std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path)
 	if (meshData)
 		return meshData;
 
-	meshData = MeshData::LoadFromFBX(path);
-	meshData->SetName(key);
+	meshData = MeshData::LoadFromFile(path, jsonLoad);
 	Add(key, meshData);
 
 	return meshData;
@@ -600,7 +599,9 @@ void Resources::CreateDefaultMaterial()
 	{
 		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Skybox");
 		std::shared_ptr<Material> material = std::make_shared<Material>();
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Sky01", L"..\\Resources\\Texture\\Tile.png");
 		material->SetShader(shader);
+		material->SetTexture(0, texture);
 		Add<Material>(L"Skybox", material);
 	}
 

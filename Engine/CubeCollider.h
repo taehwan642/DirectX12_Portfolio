@@ -17,5 +17,11 @@ private:
 	friend class ImGuiManager;
 
 	BoundingBox _boundingBox;
+
+	Vec3 _center;
+	Vec3 _extents;
+
+	RTTR_REGISTRATION_FRIEND
+	RTTR_ENABLE()
 };
 

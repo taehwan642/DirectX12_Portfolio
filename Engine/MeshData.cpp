@@ -7,6 +7,7 @@
 #include "Transform.h"
 #include "MeshRenderer.h"
 #include "Animator.h"
+#include "JsonManager.h"
 
 MeshData::MeshData() : Object(OBJECT_TYPE::MESH_DATA)
 {
@@ -16,16 +17,18 @@ MeshData::~MeshData()
 {
 }
 
-std::shared_ptr<MeshData> MeshData::LoadFromFBX(const std::wstring& path)
+std::shared_ptr<MeshData> MeshData::LoadFromFBX(const std::wstring& path, bool jsonLoad)
 {
 	FBXLoader loader;
-	loader.LoadFbx(path);
+	loader.LoadFbx(path, jsonLoad);
 
 	std::shared_ptr<MeshData> meshData = std::make_shared<MeshData>();
 
 	for (int32 i = 0; i < loader.GetMeshCount(); i++)
 	{
 		std::shared_ptr<Mesh> mesh = Mesh::CreateFromFBX(&loader.GetMesh(i), loader);
+		
+		mesh->_name = path;// +std::to_wstring(i);
 
 		GET_SINGLE(Resources)->Add<Mesh>(mesh->GetName(), mesh);
 
@@ -44,6 +47,29 @@ std::shared_ptr<MeshData> MeshData::LoadFromFBX(const std::wstring& path)
 	}
 
 	return meshData;
+}
+
+std::shared_ptr<MeshData> MeshData::LoadFromFile(const std::wstring& path, bool jsonLoad)
+{
+	std::shared_ptr<MeshData> result = std::make_shared<MeshData>();
+
+	if (jsonLoad == true)
+	{
+		// MeshData의 Animation을 Json으로 로드 시도, 없다면
+		result = LoadFromFBX(path, true);
+		if (GET_SINGLE(JsonManager)->LoadMeshData(ws2s(path).c_str(), result) == false)
+		{
+			result = LoadFromFBX(path, false);
+			GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path).c_str(), result);
+		}
+	}
+	else
+	{
+		result = LoadFromFBX(path, jsonLoad);
+		GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path).c_str(), result);
+	}
+
+	return result;
 }
 
 void MeshData::Load(const std::wstring& _strFilePath)

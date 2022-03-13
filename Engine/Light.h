@@ -64,6 +64,7 @@ public:
 
 private:
 	friend class ImGuiManager;
+	friend class RTTRLightValue;
 
 	LightInfo _lightInfo = {};
 
@@ -72,5 +73,7 @@ private:
 	std::shared_ptr<class Material> _lightMaterial;
 
 	std::shared_ptr<GameObject> _shadowCamera;
+
+	RTTR_REGISTRATION_FRIEND
 };
 

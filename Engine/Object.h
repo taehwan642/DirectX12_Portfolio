@@ -32,9 +32,6 @@ public:
 
 	uint32 GetID() { return _id; }
 
-	// TODO : Instantiate
-	virtual void ConvertData(ConvertType type) { }
-
 protected:
 	friend class Resources;
 	virtual void Load(const std::wstring& path) { }
@@ -47,5 +44,8 @@ protected:
 
 protected:
 	uint32 _id = 0;
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };
 

@@ -37,7 +37,7 @@ public:
 
 	std::shared_ptr<Texture> CreateTextureFromResource(const std::wstring& name, ComPtr<ID3D12Resource> tex2D);
 	
-	std::shared_ptr<class MeshData> LoadFBX(const std::wstring& path);
+	std::shared_ptr<class MeshData> LoadFBX(const std::wstring& path, bool jsonLoad = true);
 
 private:
 	void CreateDefaultShader();
@@ -62,6 +62,7 @@ inline std::shared_ptr<T> Resources::Load(const std::wstring& key, const std::ws
 
 	std::shared_ptr<T> object = std::make_shared<T>();
 	object->Load(path);
+	object->_name = key;
 	keyObjMap[key] = object;
 
 	return object;
@@ -78,6 +79,7 @@ bool Resources::Add(const std::wstring& key, std::shared_ptr<T> object)
 		return false;
 
 	keyObjMap[key] = object;
+	object->_name = key;
 
 	return true;
 }

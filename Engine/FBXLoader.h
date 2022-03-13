@@ -1,4 +1,5 @@
 #pragma once
+#include "FBX/fbxsdk.h"
 
 struct FbxMaterialInfo
 {
@@ -81,13 +82,17 @@ public:
 	~FBXLoader();
 
 public:
-	void LoadFbx(const std::wstring& path);
+	void LoadFbx(const std::wstring& path, bool jsonLoad = true);
 
 public:
 	int32 GetMeshCount() { return static_cast<int32>(_meshes.size()); }
 	const FbxMeshInfo& GetMesh(int32 idx) { return _meshes[idx]; }
 	std::vector<std::shared_ptr<FbxBoneInfo>>& GetBones() { return _bones; }
 	std::vector<std::shared_ptr<FbxAnimClipInfo>>& GetAnimClip() { return _animClips; }
+
+public:
+	std::wstring _path = L"";
+
 private:
 	void Import(const std::wstring& path);
 
@@ -120,6 +125,10 @@ private:
 	void FillBoneWeight(FbxMesh* mesh, FbxMeshInfo* meshInfo);
 
 private:
+	friend class Mesh;
+
+	bool _jsonLoad = false;
+
 	FbxManager* _manager = nullptr;
 	FbxScene* _scene = nullptr;
 	FbxImporter* _importer = nullptr;

@@ -85,59 +85,44 @@ void GameObject::FinalUpdate()
 	}
 }
 
-std::shared_ptr<Component> GameObject::GetFixedComponent(COMPONENT_TYPE type)
-{
-	uint8 index = static_cast<uint8>(type);
-	assert(index < FIXED_COMPONENT_COUNT);
-	return _components[index];
-}
-
 std::shared_ptr<Transform> GameObject::GetTransform()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TRANSFORM);
-	return std::static_pointer_cast<Transform>(component);
+	return _transform;
 }
 
 std::shared_ptr<MeshRenderer> GameObject::GetMeshRenderer()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::MESH_RENDERER);
-	return std::static_pointer_cast<MeshRenderer>(component);
+	return _meshRenderer;
 }
 
 std::shared_ptr<Camera> GameObject::GetCamera()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::CAMERA);
-	return std::static_pointer_cast<Camera>(component);
+	return _camera;
 }
 
 std::shared_ptr<Light> GameObject::GetLight()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::LIGHT);
-	return std::static_pointer_cast<Light>(component);
+	return _light;
 }
 
 std::shared_ptr<ParticleSystem> GameObject::GetParticleSystem()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::PARTICLE_SYSTEM);
-	return std::static_pointer_cast<ParticleSystem>(component);
+	return _particleSystem;
 }
 
 std::shared_ptr<Terrain> GameObject::GetTerrain()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::TERRAIN);
-	return std::static_pointer_cast<Terrain>(component);
+	return _terrain;
 }
 
 std::shared_ptr<BaseCollider> GameObject::GetCollider()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::COLLIDER);
-	return std::static_pointer_cast<BaseCollider>(component);
+	return _baseCollider;
 }
 
 std::shared_ptr<Animator> GameObject::GetAnimator()
 {
-	std::shared_ptr<Component> component = GetFixedComponent(COMPONENT_TYPE::ANIMATOR);
-	return std::static_pointer_cast<Animator>(component);
+	return _animator;
 }
 
 void GameObject::AddComponent(std::shared_ptr<Component> component)
@@ -152,20 +137,21 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 			_transform = std::static_pointer_cast<Transform>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER))
 			_meshRenderer = std::static_pointer_cast<MeshRenderer>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::CAMERA))
+			_camera = std::static_pointer_cast<Camera>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::LIGHT))
+			_light = std::static_pointer_cast<Light>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::PARTICLE_SYSTEM))
+			_particleSystem = std::static_pointer_cast<ParticleSystem>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::TERRAIN))
+			_terrain = std::static_pointer_cast<Terrain>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::COLLIDER))
+			_baseCollider = std::static_pointer_cast<BaseCollider>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::ANIMATOR))
+			_animator = std::static_pointer_cast<Animator>(component);
 	}
 	else
 	{
 		_scripts.push_back(std::dynamic_pointer_cast<MonoBehaviour>(component));
-	}
-}
-
-void GameObject::ConvertData(ConvertType type)
-{
-	for (size_t i = 0; i < _components.size(); ++i)
-	{
-		if (_components[i] == nullptr)
-			continue;
-
-		_components[i]->ConvertData(type);
 	}
 }

@@ -15,5 +15,8 @@ public:
 
 private:
 	friend class ImGuiManager;
+
+	RTTR_REGISTRATION_FRIEND
+	RTTR_ENABLE()
 };
 

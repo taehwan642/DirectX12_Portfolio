@@ -118,15 +118,3 @@ Vec3 Transform::DecomposeRotationMatrix(const Matrix& rotation)
 
 	return ret;
 }
-
-void Transform::ConvertData(ConvertType type)
-{
-	if (type == ConvertType::Save)
-	{
-
-	}
-	else
-	{
-
-	}
-}

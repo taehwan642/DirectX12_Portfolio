@@ -43,8 +43,8 @@ void CubeCollider::FinalUpdate()
 		_colliderMeshGameObject->GetTransform()->FinalUpdate();
 	}
 
-	_boundingBox.Center = GetGameObject()->GetTransform()->GetWorldPosition();
-	_boundingBox.Extents = GetGameObject()->GetTransform()->GetLocalScale();
+	_boundingBox.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
+	_boundingBox.Extents = _extents = GetGameObject()->GetTransform()->GetLocalScale();
 }
 
 bool CubeCollider::Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance)

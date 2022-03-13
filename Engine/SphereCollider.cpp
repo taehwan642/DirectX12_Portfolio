@@ -44,7 +44,7 @@ void SphereCollider::FinalUpdate()
 		_colliderMeshGameObject->GetTransform()->FinalUpdate();
 	}
 
-	_boundingSphere.Center = GetGameObject()->GetTransform()->GetWorldPosition();
+	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
 
 	Vec3 scale = GetGameObject()->GetTransform()->GetLocalScale();
 	_boundingSphere.Radius = _radius * max(max(scale.x, scale.y), scale.z);

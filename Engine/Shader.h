@@ -51,11 +51,13 @@ struct ShaderInfo
 
 struct ShaderArg
 {
-	const std::string vs = "VS_Main";
-	const std::string hs;
-	const std::string ds;
-	const std::string gs;
-	const std::string ps = "PS_Main";
+	std::string vs = "VS_Main";
+	std::string hs;
+	std::string ds;
+	std::string gs;
+	std::string ps = "PS_Main";
+
+	std::string cs;
 };
 
 class Shader : public Object
@@ -83,21 +85,28 @@ private:
 
 private:
 	friend class ImGuiManager;
+	friend class Resources;
+	friend class RTTRShaderValue;
 
 	ShaderInfo _info;
+	ShaderArg _arg;
+
 	ComPtr<ID3D12PipelineState>			_pipelineState;
 
 	// GraphicsShader
 	ComPtr<ID3DBlob>					_vsBlob;
 	ComPtr<ID3DBlob>					_hsBlob;
-	ComPtr<ID3DBlob>					_dsBlob;	
+	ComPtr<ID3DBlob>					_dsBlob;
 	ComPtr<ID3DBlob>					_gsBlob;
 	ComPtr<ID3DBlob>					_psBlob;
-	ComPtr<ID3DBlob>					_errBlob;	
+	ComPtr<ID3DBlob>					_errBlob;
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC  _graphicsPipelineDesc = {};
 
 	// ComputeShader
 	ComPtr<ID3DBlob>					_csBlob;
 	D3D12_COMPUTE_PIPELINE_STATE_DESC   _computePipelineDesc = {};
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };
 

@@ -18,7 +18,8 @@ public:
 	virtual ~MeshData();
 
 public:
-	static std::shared_ptr<MeshData> LoadFromFBX(const std::wstring& path);
+	static std::shared_ptr<MeshData> LoadFromFBX(const std::wstring& path, bool jsonLoad = true);
+	static std::shared_ptr<MeshData> LoadFromFile(const std::wstring& path, bool jsonLoad = true);
 
 	virtual void Load(const std::wstring& path);
 	virtual void Save(const std::wstring& path);
@@ -26,8 +27,12 @@ public:
 	std::vector<std::shared_ptr<GameObject>> Instantiate();
 
 private:
-	std::shared_ptr<Mesh>				_mesh;
-	std::vector<std::shared_ptr<Material>>	_materials;
+	friend class Resources;
+	friend class RTTRMeshDataValue;
+	friend class JsonManager;
 
 	std::vector<MeshRenderInfo> _meshRenders;
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };

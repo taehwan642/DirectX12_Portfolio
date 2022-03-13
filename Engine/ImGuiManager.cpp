@@ -30,6 +30,10 @@ ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
     desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
     desc.NumDescriptors = 1;
     desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
+    if (device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) != S_OK)
+    {
+        return;
+    }
     assert(device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) == S_OK);
 
     IMGUI_CHECKVERSION();
@@ -161,6 +165,111 @@ void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Materia
         ImGui::EndMenu();
     }
 
+    if (ImGui::BeginMenu("Matrix"))
+    {
+        if (ImGui::BeginMenu("Matrix1"))
+        {
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[0]._11,
+                material->_params.matrixParams[0]._12,
+                material->_params.matrixParams[0]._13,
+                material->_params.matrixParams[0]._14);
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[0]._21,
+                material->_params.matrixParams[0]._22,
+                material->_params.matrixParams[0]._23,
+                material->_params.matrixParams[0]._24);
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[0]._31,
+                material->_params.matrixParams[0]._32,
+                material->_params.matrixParams[0]._33,
+                material->_params.matrixParams[0]._34);
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[0]._41,
+                material->_params.matrixParams[0]._42,
+                material->_params.matrixParams[0]._43,
+                material->_params.matrixParams[0]._44);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Matrix2"))
+        {
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[1]._11,
+                material->_params.matrixParams[1]._12,
+                material->_params.matrixParams[1]._13,
+                material->_params.matrixParams[1]._14);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[1]._21,
+                material->_params.matrixParams[1]._22,
+                material->_params.matrixParams[1]._23,
+                material->_params.matrixParams[1]._24);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[1]._31,
+                material->_params.matrixParams[1]._32,
+                material->_params.matrixParams[1]._33,
+                material->_params.matrixParams[1]._34);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[1]._41,
+                material->_params.matrixParams[1]._42,
+                material->_params.matrixParams[1]._43,
+                material->_params.matrixParams[1]._44);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Matrix3"))
+        {
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[2]._11,
+                material->_params.matrixParams[2]._12,
+                material->_params.matrixParams[2]._13,
+                material->_params.matrixParams[2]._14);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[2]._21,
+                material->_params.matrixParams[2]._22,
+                material->_params.matrixParams[2]._23,
+                material->_params.matrixParams[2]._24);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[2]._31,
+                material->_params.matrixParams[2]._32,
+                material->_params.matrixParams[2]._33,
+                material->_params.matrixParams[2]._34);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[2]._41,
+                material->_params.matrixParams[2]._42,
+                material->_params.matrixParams[2]._43,
+                material->_params.matrixParams[2]._44);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Matrix4"))
+        {
+            ImGui::Text("%f, %f, %f, %f", 
+                material->_params.matrixParams[3]._11,
+                material->_params.matrixParams[3]._12,
+                material->_params.matrixParams[3]._13,
+                material->_params.matrixParams[3]._14);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[3]._21,
+                material->_params.matrixParams[3]._22,
+                material->_params.matrixParams[3]._23,
+                material->_params.matrixParams[3]._24);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[3]._31,
+                material->_params.matrixParams[3]._32,
+                material->_params.matrixParams[3]._33,
+                material->_params.matrixParams[3]._34);
+            ImGui::Text("%f, %f, %f, %f",      
+                material->_params.matrixParams[3]._41,
+                material->_params.matrixParams[3]._42,
+                material->_params.matrixParams[3]._43,
+                material->_params.matrixParams[3]._44);
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenu();
+    }
+
     if (ImGui::BeginMenu("Shader"))
     {
         // ShaderInfo 출력
@@ -289,13 +398,19 @@ void ImGuiManager::RenderInspector()
 
         if (ImGui::Button("Save"))
         {
-            //GET_SINGLE(JsonManager)->Save("../Output/Test", _currentGameObject);
+            std::string path; 
+            path = "../Output/" + std::string(ws2s(_currentGameObject->GetName()).c_str());
+            GET_SINGLE(JsonManager)->Save(path, _currentGameObject);
         }
 
         // Text 적을 수 있게 해야함.
+        static std::string input;
+        ImGui::InputText("FileName", const_cast<char*>(input.c_str()), 64);
         if (ImGui::Button("Load"))
         {
-            GET_SINGLE(JsonManager)->Load("../", _currentGameObject);
+            std::string inputText(input.c_str());
+            std::string path = std::string("../Output/") + inputText;
+            GET_SINGLE(JsonManager)->Load(path, _currentGameObject);
         }
         // Component들 출력
 

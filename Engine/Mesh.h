@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "FBX/fbxsdk.h"
 
 class Material;
 class StructuredBuffer;
@@ -67,6 +68,11 @@ public:
 
 private:
 	friend class ImGuiManager;
+	friend class MeshData;
+	friend class Resources;
+	friend class RTTRMeshValue;
+	friend class RTTRAnimationValue;
+	friend class JsonManager;
 	
 	ComPtr<ID3D12Resource>		_vertexBuffer;
 	D3D12_VERTEX_BUFFER_VIEW	_vertexBufferView = {};
@@ -80,5 +86,8 @@ private:
 
 	std::shared_ptr<StructuredBuffer>	_offsetBuffer; // 각 뼈의 offset 행렬
 	std::vector<std::shared_ptr<StructuredBuffer>> _frameBuffer; // 전체 본 프레임 정보
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };
 

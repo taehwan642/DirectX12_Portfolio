@@ -32,9 +32,6 @@ using namespace Microsoft::WRL;
 #include <DirectXTex/DirectXTex.h>
 #include <DirectXTex/DirectXTex.inl>
 
-#include "FBX/fbxsdk.h"
-#include <Json/json.h>
-
 // 각종 lib
 #pragma comment(lib, "d3d12")
 #pragma comment(lib, "dxgi")
@@ -52,21 +49,21 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "FBX\\debug\\libxml2-md.lib")
 #pragma comment(lib, "FBX\\debug\\zlib-md.lib")
 #else
-#pragma comment(lib, "FBX\\release\libfbxsdk-md.lib")
-#pragma comment(lib, "FBX\\release\libxml2-md.lib")
+#pragma comment(lib, "FBX\\release\\libfbxsdk-md.lib")
+#pragma comment(lib, "FBX\\release\\libxml2-md.lib")
 #pragma comment(lib, "FBX\\release\\zlib-md.lib")
 #endif
 
 #ifdef _DEBUG
 #pragma comment(lib, "Json\\debug\\jsoncpp.lib")
 #else
-#pragma comment(lib, "Json\\release\jsoncpp.lib")
+#pragma comment(lib, "Json\\release\\jsoncpp.lib")
 #endif
 
 #ifdef _DEBUG
 #pragma comment(lib, "Rttr\\debug\\rttr_core_d.lib")
 #else
-#pragma comment(lib, "Rttr\\release\rttr_core.lib")
+#pragma comment(lib, "Rttr\\release\\rttr_core.lib")
 #endif
 
 // 각종 typedef
@@ -161,7 +158,6 @@ struct Vertex
 	Vec4 indices;
 };
 
-#include "RttrRegistration.h"
 
 #define DECLARE_SINGLE(type)		\
 private:							\

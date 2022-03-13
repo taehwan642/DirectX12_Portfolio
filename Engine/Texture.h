@@ -31,6 +31,9 @@ public:
 	float GetHeight() { return static_cast<float>(_desc.Height); }
 
 private:
+	friend class RTTRTextureValue;
+	friend class RTTRMaterialValue;
+
 	ScratchImage			 		_image;
 	D3D12_RESOURCE_DESC				_desc;
 	ComPtr<ID3D12Resource>			_tex2D;
@@ -44,5 +47,8 @@ private:
 	D3D12_CPU_DESCRIPTOR_HANDLE		_srvHeapBegin = {};
 	D3D12_GPU_DESCRIPTOR_HANDLE		_srvGPUHeapBegin = {};
 	D3D12_CPU_DESCRIPTOR_HANDLE		_uavHeapBegin = {};
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };
 

@@ -85,11 +85,3 @@ uint64 MeshRenderer::GetInstanceID()
 	InstanceID instanceID{ _mesh->GetID(), _materials[0]->GetID() };
 	return instanceID.id;
 }
-
-void MeshRenderer::ConvertData(ConvertType type)
-{
-	for (auto& iter : _materials)
-	{
-		iter->ConvertData(type);
-	}
-}

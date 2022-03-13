@@ -26,5 +26,8 @@ private:
 	Vec3		_center = Vec3(0, 0, 0);
 
 	BoundingSphere _boundingSphere;
+
+	RTTR_REGISTRATION_FRIEND
+	RTTR_ENABLE()
 };
 

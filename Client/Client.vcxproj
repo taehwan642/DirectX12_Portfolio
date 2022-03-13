@@ -81,14 +81,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)Library/Include/Json/;$(SolutionDir)Library/Include/imgui/;$(SolutionDir)Library/Include/FBX/;$(SolutionDir)Library/Include/;$(SolutionDir)Engine\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library\Lib\;$(SolutionDir)Output\;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)Output\</OutDir>
+    <LibraryPath>$(SolutionDir)Library\Lib\;$(SolutionDir)Output\Debug\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Output\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)Library/Include/Json/;$(SolutionDir)Library/Include/imgui/;$(SolutionDir)Library/Include/FBX/;$(SolutionDir)Library/Include/;$(SolutionDir)Engine\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/Lib/;$(SolutionDir)Output\;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)Output\</OutDir>
+    <LibraryPath>$(SolutionDir)Library/Lib/;$(SolutionDir)Output\Release\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Output\Release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -56,4 +56,6 @@ private:
 	float				_maxSpeed = 50;
 	float				_startScale = 10.f;
 	float				_endScale = 5.f;
+
+	RTTR_REGISTRATION_FRIEND
 };

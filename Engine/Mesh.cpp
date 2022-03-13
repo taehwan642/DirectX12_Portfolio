@@ -6,6 +6,7 @@
 #include "FBXLoader.h"
 #include "StructuredBuffer.h"
 #include "ImGuiManager.h"
+#include "JsonManager.h"
 
 Mesh::Mesh() : Object(OBJECT_TYPE::MESH)
 {
@@ -66,7 +67,9 @@ std::shared_ptr<Mesh> Mesh::CreateFromFBX(const FbxMeshInfo* meshInfo, FBXLoader
 	}
 
 	if (meshInfo->hasAnimation)
+	{
 		mesh->CreateBonesAndAnimations(loader);
+	}
 	
 	return mesh;
 }

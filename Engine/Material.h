@@ -67,17 +67,17 @@ public:
 
 	std::shared_ptr<Material> Clone();
 
-	virtual void ConvertData(ConvertType type) override;
-
 private:
 	friend class ImGuiManager;
 	friend class InstancingManager;
+	friend class RTTRMaterialValue;
 
 	std::shared_ptr<Shader>	_shader;
 	MaterialParams		_params;
 
 	std::array<std::shared_ptr<Texture>, MATERIAL_ARG_COUNT> _textures;
 
+	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
 };
 

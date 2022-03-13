@@ -18,13 +18,14 @@ public:
 	BaseCollider(ColliderType colliderType);
 	virtual ~BaseCollider();
 
-	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) = 0;
+	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) { return false; };
 
 	std::shared_ptr<GameObject> GetColliderMesh() { return _colliderMeshGameObject; }
 	bool IsDrawMesh() { return _draw; }
 
 protected:
 	friend class ImGuiManager;
+	friend class RTTRColliderValue;
 	
 	std::shared_ptr<Mesh> _mesh;
 	std::shared_ptr<Material> _material;
@@ -34,4 +35,7 @@ protected:
 
 private:
 	ColliderType _colliderType = {};
+
+	RTTR_REGISTRATION_FRIEND
+	RTTR_ENABLE()
 };

@@ -55,5 +55,7 @@ private:
 protected:
 	COMPONENT_TYPE _type;
 	std::weak_ptr<GameObject> _gameObject;
+
+	RTTR_ENABLE()
 };
 

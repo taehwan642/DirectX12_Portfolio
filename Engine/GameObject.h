@@ -25,8 +25,6 @@ public:
 	void LateUpdate();
 	void FinalUpdate();
 
-	std::shared_ptr<Component> GetFixedComponent(COMPONENT_TYPE type);
-
 	std::shared_ptr<Transform> GetTransform();
 	std::shared_ptr<MeshRenderer> GetMeshRenderer();
 	std::shared_ptr<Camera> GetCamera();
@@ -59,10 +57,10 @@ public:
 		}
 	}
 
-	virtual void ConvertData(ConvertType type) override;
-
 private:
 	friend class ImGuiManager;
+	friend class RTTRGameObjectValue;
+	friend class RTTRMeshRendererValue;
 
 	std::array<std::shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;
@@ -73,7 +71,14 @@ private:
 
 	std::shared_ptr<Transform> _transform;
 	std::shared_ptr<MeshRenderer> _meshRenderer;
+	std::shared_ptr<Camera> _camera;
+	std::shared_ptr<Light> _light;
+	std::shared_ptr<ParticleSystem> _particleSystem;
+	std::shared_ptr<Terrain> _terrain;
+	std::shared_ptr<BaseCollider> _baseCollider;
+	std::shared_ptr<Animator> _animator;
 
+	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
 };
 

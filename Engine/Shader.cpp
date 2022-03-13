@@ -16,6 +16,12 @@ void Shader::CreateGraphicsShader(const std::wstring& path, ShaderInfo info, Sha
 {
 	_info = info;
 
+	_arg.vs = arg.vs;
+	_arg.ps = arg.ps;
+	_arg.hs = arg.hs;
+	_arg.ds = arg.ds;
+	_arg.gs = arg.gs;
+
 	CreateVertexShader(path, arg.vs, "vs_5_0");
 	CreatePixelShader(path, arg.ps, "ps_5_0");
 
@@ -179,6 +185,8 @@ void Shader::CreateGraphicsShader(const std::wstring& path, ShaderInfo info, Sha
 void Shader::CreateComputeShader(const std::wstring& path, const std::string& name, const std::string& version)
 {
 	_info.shaderType = SHADER_TYPE::COMPUTE;
+
+	_arg.cs = name;
 
 	CreateShader(path, name, version, _csBlob, _computePipelineDesc.CS);
 	_computePipelineDesc.pRootSignature = COMPUTE_ROOT_SIGNATURE.Get();

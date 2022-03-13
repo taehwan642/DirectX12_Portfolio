@@ -37,4 +37,6 @@ private:
 	std::shared_ptr<Material>			_computeMaterial;
 	std::shared_ptr<StructuredBuffer>	_boneFinalMatrix;  // 특정 프레임의 최종 행렬
 	bool							_boneFinalUpdated = false;
+
+	RTTR_REGISTRATION_FRIEND
 };

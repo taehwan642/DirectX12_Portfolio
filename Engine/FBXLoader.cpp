@@ -18,14 +18,21 @@ FBXLoader::~FBXLoader()
 		_manager->Destroy();
 }
 
-void FBXLoader::LoadFbx(const std::wstring& path)
+void FBXLoader::LoadFbx(const std::wstring& path, bool jsonLoad)
 {
+	_path = path;
+	_jsonLoad = jsonLoad;
+
 	// 파일 데이터 로드
 	Import(path);
 
-	// Animation	
+	// animation Load인데, 
 	LoadBones(_scene->GetRootNode());
-	LoadAnimationInfo();
+	if (jsonLoad == false)
+	{
+		// Animation	
+		LoadAnimationInfo();
+	}
 
 	// 로드된 데이터 파싱 (Mesh/Material/Skin)
 	ParseNode(_scene->GetRootNode());
@@ -404,10 +411,17 @@ void FBXLoader::LoadAnimationInfo()
 void FBXLoader::LoadAnimationData(FbxMesh* mesh, FbxMeshInfo* meshInfo)
 {
 	const int32 skinCount = mesh->GetDeformerCount(FbxDeformer::eSkin);
-	if (skinCount <= 0 || _animClips.empty())
+	// 만약 skinCount가 0보다 작거나 같다면, 또는 animclip의 크기가 0이라면
+	// 리턴.
+	// 근데 이 때 animclip이 empty인데, 와중에 _jsonLoad마저 false라면 return;
+	if (skinCount <= 0 || (_animClips.empty() && _jsonLoad == false))
 		return;
 
-	meshInfo->hasAnimation = true;
+	// 이 if문을 거침으로써 이후 Mesh::CreateFromFBX에서의 if문에 영향을 미친다.
+	if (_jsonLoad == false)
+		meshInfo->hasAnimation = true;
+	else
+		meshInfo->hasAnimation = false;
 
 	for (int32 i = 0; i < skinCount; i++)
 	{
@@ -430,11 +444,14 @@ void FBXLoader::LoadAnimationData(FbxMesh* mesh, FbxMeshInfo* meshInfo)
 
 					FbxAMatrix matNodeTransform = GetTransform(mesh->GetNode());
 					LoadBoneWeight(cluster, boneIdx, meshInfo);
-					LoadOffsetMatrix(cluster, matNodeTransform, boneIdx, meshInfo);
+					if (_jsonLoad == false)
+					{
+						LoadOffsetMatrix(cluster, matNodeTransform, boneIdx, meshInfo);
 
-					const int32 animCount = _animNames.Size();
-					for (int32 k = 0; k < animCount; k++)
-						LoadKeyframe(k, mesh->GetNode(), cluster, matNodeTransform, boneIdx, meshInfo);
+						const int32 animCount = _animNames.Size();
+						for (int32 k = 0; k < animCount; k++)
+							LoadKeyframe(k, mesh->GetNode(), cluster, matNodeTransform, boneIdx, meshInfo);
+					}
 				}
 			}
 		}

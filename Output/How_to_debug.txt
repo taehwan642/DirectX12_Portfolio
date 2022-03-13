@@ -1,0 +1,2 @@
+경로는 ../Resources/ 로 되어있기 때문에, Debug 또는 Release 속 Exe/lib/dll 파일을 꺼내서 Output File에 놓아야 합니다. 
+오후 6:53 2022-03-07

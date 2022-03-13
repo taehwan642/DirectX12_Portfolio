@@ -75,6 +75,8 @@ private:
 	std::vector<std::shared_ptr<GameObject>>	_vecShadow;
 	std::vector<std::shared_ptr<GameObject>>	_vecColliderMesh;
 
+	RTTR_REGISTRATION_FRIEND
+
 public:
 	// TEMP
 	static Matrix S_MatView;

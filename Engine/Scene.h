@@ -35,8 +35,12 @@ public:
 	const std::vector<std::shared_ptr<GameObject>>& GetGameObjects() { return _gameObjects; }
 
 private:
+	friend class RTTRSceneValue;
+
 	std::vector<std::shared_ptr<GameObject>>		_gameObjects;
 	std::vector<std::shared_ptr<class Camera>>	_cameras;
 	std::vector<std::shared_ptr<class Light>>		_lights;
+
+	RTTR_REGISTRATION_FRIEND
 };
 
