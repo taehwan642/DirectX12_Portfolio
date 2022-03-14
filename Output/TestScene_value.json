@@ -1,11 +1,54 @@
 {
     "gameObjects": [
         {
+            "tag": "Main_Camera\u0000",
             "componentOnValue": [
                 true,
                 false,
                 true,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                true,
+                false,
+                false,
+                false
+            ],
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "Orthographic_Camera\u0000",
+            "componentOnValue": [
+                true,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -30,40 +73,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 0\u0000",
             "componentOnValue": [
                 true,
-                false,
                 true,
+                false,
                 false,
                 false,
                 false,
                 false,
                 false
             ],
-            "meshRendererValue": {
-                "materialValues": [],
-                "meshRendererMaterialNumValue": 0,
-                "meshValue": {
-                    "tag": ""
-                }
-            },
-            "colliderValue": {
-                "type": "Sphere"
-            },
-            "lightValue": {
-                "lightType": 0
-            },
-            "terrainValue": {
-                "sizeX": 0,
-                "sizeZ": 0
-            }
-        },
-        {
-            "componentOnValue": [
-                true,
-                true,
-                false,
-                false,
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -115,11 +136,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 1\u0000",
             "componentOnValue": [
                 true,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -171,11 +199,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 2\u0000",
             "componentOnValue": [
                 true,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -227,11 +262,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 3\u0000",
             "componentOnValue": [
                 true,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -283,11 +325,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 4\u0000",
             "componentOnValue": [
                 true,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -339,11 +388,18 @@
             }
         },
         {
+            "tag": "RenderTarget UI 5\u0000",
             "componentOnValue": [
                 true,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -395,11 +451,18 @@
             }
         },
         {
+            "tag": "DirLight\u0000",
             "componentOnValue": [
                 true,
                 false,
                 false,
                 true,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -424,6 +487,7 @@
             }
         },
         {
+            "tag": "Dragon\u0000",
             "componentOnValue": [
                 true,
                 true,
@@ -433,6 +497,12 @@
                 false,
                 false,
                 true
+            ],
+            "monobehaviourOnValue": [
+                false,
+                true,
+                false,
+                false
             ],
             "meshRendererValue": {
                 "materialValues": [
@@ -586,12 +656,19 @@
     ],
     "cameraObjects": [
         {
+            "tag": "Main_Camera\u0000",
             "componentOnValue": [
                 true,
                 false,
                 true,
                 false,
                 false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                true,
                 false,
                 false,
                 false
@@ -615,11 +692,18 @@
             }
         },
         {
+            "tag": "Orthographic_Camera\u0000",
             "componentOnValue": [
                 true,
                 false,
                 true,
                 false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,
@@ -646,11 +730,18 @@
     ],
     "lightObjects": [
         {
+            "tag": "DirLight\u0000",
             "componentOnValue": [
                 true,
                 false,
                 false,
                 true,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
                 false,
                 false,
                 false,

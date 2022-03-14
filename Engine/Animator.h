@@ -25,6 +25,8 @@ public:
 	virtual void FinalUpdate() override;
 
 private:
+	friend class ImGuiManager;
+
 	const std::vector<BoneInfo>* _bones;
 	const std::vector<AnimClipInfo>* _animClips;
 
@@ -37,6 +39,7 @@ private:
 	std::shared_ptr<Material>			_computeMaterial;
 	std::shared_ptr<StructuredBuffer>	_boneFinalMatrix;  // 특정 프레임의 최종 행렬
 	bool							_boneFinalUpdated = false;
+	bool paused = false;
 
 	RTTR_REGISTRATION_FRIEND
 };

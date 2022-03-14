@@ -152,7 +152,7 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 	{
 		AnimClipInfo info = {};
 
-		info.animName = ac->name;
+		info.animName = ws2s(ac->name).c_str();
 		info.duration = ac->endTime.GetSecondDouble() - ac->startTime.GetSecondDouble();
 
 		int32 startFrame = static_cast<int32>(ac->startTime.GetFrameCount(ac->mode));
@@ -201,7 +201,7 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 		BoneInfo boneInfo = {};
 		boneInfo.parentIdx = bone->parentIndex;
 		boneInfo.matOffset = GetMatrix(bone->matOffset);
-		boneInfo.boneName = bone->boneName;
+		boneInfo.boneName = ws2s(bone->boneName).c_str();
 		_bones.push_back(boneInfo);
 	}
 #pragma endregion

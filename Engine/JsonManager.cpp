@@ -246,8 +246,11 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 {
 	std::shared_ptr<MeshData> meshData = nullptr;
 
+	object->SetName(s2ws(value.tag).c_str());
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TRANSFORM)] == true)
 		object->AddComponent(std::make_shared<Transform>());
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER)] == true)
 	{
 		if (value.meshRendererValue.meshValue.tag.find(".fbx") != std::string::npos) {
@@ -324,16 +327,20 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 			mr->SetMesh(mesh);
 		}
 	}
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::CAMERA)] == true)
 		object->AddComponent(std::make_shared<Camera>());
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::LIGHT)] == true)
 	{
 		std::shared_ptr<Light> light = std::make_shared<Light>();
 		object->AddComponent(light);
 		light->SetLightType(static_cast<LIGHT_TYPE>(value.lightValue.lightType));
 	}
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::PARTICLE_SYSTEM)] == true)
 		object->AddComponent(std::make_shared<ParticleSystem>());
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TERRAIN)] == true)
 	{
 		std::shared_ptr<Terrain> terrain = std::make_shared<Terrain>();
@@ -341,6 +348,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		terrain->Init(value.terrainValue.sizeX, value.terrainValue.sizeZ);
 
 	}
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::COLLIDER)] == true)
 	{
 		switch (value.colliderValue.type)
@@ -355,11 +363,37 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 			break;
 		}
 	}
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::ANIMATOR)] == true)
 	{
 		std::shared_ptr<Animator> animator = std::make_shared<Animator>();
 		object->AddComponent(animator);
 		animator->SetBones(meshData->_meshRenders[0].mesh->GetBones());
 		animator->SetAnimClip(meshData->_meshRenders[0].mesh->GetAnimClip());
+	}
+	
+	LoadMonobehaviour(value, object);
+}
+
+void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<GameObject> object)
+{
+	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::GameManagerScript)] == true)
+	{
+		object->AddComponent(std::make_shared<GameManagerScript>());
+	}
+
+	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TerrainScript)] == true)
+	{
+		object->AddComponent(std::make_shared<TerrainScript>());
+	}
+
+	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestCameraScript)] == true)
+	{
+		object->AddComponent(std::make_shared<TestCameraScript>());
+	}
+
+	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestDragon)] == true)
+	{
+		object->AddComponent(std::make_shared<TestDragon>());
 	}
 }

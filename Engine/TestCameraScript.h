@@ -4,12 +4,16 @@
 class TestCameraScript : public MonoBehaviour
 {
 public:
-	TestCameraScript();
+	MONOBEHAVIOUR(TestCameraScript)
+
 	virtual ~TestCameraScript();
 
 	virtual void LateUpdate() override;
 
 private:
 	float		_speed = 300.f;
+
+	RTTR_ENABLE()
+	RTTR_REGISTRATION_FRIEND
 };
 

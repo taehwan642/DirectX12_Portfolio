@@ -25,14 +25,14 @@ struct KeyFrameInfo
 
 struct BoneInfo
 {
-	std::wstring					boneName;
+	std::string					boneName;
 	int32					parentIdx;
 	Matrix					matOffset;
 };
 
 struct AnimClipInfo
 {
-	std::wstring			animName;
+	std::string			animName;
 	int32			frameCount;
 	double			duration;
 	std::vector<std::vector<KeyFrameInfo>>	keyFrames;
@@ -73,6 +73,7 @@ private:
 	friend class RTTRMeshValue;
 	friend class RTTRAnimationValue;
 	friend class JsonManager;
+	friend class MeshCollider;
 	
 	ComPtr<ID3D12Resource>		_vertexBuffer;
 	D3D12_VERTEX_BUFFER_VIEW	_vertexBufferView = {};

@@ -10,11 +10,18 @@ public:
 	MeshCollider();
 	virtual ~MeshCollider();
 
+	void Init();
+
 	virtual void FinalUpdate() override;
 	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) override;
 
 private:
 	friend class ImGuiManager;
+
+	std::shared_ptr<Vertex[]> _vertices;
+	std::shared_ptr<uint32[]> _indices;
+
+	uint32 _triCount = 0;
 
 	RTTR_REGISTRATION_FRIEND
 	RTTR_ENABLE()

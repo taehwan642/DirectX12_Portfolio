@@ -18,6 +18,14 @@
 #include "Animator.h"
 #include "Scene.h"
 
+
+#include "MonoBehaviour.h"
+#include "TerrainScript.h"
+#include "TestCameraScript.h"
+#include "TestDragon.h"
+#include "GameManagerScript.h"
+
+
 // Load때 필요한 오브젝트.
 
 struct RTTRColliderValue
@@ -190,6 +198,8 @@ struct RTTRGameObjectValue
 	RTTRGameObjectValue() = default;
 	RTTRGameObjectValue(std::shared_ptr<GameObject> gameObject)
 	{
+		tag = ws2s(gameObject->_name);
+
 		for (int i = 0; i < gameObject->_components.size(); ++i)
 		{
 			if (gameObject->_components[i] != nullptr)
@@ -217,13 +227,38 @@ struct RTTRGameObjectValue
 		{
 			terrainValue = RTTRTerrainValue(gameObject->GetTerrain());
 		}
+
+		for (int i = 0; i < gameObject->_scripts.size(); ++i)
+		{
+			if (std::dynamic_pointer_cast<GameManagerScript>(gameObject->_scripts[i]) != nullptr)
+			{
+				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::GameManagerScript)] = true;
+			}
+
+			if (std::dynamic_pointer_cast<TerrainScript>(gameObject->_scripts[i]) != nullptr)
+			{
+				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TerrainScript)] = true;
+			}
+
+			if (std::dynamic_pointer_cast<TestCameraScript>(gameObject->_scripts[i]) != nullptr)
+			{
+				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestCameraScript)] = true;
+			}
+
+			if (std::dynamic_pointer_cast<TestDragon>(gameObject->_scripts[i]) != nullptr)
+			{
+				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestDragon)] = true;
+			}
+		}
 	}
 
 	std::array<bool, FIXED_COMPONENT_COUNT> componentOnValue{ false };
+	std::array<bool, static_cast<int>(MonoBehaviourType::END)> monobehaviourOnValue{ false };
 	RTTRMeshRendererValue meshRendererValue;
 	RTTRColliderValue colliderValue;
 	RTTRLightValue lightValue;
 	RTTRTerrainValue terrainValue;
+	std::string tag;
 };
 
 struct RTTRSceneValue
@@ -570,7 +605,9 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRGameObjectValue>("RTTRGameObjectValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<GameObject>>()
+		.property("tag", &RTTRGameObjectValue::tag)
 		.property("componentOnValue", &RTTRGameObjectValue::componentOnValue)
+		.property("monobehaviourOnValue", &RTTRGameObjectValue::monobehaviourOnValue)
 		.property("meshRendererValue", &RTTRGameObjectValue::meshRendererValue)
 		.property("colliderValue", &RTTRGameObjectValue::colliderValue)
 		.property("lightValue", &RTTRGameObjectValue::lightValue)
@@ -654,4 +691,24 @@ RTTR_REGISTRATION
 		.property("_gameObjects", &Scene::_gameObjects)
 		.property("_cameras", &Scene::_cameras)
 		.property("_lights", &Scene::_lights);
+
+#pragma region Monobehaviour
+	// GameManagerScript
+	rttr::registration::class_<GameManagerScript>("GameManagerScript")
+		.constructor<>();
+
+	// TerrainScript
+	rttr::registration::class_<TerrainScript>("TerrainScript")
+		.constructor<>();
+
+	// TestCameraScript
+	rttr::registration::class_<TestCameraScript>("TestCameraScript")
+		.constructor<>()
+		.property("_speed", &TestCameraScript::_speed);
+
+	// TestDragon
+	rttr::registration::class_<TestDragon>("TestDragon")
+		.constructor<>();
+
+#pragma endregion
 }

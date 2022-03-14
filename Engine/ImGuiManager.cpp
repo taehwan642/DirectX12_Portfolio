@@ -85,230 +85,237 @@ void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
 
 void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Material> material)
 {
-    ImGui::Text("Material Index : %d", materialIndex);
+    char buffer[256];
+    sprintf_s(buffer, "Material Index : %d", materialIndex);
 
-    if (ImGui::BeginMenu("Textures"))
+    if (ImGui::BeginMenu(buffer))
     {
-        int item_current_idx[MATERIAL_ARG_COUNT]{};
 
-        std::vector<std::string> stringVec;
-        stringVec.push_back("NONE");
-        int value = 1; // stringVec의 size는 이 때 1이니까.
-        for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)])
+        if (ImGui::BeginMenu("Textures"))
         {
+            int item_current_idx[MATERIAL_ARG_COUNT]{};
+
+            std::vector<std::string> stringVec;
+            stringVec.push_back("NONE");
+            int value = 1; // stringVec의 size는 이 때 1이니까.
+            for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)])
+            {
+                for (int i = 0; i < MATERIAL_ARG_COUNT; ++i)
+                {
+                    if (material->_textures[i] == nullptr)
+                        continue;
+                    if (material->_textures[i] == iter.second)
+                    {
+                        item_current_idx[i] = value;
+                    }
+                }
+                stringVec.push_back(ws2s(iter.first));
+                ++value;
+            }
+
             for (int i = 0; i < MATERIAL_ARG_COUNT; ++i)
             {
-                if (material->_textures[i] == nullptr)
-                    continue;
-                if (material->_textures[i] == iter.second)
+                std::string combo_preview_value = stringVec[item_current_idx[i]];  // Pass in the preview value visible before opening the combo (it could be anything)
+                std::string comboName = "Selected Texture " + std::to_string(i);
+                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
                 {
-                    item_current_idx[i] = value;
-                }
-            }
-            stringVec.push_back(ws2s(iter.first));
-            ++value;
-        }
-
-        for (int i = 0; i < MATERIAL_ARG_COUNT; ++i)
-        {
-            std::string combo_preview_value = stringVec[item_current_idx[i]];  // Pass in the preview value visible before opening the combo (it could be anything)
-            std::string comboName = "Selected Texture " + std::to_string(i);
-            if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
-            {
-                for (int n = 0; n < stringVec.size(); n++)
-                {
-                    const bool is_selected = (item_current_idx[i] == n);
-                    if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                    for (int n = 0; n < stringVec.size(); n++)
                     {
-                        item_current_idx[i] = n;
-                        if (n != 0)
+                        const bool is_selected = (item_current_idx[i] == n);
+                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
                         {
-                            std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)].find(s2ws(stringVec[n]))->second;
-                            material->_textures[i] = std::static_pointer_cast<Texture>(obj);
-                            material->_params.texOnParams[i] = 1;
+                            item_current_idx[i] = n;
+                            if (n != 0)
+                            {
+                                std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::TEXTURE)].find(s2ws(stringVec[n]))->second;
+                                material->_textures[i] = std::static_pointer_cast<Texture>(obj);
+                                material->_params.texOnParams[i] = 1;
+                            }
+                            else
+                            {
+                                material->_params.texOnParams[i] = 0;
+                            }
                         }
-                        else
-                        {
-                            material->_params.texOnParams[i] = 0;
-                        }
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
                     }
-
-                    if (is_selected)
-                        ImGui::SetItemDefaultFocus();
+                    ImGui::EndCombo();
                 }
-                ImGui::EndCombo();
             }
+            ImGui::EndMenu();
         }
-        ImGui::EndMenu();
-    }
-        
+            
 
-    ImGui::InputInt4("Int Params", material->_params.intParams.data());
-    ImGui::InputFloat4("Float Params", material->_params.floatParams.data());
-    ImGui::InputInt4("Texture On Params", material->_params.texOnParams.data());
+        ImGui::InputInt4("Int Params", material->_params.intParams.data());
+        ImGui::InputFloat4("Float Params", material->_params.floatParams.data());
+        ImGui::InputInt4("Texture On Params", material->_params.texOnParams.data());
 
-    if (ImGui::BeginMenu("Vector2"))
-    {
-        ImGui::InputFloat2("0", reinterpret_cast<float*>(&material->_params.vec2Params[0]));
-        ImGui::InputFloat2("1", reinterpret_cast<float*>(&material->_params.vec2Params[1]));
-        ImGui::InputFloat2("2", reinterpret_cast<float*>(&material->_params.vec2Params[2]));
-        ImGui::InputFloat2("3", reinterpret_cast<float*>(&material->_params.vec2Params[3]));
-        ImGui::EndMenu();
-    }
-
-    if (ImGui::BeginMenu("Vector4"))
-    {
-        ImGui::InputFloat4("0", reinterpret_cast<float*>(&material->_params.vec4Params[0]));
-        ImGui::InputFloat4("1", reinterpret_cast<float*>(&material->_params.vec4Params[1]));
-        ImGui::InputFloat4("2", reinterpret_cast<float*>(&material->_params.vec4Params[2]));
-        ImGui::InputFloat4("3", reinterpret_cast<float*>(&material->_params.vec4Params[3]));
-        ImGui::EndMenu();
-    }
-
-    if (ImGui::BeginMenu("Matrix"))
-    {
-        if (ImGui::BeginMenu("Matrix1"))
+        if (ImGui::BeginMenu("Vector2"))
         {
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[0]._11,
-                material->_params.matrixParams[0]._12,
-                material->_params.matrixParams[0]._13,
-                material->_params.matrixParams[0]._14);
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[0]._21,
-                material->_params.matrixParams[0]._22,
-                material->_params.matrixParams[0]._23,
-                material->_params.matrixParams[0]._24);
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[0]._31,
-                material->_params.matrixParams[0]._32,
-                material->_params.matrixParams[0]._33,
-                material->_params.matrixParams[0]._34);
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[0]._41,
-                material->_params.matrixParams[0]._42,
-                material->_params.matrixParams[0]._43,
-                material->_params.matrixParams[0]._44);
+            ImGui::InputFloat2("0", reinterpret_cast<float*>(&material->_params.vec2Params[0]));
+            ImGui::InputFloat2("1", reinterpret_cast<float*>(&material->_params.vec2Params[1]));
+            ImGui::InputFloat2("2", reinterpret_cast<float*>(&material->_params.vec2Params[2]));
+            ImGui::InputFloat2("3", reinterpret_cast<float*>(&material->_params.vec2Params[3]));
             ImGui::EndMenu();
         }
 
-        if (ImGui::BeginMenu("Matrix2"))
+        if (ImGui::BeginMenu("Vector4"))
         {
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[1]._11,
-                material->_params.matrixParams[1]._12,
-                material->_params.matrixParams[1]._13,
-                material->_params.matrixParams[1]._14);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[1]._21,
-                material->_params.matrixParams[1]._22,
-                material->_params.matrixParams[1]._23,
-                material->_params.matrixParams[1]._24);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[1]._31,
-                material->_params.matrixParams[1]._32,
-                material->_params.matrixParams[1]._33,
-                material->_params.matrixParams[1]._34);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[1]._41,
-                material->_params.matrixParams[1]._42,
-                material->_params.matrixParams[1]._43,
-                material->_params.matrixParams[1]._44);
+            ImGui::InputFloat4("0", reinterpret_cast<float*>(&material->_params.vec4Params[0]));
+            ImGui::InputFloat4("1", reinterpret_cast<float*>(&material->_params.vec4Params[1]));
+            ImGui::InputFloat4("2", reinterpret_cast<float*>(&material->_params.vec4Params[2]));
+            ImGui::InputFloat4("3", reinterpret_cast<float*>(&material->_params.vec4Params[3]));
             ImGui::EndMenu();
         }
 
-        if (ImGui::BeginMenu("Matrix3"))
+        if (ImGui::BeginMenu("Matrix"))
         {
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[2]._11,
-                material->_params.matrixParams[2]._12,
-                material->_params.matrixParams[2]._13,
-                material->_params.matrixParams[2]._14);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[2]._21,
-                material->_params.matrixParams[2]._22,
-                material->_params.matrixParams[2]._23,
-                material->_params.matrixParams[2]._24);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[2]._31,
-                material->_params.matrixParams[2]._32,
-                material->_params.matrixParams[2]._33,
-                material->_params.matrixParams[2]._34);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[2]._41,
-                material->_params.matrixParams[2]._42,
-                material->_params.matrixParams[2]._43,
-                material->_params.matrixParams[2]._44);
+            if (ImGui::BeginMenu("Matrix1"))
+            {
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[0]._11,
+                    material->_params.matrixParams[0]._12,
+                    material->_params.matrixParams[0]._13,
+                    material->_params.matrixParams[0]._14);
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[0]._21,
+                    material->_params.matrixParams[0]._22,
+                    material->_params.matrixParams[0]._23,
+                    material->_params.matrixParams[0]._24);
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[0]._31,
+                    material->_params.matrixParams[0]._32,
+                    material->_params.matrixParams[0]._33,
+                    material->_params.matrixParams[0]._34);
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[0]._41,
+                    material->_params.matrixParams[0]._42,
+                    material->_params.matrixParams[0]._43,
+                    material->_params.matrixParams[0]._44);
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Matrix2"))
+            {
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[1]._11,
+                    material->_params.matrixParams[1]._12,
+                    material->_params.matrixParams[1]._13,
+                    material->_params.matrixParams[1]._14);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[1]._21,
+                    material->_params.matrixParams[1]._22,
+                    material->_params.matrixParams[1]._23,
+                    material->_params.matrixParams[1]._24);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[1]._31,
+                    material->_params.matrixParams[1]._32,
+                    material->_params.matrixParams[1]._33,
+                    material->_params.matrixParams[1]._34);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[1]._41,
+                    material->_params.matrixParams[1]._42,
+                    material->_params.matrixParams[1]._43,
+                    material->_params.matrixParams[1]._44);
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Matrix3"))
+            {
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[2]._11,
+                    material->_params.matrixParams[2]._12,
+                    material->_params.matrixParams[2]._13,
+                    material->_params.matrixParams[2]._14);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[2]._21,
+                    material->_params.matrixParams[2]._22,
+                    material->_params.matrixParams[2]._23,
+                    material->_params.matrixParams[2]._24);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[2]._31,
+                    material->_params.matrixParams[2]._32,
+                    material->_params.matrixParams[2]._33,
+                    material->_params.matrixParams[2]._34);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[2]._41,
+                    material->_params.matrixParams[2]._42,
+                    material->_params.matrixParams[2]._43,
+                    material->_params.matrixParams[2]._44);
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Matrix4"))
+            {
+                ImGui::Text("%f, %f, %f, %f", 
+                    material->_params.matrixParams[3]._11,
+                    material->_params.matrixParams[3]._12,
+                    material->_params.matrixParams[3]._13,
+                    material->_params.matrixParams[3]._14);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[3]._21,
+                    material->_params.matrixParams[3]._22,
+                    material->_params.matrixParams[3]._23,
+                    material->_params.matrixParams[3]._24);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[3]._31,
+                    material->_params.matrixParams[3]._32,
+                    material->_params.matrixParams[3]._33,
+                    material->_params.matrixParams[3]._34);
+                ImGui::Text("%f, %f, %f, %f",      
+                    material->_params.matrixParams[3]._41,
+                    material->_params.matrixParams[3]._42,
+                    material->_params.matrixParams[3]._43,
+                    material->_params.matrixParams[3]._44);
+                ImGui::EndMenu();
+            }
+
             ImGui::EndMenu();
         }
 
-        if (ImGui::BeginMenu("Matrix4"))
+        if (ImGui::BeginMenu("Shader"))
         {
-            ImGui::Text("%f, %f, %f, %f", 
-                material->_params.matrixParams[3]._11,
-                material->_params.matrixParams[3]._12,
-                material->_params.matrixParams[3]._13,
-                material->_params.matrixParams[3]._14);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[3]._21,
-                material->_params.matrixParams[3]._22,
-                material->_params.matrixParams[3]._23,
-                material->_params.matrixParams[3]._24);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[3]._31,
-                material->_params.matrixParams[3]._32,
-                material->_params.matrixParams[3]._33,
-                material->_params.matrixParams[3]._34);
-            ImGui::Text("%f, %f, %f, %f",      
-                material->_params.matrixParams[3]._41,
-                material->_params.matrixParams[3]._42,
-                material->_params.matrixParams[3]._43,
-                material->_params.matrixParams[3]._44);
-            ImGui::EndMenu();
-        }
+            // ShaderInfo 출력
+            ImGui::Text("Shader Info :");
+            ImGui::SameLine();
+            switch (material->GetShader()->GetShaderType())
+            {
+            case SHADER_TYPE::DEFERRED:
+                ImGui::Text("Deffered");
+                break;
+            case SHADER_TYPE::FORWARD:
+                ImGui::Text("Forward");
+                break;
+            case SHADER_TYPE::LIGHTING:
+                ImGui::Text("Lighting");
+                break;
+            case SHADER_TYPE::PARTICLE:
+                ImGui::Text("Particle");
+                break;
+            case SHADER_TYPE::COMPUTE:
+                ImGui::Text("Compute");
+                break;
+            case SHADER_TYPE::SHADOW:
+                ImGui::Text("Shadow");
+                break;
+            }
 
-        ImGui::EndMenu();
-    }
+            if (ImGui::BeginMenu("Shader Pipeline"))
+            {
+                if (material->GetShader()->_vsBlob != nullptr)
+                    ImGui::Text("Vertex Shader");
+                if (material->GetShader()->_hsBlob != nullptr)
+                    ImGui::Text("Hull Shader");
+                if (material->GetShader()->_dsBlob != nullptr)
+                    ImGui::Text("Domain Shader");
+                if (material->GetShader()->_gsBlob != nullptr)
+                    ImGui::Text("Geometry Shader");
+                if (material->GetShader()->_psBlob != nullptr)
+                    ImGui::Text("Pixel Shader");
+                ImGui::EndMenu();
+            }
 
-    if (ImGui::BeginMenu("Shader"))
-    {
-        // ShaderInfo 출력
-        ImGui::Text("Shader Info :");
-        ImGui::SameLine();
-        switch (material->GetShader()->GetShaderType())
-        {
-        case SHADER_TYPE::DEFERRED:
-            ImGui::Text("Deffered");
-            break;
-        case SHADER_TYPE::FORWARD:
-            ImGui::Text("Forward");
-            break;
-        case SHADER_TYPE::LIGHTING:
-            ImGui::Text("Lighting");
-            break;
-        case SHADER_TYPE::PARTICLE:
-            ImGui::Text("Particle");
-            break;
-        case SHADER_TYPE::COMPUTE:
-            ImGui::Text("Compute");
-            break;
-        case SHADER_TYPE::SHADOW:
-            ImGui::Text("Shadow");
-            break;
-        }
-
-        if (ImGui::BeginMenu("Shader Pipeline"))
-        {
-            if (material->GetShader()->_vsBlob != nullptr)
-                ImGui::Text("Vertex Shader");
-            if (material->GetShader()->_hsBlob != nullptr)
-                ImGui::Text("Hull Shader");
-            if (material->GetShader()->_dsBlob != nullptr)
-                ImGui::Text("Domain Shader");
-            if (material->GetShader()->_gsBlob != nullptr)
-                ImGui::Text("Geometry Shader");
-            if (material->GetShader()->_psBlob != nullptr)
-                ImGui::Text("Pixel Shader");
             ImGui::EndMenu();
         }
 
@@ -650,6 +657,23 @@ void ImGuiManager::RenderInspector()
             // 이건 일단 보류.
             if (ImGui::BeginMenu("Animator"))
             {
+                std::shared_ptr<Animator> animator = _currentGameObject->GetAnimator();
+
+                if (ImGui::Button("Play/Pause"))
+                {
+                    animator->paused = !animator->paused;
+                }
+
+                if (ImGui::InputInt("Clip Number", &animator->_clipIndex))
+                {
+                    if (animator->_clipIndex >= animator->_animClips->size())
+                        animator->_clipIndex = 0;
+                    animator->Play(animator->_clipIndex);
+                }
+
+                const AnimClipInfo& animClip = animator->_animClips->at(animator->_clipIndex);
+                ImGui::SliderInt("Frame", &animator->_frame, 0, animClip.frameCount - 1);
+                ImGui::Text("Frame Ratio : %d", animator->_frameRatio);
                 ImGui::EndMenu();
             }
         }

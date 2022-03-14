@@ -19,6 +19,9 @@ Animator::~Animator()
 
 void Animator::FinalUpdate()
 {
+	if (paused == true)
+		return;
+
 	_updateTime += DELTA_TIME;
 
 	const AnimClipInfo& animClip = _animClips->at(_clipIndex);

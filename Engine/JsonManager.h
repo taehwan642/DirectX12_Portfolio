@@ -20,5 +20,6 @@ public:
 
 private:
 	void LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object);
+	void LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<GameObject> object);
 };
 

@@ -144,6 +144,7 @@ enum class ConvertType : byte
 struct Vertex
 {
 	Vertex() {}
+	~Vertex() {}
 
 	Vertex(Vec3 p, Vec2 u, Vec3 n, Vec3 t)
 		: pos(p), uv(u), normal(n), tangent(t)
@@ -187,6 +188,8 @@ public:								\
 
 #define CONST_BUFFER(type)	GEngine->GetConstantBuffer(type)
 
+#define MONOBEHAVIOUR(type)	type() { _className = s2ws(typeid(type).name()); }
+
 struct TransformParams
 {
 	Matrix matWorld;
@@ -209,3 +212,12 @@ extern std::unique_ptr<class Engine> GEngine;
 // Utils
 std::wstring s2ws(const std::string& s);
 std::string ws2s(const std::wstring& s);
+
+template <typename T>
+struct array_deleter
+{
+	void operator()(T const* p)
+	{
+		delete[] p;
+	}
+};

@@ -3,11 +3,6 @@
 #include "GameObject.h"
 #include "Transform.h"
 
-TerrainScript::TerrainScript()
-{
-	_className = s2ws(typeid(decltype(this)).name());
-}
-
 TerrainScript::~TerrainScript()
 {
 }
