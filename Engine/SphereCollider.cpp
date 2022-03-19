@@ -50,7 +50,7 @@ void SphereCollider::FinalUpdate()
 	_boundingSphere.Radius = _radius * max(max(scale.x, scale.y), scale.z);
 }
 
-bool SphereCollider::Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance)
+bool SphereCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
 {
 	return _boundingSphere.Intersects(rayOrigin, rayDir, OUT distance);
 }

@@ -106,18 +106,26 @@ void Scene::RenderDeferred()
 	// Deferred OMSet
 	GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->OMSetRenderTargets();
 
-	std::shared_ptr<Camera> mainCamera = _cameras[0];
-	mainCamera->SortGameObject();
-	mainCamera->Render_Deferred();
+	// ONLY FOR DEBUG
+	if (!_cameras.empty())
+	{
+		std::shared_ptr<Camera> mainCamera = _cameras[0];
+		mainCamera->SortGameObject();
+		mainCamera->Render_Deferred();
+	}
 
 	GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->WaitTargetToResource();
 }
 
 void Scene::RenderLights()
 {
-	std::shared_ptr<Camera> mainCamera = _cameras[0];
-	Camera::S_MatView = mainCamera->GetViewMatrix();
-	Camera::S_MatProjection = mainCamera->GetProjectionMatrix();
+	// ONLY FOR DEBUG
+	if (!_cameras.empty())
+	{
+		std::shared_ptr<Camera> mainCamera = _cameras[0];
+		Camera::S_MatView = mainCamera->GetViewMatrix();
+		Camera::S_MatProjection = mainCamera->GetProjectionMatrix();
+	}
 
 	GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::LIGHTING)->OMSetRenderTargets();
 
@@ -135,23 +143,30 @@ void Scene::RenderFinal()
 	// Swapchain OMSet
 	int8 backIndex = GEngine->GetSwapChain()->GetBackBufferIndex();
 	GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::SWAP_CHAIN)->OMSetRenderTargets(1, backIndex);
-
-	GET_SINGLE(Resources)->Get<Material>(L"Final")->PushGraphicsData();
-	GET_SINGLE(Resources)->Get<Mesh>(L"Rectangle")->Render();
+	// ONLY FOR DEBUG
+	if (!_cameras.empty())
+	{
+		GET_SINGLE(Resources)->Get<Material>(L"Final")->PushGraphicsData();
+		GET_SINGLE(Resources)->Get<Mesh>(L"Rectangle")->Render();
+	}
 }
 
 void Scene::RenderForward()
 {
-	std::shared_ptr<Camera> mainCamera = _cameras[0];
-	mainCamera->Render_Forward();
-
-	for (auto& camera : _cameras)
+	// ONLY FOR DEBUG
+	if (!_cameras.empty())
 	{
-		if (camera == mainCamera)
-			continue;
+		std::shared_ptr<Camera> mainCamera = _cameras[0];
+		mainCamera->Render_Forward();
 
-		camera->SortGameObject();
-		camera->Render_Forward();
+		for (auto& camera : _cameras)
+		{
+			if (camera == mainCamera)
+				continue;
+
+			camera->SortGameObject();
+			camera->Render_Forward();
+		}
 	}
 }
 

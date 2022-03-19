@@ -23,6 +23,7 @@
 #include "CubeCollider.h"
 #include "Resources.h"
 #include "JsonManager.h"
+#include "MeshCollider.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -90,7 +91,6 @@ void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Materia
 
     if (ImGui::BeginMenu(buffer))
     {
-
         if (ImGui::BeginMenu("Textures"))
         {
             int item_current_idx[MATERIAL_ARG_COUNT]{};
@@ -361,6 +361,13 @@ void ImGuiManager::RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeColl
         cubeCollider->_boundingBox.Extents.z);
 }
 
+void ImGuiManager::RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider)
+{
+    ImGui::Text("Type : Mesh");
+
+    ImGui::Text("Triangle Count : %d", meshCollider->_triCount);
+}
+
 void ImGuiManager::RenderClientData()
 {
     ImGui::Begin("Client Data");
@@ -376,7 +383,24 @@ void ImGuiManager::RenderHierarchy()
 {
     ImGui::Begin("Hierarchy");
 
+    static std::string input;
+    // Text 적을 수 있게 해야함.
+    ImGui::InputText("FileName", const_cast<char*>(input.c_str()), 64);
+    if (ImGui::Button("Load"))
+    {
+        std::string inputText(input.c_str());
+        std::string path = std::string("../Output/") + inputText;
+        GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
+    }
+
+    if (GET_SINGLE(SceneManager)->GetActiveScene() == nullptr)
+    {
+        ImGui::End();
+        return;
+    }
+
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
+
     int tempName = 0;
     for (auto& iter : vec)
     {
@@ -389,6 +413,13 @@ void ImGuiManager::RenderHierarchy()
         {
             _currentGameObject = iter;
         }
+    }
+
+    if (ImGui::Button("Add GameObject"))
+    {
+        std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
+        _currentGameObject = gameObject;
+        GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(gameObject);
     }
 
     ImGui::End();
@@ -437,6 +468,11 @@ void ImGuiManager::RenderInspector()
 
                 // TODO : 부모 출력
 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_transform = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -460,6 +496,11 @@ void ImGuiManager::RenderInspector()
                     ++n;
                 }
 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_meshRenderer = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -474,6 +515,11 @@ void ImGuiManager::RenderInspector()
                 
                 RenderCameraData(camera);
                 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_camera = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -552,6 +598,11 @@ void ImGuiManager::RenderInspector()
                 ImGui::Text("MeshType : %s", meshType.c_str());
                 RenderMeshData(light->_volumeMesh);
 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_light = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -584,6 +635,11 @@ void ImGuiManager::RenderInspector()
                     ImGui::EndMenu();
                 }
 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_particleSystem = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -598,6 +654,12 @@ void ImGuiManager::RenderInspector()
                 ImGui::Text("Vertex Num X : %d", terrain->_sizeX);
                 ImGui::Text("Vertex Num Z : %d", terrain->_sizeZ);
                 ImGui::Text("Max Tesselation : %f", terrain->_maxTesselation);
+
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_terrain = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -623,6 +685,12 @@ void ImGuiManager::RenderInspector()
                     std::shared_ptr<CubeCollider> cubeCollider = std::static_pointer_cast<CubeCollider>(collider);
                     RenderCubeColliderData(cubeCollider);
                 }
+
+                case ColliderType::Mesh:
+                {
+                    std::shared_ptr<MeshCollider> meshCollider = std::static_pointer_cast<MeshCollider>(collider);
+                    RenderMeshColliderData(meshCollider);
+                }
                     break;
                 }
                 
@@ -647,6 +715,11 @@ void ImGuiManager::RenderInspector()
                     }
                 }
 
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_baseCollider = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
@@ -654,7 +727,6 @@ void ImGuiManager::RenderInspector()
 	    // ANIMATOR
         if (_currentGameObject->GetAnimator() != nullptr)
         {
-            // 이건 일단 보류.
             if (ImGui::BeginMenu("Animator"))
             {
                 std::shared_ptr<Animator> animator = _currentGameObject->GetAnimator();
@@ -674,13 +746,93 @@ void ImGuiManager::RenderInspector()
                 const AnimClipInfo& animClip = animator->_animClips->at(animator->_clipIndex);
                 ImGui::SliderInt("Frame", &animator->_frame, 0, animClip.frameCount - 1);
                 ImGui::Text("Frame Ratio : %d", animator->_frameRatio);
+
+                if (ImGui::Button("Delete Component"))
+                {
+                    _currentGameObject->_animator = nullptr;
+                }
+
                 ImGui::EndMenu();
             }
         }
 
+        // MONOBEHAVIOUR
         for (auto& iter : _currentGameObject->_scripts)
         {
             ImGui::Text("%s", ws2s(iter->_className).c_str());
+        }
+
+        if (ImGui::BeginMenu("AddComponent"))
+        {
+            if (_currentGameObject->GetTransform() == nullptr && ImGui::Button("Transform"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<Transform>());
+            }
+
+            if (_currentGameObject->GetMeshRenderer() == nullptr && ImGui::Button("MeshRenderer"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<MeshRenderer>());
+            }
+
+            if (_currentGameObject->GetMeshRenderer() == nullptr &&
+                _currentGameObject->GetAnimator() == nullptr &&
+                ImGui::Button("MeshData"))
+            {
+                // _currentGameObject->AddComponent(std::make_shared<MeshRenderer>());
+            }
+
+            if (_currentGameObject->GetCamera() == nullptr && ImGui::Button("Camera"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<Camera>());
+            }
+
+            if (_currentGameObject->GetLight() == nullptr && ImGui::Button("Light"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<Light>());
+            }
+
+            if (_currentGameObject->GetParticleSystem() == nullptr && ImGui::Button("Particle System"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<ParticleSystem>());
+            }
+
+            if (_currentGameObject->GetTerrain() == nullptr && ImGui::Button("Terrain"))
+            {
+                _currentGameObject->AddComponent(std::make_shared<Terrain>());
+                _currentGameObject->GetTerrain()->Init(64, 64);
+            }
+
+            if (ImGui::BeginMenu("Collider"))
+            {
+                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Sphere Collider"))
+                {
+                    _currentGameObject->AddComponent(std::make_shared<SphereCollider>());
+                }
+
+                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Cube Collider"))
+                {
+                    _currentGameObject->AddComponent(std::make_shared<CubeCollider>());
+                }
+
+                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Mesh Collider"))
+                {
+                    std::shared_ptr<MeshCollider> mc = std::make_shared<MeshCollider>();
+                    _currentGameObject->AddComponent(mc);
+                    mc->Init();
+                }
+                ImGui::EndMenu();
+            }
+           
+
+            if (_currentGameObject->GetAnimator() == nullptr && ImGui::Button("Animator"))
+            {
+                std::shared_ptr<Animator> animator = std::make_shared<Animator>();
+                _currentGameObject->AddComponent(animator);
+                animator->SetBones(_currentGameObject->_meshRenderer->_mesh->GetBones());
+                animator->SetAnimClip(_currentGameObject->_meshRenderer->_mesh->GetAnimClip());
+            }
+
+            ImGui::EndMenu();
         }
     }
     else

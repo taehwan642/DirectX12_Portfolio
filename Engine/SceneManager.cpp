@@ -44,13 +44,22 @@ void SceneManager::Render()
 		_activeScene->Render();
 }
 
-void SceneManager::LoadScene(std::wstring sceneName)
+void SceneManager::LoadScene(const std::wstring& sceneName)
 {
-	// TODO : 기존 Scene 정리
-	// TODO : 파일에서 Scene 정보 로드
+	if (_activeScene)
+	{
+		// TODO : 기존 Scene 정리
+		// TODO : 파일에서 Scene 정보 로드
+	}
+	else
+	{
+		_activeScene = std::make_shared<Scene>();
+	}
+
+	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
 
 	// TEST
-	/*_activeScene = */LoadTestScene();
+	/*_activeScene = *///LoadTestScene();
 
 	_activeScene->Awake();
 	_activeScene->Start();

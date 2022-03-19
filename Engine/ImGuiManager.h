@@ -9,6 +9,7 @@ class Mesh;
 class SphereCollider;
 class Texture;
 class CubeCollider;
+class MeshCollider;
 
 class ImGuiManager
 {
@@ -29,6 +30,7 @@ private:
 	void RenderCameraData(std::shared_ptr<Camera> camera);
 	void RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider);
 	void RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider);
+	void RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider);
 
 private:
 	void RenderClientData();

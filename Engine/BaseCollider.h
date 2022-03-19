@@ -19,7 +19,7 @@ public:
 	BaseCollider(ColliderType colliderType);
 	virtual ~BaseCollider();
 
-	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) { return false; };
+	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) { return false; };
 
 	std::shared_ptr<GameObject> GetColliderMesh() { return _colliderMeshGameObject; }
 	bool IsDrawMesh() { return _draw; }

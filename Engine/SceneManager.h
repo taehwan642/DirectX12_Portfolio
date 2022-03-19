@@ -14,7 +14,7 @@ class SceneManager
 public:
 	void Update();
 	void Render();
-	void LoadScene(std::wstring sceneName);
+	void LoadScene(const std::wstring& sceneName);
 
 	void SetLayerName(uint8 index, const std::wstring& name);
 	const std::wstring& IndexToLayerName(uint8 index) { return _layerNames[index]; }

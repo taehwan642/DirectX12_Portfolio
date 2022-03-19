@@ -13,7 +13,7 @@ public:
 	virtual ~SphereCollider();
 
 	virtual void FinalUpdate() override;
-	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) override;
+	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
 	void SetRadius(float radius) { _radius = radius; }
 	void SetCenter(Vec3 center) { _center = center; }

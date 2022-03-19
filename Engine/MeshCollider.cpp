@@ -10,7 +10,7 @@
 #include "Scene.h"
 #include "Mesh.h"
 
-MeshCollider::MeshCollider() : BaseCollider(ColliderType::Cube)
+MeshCollider::MeshCollider() : BaseCollider(ColliderType::Mesh)
 {
 }
 
@@ -61,14 +61,14 @@ void MeshCollider::FinalUpdate()
 }
 
 // rayOrigin, rayDir 모두 local.
-bool MeshCollider::Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance)
+bool MeshCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
 {
 	Matrix worldMatrix = GetTransform()->GetLocalToWorldMatrix();
 	Matrix worldInvMatrix = worldMatrix.Invert();
-	// WorldSpace에서의 Ray 정의
-	rayOrigin = XMVector3TransformCoord(rayOrigin, worldInvMatrix);
-	rayDir = XMVector3TransformNormal(rayDir, worldInvMatrix);
-	rayDir.Normalize();
+	// LocalSpace에서의 Ray 정의
+	Vec4 localRayOrigin = XMVector3TransformCoord(rayOrigin, worldInvMatrix);
+	Vec4 localRayDir = XMVector3TransformNormal(rayDir, worldInvMatrix);
+	localRayDir.Normalize();
 
 	float min = D3D12_FLOAT32_MAX;
 	bool intersected = false;
@@ -83,7 +83,7 @@ bool MeshCollider::Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance)
 		Vec3 v2 = _vertices[i2].pos;
 
 		float t;
-		if (TriangleTests::Intersects(rayOrigin, rayDir, v0, v1, v2, t))
+		if (TriangleTests::Intersects(localRayOrigin, localRayDir, v0, v1, v2, t))
 		{
 			if (t < min)
 			{

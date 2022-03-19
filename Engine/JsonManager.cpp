@@ -359,6 +359,13 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		case ColliderType::Cube:
 			object->AddComponent(std::make_shared<CubeCollider>());
 			break;
+		case ColliderType::Mesh:
+		{
+			std::shared_ptr<MeshCollider> mc = std::make_shared<MeshCollider>();
+			object->AddComponent(mc);
+			mc->Init();
+			break;
+		}
 		default:
 			break;
 		}

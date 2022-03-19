@@ -11,6 +11,7 @@
 #include "BaseCollider.h"
 #include "CubeCollider.h"
 #include "SphereCollider.h"
+#include "MeshCollider.h"
 #include "Camera.h"
 #include "Light.h"
 #include "Terrain.h"
@@ -464,6 +465,12 @@ RTTR_REGISTRATION
 		.property("_center", &CubeCollider::_center)
 		.property("_colliderType", &BaseCollider::_colliderType);
 
+	// CubeCollider
+	rttr::registration::class_<MeshCollider>("MeshCollider")
+		.constructor<>()
+		.property("_extents", &MeshCollider::_triCount)
+		.property("_center", &BaseCollider::_colliderType);
+
 #pragma endregion
 
 	// Camera
@@ -592,7 +599,8 @@ RTTR_REGISTRATION
 	rttr::registration::enumeration<ColliderType>("ColliderType")
 		(
 			rttr::value("Sphere", ColliderType::Sphere),
-			rttr::value("Cube", ColliderType::Cube)
+			rttr::value("Cube", ColliderType::Cube),
+			rttr::value("Mesh", ColliderType::Mesh)
 		);
 #pragma endregion
 

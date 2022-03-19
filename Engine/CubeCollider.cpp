@@ -47,7 +47,7 @@ void CubeCollider::FinalUpdate()
 	_boundingBox.Extents = _extents = GetGameObject()->GetTransform()->GetLocalScale();
 }
 
-bool CubeCollider::Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance)
+bool CubeCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
 {
 	return _boundingBox.Intersects(rayOrigin, rayDir, OUT distance);
 }

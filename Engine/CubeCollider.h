@@ -11,7 +11,7 @@ public:
 	virtual ~CubeCollider();
 
 	virtual void FinalUpdate() override;
-	virtual bool Intersects(Vec4 rayOrigin, Vec4 rayDir, OUT float& distance) override;
+	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
 private:
 	friend class ImGuiManager;
