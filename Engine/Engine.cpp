@@ -9,6 +9,7 @@
 #include "Resources.h"
 #include "InstancingManager.h"
 #include "JsonManager.h"
+#include "Scene.h"
 
 void Engine::Init(const WindowInfo& info)
 {
@@ -38,8 +39,7 @@ void Engine::Init(const WindowInfo& info)
 	GET_SINGLE(Input)->Init(info.hwnd);
 	GET_SINGLE(Timer)->Init();
 	GET_SINGLE(Resources)->Init();
-
-	//GET_SINGLE(JsonManager)->Save("../Output/", "jsonTest");
+	GET_SINGLE(SceneManager)->Init();
 }
 
 void Engine::Update()

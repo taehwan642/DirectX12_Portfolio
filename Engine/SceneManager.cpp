@@ -27,6 +27,16 @@
 
 #include "MeshCollider.h"
 
+void SceneManager::Init()
+{
+	_activeScene = std::make_shared<Scene>();
+	// ONLY FOR DEBUG
+	GET_SINGLE(Resources)->LoadCubeMesh();
+	GET_SINGLE(Resources)->LoadPointMesh();
+	GET_SINGLE(Resources)->LoadRectangleMesh();
+	GET_SINGLE(Resources)->LoadSphereMesh();
+}
+
 void SceneManager::Update()
 {
 	if (_activeScene == nullptr)
@@ -46,15 +56,15 @@ void SceneManager::Render()
 
 void SceneManager::LoadScene(const std::wstring& sceneName)
 {
-	if (_activeScene)
-	{
-		// TODO : 기존 Scene 정리
-		// TODO : 파일에서 Scene 정보 로드
-	}
-	else
-	{
-		_activeScene = std::make_shared<Scene>();
-	}
+	//if (_activeScene)
+	//{
+	//	// TODO : 기존 Scene 정리
+	//	// TODO : 파일에서 Scene 정보 로드
+	//}
+	//else
+	//{
+	//	_activeScene = std::make_shared<Scene>();
+	//}
 
 	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
 

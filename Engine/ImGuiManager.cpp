@@ -386,6 +386,13 @@ void ImGuiManager::RenderHierarchy()
     static std::string input;
     // Text 적을 수 있게 해야함.
     ImGui::InputText("FileName", const_cast<char*>(input.c_str()), 64);
+    if (ImGui::Button("Save"))
+    {
+        std::string inputText(input.c_str());
+        std::string path = std::string("../Output/") + inputText;
+        GET_SINGLE(JsonManager)->SaveScene(path.c_str(), GET_SINGLE(SceneManager)->GetActiveScene());
+    }
+    
     if (ImGui::Button("Load"))
     {
         std::string inputText(input.c_str());
@@ -419,6 +426,7 @@ void ImGuiManager::RenderHierarchy()
     {
         std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
         _currentGameObject = gameObject;
+        _currentGameObject->AddComponent(std::make_shared<Transform>());
         GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(gameObject);
     }
 
@@ -484,16 +492,118 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("MeshRenderer"))
             {
                 std::shared_ptr<MeshRenderer> mr = _currentGameObject->GetMeshRenderer();
-                RenderMeshData(mr->GetMesh());
+                
+                if (ImGui::BeginMenu("Mesh"))
+                {
+                    int item_current_idx{};
+
+                    std::vector<std::string> stringVec;
+                    stringVec.push_back("NONE");
+                    int value = 1; // stringVec의 size는 이 때 1이니까.
+                    for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MESH)])
+                    {
+                        if (mr->_mesh == iter.second)
+                        {
+                            item_current_idx = value;
+                        }
+                        stringVec.push_back(ws2s(iter.first));
+                        ++value;
+                    }
+
+                    std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                    std::string comboName = "Selected Mesh";
+                    if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                    {
+                        for (int n = 0; n < stringVec.size(); n++)
+                        {
+                            const bool is_selected = (item_current_idx == n);
+                            if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                            {
+                                item_current_idx = n;
+                                if (n != 0)
+                                {
+                                    std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MESH)].find(s2ws(stringVec[n]))->second;
+                                    mr->_mesh = std::static_pointer_cast<Mesh>(obj);
+                                }
+                                else
+                                {
+                                    mr->_mesh = nullptr;
+                                }
+                            }
+
+                            if (is_selected)
+                                ImGui::SetItemDefaultFocus();
+                        }
+                        ImGui::EndCombo();
+                    }
+
+                    if (mr->GetMesh())
+                        RenderMeshData(mr->GetMesh());
+
+                    ImGui::EndMenu();
+                }
+                
+                
 
                 int n = 0;
-                for (auto& iter : mr->_materials)
+                for (auto& iterMaterial : mr->_materials)
                 {
-                    if(iter->GetShader()->GetShaderType() == SHADER_TYPE::DEFERRED)
-                        ImGui::Text("Set Material's int 0 param to 1 for Instancing");
+                    int item_current_idx{};
 
-                    RenderMaterialData(n, iter);
+                    std::vector<std::string> stringVec;
+                    stringVec.push_back("NONE");
+                    int value = 1; // stringVec의 size는 이 때 1이니까.
+                    for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MATERIAL)])
+                    {
+                        if (iterMaterial == iter.second)
+                        {
+                            item_current_idx = value;
+                        }
+                        stringVec.push_back(ws2s(iter.first));
+                        ++value;
+                    }
+
+                    std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                    std::string comboName = "Selected Material";
+                    if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                    {
+                        for (int n = 0; n < stringVec.size(); n++)
+                        {
+                            const bool is_selected = (item_current_idx == n);
+                            if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                            {
+                                item_current_idx = n;
+                                if (n != 0)
+                                {
+                                    std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MATERIAL)].find(s2ws(stringVec[n]))->second;
+                                    iterMaterial = std::static_pointer_cast<Material>(obj);
+                                }
+                                else
+                                {
+                                    iterMaterial = nullptr;
+                                }
+                            }
+
+                            if (is_selected)
+                                ImGui::SetItemDefaultFocus();
+                        }
+                        ImGui::EndCombo();
+                    }
+
+                    if (iterMaterial->GetShader() != nullptr)
+                    {
+                        if (iterMaterial->GetShader()->GetShaderType() == SHADER_TYPE::DEFERRED)
+                            ImGui::Text("Set Material's int 0 param to 1 for Instancing");
+
+                        RenderMaterialData(n, iterMaterial);
+                    }
+                   
                     ++n;
+                }
+
+                if (ImGui::Button("Add Material"))
+                {
+                    mr->_materials.push_back(std::make_shared<Material>());
                 }
 
                 if (ImGui::Button("Delete Component"))
@@ -736,11 +846,38 @@ void ImGuiManager::RenderInspector()
                     animator->paused = !animator->paused;
                 }
 
-                if (ImGui::InputInt("Clip Number", &animator->_clipIndex))
+
+                int item_current_idx{};
+
+                std::vector<std::string> stringVec;
+
+                for (int i = 0; i < animator->_animClips->size(); ++i)
                 {
-                    if (animator->_clipIndex >= animator->_animClips->size())
-                        animator->_clipIndex = 0;
-                    animator->Play(animator->_clipIndex);
+                    if (animator->_clipIndex == i)
+                    {
+                        item_current_idx = i;
+                    }
+                    stringVec.push_back((*animator->_animClips)[i].animName);
+                }
+
+                std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                std::string comboName = "Selected Animation";
+                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                {
+                    for (int n = 0; n < stringVec.size(); n++)
+                    {
+                        const bool is_selected = (item_current_idx == n);
+                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                        {
+                            animator->_clipIndex = n;
+                            animator->Play(animator->_clipIndex);
+                            animator->_frame = 0;
+                        }
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
                 }
 
                 const AnimClipInfo& animClip = animator->_animClips->at(animator->_clipIndex);
@@ -764,11 +901,6 @@ void ImGuiManager::RenderInspector()
 
         if (ImGui::BeginMenu("AddComponent"))
         {
-            if (_currentGameObject->GetTransform() == nullptr && ImGui::Button("Transform"))
-            {
-                _currentGameObject->AddComponent(std::make_shared<Transform>());
-            }
-
             if (_currentGameObject->GetMeshRenderer() == nullptr && ImGui::Button("MeshRenderer"))
             {
                 _currentGameObject->AddComponent(std::make_shared<MeshRenderer>());
@@ -783,12 +915,16 @@ void ImGuiManager::RenderInspector()
 
             if (_currentGameObject->GetCamera() == nullptr && ImGui::Button("Camera"))
             {
+                GET_SINGLE(SceneManager)->GetActiveScene()->RemoveGameObject(_currentGameObject);
                 _currentGameObject->AddComponent(std::make_shared<Camera>());
+                GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(_currentGameObject);
             }
 
             if (_currentGameObject->GetLight() == nullptr && ImGui::Button("Light"))
             {
+                GET_SINGLE(SceneManager)->GetActiveScene()->RemoveGameObject(_currentGameObject);
                 _currentGameObject->AddComponent(std::make_shared<Light>());
+                GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(_currentGameObject);
             }
 
             if (_currentGameObject->GetParticleSystem() == nullptr && ImGui::Button("Particle System"))

@@ -12,6 +12,8 @@ class SceneManager
 	DECLARE_SINGLE(SceneManager);
 
 public:
+	void Init();
+
 	void Update();
 	void Render();
 	void LoadScene(const std::wstring& sceneName);
