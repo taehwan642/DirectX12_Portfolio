@@ -190,6 +190,35 @@ public:								\
 
 #define MONOBEHAVIOUR(type)	type() { _className = s2ws(typeid(type).name()); }
 
+#define RTTRMONOLOAD(type)																\
+if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\
+{																						\
+	monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] = true;\
+}																						\
+
+// ÇÔ¼ö °´Ã¼ ClassNameToString
+template<typename T>
+struct ClassNameToString
+{
+	std::string operator()()
+	{
+		std::string result;
+		std::string name = typeid(T).name();
+		result = name.substr(6);
+		return result;
+	}
+};
+
+#define RTTRMONOREGISTER(type) \
+rttr::registration::class_<type>( ClassNameToString< type >()() ) \
+	.constructor<>() \
+
+#define IMGUIADDMONOBEHAVIOUR(type)\
+if (_currentGameObject->GetComponent<type>() == nullptr && ImGui::Button(ClassNameToString< type >()().c_str()))\
+{\
+	_currentGameObject->AddComponent(std::make_shared<type>());\
+}\
+
 struct TransformParams
 {
 	Matrix matWorld;
@@ -208,6 +237,7 @@ struct AnimFrameParams
 };
 
 extern std::unique_ptr<class Engine> GEngine;
+extern std::vector<std::string> GMonobehaviourClasses;
 
 // Utils
 std::wstring s2ws(const std::string& s);

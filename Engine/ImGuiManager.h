@@ -37,6 +37,8 @@ private:
 	void RenderHierarchy();
 	void RenderInspector();
 
+	void RenderChild(std::shared_ptr<GameObject> parent, int i);
+
 private:
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 };

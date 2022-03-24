@@ -735,4 +735,13 @@ void Resources::CreateDefaultMaterial()
 		material->SetInt(0, 0);
 		Add<Material>(L"CubeMaterial", material);
 	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Deferred");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Terrain", L"..\\Resources\\Texture\\Terrain\\terrain.png");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"Plane", material);
+	}
 }

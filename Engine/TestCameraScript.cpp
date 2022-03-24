@@ -77,5 +77,29 @@ void TestCameraScript::LateUpdate()
 			IMGUIMANAGER->_currentGameObject = nullptr;
 	}
 
+	if (INPUT->GetButtonDown(KEY_TYPE::LBUTTON))
+	{
+		const POINT& pos = INPUT->GetMousePos();
+		pressedPos.x = pos.x;
+		pressedPos.y = pos.y;
+	}
+
+	if (INPUT->GetButton(KEY_TYPE::LBUTTON))
+	{
+		const POINT& pos = INPUT->GetMousePos();
+		Vec3 rotation = GetTransform()->GetLocalRotation();
+		
+		float dx = (pos.x - pressedPos.x);
+		float dy = (pos.y - pressedPos.y);
+
+		rotation.y += dx * DELTA_TIME;
+		rotation.x += dy * DELTA_TIME;
+
+		pressedPos.x = pos.x;
+		pressedPos.y = pos.y;
+
+		GetTransform()->SetLocalRotation(rotation);
+	}
+
 	GetTransform()->SetLocalPosition(pos);
 }

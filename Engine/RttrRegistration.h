@@ -231,25 +231,10 @@ struct RTTRGameObjectValue
 
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
-			if (std::dynamic_pointer_cast<GameManagerScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::GameManagerScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TerrainScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TerrainScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TestCameraScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestCameraScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TestDragon>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestDragon)] = true;
-			}
+			RTTRMONOLOAD(GameManagerScript)
+			RTTRMONOLOAD(TerrainScript)
+			RTTRMONOLOAD(TestCameraScript)
+			RTTRMONOLOAD(TestDragon)
 		}
 	}
 
@@ -326,6 +311,7 @@ RTTR_REGISTRATION
 		.property("_checkFrustum", &GameObject::_checkFrustum)
 		.property("_layerIndex", &GameObject::_layerIndex)
 		.property("_static", &GameObject::_static)
+		.property("_hash", &GameObject::_hash)
 		.property("_transform", &GameObject::_transform)
 		.property("_meshRenderer", &GameObject::_meshRenderer)
 		.property("_camera", &GameObject::_camera)
@@ -701,22 +687,14 @@ RTTR_REGISTRATION
 		.property("_lights", &Scene::_lights);
 
 #pragma region Monobehaviour
-	// GameManagerScript
-	rttr::registration::class_<GameManagerScript>("GameManagerScript")
-		.constructor<>();
+	
+	RTTRMONOREGISTER(GameManagerScript);
 
-	// TerrainScript
-	rttr::registration::class_<TerrainScript>("TerrainScript")
-		.constructor<>();
+	RTTRMONOREGISTER(TerrainScript);
 
-	// TestCameraScript
-	rttr::registration::class_<TestCameraScript>("TestCameraScript")
-		.constructor<>()
+	RTTRMONOREGISTER(TestCameraScript)
 		.property("_speed", &TestCameraScript::_speed);
 
-	// TestDragon
-	rttr::registration::class_<TestDragon>("TestDragon")
-		.constructor<>();
-
+	RTTRMONOREGISTER(TestDragon);
 #pragma endregion
 }

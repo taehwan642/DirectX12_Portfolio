@@ -12,6 +12,7 @@ public:
 
 private:
 	float		_speed = 300.f;
+	Vec2 pressedPos{};
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

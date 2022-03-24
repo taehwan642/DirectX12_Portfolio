@@ -55,6 +55,7 @@ public:
 				return std::dynamic_pointer_cast<T>(iter);
 			}
 		}
+		return nullptr;
 	}
 
 private:
@@ -69,6 +70,8 @@ private:
 	uint8 _layerIndex = 0;
 	bool _static = true;
 
+	size_t _hash = 0;
+
 	std::shared_ptr<Transform> _transform;
 	std::shared_ptr<MeshRenderer> _meshRenderer;
 	std::shared_ptr<Camera> _camera;
@@ -77,6 +80,12 @@ private:
 	std::shared_ptr<Terrain> _terrain;
 	std::shared_ptr<BaseCollider> _baseCollider;
 	std::shared_ptr<Animator> _animator;
+
+	void GenerateHash()
+	{
+		// Hash°ª ³Ö±â
+		_hash = std::hash<std::wstring>()(_name);
+	}
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

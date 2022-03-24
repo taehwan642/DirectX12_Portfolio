@@ -12,7 +12,6 @@
 #include "MeshRenderer.h"
 #include "Camera.h"
 #include "Light.h"
-#include "MonoBehaviour.h"
 #include "ParticleSystem.h"
 #include "Terrain.h"
 #include "BaseCollider.h"
@@ -24,6 +23,12 @@
 #include "Resources.h"
 #include "JsonManager.h"
 #include "MeshCollider.h"
+
+#include "MonoBehaviour.h"
+#include "GameManagerScript.h"
+#include "TerrainScript.h"
+#include "TestCameraScript.h"
+#include "TestDragon.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -392,14 +397,14 @@ void ImGuiManager::RenderHierarchy()
         std::string path = std::string("../Output/") + inputText;
         GET_SINGLE(JsonManager)->SaveScene(path.c_str(), GET_SINGLE(SceneManager)->GetActiveScene());
     }
-    
+    ImGui::SameLine();
     if (ImGui::Button("Load"))
     {
         std::string inputText(input.c_str());
         std::string path = std::string("../Output/") + inputText;
         GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
     }
-
+    ImGui::Separator();
     if (GET_SINGLE(SceneManager)->GetActiveScene() == nullptr)
     {
         ImGui::End();
@@ -411,16 +416,66 @@ void ImGuiManager::RenderHierarchy()
     int tempName = 0;
     for (auto& iter : vec)
     {
+        // weak_ptr에는 nullptr이 들어가지 못하기 때문에, shared_ptr을 끌고와 체크.
+        if (iter->GetTransform()->GetParent().lock() != nullptr)
+            continue;
+
+        ImGui::PushID(iter->_hash);
         std::string tempString = std::to_string(tempName);
         ++tempName;
         if (iter->GetName().empty() == false)
             tempString = std::string(iter->GetName().begin(), iter->GetName().end());
 
-        if (ImGui::Button(tempString.c_str()))
+        // TODO : TreeNode
+        if (ImGui::TreeNode(ws2s(iter->GetName().c_str()).c_str()))
         {
-            _currentGameObject = iter;
+            if (ImGui::Button(tempString.c_str()))
+            {
+                _currentGameObject = iter;
+            }
+
+            // Our buttons are both drag sources and drag targets here!
+            if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
+            {
+                // Set payload to carry the index of our item (could be anything)
+                ImGui::SetDragDropPayload("DND_DEMO_CELL", &iter->_hash, sizeof(size_t));
+
+                // Display preview (could be anything, e.g. when dragging an image we could decide to display
+                // the filename and a small preview of the image, etc.)
+                ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str()); 
+                ImGui::EndDragDropSource();
+            }
+            if (ImGui::BeginDragDropTarget())
+            {
+                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+                {
+                    IM_ASSERT(payload->DataSize == sizeof(size_t));
+                    size_t payload_n = *(const size_t*)payload->Data;
+
+                    // find hash
+                    for (int i = 0; i < vec.size(); ++i)
+                    {
+                        if (vec[i]->_hash == payload_n)
+                        {
+                            vec[i]->GetTransform()->SetParent(iter->GetTransform());
+                        }
+                    }
+                    
+                }
+                ImGui::EndDragDropTarget();
+            }
+
+            // TODO : Iter의 Child 재귀
+            for (int i = 0; i < iter->GetTransform()->_childVector.size(); ++i)
+            {
+                RenderChild(iter, i);
+            }
+
+            ImGui::TreePop();
         }
+        ImGui::PopID();
     }
+    ImGui::Separator();
 
     if (ImGui::Button("Add GameObject"))
     {
@@ -439,25 +494,37 @@ void ImGuiManager::RenderInspector()
 
     if (_currentGameObject != nullptr)
     {
+        std::string input = ws2s(_currentGameObject->GetName()).c_str();
+        // Text 적을 수 있게 해야함.
+        if (ImGui::InputText("Name", const_cast<char*>(input.c_str()), 64))
+        {
+            _currentGameObject->SetName(s2ws(input).c_str());
+        }
+
         std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
         ImGui::Text("Selected Object : %s", tempString.c_str());
 
-        if (ImGui::Button("Save"))
+        std::string frustumCheckLabel = (_currentGameObject->_checkFrustum == true) ? "Press to disable FrustumCulling" : "Press to enable FrustumCulling";
+        if (ImGui::Button(frustumCheckLabel.c_str()))
         {
-            std::string path; 
-            path = "../Output/" + std::string(ws2s(_currentGameObject->GetName()).c_str());
-            GET_SINGLE(JsonManager)->Save(path, _currentGameObject);
+            _currentGameObject->_checkFrustum = !_currentGameObject->_checkFrustum;
         }
 
-        // Text 적을 수 있게 해야함.
-        static std::string input;
-        ImGui::InputText("FileName", const_cast<char*>(input.c_str()), 64);
-        if (ImGui::Button("Load"))
+        std::string shadowCheckLabel = (_currentGameObject->_static == true) ? "Press to enable Shadow" : "Press to disable Shadow";
+        if (ImGui::Button(shadowCheckLabel.c_str()))
         {
-            std::string inputText(input.c_str());
-            std::string path = std::string("../Output/") + inputText;
-            GET_SINGLE(JsonManager)->Load(path, _currentGameObject);
+            _currentGameObject->_static = !_currentGameObject->_static;
         }
+
+        std::string hashValue = std::to_string(_currentGameObject->_hash);
+        ImGui::Text(("Hash Value : " + hashValue).c_str());
+
+        ImGui::SameLine();
+        if (ImGui::Button("Generate Hash"))
+        {
+            _currentGameObject->GenerateHash();
+        }
+
         // Component들 출력
 
         // TRANSFORM
@@ -473,13 +540,6 @@ void ImGuiManager::RenderInspector()
                 ImGui::DragFloat3("Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalRotation())), 0.1f);
 
                 ImGui::DragFloat3("Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalScale())));
-
-                // TODO : 부모 출력
-
-                if (ImGui::Button("Delete Component"))
-                {
-                    _currentGameObject->_transform = nullptr;
-                }
 
                 ImGui::EndMenu();
             }
@@ -641,6 +701,33 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("Light"))
             {
                 std::shared_ptr<Light> light = _currentGameObject->GetLight();
+
+                int item_current_idx = static_cast<int>(light->GetLightType());
+
+                std::vector<std::string> stringVec;
+                stringVec.push_back("Directional Light");
+                stringVec.push_back("Point Light");
+                stringVec.push_back("Spot Light");
+
+                std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                std::string comboName = "Light Type";
+                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                {
+                    for (int n = 0; n < stringVec.size(); n++)
+                    {
+                        const bool is_selected = (item_current_idx == n);
+                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                        {
+                            item_current_idx = n;
+                            light->SetLightType(static_cast<LIGHT_TYPE>(item_current_idx));
+                        }
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
+                }
+
 
                 std::string meshType = "";
                 switch (light->GetLightType())
@@ -904,6 +991,10 @@ void ImGuiManager::RenderInspector()
             if (_currentGameObject->GetMeshRenderer() == nullptr && ImGui::Button("MeshRenderer"))
             {
                 _currentGameObject->AddComponent(std::make_shared<MeshRenderer>());
+                std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"GameObject");
+                _currentGameObject->GetMeshRenderer()->SetMaterial(material);
+                std::shared_ptr<Mesh> mesh = GET_SINGLE(Resources)->LoadCubeMesh();
+                _currentGameObject->GetMeshRenderer()->SetMesh(mesh);
             }
 
             if (_currentGameObject->GetMeshRenderer() == nullptr &&
@@ -924,6 +1015,7 @@ void ImGuiManager::RenderInspector()
             {
                 GET_SINGLE(SceneManager)->GetActiveScene()->RemoveGameObject(_currentGameObject);
                 _currentGameObject->AddComponent(std::make_shared<Light>());
+                _currentGameObject->GetLight()->SetLightType(LIGHT_TYPE::DIRECTIONAL_LIGHT);
                 GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(_currentGameObject);
             }
 
@@ -968,6 +1060,11 @@ void ImGuiManager::RenderInspector()
                 animator->SetAnimClip(_currentGameObject->_meshRenderer->_mesh->GetAnimClip());
             }
 
+            IMGUIADDMONOBEHAVIOUR(GameManagerScript);
+            IMGUIADDMONOBEHAVIOUR(TerrainScript);
+            IMGUIADDMONOBEHAVIOUR(TestCameraScript);
+            IMGUIADDMONOBEHAVIOUR(TestDragon);
+
             ImGui::EndMenu();
         }
     }
@@ -977,4 +1074,59 @@ void ImGuiManager::RenderInspector()
     }
     
     ImGui::End();
+}
+
+void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
+{
+    const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
+    
+    std::shared_ptr<GameObject> child = parent->GetTransform()->GetChild(i);
+    if (ImGui::TreeNode(ws2s(child->GetName().c_str()).c_str()))
+    {
+        ImGui::PushID(child->_hash);
+        if (ImGui::Button(ws2s(child->GetName().c_str()).c_str()))
+        {
+            _currentGameObject = child;
+        }
+
+        // Our buttons are both drag sources and drag targets here!
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
+        {
+            // Set payload to carry the index of our item (could be anything)
+            ImGui::SetDragDropPayload("DND_DEMO_CELL", &child->_hash, sizeof(size_t));
+
+            // Display preview (could be anything, e.g. when dragging an image we could decide to display
+            // the filename and a small preview of the image, etc.)
+            ImGui::Text("Set Child %s", ws2s(child->GetName().c_str()).c_str());
+            ImGui::EndDragDropSource();
+        }
+        if (ImGui::BeginDragDropTarget())
+        {
+            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+            {
+                IM_ASSERT(payload->DataSize == sizeof(size_t));
+                size_t payload_n = *(const size_t*)payload->Data;
+
+                // find hash
+                for (int i = 0; i < vec.size(); ++i)
+                {
+                    if (vec[i]->_hash == payload_n)
+                    {
+                        vec[i]->GetTransform()->SetParent(child->GetTransform());
+                    }
+                }
+            }
+            ImGui::EndDragDropTarget();
+        }
+
+
+        // Child의 Child들 재귀로 뽑기
+        for (int i = 0; i < child->GetTransform()->_childVector.size(); ++i)
+        {
+            RenderChild(child, i);
+        }
+        
+        ImGui::PopID();
+        ImGui::TreePop();
+    }
 }
