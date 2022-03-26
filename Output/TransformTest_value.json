@@ -2,6 +2,7 @@
     "gameObjects": [
         {
             "tag": "Camera\u0000",
+            "hashValue": 9278477301564503076,
             "componentOnValue": [
                 true,
                 false,
@@ -18,6 +19,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [],
                 "meshRendererMaterialNumValue": 0,
@@ -38,6 +42,7 @@
         },
         {
             "tag": "Skybox\u0000",
+            "hashValue": 16944570405146691913,
             "componentOnValue": [
                 true,
                 true,
@@ -54,6 +59,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [
                     {
@@ -101,6 +109,7 @@
         },
         {
             "tag": "Sun\u0000",
+            "hashValue": 14296332197797618349,
             "componentOnValue": [
                 true,
                 true,
@@ -117,6 +126,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [
                     {
@@ -164,6 +176,7 @@
         },
         {
             "tag": "Earth\u0000",
+            "hashValue": 3103081225704743471,
             "componentOnValue": [
                 true,
                 true,
@@ -180,6 +193,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [
                     {
@@ -227,6 +243,7 @@
         },
         {
             "tag": "Moon\u0000",
+            "hashValue": 2033076383666197518,
             "componentOnValue": [
                 true,
                 true,
@@ -243,6 +260,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [
                     {
@@ -290,6 +310,7 @@
         },
         {
             "tag": "DLight\u0000",
+            "hashValue": 18121623904423847223,
             "componentOnValue": [
                 true,
                 false,
@@ -306,6 +327,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [],
                 "meshRendererMaterialNumValue": 0,
@@ -326,6 +350,7 @@
         },
         {
             "tag": "Plane\u0000",
+            "hashValue": 13051611157029717435,
             "componentOnValue": [
                 true,
                 true,
@@ -342,6 +367,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [
                     {
@@ -386,11 +414,494 @@
                 "sizeX": 0,
                 "sizeZ": 0
             }
+        },
+        {
+            "tag": "UICamera\u0000",
+            "hashValue": 4320890896759778656,
+            "componentOnValue": [
+                true,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "PositionRT\u0000",
+            "hashValue": 15095291198196755650,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "PositionTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "PositionRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "NormalRT\u0000",
+            "hashValue": 3290956363080857520,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "NormalTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "NormalRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "ColorRT\u0000",
+            "hashValue": 15765711379401375646,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "DiffuseTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "ColorRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "DiffuseRT\u0000",
+            "hashValue": 15257203105264773077,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "DiffuseLightTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "DiffuseRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "SpecularRT\u0000",
+            "hashValue": 6611922508750754404,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "SpecularLightTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "SpecularRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "ShadowRT\u0000",
+            "hashValue": 13177032690593992061,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1220022643765669444
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "ShadowTarget\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Texture\u0000"
+                        },
+                        "tag": "ShadowRT\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "RTUIs\u0000",
+            "hashValue": 1220022643765669444,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
         }
     ],
     "cameraObjects": [
         {
             "tag": "Camera\u0000",
+            "hashValue": 9278477301564503076,
             "componentOnValue": [
                 true,
                 false,
@@ -407,6 +918,49 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "UICamera\u0000",
+            "hashValue": 4320890896759778656,
+            "componentOnValue": [
+                true,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [],
                 "meshRendererMaterialNumValue": 0,
@@ -429,6 +983,7 @@
     "lightObjects": [
         {
             "tag": "DLight\u0000",
+            "hashValue": 18121623904423847223,
             "componentOnValue": [
                 true,
                 false,
@@ -445,6 +1000,9 @@
                 false,
                 false
             ],
+            "transformValue": {
+                "parentHashValue": 18446744073709551615
+            },
             "meshRendererValue": {
                 "materialValues": [],
                 "meshRendererMaterialNumValue": 0,

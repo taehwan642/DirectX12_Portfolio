@@ -194,12 +194,25 @@ struct RTTRTerrainValue
 	int sizeZ = 0;
 };
 
+struct RTTRTransformValue
+{
+	RTTRTransformValue() = default;
+	RTTRTransformValue(std::shared_ptr<Transform> transform)
+	{
+		if (transform->GetParent().lock() != nullptr)
+			parentHashValue = transform->GetParent().lock()->GetGameObject()->GetHash();
+	}
+
+	size_t parentHashValue = -1;
+};
+
 struct RTTRGameObjectValue
 {
 	RTTRGameObjectValue() = default;
 	RTTRGameObjectValue(std::shared_ptr<GameObject> gameObject)
 	{
 		tag = ws2s(gameObject->_name);
+		hashValue = gameObject->GetHash();
 
 		for (int i = 0; i < gameObject->_components.size(); ++i)
 		{
@@ -207,6 +220,11 @@ struct RTTRGameObjectValue
 				componentOnValue[i] = true;
 			else
 				componentOnValue[i] = false;
+		}
+
+		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::TRANSFORM)] == true)
+		{
+			transformValue = RTTRTransformValue(gameObject->GetTransform());
 		}
 
 		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::MESH_RENDERER)] == true)
@@ -240,6 +258,8 @@ struct RTTRGameObjectValue
 
 	std::array<bool, FIXED_COMPONENT_COUNT> componentOnValue{ false };
 	std::array<bool, static_cast<int>(MonoBehaviourType::END)> monobehaviourOnValue{ false };
+	size_t hashValue;
+	RTTRTransformValue transformValue;
 	RTTRMeshRendererValue meshRendererValue;
 	RTTRColliderValue colliderValue;
 	RTTRLightValue lightValue;
@@ -600,8 +620,10 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.constructor<std::shared_ptr<GameObject>>()
 		.property("tag", &RTTRGameObjectValue::tag)
+		.property("hashValue", &RTTRGameObjectValue::hashValue)
 		.property("componentOnValue", &RTTRGameObjectValue::componentOnValue)
 		.property("monobehaviourOnValue", &RTTRGameObjectValue::monobehaviourOnValue)
+		.property("transformValue", &RTTRGameObjectValue::transformValue)
 		.property("meshRendererValue", &RTTRGameObjectValue::meshRendererValue)
 		.property("colliderValue", &RTTRGameObjectValue::colliderValue)
 		.property("lightValue", &RTTRGameObjectValue::lightValue)
@@ -634,6 +656,11 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.constructor<std::shared_ptr<BaseCollider>>()
 		.property("type", &RTTRColliderValue::type);
+
+	rttr::registration::class_<RTTRTransformValue>("RTTRTransformValue")
+		.constructor<>()
+		.constructor<std::shared_ptr<Transform>>()
+		.property("parentHashValue", &RTTRTransformValue::parentHashValue);
 
 	rttr::registration::class_<RTTRLightValue>("RTTRLightValue")
 		.constructor<>()

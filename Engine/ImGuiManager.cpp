@@ -330,21 +330,81 @@ void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Materia
 
 void ImGuiManager::RenderCameraData(std::shared_ptr<Camera> camera)
 {
-    switch (camera->_type)
     {
-    case PROJECTION_TYPE::PERSPECTIVE:
-        ImGui::Text("PERSPECTIVE");
-        break;
-    case PROJECTION_TYPE::ORTHOGRAPHIC:
-        ImGui::Text("ORTHOGRAPHIC");
-        break;
+        std::vector<std::string> projTypes;
+        projTypes.push_back("PERSPECTIVE");
+        projTypes.push_back("ORTHOGRAPHIC");
+
+        std::string combo_preview_value = projTypes[static_cast<int>(camera->GetProjectionType())];  // Pass in the preview value visible before opening the combo (it could be anything)
+        // Layer 출력
+        std::string comboName = "Projection Type";
+    
+        if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+        {
+            for (int n = 0; n < projTypes.size(); n++)
+            {
+                const bool is_selected = (static_cast<int>(camera->GetProjectionType()) == n);
+                if (ImGui::Selectable(projTypes[n].c_str(), is_selected))
+                {
+                    camera->_type = static_cast<PROJECTION_TYPE>(n);
+                }
+
+                if (is_selected)
+                    ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+        }
     }
+    
     ImGui::InputFloat("Near", &camera->_near);
     ImGui::InputFloat("Far", &camera->_far);
     ImGui::InputFloat("Fov", &camera->_fov);
     ImGui::InputFloat("Scale", &camera->_scale);
     ImGui::InputFloat("Width", &camera->_width);
     ImGui::InputFloat("Height", &camera->_height);
+
+    static int mode = 0;
+    if (ImGui::RadioButton("Shoot all but one layer", mode == 0)) { mode = 0; } ImGui::SameLine();
+    if (ImGui::RadioButton("Shoot one layer", mode == 1)) { mode = 1; }
+
+    // Layer 출력
+    static uint8 layerIDX = 0;
+
+    std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(layerIDX).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
+    std::string comboName = "Layer";
+
+    if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+    {
+        std::array<std::wstring, MAX_LAYER>& layerArray = GET_SINGLE(SceneManager)->_layerNames;
+        for (int n = 0; n < layerArray.size(); n++)
+        {
+            if (layerArray[n].empty())
+                break;
+            const bool is_selected = (layerIDX == n);
+            if (ImGui::Selectable(ws2s(layerArray[n].c_str()).c_str(), is_selected))
+            {
+                layerIDX = n;
+            }
+
+            if (is_selected)
+                ImGui::SetItemDefaultFocus();
+        }
+        ImGui::EndCombo();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Create LayerMask"))
+    {
+        uint8 layerIndex = layerIDX;
+        if (mode == 0)
+        {
+            camera->SetCullingMaskLayerOnOff(layerIndex, true);
+        }
+        else if (mode == 1)
+        {
+            camera->SetCullingMaskAll();
+            camera->SetCullingMaskLayerOnOff(layerIndex, false);
+        }
+    }
 }
 
 void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider)
@@ -525,6 +585,33 @@ void ImGuiManager::RenderInspector()
             _currentGameObject->GenerateHash();
         }
 
+        if (ImGui::Button("Remove Parent"))
+        {
+            _currentGameObject->GetTransform()->RemoveParent();
+        }
+
+        // Layer 출력
+        std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
+        std::string comboName = "Layer";
+        if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+        {
+            std::array<std::wstring, MAX_LAYER>& layerArray = GET_SINGLE(SceneManager)->_layerNames;
+            for (int n = 0; n < layerArray.size(); n++)
+            {
+                if (layerArray[n].empty())
+                    break;
+                const bool is_selected = (_currentGameObject->_layerIndex == n);
+                if (ImGui::Selectable(ws2s(layerArray[n].c_str()).c_str(), is_selected))
+                {
+                    _currentGameObject->_layerIndex = n;
+                }
+
+                if (is_selected)
+                    ImGui::SetItemDefaultFocus();
+            }
+            ImGui::EndCombo();
+        }
+
         // Component들 출력
 
         // TRANSFORM
@@ -602,8 +689,6 @@ void ImGuiManager::RenderInspector()
 
                     ImGui::EndMenu();
                 }
-                
-                
 
                 int n = 0;
                 for (auto& iterMaterial : mr->_materials)

@@ -36,6 +36,7 @@ public:
 
 private:
 	friend class RTTRSceneValue;
+	friend class JsonManager;
 
 	std::vector<std::shared_ptr<GameObject>>		_gameObjects;
 	std::vector<std::shared_ptr<class Camera>>	_cameras;

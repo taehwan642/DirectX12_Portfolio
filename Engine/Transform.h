@@ -59,6 +59,24 @@ public:
 		parent->_childVector.push_back(GetGameObject());
 	}
 	std::weak_ptr<Transform> GetParent() { return _parent; }
+	void RemoveParent()
+	{
+		if (_parent.lock() == nullptr)
+			return;
+
+		// 그 옛 부모에서 자신을 뺀다.
+		auto findIt =
+			std::find_if(_parent.lock()->_childVector.begin(), _parent.lock()->_childVector.end(),
+				[&](std::weak_ptr<GameObject> obj)
+				{
+					return (GetGameObject() == obj.lock());
+				});
+
+		if (findIt != _parent.lock()->_childVector.end())
+			_parent.lock()->_childVector.erase(findIt);
+
+		_parent.reset();
+	}
 
 	std::shared_ptr<GameObject> GetChild(int i) { return _childVector[i].lock(); }
 
@@ -77,11 +95,6 @@ private:
 
 	std::vector<std::weak_ptr<GameObject>> _childVector;
 
-
-	/// <summary>
-	/// /////////////////////////////////////////
-
-	/// </summary>
 //public:
 //	FORCEINLINE constexpr Transform() = default;
 //	FORCEINLINE constexpr Transform(const Vector3 & InPosition) : Position(InPosition) { }

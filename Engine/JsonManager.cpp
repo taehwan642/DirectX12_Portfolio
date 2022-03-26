@@ -90,6 +90,7 @@ bool JsonManager::Load(const std::string& path, std::shared_ptr<GameObject> obje
 
 bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
+	hashValues.clear();
 	std::string valueString;
 
 	std::ifstream valueFile;
@@ -160,6 +161,29 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 		return false;
 
 	io::from_json(dataString, scene);
+
+	for (int i = 0; i < hashValues.size(); ++i)
+	{
+		// first = 자기 자신의 hash
+		// 자기 자신의 hash로 자기 자신 찾기
+		auto childIterator = std::find_if(scene->_gameObjects.begin(), scene->_gameObjects.end(), 
+			[&](std::shared_ptr<GameObject> obj) 
+			{
+				return (obj->GetHash() == hashValues[i].first);
+			});
+
+		// second = 부모의 hash
+		// 부모의 hash로 부모 찾기
+		auto parentIterator = std::find_if(scene->_gameObjects.begin(), scene->_gameObjects.end(),
+			[&](std::shared_ptr<GameObject> obj)
+			{
+				return (obj->GetHash() == hashValues[i].second);
+			});
+
+		assert(childIterator != scene->_gameObjects.end() && parentIterator != scene->_gameObjects.end());
+
+		(*childIterator)->GetTransform()->SetParent((*parentIterator)->GetTransform());
+	}
 
 	return true;
 }
@@ -248,8 +272,19 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 
 	object->SetName(s2ws(value.tag).c_str());
 
+	object->_hash = value.hashValue;
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TRANSFORM)] == true)
+	{
 		object->AddComponent(std::make_shared<Transform>());
+		if (value.transformValue.parentHashValue != -1)
+		{
+			Pair pair;
+			pair.first = value.hashValue;
+			pair.second = value.transformValue.parentHashValue;
+			hashValues.push_back(pair);
+		}
+	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER)] == true)
 	{

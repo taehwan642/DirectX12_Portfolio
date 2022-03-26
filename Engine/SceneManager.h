@@ -29,6 +29,8 @@ private:
 	std::shared_ptr<Scene> LoadTestScene();
 
 private:
+	friend class ImGuiManager;
+
 	std::shared_ptr<Scene> _activeScene;
 
 	std::array<std::wstring, MAX_LAYER> _layerNames;

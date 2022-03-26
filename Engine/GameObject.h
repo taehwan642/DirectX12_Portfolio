@@ -45,6 +45,8 @@ public:
 	void SetStatic(bool flag) { _static = flag; }
 	bool IsStatic() { return _static; }
 
+	size_t GetHash() { return _hash; }
+
 	template<typename T>
 	std::shared_ptr<T> GetComponent()
 	{
@@ -62,6 +64,7 @@ private:
 	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
 	friend class RTTRMeshRendererValue;
+	friend class JsonManager;
 
 	std::array<std::shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;

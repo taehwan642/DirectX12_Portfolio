@@ -21,5 +21,10 @@ public:
 private:
 	void LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object);
 	void LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<GameObject> object);
+
+	// first = 자기 자신의 hash
+	// second = 부모의 hash
+	using Pair = std::pair<size_t, size_t>;
+	std::vector<Pair> hashValues;
 };
 
