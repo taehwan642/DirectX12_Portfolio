@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "TestCameraScript.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Camera.h"
 #include "GameObject.h"
 #include "Input.h"
@@ -17,46 +17,46 @@ TestCameraScript::~TestCameraScript()
 
 void TestCameraScript::LateUpdate()
 {
-	Vec3 pos = GetTransform()->GetLocalPosition();
+	Vec3 pos = GetTransform()->GetWorldPosition();
 
 	if (INPUT->GetButton(KEY_TYPE::W))
-		pos += GetTransform()->GetLook() * _speed * DELTA_TIME;
+		pos += GetTransform()->GetWorldTransform()->GetLook() * _speed * DELTA_TIME;
 
 	if (INPUT->GetButton(KEY_TYPE::S))
-		pos -= GetTransform()->GetLook() * _speed * DELTA_TIME;
+		pos -= GetTransform()->GetWorldTransform()->GetLook() * _speed * DELTA_TIME;
 
 	if (INPUT->GetButton(KEY_TYPE::A))
-		pos -= GetTransform()->GetRight() * _speed * DELTA_TIME;
+		pos -= GetTransform()->GetWorldTransform()->GetRight() * _speed * DELTA_TIME;
 
 	if (INPUT->GetButton(KEY_TYPE::D))
-		pos += GetTransform()->GetRight() * _speed * DELTA_TIME;
+		pos += GetTransform()->GetWorldTransform()->GetRight() * _speed * DELTA_TIME;
 
 	if (INPUT->GetButton(KEY_TYPE::Q))
 	{
-		Vec3 rotation = GetTransform()->GetLocalRotation();
+		Vec3 rotation = GetTransform()->GetWorldRotation();
 		rotation.x += DELTA_TIME * 0.5f;
-		GetTransform()->SetLocalRotation(rotation);
+		GetTransform()->SetWorldRotation(rotation);
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::E))
 	{
-		Vec3 rotation = GetTransform()->GetLocalRotation();
+		Vec3 rotation = GetTransform()->GetWorldRotation();
 		rotation.x -= DELTA_TIME * 0.5f;
-		GetTransform()->SetLocalRotation(rotation);
+		GetTransform()->SetWorldRotation(rotation);
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::Z))
 	{
-		Vec3 rotation = GetTransform()->GetLocalRotation();
+		Vec3 rotation = GetTransform()->GetWorldRotation();
 		rotation.y += DELTA_TIME * 0.5f;
-		GetTransform()->SetLocalRotation(rotation);
+		GetTransform()->SetWorldRotation(rotation);
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::C))
 	{
-		Vec3 rotation = GetTransform()->GetLocalRotation();
+		Vec3 rotation = GetTransform()->GetWorldRotation();
 		rotation.y -= DELTA_TIME * 0.5f;
-		GetTransform()->SetLocalRotation(rotation);
+		GetTransform()->SetWorldRotation(rotation);
 	}
 
 	if (INPUT->GetButtonDown(KEY_TYPE::RBUTTON))
@@ -87,7 +87,7 @@ void TestCameraScript::LateUpdate()
 	if (INPUT->GetButton(KEY_TYPE::LBUTTON))
 	{
 		const POINT& pos = INPUT->GetMousePos();
-		Vec3 rotation = GetTransform()->GetLocalRotation();
+		Vec3 rotation = GetTransform()->GetWorldRotation();
 		
 		float dx = (pos.x - pressedPos.x);
 		float dy = (pos.y - pressedPos.y);
@@ -98,8 +98,8 @@ void TestCameraScript::LateUpdate()
 		pressedPos.x = pos.x;
 		pressedPos.y = pos.y;
 
-		GetTransform()->SetLocalRotation(rotation);
+		GetTransform()->SetWorldRotation(rotation);
 	}
 
-	GetTransform()->SetLocalPosition(pos);
+	GetTransform()->SetWorldPosition(pos);
 }

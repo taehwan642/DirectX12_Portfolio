@@ -276,7 +276,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TRANSFORM)] == true)
 	{
-		object->AddComponent(std::make_shared<Transform>());
+		object->AddComponent(std::make_shared<TransformComponent>());
 		if (value.transformValue.parentHashValue != -1)
 		{
 			Pair pair;

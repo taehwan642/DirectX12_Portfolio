@@ -4,7 +4,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Camera.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Material.h"
 #include "Texture.h"

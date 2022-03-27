@@ -3,47 +3,10 @@
 #include "Engine.h"
 #include "Camera.h"
 
-Transform::Transform() : Component(COMPONENT_TYPE::TRANSFORM)
+Transform::Transform()
 {
 
 }
-
-Transform::~Transform()
-{
-
-}
-
-void Transform::FinalUpdate()
-{
-	Matrix matScale = Matrix::CreateScale(_localScale);
-	Matrix matRotation = Matrix::CreateRotationX(_localRotation.x);
-	matRotation *= Matrix::CreateRotationY(_localRotation.y);
-	matRotation *= Matrix::CreateRotationZ(_localRotation.z);
-	Matrix matTranslation = Matrix::CreateTranslation(_localPosition);
-
-	_matLocal = matScale * matRotation * matTranslation;
-	_matWorld = _matLocal;
-
-	std::shared_ptr<Transform> parent = GetParent().lock();
-	if (parent != nullptr)
-	{
-		_matWorld *= parent->GetLocalToWorldMatrix();
-	}
-}
-
-void Transform::PushData()
-{
-	TransformParams transformParams = {};
-	transformParams.matWorld = _matWorld;
-	transformParams.matView = Camera::S_MatView;
-	transformParams.matProjection = Camera::S_MatProjection;
-	transformParams.matWV = _matWorld * Camera::S_MatView;
-	transformParams.matWVP = _matWorld * Camera::S_MatView * Camera::S_MatProjection;
-	transformParams.matViewInv = Camera::S_MatView.Invert();
-
-	CONST_BUFFER(CONSTANT_BUFFER_TYPE::TRANSFORM)->PushGraphicsData(&transformParams, sizeof(transformParams));
-}
-
 
 void Transform::LookAt(const Vec3& dir)
 {
@@ -64,7 +27,7 @@ void Transform::LookAt(const Vec3& dir)
 	matrix.Up(up);
 	matrix.Backward(front);
 
-	_localRotation = DecomposeRotationMatrix(matrix);
+	_rotation = DecomposeRotationMatrix(matrix);
 }
 
 bool Transform::CloseEnough(const float& a, const float& b, const float& epsilon)
@@ -117,4 +80,94 @@ Vec3 Transform::DecomposeRotationMatrix(const Matrix& rotation)
 	}
 
 	return ret;
+}
+
+std::shared_ptr<Transform> Transform::Inverse()
+{
+	// 로컬 정보만 남기기 위한 트랜스폼 ( 역행렬 )
+	Vec3 reciprocalScale = Vec3::Zero;
+	if (_scale.x != 0.f) reciprocalScale.x = 1.f / _scale.x;
+	if (_scale.y != 0.f) reciprocalScale.y = 1.f / _scale.y;
+	if (_scale.z != 0.f) reciprocalScale.z = 1.f / _scale.z;
+
+	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	result->_rotation = -_rotation;
+	result->_scale = reciprocalScale;
+
+	Vec3 positionResult = Vec3::Zero;
+
+	Vec3 AxisX = Vec3(GetRight().x, GetUp().x, GetLook().x);
+	Vec3 AxisY = Vec3(GetRight().y, GetUp().y, GetLook().y);
+	Vec3 AxisZ = Vec3(GetRight().z, GetUp().z, GetLook().z);
+
+	AxisX.Normalize();
+	AxisY.Normalize();
+	AxisZ.Normalize();
+
+	Vec3 pos = -_position * result->_scale;
+
+	positionResult.x = AxisX.Dot(pos);
+	positionResult.y = AxisY.Dot(pos);
+	positionResult.z = AxisZ.Dot(pos);
+
+	result->_position = positionResult;
+	// result->_position = result->_rotation * (result->_scale * -_position);
+	return result;
+}
+
+std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> InParentWorldTransform)
+{
+	// 현재 트랜스폼 정보가 로컬인 경우
+	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	result->_rotation = InParentWorldTransform->_rotation + _rotation;
+	result->_scale = InParentWorldTransform->_scale * _scale;
+
+	Vec3 positionResult = Vec3::Zero;
+
+	Vec3 AxisX = Vec3(InParentWorldTransform->GetRight().x, InParentWorldTransform->GetUp().x, InParentWorldTransform->GetLook().x);
+	Vec3 AxisY = Vec3(InParentWorldTransform->GetRight().y, InParentWorldTransform->GetUp().y, InParentWorldTransform->GetLook().y);
+	Vec3 AxisZ = Vec3(InParentWorldTransform->GetRight().z, InParentWorldTransform->GetUp().z, InParentWorldTransform->GetLook().z);
+
+	AxisX.Normalize();
+	AxisY.Normalize();
+	AxisZ.Normalize();
+
+	Vec3 pos = _position * InParentWorldTransform->_scale;
+
+	positionResult.x = AxisX.Dot(pos);
+	positionResult.y = AxisY.Dot(pos);
+	positionResult.z = AxisZ.Dot(pos);
+
+	result->_position = positionResult + InParentWorldTransform->_position;
+	return result;
+}
+
+std::shared_ptr<Transform> Transform::WorldToLocal(std::shared_ptr<Transform> InParentWorldTransform)
+{
+	// 현재 트랜스폼 정보가 월드인 경우
+	std::shared_ptr<Transform> invParent = InParentWorldTransform->Inverse();
+
+	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	result->_scale = invParent->GetScale() * _scale;
+	result->_rotation = invParent->GetRotation() + _rotation;
+
+	Vec3 positionResult = Vec3::Zero;
+
+	Vec3 AxisX = Vec3(invParent->GetRight().x, invParent->GetUp().x, invParent->GetLook().x);
+	Vec3 AxisY = Vec3(invParent->GetRight().y, invParent->GetUp().y, invParent->GetLook().y);
+	Vec3 AxisZ = Vec3(invParent->GetRight().z, invParent->GetUp().z, invParent->GetLook().z);
+
+	// 중요한 부분.
+	AxisX.Normalize();
+	AxisY.Normalize();
+	AxisZ.Normalize();
+
+	Vec3 pos = _position * invParent->_scale;
+
+	positionResult.x = AxisX.Dot(pos);
+	positionResult.y = AxisY.Dot(pos);
+	positionResult.z = AxisZ.Dot(pos);
+
+	result->_position = positionResult + invParent->_position;
+	return result;
 }

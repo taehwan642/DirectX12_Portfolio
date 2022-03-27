@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
 #include "Light.h"
@@ -541,7 +542,7 @@ void ImGuiManager::RenderHierarchy()
     {
         std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
         _currentGameObject = gameObject;
-        _currentGameObject->AddComponent(std::make_shared<Transform>());
+        _currentGameObject->AddComponent(std::make_shared<TransformComponent>());
         GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(gameObject);
     }
 
@@ -585,11 +586,6 @@ void ImGuiManager::RenderInspector()
             _currentGameObject->GenerateHash();
         }
 
-        if (ImGui::Button("Remove Parent"))
-        {
-            _currentGameObject->GetTransform()->RemoveParent();
-        }
-
         // Layer 출력
         std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
         std::string comboName = "Layer";
@@ -620,13 +616,36 @@ void ImGuiManager::RenderInspector()
             // Scale, Transform, Rotation, 부모 출력
             if (ImGui::BeginMenu("Transform"))
             {
-                std::shared_ptr<Transform> trans = _currentGameObject->GetTransform();
+                std::shared_ptr<TransformComponent> trans = _currentGameObject->GetTransform();
+                std::shared_ptr<Transform> worldTrans = trans->GetWorldTransform();
+                std::shared_ptr<Transform> localTrans = trans->GetLocalTransform();
 
-                ImGui::DragFloat3("Position", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalPosition())));
+                if (ImGui::DragFloat3("World Position", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_position))))
+                    trans->UpdateLocal();
+                if (ImGui::DragFloat3("World Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_rotation)), 0.1f))
+                    trans->UpdateLocal();
+                if (ImGui::DragFloat3("World Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_scale))))
+                    trans->UpdateLocal();
 
-                ImGui::DragFloat3("Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalRotation())), 0.1f);
+                if (ImGui::DragFloat3("Local Position", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_position))))
+                    trans->UpdateWorld();
+                if (ImGui::DragFloat3("Local Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_rotation)), 0.1f))
+                    trans->UpdateWorld();
+                if (ImGui::DragFloat3("Local Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_scale))))
+                    trans->UpdateWorld();
 
-                ImGui::DragFloat3("Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&trans->GetLocalScale())));
+
+
+                if (trans->_parent.lock() != nullptr)
+                {
+                    std::string txt = ws2s(trans->_parent.lock()->GetGameObject()->GetName());
+                    ImGui::Text(txt.c_str());
+
+                    if (ImGui::Button("Remove Parent"))
+                    {
+                        trans->RemoveParent();
+                    }
+                }
 
                 ImGui::EndMenu();
             }
@@ -1152,6 +1171,13 @@ void ImGuiManager::RenderInspector()
 
             ImGui::EndMenu();
         }
+
+        if (ImGui::Button("Delete GameObject"))
+        {
+            _currentGameObject->GetTransform()->RemoveParent();
+            GET_SINGLE(SceneManager)->GetActiveScene()->RemoveGameObject(_currentGameObject);
+            _currentGameObject = nullptr;
+        }
     }
     else
     {
@@ -1165,7 +1191,7 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
 {
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
     
-    std::shared_ptr<GameObject> child = parent->GetTransform()->GetChild(i);
+    std::shared_ptr<GameObject> child = parent->GetTransform()->GetChild(i)->GetGameObject();
     if (ImGui::TreeNode(ws2s(child->GetName().c_str()).c_str()))
     {
         ImGui::PushID(child->_hash);

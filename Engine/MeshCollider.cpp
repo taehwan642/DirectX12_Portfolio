@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "MeshCollider.h"
 #include "GameObject.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Shader.h"
 #include "Material.h"
 #include "Resources.h"
@@ -63,7 +63,7 @@ void MeshCollider::FinalUpdate()
 // rayOrigin, rayDir 모두 local.
 bool MeshCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
 {
-	Matrix worldMatrix = GetTransform()->GetLocalToWorldMatrix();
+	Matrix worldMatrix = GetTransform()->GetWorldMatrix();
 	Matrix worldInvMatrix = worldMatrix.Invert();
 	// LocalSpace에서의 Ray 정의
 	Vec4 localRayOrigin = XMVector3TransformCoord(rayOrigin, worldInvMatrix);

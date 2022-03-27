@@ -2,7 +2,7 @@
 #include "MeshRenderer.h"
 #include "Mesh.h"
 #include "Material.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "InstancingBuffer.h"
 #include "Resources.h"
 #include "Animator.h"

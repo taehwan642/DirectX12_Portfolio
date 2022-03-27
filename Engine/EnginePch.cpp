@@ -3,7 +3,6 @@
 #include "Engine.h"
 
 std::unique_ptr<Engine> GEngine = std::make_unique<Engine>();
-std::vector<std::string> GMonobehaviourClasses = std::vector<std::string>();
 
 std::wstring s2ws(const std::string& s)
 {

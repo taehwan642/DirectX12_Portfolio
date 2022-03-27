@@ -237,7 +237,6 @@ struct AnimFrameParams
 };
 
 extern std::unique_ptr<class Engine> GEngine;
-extern std::vector<std::string> GMonobehaviourClasses;
 
 // Utils
 std::wstring s2ws(const std::string& s);

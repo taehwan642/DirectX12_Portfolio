@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "Object.h"
 
-class Transform;
+class TransformComponent;
 class MeshRenderer;
 class Camera;
 class Light;
@@ -25,7 +25,7 @@ public:
 	void LateUpdate();
 	void FinalUpdate();
 
-	std::shared_ptr<Transform> GetTransform();
+	std::shared_ptr<TransformComponent> GetTransform();
 	std::shared_ptr<MeshRenderer> GetMeshRenderer();
 	std::shared_ptr<Camera> GetCamera();
 	std::shared_ptr<Light> GetLight();
@@ -75,7 +75,7 @@ private:
 
 	size_t _hash = 0;
 
-	std::shared_ptr<Transform> _transform;
+	std::shared_ptr<TransformComponent> _transform;
 	std::shared_ptr<MeshRenderer> _meshRenderer;
 	std::shared_ptr<Camera> _camera;
 	std::shared_ptr<Light> _light;

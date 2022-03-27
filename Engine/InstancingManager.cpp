@@ -3,7 +3,7 @@
 #include "InstancingBuffer.h"
 #include "GameObject.h"
 #include "MeshRenderer.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Camera.h"
 #include "Mesh.h"
 #include "Material.h"
@@ -57,7 +57,7 @@ void InstancingManager::Render(std::vector<std::shared_ptr<GameObject>>& gameObj
 				for (const std::shared_ptr<GameObject>& gameObject : vec)
 				{
 					InstancingParams params;
-					params.matWorld = gameObject->GetTransform()->GetLocalToWorldMatrix();
+					params.matWorld = gameObject->GetTransform()->GetWorldMatrix();
 					params.matWV = params.matWorld * Camera::S_MatView;
 					params.matWVP = params.matWorld * Camera::S_MatView * Camera::S_MatProjection;
 

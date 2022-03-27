@@ -2,6 +2,7 @@
 
 #include "GameObject.h"
 #include "Transform.h"
+#include "TransformComponent.h"
 #include "Material.h"
 #include "MeshRenderer.h"
 #include "Shader.h"
@@ -197,7 +198,7 @@ struct RTTRTerrainValue
 struct RTTRTransformValue
 {
 	RTTRTransformValue() = default;
-	RTTRTransformValue(std::shared_ptr<Transform> transform)
+	RTTRTransformValue(std::shared_ptr<TransformComponent> transform)
 	{
 		if (transform->GetParent().lock() != nullptr)
 			parentHashValue = transform->GetParent().lock()->GetGameObject()->GetHash();
@@ -344,9 +345,16 @@ RTTR_REGISTRATION
 	// Transform
 	rttr::registration::class_<Transform>("Transfrom")
 						.constructor<>()
-						.property("_localPosition", &Transform::_localPosition)
-						.property("_localRotation", &Transform::_localRotation)
-						.property("_localScale", &Transform::_localScale);
+						.property("_position", &Transform::_position)
+						.property("_rotation", &Transform::_rotation)
+						.property("_scale", &Transform::_scale);
+
+	// TransformComponent
+	rttr::registration::class_<TransformComponent>("TransformComponent")
+		.constructor<>()
+		.property("_localTransform", &TransformComponent::_localTransform)
+		.property("_worldTransform", &TransformComponent::_worldTransform);
+
 #pragma region MATERIAL
 	// Material
 	rttr::registration::class_<Material>("Material")
@@ -659,7 +667,7 @@ RTTR_REGISTRATION
 
 	rttr::registration::class_<RTTRTransformValue>("RTTRTransformValue")
 		.constructor<>()
-		.constructor<std::shared_ptr<Transform>>()
+		.constructor<std::shared_ptr<TransformComponent>>()
 		.property("parentHashValue", &RTTRTransformValue::parentHashValue);
 
 	rttr::registration::class_<RTTRLightValue>("RTTRLightValue")

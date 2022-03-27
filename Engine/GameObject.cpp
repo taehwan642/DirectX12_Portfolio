@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "GameObject.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
 #include "Light.h"
@@ -85,7 +85,7 @@ void GameObject::FinalUpdate()
 	}
 }
 
-std::shared_ptr<Transform> GameObject::GetTransform()
+std::shared_ptr<TransformComponent> GameObject::GetTransform()
 {
 	return _transform;
 }
@@ -134,7 +134,7 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 	{
 		_components[index] = component;
 		if (index == static_cast<uint8>(COMPONENT_TYPE::TRANSFORM))
-			_transform = std::static_pointer_cast<Transform>(component);
+			_transform = std::static_pointer_cast<TransformComponent>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER))
 			_meshRenderer = std::static_pointer_cast<MeshRenderer>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::CAMERA))

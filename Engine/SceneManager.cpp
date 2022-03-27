@@ -6,7 +6,7 @@
 #include "Material.h"
 #include "GameObject.h"
 #include "MeshRenderer.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Camera.h"
 #include "Light.h"
 
@@ -130,7 +130,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> camera = std::make_shared<GameObject>();
 		camera->SetName(L"Main_Camera");
-		camera->AddComponent(std::make_shared<Transform>());
+		camera->AddComponent(std::make_shared<TransformComponent>());
 		camera->AddComponent(std::make_shared<Camera>()); // Near=1, Far=1000, FOV=45µµ
 		camera->AddComponent(std::make_shared<TestCameraScript>());
 		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
@@ -144,7 +144,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> camera = std::make_shared<GameObject>();
 		camera->SetName(L"Orthographic_Camera");
-		camera->AddComponent(std::make_shared<Transform>());
+		camera->AddComponent(std::make_shared<TransformComponent>());
 		camera->AddComponent(std::make_shared<Camera>()); // Near=1, Far=1000, 800*600
 		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
 		camera->GetCamera()->SetProjectionType(PROJECTION_TYPE::ORTHOGRAPHIC);
@@ -159,7 +159,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> skybox = std::make_shared<GameObject>();
 		skybox->SetName(L"SkyBox");
-		skybox->AddComponent(std::make_shared<Transform>());
+		skybox->AddComponent(std::make_shared<TransformComponent>());
 		skybox->SetCheckFrustum(false);
 		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
 		{
@@ -183,7 +183,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 		obj->SetName(L"GameObject");
-		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(std::make_shared<TransformComponent>());
 		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
 		obj->GetTransform()->SetLocalPosition(Vec3(0, 0.f, 500.f));
 		obj->SetStatic(false);
@@ -205,7 +205,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 		obj->SetName(L"Plane");
-		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(std::make_shared<TransformComponent>());
 		obj->GetTransform()->SetLocalScale(Vec3(1000.f, 1.f, 1000.f));
 		obj->GetTransform()->SetLocalPosition(Vec3(0.f, -100.f, 500.f));
 		obj->SetStatic(true);
@@ -230,7 +230,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 		obj->SetLayerIndex(GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI")); // UI
 		obj->SetName(L"UI " + std::to_wstring(i));
-		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(std::make_shared<TransformComponent>());
 		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
 		obj->GetTransform()->SetLocalPosition(Vec3(-350.f + (i * 120), 250.f, 500.f));
 		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
@@ -263,7 +263,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		std::shared_ptr<GameObject> light = std::make_shared<GameObject>();
 		light->SetName(L"Light");
-		light->AddComponent(std::make_shared<Transform>());
+		light->AddComponent(std::make_shared<TransformComponent>());
 		light->GetTransform()->SetLocalPosition(Vec3(0, 1000, 500));
 		light->AddComponent(std::make_shared<Light>());
 		light->GetLight()->SetLightDirection(Vec3(0, -1, 0.f));

@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Resources.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Animator.h"
 #include "JsonManager.h"
@@ -89,7 +89,7 @@ std::vector<std::shared_ptr<GameObject>> MeshData::Instantiate()
 	for (MeshRenderInfo& info : _meshRenders)
 	{
 		std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
-		gameObject->AddComponent(std::make_shared<Transform>());
+		gameObject->AddComponent(std::make_shared<TransformComponent>());
 		gameObject->AddComponent(std::make_shared<MeshRenderer>());
 		gameObject->GetMeshRenderer()->SetMesh(info.mesh);
 
