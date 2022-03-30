@@ -37,14 +37,7 @@ public:
 		_matrix._43 = _position.z;
 		_matrix._44 = 1;
 
-		/*return Matrix4x4(
-			Vector4(GetXAxis() * Scale.X, false),
-			Vector4(GetYAxis() * Scale.Y, false),
-			Vector4(GetZAxis() * Scale.Z, false),
-			Vector4(Position, true)
-		);
-
-		_matrix = matScale * matRotation * matTranslation;*/
+		//_matrix = matScale * matRotation * matTranslation;
 	}
 	const Matrix& GetMatrix() 
 	{ 
@@ -67,22 +60,22 @@ public:
 	static Vec3 DecomposeRotationMatrix(const Matrix& rotation);
 
 public:
-	void AddYawRotation(float InDegree)
+	void AddYawRotation(float degree)
 	{
-		_rotation.y += InDegree;
+		_rotation.y += degree;
 	}
-	void AddRollRotation(float InDegree)
+	void AddRollRotation(float degree)
 	{
-		_rotation.z += InDegree;
+		_rotation.z += degree;
 	}
-	void AddPitchRotation(float InDegree)
+	void AddPitchRotation(float degree)
 	{
-		_rotation.x += InDegree;
+		_rotation.x += degree;
 	}
 
 	std::shared_ptr<Transform> Inverse();
-	std::shared_ptr<Transform> LocalToWorld(std::shared_ptr<Transform> InParentWorldTransform);
-	std::shared_ptr<Transform> WorldToLocal(std::shared_ptr<Transform> InParentWorldTransform);
+	std::shared_ptr<Transform> LocalToWorld(std::shared_ptr<Transform> parentWorldTransform);
+	std::shared_ptr<Transform> WorldToLocal(std::shared_ptr<Transform> parentWorldTransform);
 
 private:
 	friend class ImGuiManager;

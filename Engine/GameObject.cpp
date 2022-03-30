@@ -28,10 +28,12 @@ void GameObject::Awake()
 			component->Awake();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Awake();
 	}
+#endif
 }
 
 void GameObject::Start()
@@ -42,10 +44,12 @@ void GameObject::Start()
 			component->Start();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
 	}
+#endif
 }
 
 void GameObject::Update()
@@ -56,10 +60,12 @@ void GameObject::Update()
 			component->Update();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Update();
 	}
+#endif
 }
 
 void GameObject::LateUpdate()
@@ -70,10 +76,12 @@ void GameObject::LateUpdate()
 			component->LateUpdate();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
 	}
+#endif
 }
 
 void GameObject::FinalUpdate()

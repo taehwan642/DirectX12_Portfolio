@@ -16,12 +16,12 @@ public: // 로컬 트랜스폼 관련 함수
 	std::shared_ptr<Transform> GetLocalTransform() { return _localTransform; }
 	void SetLocalTransform(std::shared_ptr<Transform> localTransform) { _localTransform = localTransform; UpdateWorld(); }
 
-	void SetLocalPosition(const Vec3& InPosition);
-	void AddLocalYawRotation(float InDegree);
-	void AddLocalRollRotation(float InDegree);
-	void AddLocalPitchRotation(float InDegree);
-	void SetLocalRotation(const Vec3& InQuaternion);
-	void SetLocalScale(const Vec3& InScale);
+	void SetLocalPosition(const Vec3& position);
+	void AddLocalYawRotation(float degree);
+	void AddLocalRollRotation(float degree);
+	void AddLocalPitchRotation(float degree);
+	void SetLocalRotation(const Vec3& rotation);
+	void SetLocalScale(const Vec3& scale);
 
 	Vec3 GetLocalPosition() const { return _localTransform->GetPosition(); }
 	Vec3 GetLocalRotation() const { return _localTransform->GetRotation(); }
@@ -34,14 +34,14 @@ public: // 로컬 트랜스폼 관련 함수
 
 public: // 월드 트랜스폼 관련 함수
 	std::shared_ptr<Transform> GetWorldTransform() { return _worldTransform; }
-	void SetWorldTransform(std::shared_ptr<Transform> InTransform) { _worldTransform = InTransform; UpdateLocal(); }
+	void SetWorldTransform(std::shared_ptr<Transform> transform) { _worldTransform = transform; UpdateLocal(); }
 
-	void SetWorldPosition(const Vec3& InPosition);
-	void AddWorldYawRotation(float InDegree);
-	void AddWorldRollRotation(float InDegree);
-	void AddWorldPitchRotation(float InDegree);
-	void SetWorldRotation(const Vec3& InQuaternion);
-	void SetWorldScale(const Vec3& InScale);
+	void SetWorldPosition(const Vec3& position);
+	void AddWorldYawRotation(float degree);
+	void AddWorldRollRotation(float degree);
+	void AddWorldPitchRotation(float degree);
+	void SetWorldRotation(const Vec3& rotation);
+	void SetWorldScale(const Vec3& scale);
 
 	Vec3 GetWorldPosition() const { return _worldTransform->GetPosition(); }
 	Vec3 GetWorldRotation() const { return _worldTransform->GetRotation(); }

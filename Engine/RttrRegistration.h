@@ -202,9 +202,11 @@ struct RTTRTransformValue
 	{
 		if (transform->GetParent().lock() != nullptr)
 			parentHashValue = transform->GetParent().lock()->GetGameObject()->GetHash();
+		else
+			parentHashValue = 0;
 	}
 
-	size_t parentHashValue = -1;
+	size_t parentHashValue = 0;
 };
 
 struct RTTRGameObjectValue

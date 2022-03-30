@@ -36,6 +36,7 @@ private:
 	void RenderClientData();
 	void RenderHierarchy();
 	void RenderInspector();
+	void RenderResources();
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
 

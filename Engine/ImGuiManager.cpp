@@ -24,6 +24,7 @@
 #include "Resources.h"
 #include "JsonManager.h"
 #include "MeshCollider.h"
+#include "MeshData.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -72,6 +73,7 @@ void ImGuiManager::Render()
     RenderClientData();
     RenderHierarchy();
     RenderInspector();
+    RenderResources();
     ImGui::ShowDemoWindow();
 
     ImGui::Render();
@@ -487,45 +489,44 @@ void ImGuiManager::RenderHierarchy()
         if (iter->GetName().empty() == false)
             tempString = std::string(iter->GetName().begin(), iter->GetName().end());
 
-        // TODO : TreeNode
-        if (ImGui::TreeNode(ws2s(iter->GetName().c_str()).c_str()))
+        bool treeopen = ImGui::TreeNodeEx(tempString.c_str(), ImGuiTreeNodeFlags_AllowItemOverlap);
+        ImGui::SameLine();
+        if (ImGui::Button("+")) 
+            _currentGameObject = iter;
+        // Our buttons are both drag sources and drag targets here!
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
         {
-            if (ImGui::Button(tempString.c_str()))
-            {
-                _currentGameObject = iter;
-            }
+            // Set payload to carry the index of our item (could be anything)
+            ImGui::SetDragDropPayload("DND_DEMO_CELL", &iter->_hash, sizeof(size_t));
 
-            // Our buttons are both drag sources and drag targets here!
-            if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
+            // Display preview (could be anything, e.g. when dragging an image we could decide to display
+            // the filename and a small preview of the image, etc.)
+            ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str());
+            ImGui::EndDragDropSource();
+        }
+        if (ImGui::BeginDragDropTarget())
+        {
+            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
             {
-                // Set payload to carry the index of our item (could be anything)
-                ImGui::SetDragDropPayload("DND_DEMO_CELL", &iter->_hash, sizeof(size_t));
+                IM_ASSERT(payload->DataSize == sizeof(size_t));
+                size_t payload_n = *(const size_t*)payload->Data;
 
-                // Display preview (could be anything, e.g. when dragging an image we could decide to display
-                // the filename and a small preview of the image, etc.)
-                ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str()); 
-                ImGui::EndDragDropSource();
-            }
-            if (ImGui::BeginDragDropTarget())
-            {
-                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+                // find hash
+                for (int i = 0; i < vec.size(); ++i)
                 {
-                    IM_ASSERT(payload->DataSize == sizeof(size_t));
-                    size_t payload_n = *(const size_t*)payload->Data;
-
-                    // find hash
-                    for (int i = 0; i < vec.size(); ++i)
+                    if (vec[i]->_hash == payload_n)
                     {
-                        if (vec[i]->_hash == payload_n)
-                        {
-                            vec[i]->GetTransform()->SetParent(iter->GetTransform());
-                        }
+                        vec[i]->GetTransform()->SetParent(iter->GetTransform());
                     }
-                    
                 }
-                ImGui::EndDragDropTarget();
-            }
 
+            }
+            ImGui::EndDragDropTarget();
+        }
+
+        if (treeopen)
+        {
+            
             // TODO : Iter의 Child 재귀
             for (int i = 0; i < iter->GetTransform()->_childVector.size(); ++i)
             {
@@ -534,6 +535,7 @@ void ImGuiManager::RenderHierarchy()
 
             ImGui::TreePop();
         }
+        
         ImGui::PopID();
     }
     ImGui::Separator();
@@ -1187,57 +1189,130 @@ void ImGuiManager::RenderInspector()
     ImGui::End();
 }
 
+void ImGuiManager::RenderResources()
+{
+    ImGui::Begin("Resources");
+
+    static std::string input;
+    // Text 적을 수 있게 해야함.
+    ImGui::InputText("FileName", const_cast<char*>(input.c_str()), 64);
+    if (ImGui::Button("Resource to prefab (FBX)"))
+    {
+        std::string inputText(input.c_str());
+        std::string path = std::string("../Resources/FBX/") + inputText;
+
+        std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
+
+        // MeshData 불러오기
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(path.c_str()).c_str());
+
+        // 불러온 MeshData Prefab으로 뽑기
+        std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();
+        meshDataObject->SetName(s2ws(inputText.c_str()));
+        meshDataObject->GenerateHash();
+        sceneOnlyForSave->AddGameObject(meshDataObject);
+        std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
+        mesh_root->SetName(L"mesh_root");
+        mesh_root->GenerateHash();
+        sceneOnlyForSave->AddGameObject(mesh_root);
+        std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
+
+        meshDataObject->AddComponent(std::make_shared<TransformComponent>());
+        mesh_root->AddComponent(std::make_shared<TransformComponent>());
+
+        mesh_root->GetTransform()->SetParent(meshDataObject->GetTransform());
+        for (int i = 0; i < gameObjects.size(); ++i)
+        {
+            gameObjects[i]->GetTransform()->SetParent(mesh_root->GetTransform());
+            sceneOnlyForSave->AddGameObject(gameObjects[i]);
+        }
+
+        std::string finalPath = path + "_Prefab";
+        GET_SINGLE(JsonManager)->SaveScene(finalPath.c_str(), sceneOnlyForSave);
+    }
+
+    if (ImGui::Button("Get prefab to scene"))
+    {
+        int tempNum = 0;
+        std::string inputText(input.c_str());
+        std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
+
+        // 씬에 같은 이름이 존재한다면? tempNum을 ++해서 다시 찾기.
+        auto& vec = currentScene->GetGameObjects();
+        auto iter = std::find_if(vec.begin(), vec.end(), [=](std::shared_ptr<GameObject> obj) {return obj->GetName() == s2ws(inputText + std::to_string(tempNum)); });
+        while (iter != vec.end())
+        {
+            ++tempNum;
+            iter = std::find_if(vec.begin(), vec.end(), [=](std::shared_ptr<GameObject> obj) {return obj->GetName() == s2ws(inputText + std::to_string(tempNum)); });
+        }
+
+        std::string path = std::string("../Resources/FBX/") + inputText + "_Prefab";
+
+        std::shared_ptr<Scene> sceneOnlyForLoad = std::make_shared<Scene>();
+        GET_SINGLE(JsonManager)->LoadScene(path.c_str(), sceneOnlyForLoad);
+
+        // 불러온 임시 씬 속 프리팹 정보를 현재 씬에 넘겨주기
+        for (auto& iter : sceneOnlyForLoad->GetGameObjects())
+        {
+            iter->SetName(iter->GetName() + std::to_wstring(tempNum));
+            iter->GenerateHash();
+            currentScene->AddGameObject(iter);
+        }
+    }
+
+    ImGui::End();
+}
+
 void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
 {
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
     
     std::shared_ptr<GameObject> child = parent->GetTransform()->GetChild(i)->GetGameObject();
-    if (ImGui::TreeNode(ws2s(child->GetName().c_str()).c_str()))
+    ImGui::PushID(child->_hash);
+
+    bool treeopen = ImGui::TreeNodeEx(ws2s(child->GetName().c_str()).c_str(), ImGuiTreeNodeFlags_AllowItemOverlap);
+    ImGui::SameLine();
+    if (ImGui::Button("+")) 
+        _currentGameObject = child;
+    // Our buttons are both drag sources and drag targets here!
+    if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
     {
-        ImGui::PushID(child->_hash);
-        if (ImGui::Button(ws2s(child->GetName().c_str()).c_str()))
-        {
-            _currentGameObject = child;
-        }
+        // Set payload to carry the index of our item (could be anything)
+        ImGui::SetDragDropPayload("DND_DEMO_CELL", &child->_hash, sizeof(size_t));
 
-        // Our buttons are both drag sources and drag targets here!
-        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
+        // Display preview (could be anything, e.g. when dragging an image we could decide to display
+        // the filename and a small preview of the image, etc.)
+        ImGui::Text("Set Child %s", ws2s(child->GetName().c_str()).c_str());
+        ImGui::EndDragDropSource();
+    }
+    if (ImGui::BeginDragDropTarget())
+    {
+        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
         {
-            // Set payload to carry the index of our item (could be anything)
-            ImGui::SetDragDropPayload("DND_DEMO_CELL", &child->_hash, sizeof(size_t));
+            IM_ASSERT(payload->DataSize == sizeof(size_t));
+            size_t payload_n = *(const size_t*)payload->Data;
 
-            // Display preview (could be anything, e.g. when dragging an image we could decide to display
-            // the filename and a small preview of the image, etc.)
-            ImGui::Text("Set Child %s", ws2s(child->GetName().c_str()).c_str());
-            ImGui::EndDragDropSource();
-        }
-        if (ImGui::BeginDragDropTarget())
-        {
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+            // find hash
+            for (int i = 0; i < vec.size(); ++i)
             {
-                IM_ASSERT(payload->DataSize == sizeof(size_t));
-                size_t payload_n = *(const size_t*)payload->Data;
-
-                // find hash
-                for (int i = 0; i < vec.size(); ++i)
+                if (vec[i]->_hash == payload_n)
                 {
-                    if (vec[i]->_hash == payload_n)
-                    {
-                        vec[i]->GetTransform()->SetParent(child->GetTransform());
-                    }
+                    vec[i]->GetTransform()->SetParent(child->GetTransform());
                 }
             }
-            ImGui::EndDragDropTarget();
         }
+        ImGui::EndDragDropTarget();
+    }
 
-
+    if (treeopen)
+    {
         // Child의 Child들 재귀로 뽑기
         for (int i = 0; i < child->GetTransform()->_childVector.size(); ++i)
         {
             RenderChild(child, i);
         }
         
-        ImGui::PopID();
         ImGui::TreePop();
     }
+    ImGui::PopID();
 }

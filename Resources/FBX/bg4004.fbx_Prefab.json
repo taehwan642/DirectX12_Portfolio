@@ -1,0 +1,932 @@
+{
+    "_gameObjects": [
+        {
+            "_objectType": "GAMEOBJECT",
+            "_id": 144,
+            "_name": "",
+            "_checkFrustum": true,
+            "_layerIndex": 0,
+            "_static": true,
+            "_hash": 12685461743740650202,
+            "_transform": {
+                "_localTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                },
+                "_worldTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            "_meshRenderer": {},
+            "_camera": {},
+            "_light": {},
+            "_particleSystem": {},
+            "_terrain": {},
+            "_baseCollider": {},
+            "_animator": {}
+        },
+        {
+            "_objectType": "GAMEOBJECT",
+            "_id": 145,
+            "_name": "",
+            "_checkFrustum": true,
+            "_layerIndex": 0,
+            "_static": true,
+            "_hash": 5514151138106766407,
+            "_transform": {
+                "_localTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                },
+                "_worldTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            "_meshRenderer": {},
+            "_camera": {},
+            "_light": {},
+            "_particleSystem": {},
+            "_terrain": {},
+            "_baseCollider": {},
+            "_animator": {}
+        },
+        {
+            "_objectType": "GAMEOBJECT",
+            "_id": 73,
+            "_name": "",
+            "_checkFrustum": true,
+            "_layerIndex": 0,
+            "_static": true,
+            "_hash": 4534963757783619985,
+            "_transform": {
+                "_localTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                },
+                "_worldTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            "_meshRenderer": {
+                "_materials": [
+                    {
+                        "_params": {
+                            "intParams": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "floatParams": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "texOnParams": [
+                                1,
+                                1,
+                                0,
+                                0
+                            ],
+                            "vec2Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                }
+                            ],
+                            "vec4Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                }
+                            ],
+                            "matrixParams": [
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        "_shader": {
+                            "_objectType": "SHADER",
+                            "_id": 12,
+                            "_info": {
+                                "shaderType": "DEFERRED",
+                                "rasterizerType": "CULL_BACK",
+                                "depthStencilType": "LESS",
+                                "blendType": "DEFAULT",
+                                "topology": 4
+                            },
+                            "_arg": {
+                                "vs": "VS_Main",
+                                "hs": "",
+                                "ds": "",
+                                "gs": "",
+                                "ps": "PS_Main",
+                                "cs": ""
+                            },
+                            "_name": ""
+                        },
+                        "_textures": [
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 60,
+                                "_name": ""
+                            },
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 61,
+                                "_name": ""
+                            },
+                            {},
+                            {}
+                        ]
+                    }
+                ],
+                "_mesh": {
+                    "_objectType": "MESH",
+                    "_id": 70,
+                    "_name": ""
+                }
+            },
+            "_camera": {},
+            "_light": {},
+            "_particleSystem": {},
+            "_terrain": {},
+            "_baseCollider": {},
+            "_animator": {}
+        },
+        {
+            "_objectType": "GAMEOBJECT",
+            "_id": 76,
+            "_name": "",
+            "_checkFrustum": true,
+            "_layerIndex": 0,
+            "_static": true,
+            "_hash": 7155076883803949265,
+            "_transform": {
+                "_localTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                },
+                "_worldTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            "_meshRenderer": {
+                "_materials": [
+                    {
+                        "_params": {
+                            "intParams": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "floatParams": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "texOnParams": [
+                                1,
+                                1,
+                                0,
+                                0
+                            ],
+                            "vec2Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                }
+                            ],
+                            "vec4Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                }
+                            ],
+                            "matrixParams": [
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        "_shader": {
+                            "_objectType": "SHADER",
+                            "_id": 12,
+                            "_info": {
+                                "shaderType": "DEFERRED",
+                                "rasterizerType": "CULL_BACK",
+                                "depthStencilType": "LESS",
+                                "blendType": "DEFAULT",
+                                "topology": 4
+                            },
+                            "_arg": {
+                                "vs": "VS_Main",
+                                "hs": "",
+                                "ds": "",
+                                "gs": "",
+                                "ps": "PS_Main",
+                                "cs": ""
+                            },
+                            "_name": ""
+                        },
+                        "_textures": [
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 62,
+                                "_name": ""
+                            },
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 63,
+                                "_name": ""
+                            },
+                            {},
+                            {}
+                        ]
+                    }
+                ],
+                "_mesh": {
+                    "_objectType": "MESH",
+                    "_id": 71,
+                    "_name": ""
+                }
+            },
+            "_camera": {},
+            "_light": {},
+            "_particleSystem": {},
+            "_terrain": {},
+            "_baseCollider": {},
+            "_animator": {}
+        },
+        {
+            "_objectType": "GAMEOBJECT",
+            "_id": 79,
+            "_name": "",
+            "_checkFrustum": true,
+            "_layerIndex": 0,
+            "_static": true,
+            "_hash": 18370453718327125809,
+            "_transform": {
+                "_localTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                },
+                "_worldTransform": {
+                    "_position": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_rotation": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "_scale": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    }
+                }
+            },
+            "_meshRenderer": {
+                "_materials": [
+                    {
+                        "_params": {
+                            "intParams": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "floatParams": [
+                                0.0,
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "texOnParams": [
+                                1,
+                                1,
+                                0,
+                                0
+                            ],
+                            "vec2Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0
+                                }
+                            ],
+                            "vec4Params": [
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                },
+                                {
+                                    "x": 0.0,
+                                    "y": 0.0,
+                                    "z": 0.0,
+                                    "w": 0.0
+                                }
+                            ],
+                            "matrixParams": [
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "m": [
+                                        [
+                                            1.0,
+                                            0.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            1.0,
+                                            0.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            1.0,
+                                            0.0
+                                        ],
+                                        [
+                                            0.0,
+                                            0.0,
+                                            0.0,
+                                            1.0
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        "_shader": {
+                            "_objectType": "SHADER",
+                            "_id": 12,
+                            "_info": {
+                                "shaderType": "DEFERRED",
+                                "rasterizerType": "CULL_BACK",
+                                "depthStencilType": "LESS",
+                                "blendType": "DEFAULT",
+                                "topology": 4
+                            },
+                            "_arg": {
+                                "vs": "VS_Main",
+                                "hs": "",
+                                "ds": "",
+                                "gs": "",
+                                "ps": "PS_Main",
+                                "cs": ""
+                            },
+                            "_name": ""
+                        },
+                        "_textures": [
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 64,
+                                "_name": ""
+                            },
+                            {
+                                "_objectType": "TEXTURE",
+                                "_id": 65,
+                                "_name": ""
+                            },
+                            {},
+                            {}
+                        ]
+                    }
+                ],
+                "_mesh": {
+                    "_objectType": "MESH",
+                    "_id": 72,
+                    "_name": ""
+                }
+            },
+            "_camera": {},
+            "_light": {},
+            "_particleSystem": {},
+            "_terrain": {},
+            "_baseCollider": {},
+            "_animator": {}
+        }
+    ],
+    "_cameras": [],
+    "_lights": []
+}

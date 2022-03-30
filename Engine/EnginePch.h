@@ -250,3 +250,5 @@ struct array_deleter
 		delete[] p;
 	}
 };
+
+// #define TOOL

@@ -28,7 +28,7 @@ std::shared_ptr<MeshData> MeshData::LoadFromFBX(const std::wstring& path, bool j
 	{
 		std::shared_ptr<Mesh> mesh = Mesh::CreateFromFBX(&loader.GetMesh(i), loader);
 		
-		mesh->_name = path;// +std::to_wstring(i);
+		mesh->_name = loader._meshes[i].name;// +std::to_wstring(i);
 
 		GET_SINGLE(Resources)->Add<Mesh>(mesh->GetName(), mesh);
 
@@ -88,25 +88,30 @@ std::vector<std::shared_ptr<GameObject>> MeshData::Instantiate()
 
 	for (MeshRenderInfo& info : _meshRenders)
 	{
-		std::shared_ptr<GameObject> gameObject = std::make_shared<GameObject>();
-		gameObject->AddComponent(std::make_shared<TransformComponent>());
-		gameObject->AddComponent(std::make_shared<MeshRenderer>());
-		gameObject->GetMeshRenderer()->SetMesh(info.mesh);
-
-		for (uint32 i = 0; i < info.materials.size(); i++)
-			gameObject->GetMeshRenderer()->SetMaterial(info.materials[i], i);
-
-		if (info.mesh->IsAnimMesh())
+		std::shared_ptr<GameObject> gameObject = GET_SINGLE(Resources)->Get<GameObject>(info.mesh->GetName());
+		if (gameObject == nullptr)
 		{
-			std::shared_ptr<Animator> animator = std::make_shared<Animator>();
-			gameObject->AddComponent(animator);
-			animator->SetBones(info.mesh->GetBones());
-			animator->SetAnimClip(info.mesh->GetAnimClip());
+			gameObject = std::make_shared<GameObject>();
+			gameObject->AddComponent(std::make_shared<TransformComponent>());
+			gameObject->AddComponent(std::make_shared<MeshRenderer>());
+			gameObject->SetName(info.mesh->GetName());
+			gameObject->GenerateHash();
+			gameObject->GetMeshRenderer()->SetMesh(info.mesh);
+
+			for (uint32 i = 0; i < info.materials.size(); i++)
+				gameObject->GetMeshRenderer()->SetMaterial(info.materials[i], i);
+
+			if (info.mesh->IsAnimMesh())
+			{
+				std::shared_ptr<Animator> animator = std::make_shared<Animator>();
+				gameObject->AddComponent(animator);
+				animator->SetBones(info.mesh->GetBones());
+				animator->SetAnimClip(info.mesh->GetAnimClip());
+			}
 		}
-
 		v.push_back(gameObject);
+		GET_SINGLE(Resources)->Add<GameObject>(info.mesh->GetName(), gameObject);
 	}
-
 
 	return v;
 }

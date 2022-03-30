@@ -240,7 +240,8 @@ void FBXLoader::GetTangent(FbxMesh* mesh, FbxMeshInfo* meshInfo, int32 idx, int3
 
 void FBXLoader::GetUV(FbxMesh* mesh, FbxMeshInfo* meshInfo, int32 idx, int32 uvIndex)
 {
-	FbxVector2 uv = mesh->GetElementUV()->GetDirectArray().GetAt(uvIndex);
+	FbxGeometryElementUV* elUV = mesh->GetElementUV();
+	FbxVector2 uv = elUV->GetDirectArray().GetAt(idx);
 	meshInfo->vertices[idx].uv.x = static_cast<float>(uv.mData[0]);
 	meshInfo->vertices[idx].uv.y = 1.f - static_cast<float>(uv.mData[1]);
 }

@@ -32,75 +32,75 @@ void TransformComponent::PushData()
 	CONST_BUFFER(CONSTANT_BUFFER_TYPE::TRANSFORM)->PushGraphicsData(&transformParams, sizeof(transformParams));
 }
 
-void TransformComponent::SetLocalPosition(const Vec3& InPosition)
+void TransformComponent::SetLocalPosition(const Vec3& position)
 {
-	_localTransform->SetPosition(InPosition);
+	_localTransform->SetPosition(position);
 	UpdateWorld();
 }
 
-void TransformComponent::AddLocalYawRotation(float InDegree)
+void TransformComponent::AddLocalYawRotation(float degree)
 {
-	_localTransform->AddYawRotation(InDegree);
+	_localTransform->AddYawRotation(degree);
 	UpdateWorld();
 }
 
-void TransformComponent::AddLocalRollRotation(float InDegree)
+void TransformComponent::AddLocalRollRotation(float degree)
 {
-	_localTransform->AddRollRotation(InDegree);
+	_localTransform->AddRollRotation(degree);
 	UpdateWorld();
 }
 
-void TransformComponent::AddLocalPitchRotation(float InDegree)
+void TransformComponent::AddLocalPitchRotation(float degree)
 {
-	_localTransform->AddPitchRotation(InDegree);
+	_localTransform->AddPitchRotation(degree);
 	UpdateWorld();
 }
 
-void TransformComponent::SetLocalRotation(const Vec3& InQuaternion)
+void TransformComponent::SetLocalRotation(const Vec3& rotation)
 {
-	_localTransform->SetRotation(InQuaternion);
+	_localTransform->SetRotation(rotation);
 	UpdateWorld();
 }
 
-void TransformComponent::SetLocalScale(const Vec3& InScale)
+void TransformComponent::SetLocalScale(const Vec3& scale)
 {
-	_localTransform->SetScale(InScale);
+	_localTransform->SetScale(scale);
 	UpdateWorld();
 }
 
-void TransformComponent::SetWorldPosition(const Vec3& InPosition)
+void TransformComponent::SetWorldPosition(const Vec3& position)
 {
-	_worldTransform->SetPosition(InPosition);
+	_worldTransform->SetPosition(position);
 	UpdateLocal();
 }
 
-void TransformComponent::AddWorldYawRotation(float InDegree)
+void TransformComponent::AddWorldYawRotation(float degree)
 {
-	_worldTransform->AddYawRotation(InDegree);
+	_worldTransform->AddYawRotation(degree);
 	UpdateLocal();
 }
 
-void TransformComponent::AddWorldRollRotation(float InDegree)
+void TransformComponent::AddWorldRollRotation(float degree)
 {
-	_worldTransform->AddRollRotation(InDegree);
+	_worldTransform->AddRollRotation(degree);
 	UpdateLocal();
 }
 
-void TransformComponent::AddWorldPitchRotation(float InDegree)
+void TransformComponent::AddWorldPitchRotation(float degree)
 {
-	_worldTransform->AddPitchRotation(InDegree);
+	_worldTransform->AddPitchRotation(degree);
 	UpdateLocal();
 }
 
-void TransformComponent::SetWorldRotation(const Vec3& InQuaternion)
+void TransformComponent::SetWorldRotation(const Vec3& rotation)
 {
-	_worldTransform->SetRotation(InQuaternion);
+	_worldTransform->SetRotation(rotation);
 	UpdateLocal();
 }
 
-void TransformComponent::SetWorldScale(const Vec3& InScale)
+void TransformComponent::SetWorldScale(const Vec3& scale)
 {
-	_worldTransform->SetScale(InScale);
+	_worldTransform->SetScale(scale);
 	UpdateLocal();
 }
 

@@ -115,37 +115,37 @@ std::shared_ptr<Transform> Transform::Inverse()
 	return result;
 }
 
-std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> InParentWorldTransform)
+std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> parentWorldTransform)
 {
 	// 현재 트랜스폼 정보가 로컬인 경우
 	std::shared_ptr<Transform> result = std::make_shared<Transform>();
-	result->_rotation = InParentWorldTransform->_rotation + _rotation;
-	result->_scale = InParentWorldTransform->_scale * _scale;
+	result->_rotation = parentWorldTransform->_rotation + _rotation;
+	result->_scale = parentWorldTransform->_scale * _scale;
 
 	Vec3 positionResult = Vec3::Zero;
 
-	Vec3 AxisX = Vec3(InParentWorldTransform->GetRight().x, InParentWorldTransform->GetUp().x, InParentWorldTransform->GetLook().x);
-	Vec3 AxisY = Vec3(InParentWorldTransform->GetRight().y, InParentWorldTransform->GetUp().y, InParentWorldTransform->GetLook().y);
-	Vec3 AxisZ = Vec3(InParentWorldTransform->GetRight().z, InParentWorldTransform->GetUp().z, InParentWorldTransform->GetLook().z);
+	Vec3 AxisX = Vec3(parentWorldTransform->GetRight().x, parentWorldTransform->GetUp().x, parentWorldTransform->GetLook().x);
+	Vec3 AxisY = Vec3(parentWorldTransform->GetRight().y, parentWorldTransform->GetUp().y, parentWorldTransform->GetLook().y);
+	Vec3 AxisZ = Vec3(parentWorldTransform->GetRight().z, parentWorldTransform->GetUp().z, parentWorldTransform->GetLook().z);
 
 	AxisX.Normalize();
 	AxisY.Normalize();
 	AxisZ.Normalize();
 
-	Vec3 pos = _position * InParentWorldTransform->_scale;
+	Vec3 pos = _position * parentWorldTransform->_scale;
 
 	positionResult.x = AxisX.Dot(pos);
 	positionResult.y = AxisY.Dot(pos);
 	positionResult.z = AxisZ.Dot(pos);
 
-	result->_position = positionResult + InParentWorldTransform->_position;
+	result->_position = positionResult + parentWorldTransform->_position;
 	return result;
 }
 
-std::shared_ptr<Transform> Transform::WorldToLocal(std::shared_ptr<Transform> InParentWorldTransform)
+std::shared_ptr<Transform> Transform::WorldToLocal(std::shared_ptr<Transform> parentWorldTransform)
 {
 	// 현재 트랜스폼 정보가 월드인 경우
-	std::shared_ptr<Transform> invParent = InParentWorldTransform->Inverse();
+	std::shared_ptr<Transform> invParent = parentWorldTransform->Inverse();
 
 	std::shared_ptr<Transform> result = std::make_shared<Transform>();
 	result->_scale = invParent->GetScale() * _scale;
