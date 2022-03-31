@@ -3,7 +3,6 @@
 #include "RttrRegistration.h"
 #include "to_json.h"
 #include "from_json.h"
-#include <fstream>
 #include "Resources.h"
 #include "FBXLoader.h"
 #include "StructuredBuffer.h"

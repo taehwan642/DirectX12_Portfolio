@@ -475,6 +475,14 @@ void ImGuiManager::RenderHierarchy()
         GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
     }
     ImGui::Separator();
+
+    static int val = 0;
+    if (ImGui::InputInt("Scene Index", &val))
+    {
+        GET_SINGLE(SceneManager)->SetScene(val);
+    }
+
+    ImGui::Separator();
     if (GET_SINGLE(SceneManager)->GetActiveScene() == nullptr)
     {
         ImGui::End();
@@ -1277,16 +1285,16 @@ void ImGuiManager::RenderDragAndDrop()
     // 프리팹 버튼
     if (ImGui::Button("Get prefab to scene"))
     {
-        inputPath = (inputPath.substr(0, inputPath.size() - 6));
+        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
 
         int tempNum = 0;
         std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
 
         // 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
-        std::string objString = inputPath;
-        if (size_t pos = inputPath.find_last_of("\\"); pos != std::string::npos)
+        std::string objString = finalInputPath;
+        if (size_t pos = finalInputPath.find_last_of("\\"); pos != std::string::npos)
         {
-            objString = inputPath.substr(pos + 1, inputPath.size());
+            objString = finalInputPath.substr(pos + 1, finalInputPath.size());
         }
 
         // obj 이름은 맨 처음 "_"를 만나기 전.
@@ -1306,7 +1314,7 @@ void ImGuiManager::RenderDragAndDrop()
         }
 
         std::shared_ptr<Scene> sceneOnlyForLoad = std::make_shared<Scene>();
-        GET_SINGLE(JsonManager)->LoadScene(inputPath.c_str(), sceneOnlyForLoad);
+        GET_SINGLE(JsonManager)->LoadScene(finalInputPath.c_str(), sceneOnlyForLoad);
 
         // 불러온 임시 씬 속 프리팹 정보를 현재 씬에 넘겨주기
         for (auto& iter : sceneOnlyForLoad->GetGameObjects())
@@ -1320,8 +1328,8 @@ void ImGuiManager::RenderDragAndDrop()
     // 씬 버튼
     if (ImGui::Button("Load"))
     {
-        inputPath = (inputPath.substr(0, inputPath.size() - 6));
-        GET_SINGLE(SceneManager)->LoadScene(s2ws(inputPath).c_str());
+        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
+        GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath).c_str());
     }
 
     // 리소스 버튼
@@ -1332,6 +1340,25 @@ void ImGuiManager::RenderDragAndDrop()
         // MeshData 불러오기
         std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
         meshData->Instantiate();
+    }
+
+    static std::string paths = "";
+    if (ImGui::Button("Add To SceneSet"))
+    {
+        // 입력받은 path를 받되, string에서 한 줄 내리고 받는다.
+        /*
+            경로 1 \n
+            경로 2 \n ...
+        */
+        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
+        paths += finalInputPath + "\n";
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Output SceneSet")) // 뭔가 따로 UI를 파기에는 좀 아까운 공간이기 때문에, 일단 Drag and Drop 구간에 넣었다.
+    {
+        std::string txtString = paths;
+        std::ofstream ost("../Output/Scenes.txt");
+        ost << txtString;
     }
     
     ImGui::End();

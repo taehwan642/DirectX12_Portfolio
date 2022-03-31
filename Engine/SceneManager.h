@@ -17,6 +17,7 @@ public:
 	void Update();
 	void Render();
 	void LoadScene(const std::wstring& sceneName);
+	void SetScene(int index);
 
 	void SetLayerName(uint8 index, const std::wstring& name);
 	const std::wstring& IndexToLayerName(uint8 index) { return _layerNames[index]; }
@@ -39,5 +40,6 @@ private:
 	std::map<std::wstring, uint8> _layerIndex;
 
 	std::vector<std::wstring> _loadedMeshDataTags;
+	std::vector<std::wstring> _sceneTags;
 };
 

@@ -39,8 +39,20 @@ void SceneManager::Init()
 	SetLayerName(0, L"Default");
 	SetLayerName(1, L"UI");
 
-	//std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
-	//meshData->Instantiate();
+	std::ifstream valueFile;
+	valueFile.open("../Output/Scenes.txt");
+	if (valueFile.is_open())
+	{
+		while (!valueFile.eof())
+		{
+			char arr[256];
+			valueFile.getline(arr, 256);
+			std::string line = arr;
+			if (!line.empty())
+				_sceneTags.push_back(s2ws(line));
+		}
+	}
+	valueFile.close();
 }
 
 void SceneManager::Update()
@@ -80,6 +92,13 @@ void SceneManager::LoadScene(const std::wstring& sceneName)
 
 	_activeScene->Awake();
 	_activeScene->Start();
+}
+
+void SceneManager::SetScene(int index)
+{
+	if (_sceneTags.size() <= index)
+		return;
+	LoadScene(_sceneTags[index]);
 }
 
 void SceneManager::SetLayerName(uint8 index, const std::wstring& name)
@@ -134,6 +153,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		shared_ptr<GameObject> camera = make_shared<GameObject>();
 		camera->SetName(L"Main_Camera");
+		camera->GenerateHash();
 		camera->AddComponent(make_shared<TransformComponent>());
 		camera->AddComponent(make_shared<Camera>()); // Near=1, Far=1000, FOV=45µµ
 		camera->AddComponent(make_shared<TestCameraScript>());
@@ -149,6 +169,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		shared_ptr<GameObject> camera = make_shared<GameObject>();
 		camera->SetName(L"Orthographic_Camera");
+		camera->GenerateHash();
 		camera->AddComponent(make_shared<TransformComponent>());
 		camera->AddComponent(make_shared<Camera>()); // Near=1, Far=1000, 800*600
 		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
@@ -164,6 +185,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		shared_ptr<GameObject> skybox = make_shared<GameObject>();
 		skybox->SetName(L"Skybox");
+		skybox->GenerateHash();
 		skybox->AddComponent(make_shared<TransformComponent>());
 		skybox->SetCheckFrustum(false);
 		shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
@@ -231,6 +253,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		shared_ptr<GameObject> obj = make_shared<GameObject>();
 		obj->SetName(L"UI " + std::to_wstring(i));
+		obj->GenerateHash();
 		obj->SetLayerIndex(GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI")); // UI
 		obj->AddComponent(make_shared<TransformComponent>());
 		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
@@ -265,6 +288,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	{
 		shared_ptr<GameObject> light = make_shared<GameObject>();
 		light->SetName(L"DLight");
+		light->GenerateHash();
 		light->AddComponent(make_shared<TransformComponent>());
 		light->GetTransform()->SetLocalPosition(Vec3(0, 1000, 500));
 		light->AddComponent(make_shared<Light>());
@@ -281,8 +305,8 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 
 #pragma region FBX
 	{
-		shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
-		meshData->Instantiate();
+		//shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
+		//meshData->Instantiate();
 
 		/*vector<shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
 
