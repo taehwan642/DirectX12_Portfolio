@@ -2,7 +2,7 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 144,
+            "_id": 73,
             "_name": "",
             "_checkFrustum": true,
             "_layerIndex": 0,
@@ -54,7 +54,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 145,
+            "_id": 74,
             "_name": "",
             "_checkFrustum": true,
             "_layerIndex": 0,
@@ -106,7 +106,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 73,
+            "_id": 75,
             "_name": "",
             "_checkFrustum": true,
             "_layerIndex": 0,
@@ -380,7 +380,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 76,
+            "_id": 78,
             "_name": "",
             "_checkFrustum": true,
             "_layerIndex": 0,
@@ -654,7 +654,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 79,
+            "_id": 81,
             "_name": "",
             "_checkFrustum": true,
             "_layerIndex": 0,

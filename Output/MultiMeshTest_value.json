@@ -1,4 +1,7 @@
 {
+    "resources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000"
+    ],
     "gameObjects": [
         {
             "tag": "Main_Camera\u0000",

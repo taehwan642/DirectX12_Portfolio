@@ -19,6 +19,7 @@
 #include "ParticleSystem.h"
 #include "Animator.h"
 #include "Scene.h"
+#include "SceneManager.h"
 
 
 #include "MonoBehaviour.h"
@@ -275,6 +276,11 @@ struct RTTRSceneValue
 	RTTRSceneValue() = default;
 	RTTRSceneValue(std::shared_ptr<Scene> scene)
 	{
+		for (int i = 0; i < GET_SINGLE(SceneManager)->_loadedMeshDataTags.size(); ++i)
+		{
+			resources.push_back(ws2s(GET_SINGLE(SceneManager)->_loadedMeshDataTags[i]));
+		}
+
 		for (int i = 0; i < scene->_gameObjects.size(); ++i)
 		{
 			gameObjects.push_back(RTTRGameObjectValue(scene->_gameObjects[i]));
@@ -291,6 +297,7 @@ struct RTTRSceneValue
 		}
 	}
 	
+	std::vector<std::string> resources;
 	std::vector<RTTRGameObjectValue> gameObjects;
 	std::vector<RTTRGameObjectValue> cameraObjects;
 	std::vector<RTTRGameObjectValue> lightObjects;
@@ -710,6 +717,7 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRSceneValue>("RTTRSceneValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<Scene>>()
+		.property("resources", &RTTRSceneValue::resources)
 		.property("gameObjects", &RTTRSceneValue::gameObjects)
 		.property("cameraObjects", &RTTRSceneValue::cameraObjects)
 		.property("lightObjects", &RTTRSceneValue::lightObjects);

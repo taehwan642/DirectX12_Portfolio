@@ -39,8 +39,8 @@ void SceneManager::Init()
 	SetLayerName(0, L"Default");
 	SetLayerName(1, L"UI");
 
-	std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
-	meshData->Instantiate();
+	//std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
+	//meshData->Instantiate();
 }
 
 void SceneManager::Update()

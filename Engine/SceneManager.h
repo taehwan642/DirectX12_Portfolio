@@ -30,10 +30,14 @@ private:
 
 private:
 	friend class ImGuiManager;
+	friend class MeshData;
+	friend class RTTRSceneValue;
 
 	std::shared_ptr<Scene> _activeScene;
 
 	std::array<std::wstring, MAX_LAYER> _layerNames;
 	std::map<std::wstring, uint8> _layerIndex;
+
+	std::vector<std::wstring> _loadedMeshDataTags;
 };
 

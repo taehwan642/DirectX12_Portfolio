@@ -89,7 +89,8 @@ void ImGuiManager::SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdqueue)
 
 void ImGuiManager::DragAndDrop(const std::wstring& path)
 {
-    inputPath = ws2s(path.substr(0, path.size() - 5));
+    // inputPath = ws2s(path.substr(0, path.size() - 5));
+    inputPath = ws2s(path);
 }
 
 void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
@@ -1276,6 +1277,8 @@ void ImGuiManager::RenderDragAndDrop()
     // 프리팹 버튼
     if (ImGui::Button("Get prefab to scene"))
     {
+        inputPath = (inputPath.substr(0, inputPath.size() - 6));
+
         int tempNum = 0;
         std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
 
@@ -1317,10 +1320,19 @@ void ImGuiManager::RenderDragAndDrop()
     // 씬 버튼
     if (ImGui::Button("Load"))
     {
+        inputPath = (inputPath.substr(0, inputPath.size() - 6));
         GET_SINGLE(SceneManager)->LoadScene(s2ws(inputPath).c_str());
     }
-    // 리소스 버튼
 
+    // 리소스 버튼
+    if (ImGui::Button("Add To Resource"))
+    {
+        std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
+
+        // MeshData 불러오기
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
+        meshData->Instantiate();
+    }
     
     ImGui::End();
 }

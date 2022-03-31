@@ -120,6 +120,12 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 	RTTRSceneValue sceneValue;
 	io::from_json(valueString, sceneValue);
 
+	for (int i = 0; i < sceneValue.resources.size(); ++i)
+	{
+		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(sceneValue.resources[i].c_str()).c_str());
+		meshData->Instantiate();
+	}
+
 	for (int i = 0; i < sceneValue.gameObjects.size(); ++i)
 	{
 		RTTRGameObjectValue value = sceneValue.gameObjects[i];

@@ -7,6 +7,7 @@
 #include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Animator.h"
+#include "SceneManager.h"
 #include "JsonManager.h"
 
 MeshData::MeshData() : Object(OBJECT_TYPE::MESH_DATA)
@@ -67,6 +68,17 @@ std::shared_ptr<MeshData> MeshData::LoadFromFile(const std::wstring& path, bool 
 	{
 		result = LoadFromFBX(path, jsonLoad);
 		GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path).c_str(), result);
+	}
+
+	// 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
+	std::wstring objString = path;
+	//if (size_t pos = path.find_last_of(L"\\"); pos != std::wstring::npos)
+	//{
+	//	objString = path.substr(pos + 1, path.size());
+	//}
+	if (std::find(GET_SINGLE(SceneManager)->_loadedMeshDataTags.begin(), GET_SINGLE(SceneManager)->_loadedMeshDataTags.end(), objString) == GET_SINGLE(SceneManager)->_loadedMeshDataTags.end())
+	{
+		GET_SINGLE(SceneManager)->_loadedMeshDataTags.push_back(objString);
 	}
 
 	return result;
