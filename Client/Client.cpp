@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Client.h"
 #include "Game.h"
+#include "Engine.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx12.h"
@@ -117,7 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+    HWND hWnd = CreateWindowExW(WS_EX_ACCEPTFILES, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -178,6 +179,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
+        break;
+    case WM_DROPFILES:
+    {
+        wchar_t temp_path[MAX_PATH];
+
+        DragQueryFile((HDROP)wParam, 0, temp_path, 1024);
+        GEngine->GetImGuiManager()->DragAndDrop(temp_path);
+        DragFinish((HDROP)wParam);
+    }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);

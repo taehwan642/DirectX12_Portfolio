@@ -5,6 +5,7 @@
 
 // °¢Á¾ include
 #include <windows.h>
+#include <shellapi.h>
 #include <tchar.h>
 #include <memory>
 #include <string>

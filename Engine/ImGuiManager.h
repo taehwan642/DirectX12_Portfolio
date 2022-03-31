@@ -24,6 +24,8 @@ public:
 	void Render();
 	void SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdq);
 
+	void DragAndDrop(const std::wstring& path);
+
 private:
 	void RenderMeshData(std::shared_ptr<Mesh> mesh);
 	void RenderMaterialData(int materialIndex, std::shared_ptr<Material> material);
@@ -37,10 +39,13 @@ private:
 	void RenderHierarchy();
 	void RenderInspector();
 	void RenderResources();
+	void RenderDragAndDrop();
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
 
 private:
+
+	std::string inputPath = "";
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 };
 
