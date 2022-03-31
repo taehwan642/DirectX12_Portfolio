@@ -2,6 +2,7 @@
 
 #include "GameObject.h"
 #include "Transform.h"
+#include "TransformComponent.h"
 #include "Material.h"
 #include "MeshRenderer.h"
 #include "Shader.h"
@@ -18,6 +19,7 @@
 #include "ParticleSystem.h"
 #include "Animator.h"
 #include "Scene.h"
+#include "SceneManager.h"
 
 
 #include "MonoBehaviour.h"
@@ -194,12 +196,27 @@ struct RTTRTerrainValue
 	int sizeZ = 0;
 };
 
+struct RTTRTransformValue
+{
+	RTTRTransformValue() = default;
+	RTTRTransformValue(std::shared_ptr<TransformComponent> transform)
+	{
+		if (transform->GetParent().lock() != nullptr)
+			parentHashValue = transform->GetParent().lock()->GetGameObject()->GetHash();
+		else
+			parentHashValue = 0;
+	}
+
+	size_t parentHashValue = 0;
+};
+
 struct RTTRGameObjectValue
 {
 	RTTRGameObjectValue() = default;
 	RTTRGameObjectValue(std::shared_ptr<GameObject> gameObject)
 	{
 		tag = ws2s(gameObject->_name);
+		hashValue = gameObject->GetHash();
 
 		for (int i = 0; i < gameObject->_components.size(); ++i)
 		{
@@ -207,6 +224,11 @@ struct RTTRGameObjectValue
 				componentOnValue[i] = true;
 			else
 				componentOnValue[i] = false;
+		}
+
+		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::TRANSFORM)] == true)
+		{
+			transformValue = RTTRTransformValue(gameObject->GetTransform());
 		}
 
 		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::MESH_RENDERER)] == true)
@@ -231,30 +253,17 @@ struct RTTRGameObjectValue
 
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
-			if (std::dynamic_pointer_cast<GameManagerScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::GameManagerScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TerrainScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TerrainScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TestCameraScript>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestCameraScript)] = true;
-			}
-
-			if (std::dynamic_pointer_cast<TestDragon>(gameObject->_scripts[i]) != nullptr)
-			{
-				monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestDragon)] = true;
-			}
+			RTTRMONOLOAD(GameManagerScript)
+			RTTRMONOLOAD(TerrainScript)
+			RTTRMONOLOAD(TestCameraScript)
+			RTTRMONOLOAD(TestDragon)
 		}
 	}
 
 	std::array<bool, FIXED_COMPONENT_COUNT> componentOnValue{ false };
 	std::array<bool, static_cast<int>(MonoBehaviourType::END)> monobehaviourOnValue{ false };
+	size_t hashValue;
+	RTTRTransformValue transformValue;
 	RTTRMeshRendererValue meshRendererValue;
 	RTTRColliderValue colliderValue;
 	RTTRLightValue lightValue;
@@ -267,6 +276,11 @@ struct RTTRSceneValue
 	RTTRSceneValue() = default;
 	RTTRSceneValue(std::shared_ptr<Scene> scene)
 	{
+		for (int i = 0; i < GET_SINGLE(SceneManager)->_loadedMeshDataTags.size(); ++i)
+		{
+			resources.push_back(ws2s(GET_SINGLE(SceneManager)->_loadedMeshDataTags[i]));
+		}
+
 		for (int i = 0; i < scene->_gameObjects.size(); ++i)
 		{
 			gameObjects.push_back(RTTRGameObjectValue(scene->_gameObjects[i]));
@@ -283,6 +297,7 @@ struct RTTRSceneValue
 		}
 	}
 	
+	std::vector<std::string> resources;
 	std::vector<RTTRGameObjectValue> gameObjects;
 	std::vector<RTTRGameObjectValue> cameraObjects;
 	std::vector<RTTRGameObjectValue> lightObjects;
@@ -326,6 +341,7 @@ RTTR_REGISTRATION
 		.property("_checkFrustum", &GameObject::_checkFrustum)
 		.property("_layerIndex", &GameObject::_layerIndex)
 		.property("_static", &GameObject::_static)
+		.property("_hash", &GameObject::_hash)
 		.property("_transform", &GameObject::_transform)
 		.property("_meshRenderer", &GameObject::_meshRenderer)
 		.property("_camera", &GameObject::_camera)
@@ -338,9 +354,16 @@ RTTR_REGISTRATION
 	// Transform
 	rttr::registration::class_<Transform>("Transfrom")
 						.constructor<>()
-						.property("_localPosition", &Transform::_localPosition)
-						.property("_localRotation", &Transform::_localRotation)
-						.property("_localScale", &Transform::_localScale);
+						.property("_position", &Transform::_position)
+						.property("_rotation", &Transform::_rotation)
+						.property("_scale", &Transform::_scale);
+
+	// TransformComponent
+	rttr::registration::class_<TransformComponent>("TransformComponent")
+		.constructor<>()
+		.property("_localTransform", &TransformComponent::_localTransform)
+		.property("_worldTransform", &TransformComponent::_worldTransform);
+
 #pragma region MATERIAL
 	// Material
 	rttr::registration::class_<Material>("Material")
@@ -614,8 +637,10 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.constructor<std::shared_ptr<GameObject>>()
 		.property("tag", &RTTRGameObjectValue::tag)
+		.property("hashValue", &RTTRGameObjectValue::hashValue)
 		.property("componentOnValue", &RTTRGameObjectValue::componentOnValue)
 		.property("monobehaviourOnValue", &RTTRGameObjectValue::monobehaviourOnValue)
+		.property("transformValue", &RTTRGameObjectValue::transformValue)
 		.property("meshRendererValue", &RTTRGameObjectValue::meshRendererValue)
 		.property("colliderValue", &RTTRGameObjectValue::colliderValue)
 		.property("lightValue", &RTTRGameObjectValue::lightValue)
@@ -648,6 +673,11 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.constructor<std::shared_ptr<BaseCollider>>()
 		.property("type", &RTTRColliderValue::type);
+
+	rttr::registration::class_<RTTRTransformValue>("RTTRTransformValue")
+		.constructor<>()
+		.constructor<std::shared_ptr<TransformComponent>>()
+		.property("parentHashValue", &RTTRTransformValue::parentHashValue);
 
 	rttr::registration::class_<RTTRLightValue>("RTTRLightValue")
 		.constructor<>()
@@ -687,6 +717,7 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRSceneValue>("RTTRSceneValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<Scene>>()
+		.property("resources", &RTTRSceneValue::resources)
 		.property("gameObjects", &RTTRSceneValue::gameObjects)
 		.property("cameraObjects", &RTTRSceneValue::cameraObjects)
 		.property("lightObjects", &RTTRSceneValue::lightObjects);
@@ -701,22 +732,14 @@ RTTR_REGISTRATION
 		.property("_lights", &Scene::_lights);
 
 #pragma region Monobehaviour
-	// GameManagerScript
-	rttr::registration::class_<GameManagerScript>("GameManagerScript")
-		.constructor<>();
+	
+	RTTRMONOREGISTER(GameManagerScript);
 
-	// TerrainScript
-	rttr::registration::class_<TerrainScript>("TerrainScript")
-		.constructor<>();
+	RTTRMONOREGISTER(TerrainScript);
 
-	// TestCameraScript
-	rttr::registration::class_<TestCameraScript>("TestCameraScript")
-		.constructor<>()
+	RTTRMONOREGISTER(TestCameraScript)
 		.property("_speed", &TestCameraScript::_speed);
 
-	// TestDragon
-	rttr::registration::class_<TestDragon>("TestDragon")
-		.constructor<>();
-
+	RTTRMONOREGISTER(TestDragon);
 #pragma endregion
 }

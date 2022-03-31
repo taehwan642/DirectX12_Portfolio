@@ -3,7 +3,7 @@
 #include "StructuredBuffer.h"
 #include "Mesh.h"
 #include "Resources.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Timer.h"
 
 ParticleSystem::ParticleSystem() : Component(COMPONENT_TYPE::PARTICLE_SYSTEM)

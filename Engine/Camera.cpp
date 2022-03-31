@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Camera.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 #include "GameObject.h"
@@ -28,7 +28,7 @@ Camera::~Camera()
 
 void Camera::FinalUpdate()
 {
-	_matView = GetTransform()->GetLocalToWorldMatrix().Invert();
+	_matView = GetTransform()->GetWorldMatrix().Invert();
 
 	if (_type == PROJECTION_TYPE::PERSPECTIVE)
 		_matProjection = ::XMMatrixPerspectiveFovLH(_fov, _width / _height, _near, _far);
@@ -60,7 +60,7 @@ void Camera::SortGameObject()
 		{
 			if (_frustum.ContainsSphere(
 				gameObject->GetTransform()->GetWorldPosition(),
-				gameObject->GetTransform()->GetBoundingSphereRadius()) == false)
+				gameObject->GetTransform()->GetWorldTransform()->GetBoundingSphereRadius()) == false)
 			{
 				continue;
 			}
@@ -113,7 +113,7 @@ void Camera::SortShadowObject()
 		{
 			if (_frustum.ContainsSphere(
 				gameObject->GetTransform()->GetWorldPosition(),
-				gameObject->GetTransform()->GetBoundingSphereRadius()) == false)
+				gameObject->GetTransform()->GetWorldTransform()->GetBoundingSphereRadius()) == false)
 			{
 				continue;
 			}

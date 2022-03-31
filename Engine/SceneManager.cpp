@@ -6,7 +6,7 @@
 #include "Material.h"
 #include "GameObject.h"
 #include "MeshRenderer.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Camera.h"
 #include "Light.h"
 
@@ -35,6 +35,24 @@ void SceneManager::Init()
 	GET_SINGLE(Resources)->LoadPointMesh();
 	GET_SINGLE(Resources)->LoadRectangleMesh();
 	GET_SINGLE(Resources)->LoadSphereMesh();
+
+	SetLayerName(0, L"Default");
+	SetLayerName(1, L"UI");
+
+	std::ifstream valueFile;
+	valueFile.open("../Output/Scenes.txt");
+	if (valueFile.is_open())
+	{
+		while (!valueFile.eof())
+		{
+			char arr[256];
+			valueFile.getline(arr, 256);
+			std::string line = arr;
+			if (!line.empty())
+				_sceneTags.push_back(s2ws(line));
+		}
+	}
+	valueFile.close();
 }
 
 void SceneManager::Update()
@@ -47,7 +65,6 @@ void SceneManager::Update()
 	_activeScene->FinalUpdate();
 }
 
-// TEMP
 void SceneManager::Render()
 {
 	if (_activeScene)
@@ -56,23 +73,32 @@ void SceneManager::Render()
 
 void SceneManager::LoadScene(const std::wstring& sceneName)
 {
-	//if (_activeScene)
-	//{
-	//	// TODO : 기존 Scene 정리
-	//	// TODO : 파일에서 Scene 정보 로드
-	//}
-	//else
-	//{
-	//	_activeScene = std::make_shared<Scene>();
-	//}
+	if (_activeScene && !_activeScene->_gameObjects.empty())
+	{
+		// 기존에 있던 데이터 삭제
+		// Resource들도 삭제해야하나? 일단 삭제하자.
+		_activeScene->_gameObjects.clear();
+		_activeScene->_cameras.clear();
+		_activeScene->_lights.clear();
+
+		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MESH_DATA)].clear();
+		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::GAMEOBJECT)].clear();
+	}
 
 	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
 
 	// TEST
-	/*_activeScene = *///LoadTestScene();
+	// _activeScene = LoadTestScene();
 
 	_activeScene->Awake();
 	_activeScene->Start();
+}
+
+void SceneManager::SetScene(int index)
+{
+	if (_sceneTags.size() <= index)
+		return;
+	LoadScene(_sceneTags[index]);
 }
 
 void SceneManager::SetLayerName(uint8 index, const std::wstring& name)
@@ -100,18 +126,18 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	SetLayerName(0, L"Default");
 	SetLayerName(1, L"UI");
 #pragma endregion
-
+	using namespace std;
 #pragma region ComputeShader
 	{
-		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeShader");
+		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"ComputeShader");
 
 		// UAV 용 Texture 생성
-		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->CreateTexture(L"UAVTexture",
+		shared_ptr<Texture> texture = GET_SINGLE(Resources)->CreateTexture(L"UAVTexture",
 			DXGI_FORMAT_R8G8B8A8_UNORM, 1024, 1024,
 			CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT), D3D12_HEAP_FLAG_NONE,
 			D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS);
 
-		std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"ComputeShader");
+		shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"ComputeShader");
 		material->SetShader(shader);
 		material->SetInt(0, 1);
 		GEngine->GetComputeDescHeap()->SetUAV(texture->GetUAVHandle(), UAV_REGISTER::u0);
@@ -121,30 +147,31 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	}
 #pragma endregion
 
-	std::shared_ptr<Scene> scene = std::make_shared<Scene>();
-	_activeScene = scene;
-	
+	shared_ptr<Scene> scene = make_shared<Scene>();
+
 #pragma region Camera
 	{
-		std::shared_ptr<GameObject> camera = std::make_shared<GameObject>();
+		shared_ptr<GameObject> camera = make_shared<GameObject>();
 		camera->SetName(L"Main_Camera");
-		camera->AddComponent(std::make_shared<Transform>());
-		camera->AddComponent(std::make_shared<Camera>()); // Near=1, Far=1000, FOV=45도
-		camera->AddComponent(std::make_shared<TestCameraScript>());
+		camera->GenerateHash();
+		camera->AddComponent(make_shared<TransformComponent>());
+		camera->AddComponent(make_shared<Camera>()); // Near=1, Far=1000, FOV=45도
+		camera->AddComponent(make_shared<TestCameraScript>());
 		camera->GetCamera()->SetFar(10000.f);
-		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 100.f, 0.f));
+		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
 		uint8 layerIndex = GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI");
 		camera->GetCamera()->SetCullingMaskLayerOnOff(layerIndex, true); // UI는 안 찍음
 		scene->AddGameObject(camera);
-	}	
+	}
 #pragma endregion
 
 #pragma region UI_Camera
 	{
-		std::shared_ptr<GameObject> camera = std::make_shared<GameObject>();
+		shared_ptr<GameObject> camera = make_shared<GameObject>();
 		camera->SetName(L"Orthographic_Camera");
-		camera->AddComponent(std::make_shared<Transform>());
-		camera->AddComponent(std::make_shared<Camera>()); // Near=1, Far=1000, 800*600
+		camera->GenerateHash();
+		camera->AddComponent(make_shared<TransformComponent>());
+		camera->AddComponent(make_shared<Camera>()); // Near=1, Far=1000, 800*600
 		camera->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 0.f));
 		camera->GetCamera()->SetProjectionType(PROJECTION_TYPE::ORTHOGRAPHIC);
 		uint8 layerIndex = GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI");
@@ -154,24 +181,92 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 	}
 #pragma endregion
 
+#pragma region SkyBox
+	{
+		shared_ptr<GameObject> skybox = make_shared<GameObject>();
+		skybox->SetName(L"Skybox");
+		skybox->GenerateHash();
+		skybox->AddComponent(make_shared<TransformComponent>());
+		skybox->SetCheckFrustum(false);
+		shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
+		{
+			shared_ptr<Mesh> sphereMesh = GET_SINGLE(Resources)->LoadSphereMesh();
+			meshRenderer->SetMesh(sphereMesh);
+		}
+		{
+			shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Skybox");
+			shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Sky01", L"..\\Resources\\Texture\\Sky01.jpg");
+			shared_ptr<Material> material = make_shared<Material>();
+			material->SetShader(shader);
+			material->SetTexture(0, texture);
+			meshRenderer->SetMaterial(material);
+		}
+		skybox->AddComponent(meshRenderer);
+		scene->AddGameObject(skybox);
+	}
+#pragma endregion
+
+#pragma region Object
+	/*{
+		shared_ptr<GameObject> obj = make_shared<GameObject>();
+		obj->SetName(L"OBJ");
+		obj->AddComponent(make_shared<Transform>());
+		obj->AddComponent(make_shared<SphereCollider>());
+		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
+		obj->GetTransform()->SetLocalPosition(Vec3(0, 0.f, 500.f));
+		obj->SetStatic(false);
+		shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
+		{
+			shared_ptr<Mesh> sphereMesh = GET_SINGLE(Resources)->LoadSphereMesh();
+			meshRenderer->SetMesh(sphereMesh);
+		}
+		{
+			shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(L"GameObject");
+			meshRenderer->SetMaterial(material->Clone());
+		}
+		dynamic_pointer_cast<SphereCollider>(obj->GetCollider())->SetRadius(0.5f);
+		dynamic_pointer_cast<SphereCollider>(obj->GetCollider())->SetCenter(Vec3(0.f, 0.f, 0.f));
+		obj->AddComponent(meshRenderer);
+		scene->AddGameObject(obj);
+	}*/
+#pragma endregion
+
+#pragma region Terrain
+	/*{
+		shared_ptr<GameObject> obj = make_shared<GameObject>();
+		obj->AddComponent(make_shared<Transform>());
+		obj->AddComponent(make_shared<Terrain>());
+		obj->AddComponent(make_shared<MeshRenderer>());
+
+		obj->GetTransform()->SetLocalScale(Vec3(50.f, 250.f, 50.f));
+		obj->GetTransform()->SetLocalPosition(Vec3(-100.f, -200.f, 300.f));
+		obj->SetStatic(true);
+		obj->GetTerrain()->Init(64, 64);
+		obj->SetCheckFrustum(false);
+
+		scene->AddGameObject(obj);
+	}*/
+#pragma endregion
+
 #pragma region UI_Test
 	for (int32 i = 0; i < 6; i++)
 	{
-		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+		shared_ptr<GameObject> obj = make_shared<GameObject>();
+		obj->SetName(L"UI " + std::to_wstring(i));
+		obj->GenerateHash();
 		obj->SetLayerIndex(GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI")); // UI
-		obj->SetName(L"RenderTarget UI " + std::to_wstring(i)); // UI
-		obj->AddComponent(std::make_shared<Transform>());
+		obj->AddComponent(make_shared<TransformComponent>());
 		obj->GetTransform()->SetLocalScale(Vec3(100.f, 100.f, 100.f));
-		obj->GetTransform()->SetLocalPosition(Vec3(-550.f + (i * 120), 300.f, 500.f));
-		std::shared_ptr<MeshRenderer> meshRenderer = std::make_shared<MeshRenderer>();
+		obj->GetTransform()->SetLocalPosition(Vec3(-350.f + (i * 120), 250.f, 500.f));
+		shared_ptr<MeshRenderer> meshRenderer = make_shared<MeshRenderer>();
 		{
-			std::shared_ptr<Mesh> mesh = GET_SINGLE(Resources)->LoadRectangleMesh();
+			shared_ptr<Mesh> mesh = GET_SINGLE(Resources)->LoadRectangleMesh();
 			meshRenderer->SetMesh(mesh);
 		}
 		{
-			std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+			shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
 
-			std::shared_ptr<Texture> texture;
+			shared_ptr<Texture> texture;
 			if (i < 3)
 				texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->GetRTTexture(i);
 			else if (i < 5)
@@ -179,7 +274,7 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 			else
 				texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::SHADOW)->GetRTTexture(0);
 
-			std::shared_ptr<Material> material = std::make_shared<Material>();
+			shared_ptr<Material> material = make_shared<Material>();
 			material->SetShader(shader);
 			material->SetTexture(0, texture);
 			meshRenderer->SetMaterial(material);
@@ -191,52 +286,41 @@ std::shared_ptr<Scene> SceneManager::LoadTestScene()
 
 #pragma region Directional Light
 	{
-		std::shared_ptr<GameObject> light = std::make_shared<GameObject>();
-		light->SetName(L"DirLight");
-		light->AddComponent(std::make_shared<Transform>());
-		light->GetTransform()->SetLocalPosition(Vec3(0, 300, 0));
-		light->AddComponent(std::make_shared<Light>());
-		light->GetLight()->SetLightDirection(Vec3(0.f, -1.f, 1.f));
+		shared_ptr<GameObject> light = make_shared<GameObject>();
+		light->SetName(L"DLight");
+		light->GenerateHash();
+		light->AddComponent(make_shared<TransformComponent>());
+		light->GetTransform()->SetLocalPosition(Vec3(0, 1000, 500));
+		light->AddComponent(make_shared<Light>());
+		light->GetLight()->SetLightDirection(Vec3(0, -1, 1.f));
 		light->GetLight()->SetLightType(LIGHT_TYPE::DIRECTIONAL_LIGHT);
 		light->GetLight()->SetDiffuse(Vec3(1.f, 1.f, 1.f));
-		light->GetLight()->SetAmbient(Vec3(0.5f, 0.5f, 0.5f));
-		light->GetLight()->SetSpecular(Vec3(0.3f, 0.3f, 0.3f));
+		light->GetLight()->SetAmbient(Vec3(0.1f, 0.1f, 0.1f));
+		light->GetLight()->SetSpecular(Vec3(0.1f, 0.1f, 0.1f));
 
 		scene->AddGameObject(light);
 	}
 #pragma endregion
 
+
 #pragma region FBX
 	{
-		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\Dragon.fbx", true);
+		//shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(L"..\\Resources\\FBX\\bg4004.fbx");
+		//meshData->Instantiate();
 
-		std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
+		/*vector<shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
 
 		for (auto& gameObject : gameObjects)
 		{
-			gameObject->SetName(L"Dragon");
+			gameObject->SetName(L"bg4004");
 			gameObject->SetCheckFrustum(false);
 			gameObject->GetTransform()->SetLocalPosition(Vec3(0.f, 0.f, 300.f));
 			gameObject->GetTransform()->SetLocalScale(Vec3(1.f, 1.f, 1.f));
 			scene->AddGameObject(gameObject);
-			gameObject->AddComponent(std::make_shared<TestDragon>());
-			std::shared_ptr<MeshCollider> mc = std::make_shared<MeshCollider>();
-			gameObject->AddComponent(mc);
-			mc->Init();
-		}
-		/*std::shared_ptr<GameObject> loadDragonTest = std::make_shared<GameObject>();
-		loadDragonTest->AddComponent(std::make_shared<MeshRenderer>());
-		loadDragonTest->AddComponent(std::make_shared<Transform>());
-		std::shared_ptr<Animator> ani = std::make_shared<Animator>();
-		ani->SetBones(loadDragonTest->GetMeshRenderer()->GetMesh()->GetBones());
-		ani->SetAnimClip(loadDragonTest->GetMeshRenderer()->GetMesh()->GetAnimClip());
-		loadDragonTest->AddComponent(ani);
-		GET_SINGLE(JsonManager)->Load("../Output/Dragon", loadDragonTest);
-		loadDragonTest->SetName(L"Dragon");
-		scene->AddGameObject(loadDragonTest);*/
+		}*/
 	}
 #pragma endregion
 
-	// GET_SINGLE(JsonManager)->LoadScene("../Output/TestScene", scene);
+	GET_SINGLE(JsonManager)->SaveScene("../Output/MultiMeshTest", scene);
 	return scene;
 }

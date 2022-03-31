@@ -22,7 +22,7 @@ enum
 };
 
 class GameObject;
-class Transform;
+class TransformComponent;
 class MeshRenderer;
 class Animator;
 
@@ -44,7 +44,7 @@ public:
 	bool IsValid() { return _gameObject.expired() == false; }
 
 	std::shared_ptr<GameObject> GetGameObject();
-	std::shared_ptr<Transform> GetTransform();
+	std::shared_ptr<TransformComponent> GetTransform();
 	std::shared_ptr<MeshRenderer> GetMeshRenderer();
 	std::shared_ptr<Animator> GetAnimator();
 

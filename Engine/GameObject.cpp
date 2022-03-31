@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "GameObject.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
 #include "Light.h"
@@ -28,10 +28,12 @@ void GameObject::Awake()
 			component->Awake();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Awake();
 	}
+#endif
 }
 
 void GameObject::Start()
@@ -42,10 +44,12 @@ void GameObject::Start()
 			component->Start();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
 	}
+#endif
 }
 
 void GameObject::Update()
@@ -56,10 +60,12 @@ void GameObject::Update()
 			component->Update();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Update();
 	}
+#endif
 }
 
 void GameObject::LateUpdate()
@@ -70,10 +76,12 @@ void GameObject::LateUpdate()
 			component->LateUpdate();
 	}
 
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
 	}
+#endif
 }
 
 void GameObject::FinalUpdate()
@@ -85,7 +93,7 @@ void GameObject::FinalUpdate()
 	}
 }
 
-std::shared_ptr<Transform> GameObject::GetTransform()
+std::shared_ptr<TransformComponent> GameObject::GetTransform()
 {
 	return _transform;
 }
@@ -134,7 +142,7 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 	{
 		_components[index] = component;
 		if (index == static_cast<uint8>(COMPONENT_TYPE::TRANSFORM))
-			_transform = std::static_pointer_cast<Transform>(component);
+			_transform = std::static_pointer_cast<TransformComponent>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER))
 			_meshRenderer = std::static_pointer_cast<MeshRenderer>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::CAMERA))

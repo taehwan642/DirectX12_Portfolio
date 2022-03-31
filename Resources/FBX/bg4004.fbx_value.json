@@ -1,0 +1,121 @@
+{
+    "tag": "\u0000",
+    "meshRenderValue": 3,
+    "meshValue": [
+        {
+            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+        },
+        {
+            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+        },
+        {
+            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "b36eefd\u0000"
+                    },
+                    {
+                        "tag": "4c09e9ba\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "frame_Material03\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "a83d54\u0000"
+                    },
+                    {
+                        "tag": "4897c327\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_metalpanel02_AAAx_tga\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "42e720e5\u0000"
+                    },
+                    {
+                        "tag": "ad8de96\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_wallpanel03_AAAx_tga\u0000"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        }
+    ]
+}

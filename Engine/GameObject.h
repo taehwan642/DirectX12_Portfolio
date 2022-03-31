@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "Object.h"
 
-class Transform;
+class TransformComponent;
 class MeshRenderer;
 class Camera;
 class Light;
@@ -25,7 +25,7 @@ public:
 	void LateUpdate();
 	void FinalUpdate();
 
-	std::shared_ptr<Transform> GetTransform();
+	std::shared_ptr<TransformComponent> GetTransform();
 	std::shared_ptr<MeshRenderer> GetMeshRenderer();
 	std::shared_ptr<Camera> GetCamera();
 	std::shared_ptr<Light> GetLight();
@@ -45,6 +45,8 @@ public:
 	void SetStatic(bool flag) { _static = flag; }
 	bool IsStatic() { return _static; }
 
+	size_t GetHash() { return _hash; }
+
 	template<typename T>
 	std::shared_ptr<T> GetComponent()
 	{
@@ -55,12 +57,19 @@ public:
 				return std::dynamic_pointer_cast<T>(iter);
 			}
 		}
+		return nullptr;
 	}
 
+	void GenerateHash()
+	{
+		// Hash°ª ³Ö±â
+		_hash = std::hash<std::wstring>()(_name);
+	}
 private:
 	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
 	friend class RTTRMeshRendererValue;
+	friend class JsonManager;
 
 	std::array<std::shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;
@@ -69,7 +78,9 @@ private:
 	uint8 _layerIndex = 0;
 	bool _static = true;
 
-	std::shared_ptr<Transform> _transform;
+	size_t _hash = 0;
+
+	std::shared_ptr<TransformComponent> _transform;
 	std::shared_ptr<MeshRenderer> _meshRenderer;
 	std::shared_ptr<Camera> _camera;
 	std::shared_ptr<Light> _light;
@@ -77,6 +88,8 @@ private:
 	std::shared_ptr<Terrain> _terrain;
 	std::shared_ptr<BaseCollider> _baseCollider;
 	std::shared_ptr<Animator> _animator;
+
+	
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

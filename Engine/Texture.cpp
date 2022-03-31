@@ -14,15 +14,24 @@ Texture::~Texture()
 
 void Texture::Load(const std::wstring& path)
 {
+	std::wstring finalPath = path;
+
+	
+
 	// 파일 확장자 얻기
-	std::wstring ext = std::filesystem::path(path).extension();
+	std::wstring ext = std::filesystem::path(finalPath).extension();
+
+	if (ext.empty())
+	{
+		finalPath += L".png";
+	}
 
 	if (ext == L".dds" || ext == L".DDS")
-		::LoadFromDDSFile(path.c_str(), DDS_FLAGS_NONE, nullptr, _image);
+		::LoadFromDDSFile(finalPath.c_str(), DDS_FLAGS_NONE, nullptr, _image);
 	else if (ext == L".tga" || ext == L".TGA")
-		::LoadFromTGAFile(path.c_str(), nullptr, _image);
+		::LoadFromTGAFile(finalPath.c_str(), nullptr, _image);
 	else // png, jpg, jpeg, bmp
-		::LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, nullptr, _image);
+		::LoadFromWICFile(finalPath.c_str(), WIC_FLAGS_NONE, nullptr, _image);
 
 	HRESULT hr = ::CreateTexture(DEVICE.Get(), _image.GetMetadata(), &_tex2D);
 	if (FAILED(hr))

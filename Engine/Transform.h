@@ -1,35 +1,58 @@
 #pragma once
 #include "Component.h"
 
-class Transform : public Component
+class Transform
 {
 public:
 	Transform();
-	virtual ~Transform();
-
-	virtual void FinalUpdate() override;
-	void PushData();
 
 public:
-	// Parent 기준
-	const Vec3& GetLocalPosition() { return _localPosition; }
-	const Vec3& GetLocalRotation() { return _localRotation; }
-	const Vec3& GetLocalScale() { return _localScale; }
+	const Vec3& GetPosition() { return _position; }
+	const Vec3& GetRotation() { return _rotation; }
+	const Vec3& GetScale() { return _scale; }
 
 	// TEMP
-	float GetBoundingSphereRadius() { return max(max(_localScale.x, _localScale.y), _localScale.z); }
+	float GetBoundingSphereRadius() { return max(max(_scale.x, _scale.y), _scale.z); }
 
-	const Matrix& GetLocalToWorldMatrix() { return _matWorld; }
-	Vec3 GetWorldPosition() { return _matWorld.Translation(); }
-	Vec3 GetWorldScale() { return Vec3(_matWorld.Right().Length(), _matWorld.Up().Length(), _matWorld.Backward().Length()); }
+	void UpdateMatrix()
+	{
+		Matrix matRotation = Matrix::CreateRotationX(_rotation.x);
+		matRotation *= Matrix::CreateRotationY(_rotation.y);
+		matRotation *= Matrix::CreateRotationZ(_rotation.z);
 
-	Vec3 GetRight() { return _matWorld.Right(); }
-	Vec3 GetUp() { return _matWorld.Up(); }
-	Vec3 GetLook() { return _matWorld.Backward(); }
+		_matrix._11 = matRotation.Right().x * _scale.x;
+		_matrix._12 = matRotation.Right().y * _scale.x;
+		_matrix._13 = matRotation.Right().z * _scale.x;
+		_matrix._14 = 0;
+		_matrix._21 = matRotation.Up().x * _scale.y;
+		_matrix._22 = matRotation.Up().y * _scale.y;
+		_matrix._23 = matRotation.Up().z * _scale.y;
+		_matrix._24 = 0;
+		_matrix._31 = matRotation.Backward().x * _scale.z;
+		_matrix._32 = matRotation.Backward().y * _scale.z;
+		_matrix._33 = matRotation.Backward().z * _scale.z;
+		_matrix._34 = 0;
+		_matrix._41 = _position.x;
+		_matrix._42 = _position.y;
+		_matrix._43 = _position.z;
+		_matrix._44 = 1;
 
-	void SetLocalPosition(const Vec3& position) { _localPosition = position; }
-	void SetLocalRotation(const Vec3& rotation) { _localRotation = rotation; }
-	void SetLocalScale(const Vec3& scale) { _localScale = scale; }
+		//_matrix = matScale * matRotation * matTranslation;
+	}
+	const Matrix& GetMatrix() 
+	{ 
+		UpdateMatrix();
+		return _matrix;
+	}
+	void SetMatrix(const Matrix& m) { _matrix = m; }
+
+	Vec3 GetRight() { UpdateMatrix(); return _matrix.Right(); }
+	Vec3 GetUp() { UpdateMatrix(); return _matrix.Up(); }
+	Vec3 GetLook() { UpdateMatrix(); return _matrix.Backward(); }
+
+	void SetPosition(const Vec3& position) { _position = position; }
+	void SetRotation(const Vec3& rotation) { _rotation = rotation; }
+	void SetScale(const Vec3& scale) { _scale = scale; }
 
 	void LookAt(const Vec3& dir);
 
@@ -37,19 +60,32 @@ public:
 	static Vec3 DecomposeRotationMatrix(const Matrix& rotation);
 
 public:
-	void SetParent(std::shared_ptr<Transform> parent) { _parent = parent; }
-	std::weak_ptr<Transform> GetParent() { return _parent; }
+	void AddYawRotation(float degree)
+	{
+		_rotation.y += degree;
+	}
+	void AddRollRotation(float degree)
+	{
+		_rotation.z += degree;
+	}
+	void AddPitchRotation(float degree)
+	{
+		_rotation.x += degree;
+	}
+
+	std::shared_ptr<Transform> Inverse();
+	std::shared_ptr<Transform> LocalToWorld(std::shared_ptr<Transform> parentWorldTransform);
+	std::shared_ptr<Transform> WorldToLocal(std::shared_ptr<Transform> parentWorldTransform);
 
 private:
+	friend class ImGuiManager;
+
 	// Parent 기준
-	Vec3 _localPosition = {};
-	Vec3 _localRotation = {};
-	Vec3 _localScale = { 1.f, 1.f, 1.f };
+	Vec3 _position = {};
+	Vec3 _rotation = {};
+	Vec3 _scale = { 1.f, 1.f, 1.f };
 
-	Matrix _matLocal= {};
-	Matrix _matWorld = {};
-
-	std::weak_ptr<Transform> _parent;
+	Matrix _matrix = {};
 
 	RTTR_REGISTRATION_FRIEND 
 };

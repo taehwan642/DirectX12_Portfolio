@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CubeCollider.h"
 #include "GameObject.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Shader.h"
 #include "Material.h"
 #include "Resources.h"
@@ -24,7 +24,7 @@ CubeCollider::CubeCollider() : BaseCollider(ColliderType::Cube)
 	_colliderMeshGameObject = std::make_shared<GameObject>();
 	_colliderMeshGameObject->SetName(L"CubeCollider " + std::to_wstring(_num));
 	_num++;
-	_colliderMeshGameObject->AddComponent(std::make_shared<Transform>());
+	_colliderMeshGameObject->AddComponent(std::make_shared<TransformComponent>());
 	_colliderMeshGameObject->AddComponent(meshRenderer);
 }
 

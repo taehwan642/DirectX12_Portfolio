@@ -5,6 +5,7 @@
 
 // 각종 include
 #include <windows.h>
+#include <shellapi.h>
 #include <tchar.h>
 #include <memory>
 #include <string>
@@ -13,6 +14,7 @@
 #include <list>
 #include <map>
 #include <queue>
+#include <fstream>
 
 #include <filesystem>
 
@@ -190,6 +192,35 @@ public:								\
 
 #define MONOBEHAVIOUR(type)	type() { _className = s2ws(typeid(type).name()); }
 
+#define RTTRMONOLOAD(type)																\
+if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\
+{																						\
+	monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] = true;\
+}																						\
+
+// 함수 객체 ClassNameToString
+template<typename T>
+struct ClassNameToString
+{
+	std::string operator()()
+	{
+		std::string result;
+		std::string name = typeid(T).name();
+		result = name.substr(6);
+		return result;
+	}
+};
+
+#define RTTRMONOREGISTER(type) \
+rttr::registration::class_<type>( ClassNameToString< type >()() ) \
+	.constructor<>() \
+
+#define IMGUIADDMONOBEHAVIOUR(type)\
+if (_currentGameObject->GetComponent<type>() == nullptr && ImGui::Button(ClassNameToString< type >()().c_str()))\
+{\
+	_currentGameObject->AddComponent(std::make_shared<type>());\
+}\
+
 struct TransformParams
 {
 	Matrix matWorld;
@@ -221,3 +252,5 @@ struct array_deleter
 		delete[] p;
 	}
 };
+
+// #define TOOL

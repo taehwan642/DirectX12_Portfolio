@@ -735,4 +735,67 @@ void Resources::CreateDefaultMaterial()
 		material->SetInt(0, 0);
 		Add<Material>(L"CubeMaterial", material);
 	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Deferred");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Terrain", L"..\\Resources\\Texture\\Terrain\\terrain.png");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"Plane", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->GetRTTexture(0);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"PositionRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->GetRTTexture(1);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"NormalRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::G_BUFFER)->GetRTTexture(2);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"ColorRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::LIGHTING)->GetRTTexture(0);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"DiffuseRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::LIGHTING)->GetRTTexture(1);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"SpecularRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Texture");
+		std::shared_ptr<Texture> texture = GEngine->GetRTGroup(RENDER_TARGET_GROUP_TYPE::SHADOW)->GetRTTexture(0);
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"ShadowRT", material);
+	}
 }

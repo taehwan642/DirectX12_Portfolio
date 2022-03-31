@@ -3,7 +3,6 @@
 #include "RttrRegistration.h"
 #include "to_json.h"
 #include "from_json.h"
-#include <fstream>
 #include "Resources.h"
 #include "FBXLoader.h"
 #include "StructuredBuffer.h"
@@ -38,6 +37,14 @@ void JsonManager::SaveMeshData(const std::string& path, std::shared_ptr<MeshData
 	std::string jsonString2 = io::to_json(value);
 	std::ofstream ost2(path + "_value.json");
 	ost2 << jsonString2;
+}
+
+void JsonManager::SavePrefab(const std::string& path, std::shared_ptr<GameObject> object)
+{
+	// GameObject에 있는 child들도 저장. 재귀식으로.
+	std::string jsonString = io::to_json(*object);
+	std::ofstream ost(path + ".json");
+	ost << jsonString;
 }
 
 bool JsonManager::Load(const std::string& path, std::shared_ptr<GameObject> object)
@@ -90,6 +97,7 @@ bool JsonManager::Load(const std::string& path, std::shared_ptr<GameObject> obje
 
 bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
+	hashValues.clear();
 	std::string valueString;
 
 	std::ifstream valueFile;
@@ -111,12 +119,18 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 	RTTRSceneValue sceneValue;
 	io::from_json(valueString, sceneValue);
 
+	for (int i = 0; i < sceneValue.resources.size(); ++i)
+	{
+		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(sceneValue.resources[i].c_str()).c_str());
+		meshData->Instantiate();
+	}
+
 	for (int i = 0; i < sceneValue.gameObjects.size(); ++i)
 	{
 		RTTRGameObjectValue value = sceneValue.gameObjects[i];
 		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
 
-		LoadGameObject(value, object);
+		LoadGameObject(value, object, i);
 
 		scene->AddGameObject(object);
 	}
@@ -160,6 +174,29 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 		return false;
 
 	io::from_json(dataString, scene);
+
+	for (int i = 0; i < hashValues.size(); ++i)
+	{
+		// first = 자기 자신의 hash
+		// 자기 자신의 hash로 자기 자신 찾기
+		auto childIterator = std::find_if(scene->_gameObjects.begin(), scene->_gameObjects.end(), 
+			[&](std::shared_ptr<GameObject> obj) 
+			{
+				return (obj->GetHash() == hashValues[i].first);
+			});
+
+		// second = 부모의 hash
+		// 부모의 hash로 부모 찾기
+		auto parentIterator = std::find_if(scene->_gameObjects.begin(), scene->_gameObjects.end(),
+			[&](std::shared_ptr<GameObject> obj)
+			{
+				return (obj->GetHash() == hashValues[i].second);
+			});
+
+		assert(childIterator != scene->_gameObjects.end() && parentIterator != scene->_gameObjects.end());
+
+		(*childIterator)->GetTransform()->SetParent((*parentIterator)->GetTransform());
+	}
 
 	return true;
 }
@@ -242,34 +279,71 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 	return true;
 }
 
-void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object)
+void JsonManager::LoadPrefab(const std::string& path, std::shared_ptr<GameObject> object)
+{
+}
+
+void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object, int index)
 {
 	std::shared_ptr<MeshData> meshData = nullptr;
 
 	object->SetName(s2ws(value.tag).c_str());
 
+	object->_hash = value.hashValue;
+
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TRANSFORM)] == true)
-		object->AddComponent(std::make_shared<Transform>());
+	{
+		object->AddComponent(std::make_shared<TransformComponent>());
+		if (value.transformValue.parentHashValue != 0)
+		{
+			Pair pair;
+			pair.first = value.hashValue;
+			pair.second = value.transformValue.parentHashValue;
+			hashValues.push_back(pair);
+		}
+	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::MESH_RENDERER)] == true)
 	{
-		if (value.meshRendererValue.meshValue.tag.find(".fbx") != std::string::npos) {
-			// fbx 파일 존재
-			// MeshData 불러오기.
-			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
-			object->AddComponent(mr); 
+		std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
+		std::wstring meshTag = s2ws(value.meshRendererValue.meshValue.tag);
+		std::shared_ptr<Mesh> mesh;
 
-			meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(value.meshRendererValue.meshValue.tag), true);
+		bool isLoaded = false;
 
-			mr->SetMesh(meshData->_meshRenders[0].mesh);
-			for (uint32 i = 0; i < meshData->_meshRenders[0].materials.size(); i++)
-				mr->SetMaterial(meshData->_meshRenders[0].materials[i], i);
-
+		if (meshTag == L"Point")
+		{
+			mesh = GET_SINGLE(Resources)->LoadPointMesh();
 		}
+		else if (meshTag == L"Rectangle")
+		{
+			mesh = GET_SINGLE(Resources)->LoadRectangleMesh();
+		}
+		else if (meshTag == L"Cube")
+		{
+			mesh = GET_SINGLE(Resources)->LoadCubeMesh();
+		}
+		else if (meshTag == L"Sphere")
+		{
+			mesh = GET_SINGLE(Resources)->LoadSphereMesh();
+		}
+		/*else if (meshTag == L"Terrain")
+		{
+			mesh = GET_SINGLE(Resources)->LoadTerrainMesh();
+		}*/
 		else
 		{
-			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
-			object->AddComponent(mr);
+			// mesh = GET_SINGLE(Resources)->Get<Mesh>(meshTag);
+			std::shared_ptr<GameObject> obj = GET_SINGLE(Resources)->Get<GameObject>(meshTag);
+			if (obj != nullptr)
+			{
+				object->AddComponent(obj->_meshRenderer->Clone());
+				isLoaded = true;
+			}
+		}
+
+		if (isLoaded != true)
+		{
 			for (int i = 0; i < value.meshRendererValue.meshRendererMaterialNumValue; ++i)
 			{
 				std::shared_ptr<Material> material = GET_SINGLE(Resources)->Get<Material>(s2ws(value.meshRendererValue.materialValues[i].tag));
@@ -297,34 +371,10 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 
 					material->SetShader(shader);
 				}
-				object->GetMeshRenderer()->SetMaterial(material, i);
+				mr->SetMesh(mesh);
+				mr->SetMaterial(material, i);
+				object->AddComponent(mr);
 			}
-
-			std::wstring meshTag = s2ws(value.meshRendererValue.meshValue.tag);
-			std::shared_ptr<Mesh> mesh;
-
-			if (meshTag == L"Point")
-			{
-				mesh = GET_SINGLE(Resources)->LoadPointMesh();
-			}
-			else if (meshTag == L"Rectangle")
-			{
-				mesh = GET_SINGLE(Resources)->LoadRectangleMesh();
-			}
-			else if (meshTag == L"Cube")
-			{
-				mesh = GET_SINGLE(Resources)->LoadCubeMesh();
-			}
-			else if (meshTag == L"Sphere")
-			{
-				mesh = GET_SINGLE(Resources)->LoadSphereMesh();
-			}
-			/*else if (meshTag == L"Terrain")
-			{
-				mesh = GET_SINGLE(Resources)->LoadTerrainMesh();
-			}*/
-
-			mr->SetMesh(mesh);
 		}
 	}
 

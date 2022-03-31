@@ -126,6 +126,7 @@ private:
 
 private:
 	friend class Mesh;
+	friend class MeshData;
 
 	bool _jsonLoad = false;
 

@@ -34,6 +34,14 @@ public:
 
 	uint64 GetInstanceID();
 
+	std::shared_ptr<MeshRenderer> Clone()
+	{
+		std::shared_ptr<MeshRenderer> result = std::make_shared<MeshRenderer>();
+		result->_mesh = _mesh;
+		result->_materials = _materials;
+		return result;
+	}
+
 private:
 	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;

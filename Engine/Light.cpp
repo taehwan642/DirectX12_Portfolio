@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Light.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 #include "Engine.h"
 #include "Resources.h"
 #include "Camera.h"
@@ -11,7 +11,7 @@
 Light::Light() : Component(COMPONENT_TYPE::LIGHT)
 {
 	_shadowCamera = std::make_shared<GameObject>();
-	_shadowCamera->AddComponent(std::make_shared<Transform>());
+	_shadowCamera->AddComponent(std::make_shared<TransformComponent>());
 	_shadowCamera->AddComponent(std::make_shared<Camera>());
 	uint8 layerIndex = GET_SINGLE(SceneManager)->LayerNameToIndex(L"UI");
 	_shadowCamera->GetCamera()->SetCullingMaskLayerOnOff(layerIndex, true); // UI´Â ¾È ÂïÀ½
@@ -70,7 +70,7 @@ void Light::SetLightDirection(Vec3 direction)
 
 	_lightInfo.direction = direction;
 
-	GetTransform()->LookAt(direction);
+	GetTransform()->GetWorldTransform()->LookAt(direction);
 }
 
 void Light::SetLightType(LIGHT_TYPE type)
