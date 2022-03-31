@@ -35,6 +35,7 @@ public:
 	const std::vector<std::shared_ptr<GameObject>>& GetGameObjects() { return _gameObjects; }
 
 private:
+	friend class SceneManager;
 	friend class RTTRSceneValue;
 	friend class JsonManager;
 

@@ -1,0 +1,126 @@
+{
+    "gameObjects": [
+        {
+            "tag": "a\u0000",
+            "hashValue": 620337896427418084,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "b\u0000",
+            "hashValue": 623207621776481119,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "c\u0000",
+            "hashValue": 622251046660126774,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        }
+    ],
+    "cameraObjects": [],
+    "lightObjects": []
+}

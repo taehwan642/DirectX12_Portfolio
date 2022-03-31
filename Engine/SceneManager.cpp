@@ -53,7 +53,6 @@ void SceneManager::Update()
 	_activeScene->FinalUpdate();
 }
 
-// TEMP
 void SceneManager::Render()
 {
 	if (_activeScene)
@@ -62,15 +61,17 @@ void SceneManager::Render()
 
 void SceneManager::LoadScene(const std::wstring& sceneName)
 {
-	//if (_activeScene)
-	//{
-	//	// TODO : 기존 Scene 정리
-	//	// TODO : 파일에서 Scene 정보 로드
-	//}
-	//else
-	//{
-	//	_activeScene = std::make_shared<Scene>();
-	//}
+	if (_activeScene && !_activeScene->_gameObjects.empty())
+	{
+		// 기존에 있던 데이터 삭제
+		// Resource들도 삭제해야하나? 일단 삭제하자.
+		_activeScene->_gameObjects.clear();
+		_activeScene->_cameras.clear();
+		_activeScene->_lights.clear();
+
+		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MESH_DATA)].clear();
+		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::GAMEOBJECT)].clear();
+	}
 
 	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
 
