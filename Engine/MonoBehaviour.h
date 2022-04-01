@@ -10,7 +10,6 @@ enum class MonoBehaviourType
 	END
 };
 
-class ImGuiManager;
 class MonoBehaviour : public Component
 {
 public:
@@ -18,7 +17,6 @@ public:
 	virtual ~MonoBehaviour();
 
 protected:
-	friend class ImGuiManager;
 	std::wstring _className = L"";
 
 private:

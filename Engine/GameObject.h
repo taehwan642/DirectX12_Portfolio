@@ -11,7 +11,6 @@ class ParticleSystem;
 class Terrain;
 class BaseCollider;
 class Animator;
-class ImGuiManager;
 
 class GameObject : public Object, public std::enable_shared_from_this<GameObject>
 {
@@ -66,7 +65,6 @@ public:
 		_hash = std::hash<std::wstring>()(_name);
 	}
 private:
-	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
 	friend class RTTRMeshRendererValue;
 	friend class JsonManager;

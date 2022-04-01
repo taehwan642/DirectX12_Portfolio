@@ -10,7 +10,6 @@
 #include "TableDescriptorHeap.h"
 #include "Texture.h"
 #include "RenderTargetGroup.h"
-#include "ImGuiManager.h"
 
 class Engine
 {
@@ -30,8 +29,6 @@ public:
 
 	std::shared_ptr<ConstantBuffer> GetConstantBuffer(CONSTANT_BUFFER_TYPE type) { return _constantBuffers[static_cast<uint8>(type)]; }
 	std::shared_ptr<RenderTargetGroup> GetRTGroup(RENDER_TARGET_GROUP_TYPE type) { return _rtGroups[static_cast<uint8>(type)]; }
-
-	std::shared_ptr<ImGuiManager> GetImGuiManager() { return _imguiManager; }
 
 public:
 	void Render();
@@ -61,7 +58,5 @@ private:
 
 	std::vector<std::shared_ptr<ConstantBuffer>> _constantBuffers;
 	std::array<std::shared_ptr<RenderTargetGroup>, RENDER_TARGET_GROUP_COUNT> _rtGroups;
-
-	std::shared_ptr<ImGuiManager> _imguiManager;
 };
 

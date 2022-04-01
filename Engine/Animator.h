@@ -25,7 +25,6 @@ public:
 	virtual void FinalUpdate() override;
 
 private:
-	friend class ImGuiManager;
 
 	const std::vector<BoneInfo>* _bones;
 	const std::vector<AnimClipInfo>* _animClips;

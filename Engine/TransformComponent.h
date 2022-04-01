@@ -68,7 +68,6 @@ public:
 
 
 private: // 계층 구조를 위한 변수
-	friend class ImGuiManager;
 
 	std::shared_ptr<Transform> _localTransform;
 	std::shared_ptr<Transform> _worldTransform;

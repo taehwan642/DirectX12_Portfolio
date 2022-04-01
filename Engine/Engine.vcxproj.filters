@@ -25,9 +25,6 @@
     <Filter Include="Object\Component\Collider">
       <UniqueIdentifier>{054eccde-e1ba-451d-925b-5547022cbf4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils\imgui">
-      <UniqueIdentifier>{b046bffd-8731-4997-9c4b-7c5cb2ce419f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Script">
       <UniqueIdentifier>{1cfe4b64-4ca1-4958-b16f-73f8ae1985c3}</UniqueIdentifier>
     </Filter>
@@ -158,30 +155,6 @@
     </ClCompile>
     <ClCompile Include="TestDragon.cpp">
       <Filter>Script</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_demo.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_draw.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_impl_dx12.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_impl_win32.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_tables.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Library\Include\Imgui\imgui_widgets.cpp">
-      <Filter>Utils\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGuiManager.cpp">
-      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="RaycastManager.cpp">
       <Filter>Manager</Filter>
@@ -337,33 +310,6 @@
     </ClInclude>
     <ClInclude Include="TestDragon.h">
       <Filter>Script</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imgui.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imgui_impl_dx12.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imgui_impl_win32.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imgui_internal.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imstb_rectpack.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imstb_textedit.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\Imgui\imstb_truetype.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Library\Include\imgui\imconfig.h">
-      <Filter>Utils\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="ImGuiManager.h">
-      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="RaycastManager.h">
       <Filter>Manager</Filter>

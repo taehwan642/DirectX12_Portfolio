@@ -3,7 +3,6 @@
 
 class Mesh;
 class Material;
-class ImGuiManager;
 
 // [32][32]
 union InstanceID
@@ -43,7 +42,6 @@ public:
 	}
 
 private:
-	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
 	friend class RTTRMeshRendererValue;
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 
-class ImGuiManager;
 class Mesh;
 class Material;
 class GameObject;
@@ -25,7 +24,6 @@ public:
 	bool IsDrawMesh() { return _draw; }
 
 protected:
-	friend class ImGuiManager;
 	friend class RTTRColliderValue;
 	
 	std::shared_ptr<Mesh> _mesh;

@@ -4,7 +4,6 @@
 class Material;
 class Mesh;
 class StructuredBuffer;
-class ImGuiManager;
 
 struct ParticleInfo
 {
@@ -37,7 +36,6 @@ public:
 	virtual void Save(const std::wstring& path) override { }
 
 private:
-	friend class ImGuiManager;
 
 	std::shared_ptr<StructuredBuffer>	_particleBuffer;
 	std::shared_ptr<StructuredBuffer>	_computeSharedBuffer;

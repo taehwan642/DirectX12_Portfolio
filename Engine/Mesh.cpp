@@ -5,7 +5,6 @@
 #include "InstancingBuffer.h"
 #include "FBXLoader.h"
 #include "StructuredBuffer.h"
-#include "ImGuiManager.h"
 #include "JsonManager.h"
 
 Mesh::Mesh() : Object(OBJECT_TYPE::MESH)
@@ -31,7 +30,6 @@ void Mesh::Render(uint32 instanceCount, uint32 idx)
 
 	GEngine->GetGraphicsDescHeap()->CommitTable();
 
-	int call = ++IMGUIMANAGER->_drawCall;
 	GRAPHICS_CMD_LIST->DrawIndexedInstanced(_vecIndexInfo[idx].count, instanceCount, 0, 0, 0);
 }
 
@@ -43,7 +41,6 @@ void Mesh::Render(std::shared_ptr<InstancingBuffer>& buffer, uint32 idx)
 
 	GEngine->GetGraphicsDescHeap()->CommitTable();
 
-	int call = ++IMGUIMANAGER->_drawCall;
 	GRAPHICS_CMD_LIST->DrawIndexedInstanced(_vecIndexInfo[idx].count, buffer->GetCount(), 0, 0, 0);
 }
 

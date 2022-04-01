@@ -1,8 +1,6 @@
 #pragma once
 #include "BaseCollider.h"
 
-class ImGuiManager;
-
 class SphereCollider : public BaseCollider
 {
 public:
@@ -19,7 +17,6 @@ public:
 	void SetCenter(Vec3 center) { _center = center; }
 
 private:
-	friend class ImGuiManager;
 	
 	// Local ±‚¡ÿ
 	float		_radius = 1.f;

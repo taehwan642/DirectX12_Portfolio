@@ -30,7 +30,6 @@ private:
 	std::shared_ptr<Scene> LoadTestScene();
 
 private:
-	friend class ImGuiManager;
 	friend class MeshData;
 	friend class RTTRSceneValue;
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 
-class ImGuiManager;
 class Terrain : public Component
 {
 public:
@@ -13,7 +12,6 @@ public:
 	virtual void FinalUpdate() override;
 
 private:
-	friend class ImGuiManager;
 	friend class RTTRTerrainValue;
 
 	int32 _sizeX = 15;

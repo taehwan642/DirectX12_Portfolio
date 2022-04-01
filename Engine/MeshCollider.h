@@ -16,7 +16,6 @@ public:
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
 private:
-	friend class ImGuiManager;
 
 	std::shared_ptr<Vertex[]> _vertices;
 	std::shared_ptr<uint32[]> _indices;

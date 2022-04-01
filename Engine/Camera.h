@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "Frustum.h"
 
-class ImGuiManager;
 
 enum class PROJECTION_TYPE
 {
@@ -51,7 +50,6 @@ public:
 	Matrix& GetProjectionMatrix() { return _matProjection; }
 
 private:
-	friend class ImGuiManager;
 
 	PROJECTION_TYPE _type = PROJECTION_TYPE::PERSPECTIVE;
 

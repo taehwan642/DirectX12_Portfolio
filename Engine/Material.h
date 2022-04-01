@@ -3,7 +3,6 @@
 
 class Shader;
 class Texture;
-class ImGuiManager;
 class InstancingManager;
 
 enum
@@ -68,7 +67,6 @@ public:
 	std::shared_ptr<Material> Clone();
 
 private:
-	friend class ImGuiManager;
 	friend class InstancingManager;
 	friend class RTTRMaterialValue;
 

@@ -4,7 +4,6 @@
 
 class Material;
 class StructuredBuffer;
-class ImGuiManager;
 
 struct IndexBufferInfo
 {
@@ -67,7 +66,6 @@ public:
 	std::shared_ptr<StructuredBuffer>	GetBoneOffsetBuffer() { return  _offsetBuffer; }
 
 private:
-	friend class ImGuiManager;
 	friend class MeshData;
 	friend class Resources;
 	friend class RTTRMeshValue;

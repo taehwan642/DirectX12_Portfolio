@@ -78,7 +78,6 @@ public:
 	std::shared_ptr<Transform> WorldToLocal(std::shared_ptr<Transform> parentWorldTransform);
 
 private:
-	friend class ImGuiManager;
 
 	// Parent ±‚¡ÿ
 	Vec3 _position = {};

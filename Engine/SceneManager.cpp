@@ -18,7 +18,6 @@
 #include "MeshData.h"
 #include "TestDragon.h"
 
-#include "ImGuiManager.h"
 #include "CubeCollider.h"
 #include "TerrainScript.h"
 
@@ -53,6 +52,8 @@ void SceneManager::Init()
 		}
 	}
 	valueFile.close();
+
+	SetScene(0);
 }
 
 void SceneManager::Update()

@@ -14,7 +14,6 @@ public:
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
 private:
-	friend class ImGuiManager;
 
 	BoundingBox _boundingBox;
 

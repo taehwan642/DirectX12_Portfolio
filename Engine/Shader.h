@@ -1,8 +1,6 @@
 #pragma once
 #include "Object.h"
 
-class ImGuiManager;
-
 enum class SHADER_TYPE : uint8
 {
 	DEFERRED,
@@ -84,7 +82,6 @@ private:
 	void CreatePixelShader(const std::wstring& path, const std::string& name, const std::string& version);
 
 private:
-	friend class ImGuiManager;
 	friend class Resources;
 	friend class RTTRShaderValue;
 
