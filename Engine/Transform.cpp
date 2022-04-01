@@ -90,7 +90,7 @@ std::shared_ptr<Transform> Transform::Inverse()
 	if (_scale.y != 0.f) reciprocalScale.y = 1.f / _scale.y;
 	if (_scale.z != 0.f) reciprocalScale.z = 1.f / _scale.z;
 
-	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	std::shared_ptr<Transform> result = Transform::Create();
 	result->_rotation = -_rotation;
 	result->_scale = reciprocalScale;
 
@@ -118,7 +118,7 @@ std::shared_ptr<Transform> Transform::Inverse()
 std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> parentWorldTransform)
 {
 	// 현재 트랜스폼 정보가 로컬인 경우
-	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	std::shared_ptr<Transform> result = Transform::Create();
 	result->_rotation = parentWorldTransform->_rotation + _rotation;
 	result->_scale = parentWorldTransform->_scale * _scale;
 
@@ -147,7 +147,7 @@ std::shared_ptr<Transform> Transform::WorldToLocal(std::shared_ptr<Transform> pa
 	// 현재 트랜스폼 정보가 월드인 경우
 	std::shared_ptr<Transform> invParent = parentWorldTransform->Inverse();
 
-	std::shared_ptr<Transform> result = std::make_shared<Transform>();
+	std::shared_ptr<Transform> result = Transform::Create();
 	result->_scale = invParent->GetScale() * _scale;
 	result->_rotation = invParent->GetRotation() + _rotation;
 

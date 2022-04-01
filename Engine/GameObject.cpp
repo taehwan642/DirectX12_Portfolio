@@ -33,6 +33,14 @@ void GameObject::Awake()
 	{
 		script->Awake();
 	}
+#else
+	if (GetName() == L"ToolCamera")
+	{
+		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		{
+			script->Awake();
+		}
+	}
 #endif
 }
 
@@ -48,6 +56,14 @@ void GameObject::Start()
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
+	}
+#else
+	if (GetName() == L"ToolCamera")
+	{
+		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		{
+			script->Start();
+		}
 	}
 #endif
 }
@@ -65,6 +81,14 @@ void GameObject::Update()
 	{
 		script->Update();
 	}
+#else
+	if (GetName() == L"ToolCamera")
+	{
+		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		{
+			script->Update();
+		}
+	}
 #endif
 }
 
@@ -80,6 +104,14 @@ void GameObject::LateUpdate()
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
+	}
+#else
+	if (GetName() == L"ToolCamera")
+	{
+		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		{
+			script->LateUpdate();
+		}
 	}
 #endif
 }

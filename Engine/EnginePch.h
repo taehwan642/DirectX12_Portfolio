@@ -253,4 +253,4 @@ struct array_deleter
 	}
 };
 
-// #define TOOL
+#define TOOL

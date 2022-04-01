@@ -4,7 +4,6 @@
 class Transform
 {
 public:
-	Transform();
 
 public:
 	const Vec3& GetPosition() { return _position; }
@@ -54,6 +53,7 @@ public:
 	void SetRotation(const Vec3& rotation) { _rotation = rotation; }
 	void SetScale(const Vec3& scale) { _scale = scale; }
 
+public:
 	void LookAt(const Vec3& dir);
 
 	static bool CloseEnough(const float& a, const float& b, const float& epsilon = std::numeric_limits<float>::epsilon());
@@ -73,12 +73,23 @@ public:
 		_rotation.x += degree;
 	}
 
+public:
 	std::shared_ptr<Transform> Inverse();
 	std::shared_ptr<Transform> LocalToWorld(std::shared_ptr<Transform> parentWorldTransform);
 	std::shared_ptr<Transform> WorldToLocal(std::shared_ptr<Transform> parentWorldTransform);
 
 private:
+	static std::shared_ptr<Transform> Create()
+	{
+		struct MakeSharedEnabler : public Transform
+		{};
+		return std::make_shared<MakeSharedEnabler>();
+	}
+
+private:
+	Transform();
 	friend class ImGuiManager;
+	friend class TransformComponent;
 
 	// Parent ±‚¡ÿ
 	Vec3 _position = {};

@@ -24,9 +24,9 @@ protected:
 private:
 	virtual void FinalUpdate() final { }
 
-// #ifdef TOOL
+#ifdef TOOL
 	virtual void DragAndDrop(size_t hash) {};
-// #endif
+#endif
 
 	RTTR_ENABLE()
 };

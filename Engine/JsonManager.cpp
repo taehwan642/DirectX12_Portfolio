@@ -21,6 +21,10 @@ void JsonManager::Save(const std::string& path, std::shared_ptr<GameObject> obje
 
 void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
+#ifdef TOOL
+	scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
+#endif
+
 	std::string jsonString = io::to_json(*scene);
 	std::ofstream ost(path + ".json");
 	ost << jsonString;
@@ -29,6 +33,28 @@ void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scen
 	std::string jsonString2 = io::to_json(value);
 	std::ofstream ost2(path + "_value.json");
 	ost2 << jsonString2;
+
+#ifdef TOOL
+	std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
+	toolCamera->AddComponent(std::make_shared<TransformComponent>());
+	toolCamera->AddComponent(std::make_shared<Camera>());
+	toolCamera->AddComponent(std::make_shared<TestCameraScript>());
+	toolCamera->SetName(L"ToolCamera");
+	toolCamera->GenerateHash();
+
+	std::vector<std::shared_ptr<GameObject>> obj;
+	for (auto& iter : scene->_cameras)
+	{
+		obj.push_back(iter->GetGameObject());
+	}
+	for (auto& iter : obj)
+	{
+		scene->RemoveGameObject(iter);
+	}
+	scene->AddGameObject(toolCamera);
+	for (auto& iter : obj)
+		scene->AddGameObject(iter);
+#endif
 }
 
 void JsonManager::SaveMeshData(const std::string& path, std::shared_ptr<MeshData> data)
@@ -41,7 +67,7 @@ void JsonManager::SaveMeshData(const std::string& path, std::shared_ptr<MeshData
 
 void JsonManager::SavePrefab(const std::string& path, std::shared_ptr<GameObject> object)
 {
-	// GameObject에 있는 child들도 저장. 재귀식으로.
+	// GameObject에 있는 child들도 저장.
 	std::string jsonString = io::to_json(*object);
 	std::ofstream ost(path + ".json");
 	ost << jsonString;
@@ -135,26 +161,6 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 		scene->AddGameObject(object);
 	}
 
-	for (int i = 0; i < sceneValue.cameraObjects.size(); ++i)
-	{
-		RTTRGameObjectValue value = sceneValue.cameraObjects[i];
-		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
-
-		LoadGameObject(value, object);
-
-		scene->AddGameObject(object);
-	}
-
-	for (int i = 0; i < sceneValue.lightObjects.size(); ++i)
-	{
-		RTTRGameObjectValue value = sceneValue.lightObjects[i];
-		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
-
-		LoadGameObject(value, object);
-
-		scene->AddGameObject(object);
-	}
-
 	std::string dataString;
 
 	std::ifstream dataFile;
@@ -174,6 +180,28 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 		return false;
 
 	io::from_json(dataString, scene);
+
+#ifdef TOOL
+	std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
+	toolCamera->AddComponent(std::make_shared<TransformComponent>());
+	toolCamera->AddComponent(std::make_shared<Camera>());
+	toolCamera->AddComponent(std::make_shared<TestCameraScript>());
+	toolCamera->SetName(L"ToolCamera");
+	toolCamera->GenerateHash();
+
+	std::vector<std::shared_ptr<GameObject>> obj;
+	for (auto& iter : scene->_cameras)
+	{
+		obj.push_back(iter->GetGameObject());
+	}
+	for (auto& iter : obj)
+	{
+		scene->RemoveGameObject(iter);
+	}
+	scene->AddGameObject(toolCamera);
+	for (auto& iter : obj)
+		scene->AddGameObject(iter);
+#endif
 
 	for (int i = 0; i < hashValues.size(); ++i)
 	{

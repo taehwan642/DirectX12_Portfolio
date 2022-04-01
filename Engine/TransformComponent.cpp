@@ -6,8 +6,8 @@
 
 TransformComponent::TransformComponent() : Component(COMPONENT_TYPE::TRANSFORM)
 {
-	_localTransform = std::make_shared<Transform>();
-	_worldTransform = std::make_shared<Transform>();
+	_localTransform = Transform::Create();
+	_worldTransform = Transform::Create();
 }
 
 void TransformComponent::FinalUpdate()
