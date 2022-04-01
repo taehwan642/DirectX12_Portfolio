@@ -50,6 +50,12 @@ void Camera::SortGameObject()
 
 	for (auto& gameObject : gameObjects)
 	{
+		if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
+		{
+			std::shared_ptr<GameObject> gm = gameObject->GetCollider()->GetColliderMesh();
+			_vecColliderMesh.push_back(gm);
+		}
+
 		if (gameObject->GetMeshRenderer() == nullptr && gameObject->GetParticleSystem() == nullptr)
 			continue;
 
@@ -73,11 +79,6 @@ void Camera::SortGameObject()
 			{
 			case SHADER_TYPE::DEFERRED:
 				_vecDeferred.push_back(gameObject);
-				if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
-				{
-					std::shared_ptr<GameObject> gm = gameObject->GetCollider()->GetColliderMesh();
-					_vecColliderMesh.push_back(gm);
-				}
 				break;
 			case SHADER_TYPE::FORWARD:
 				_vecForward.push_back(gameObject);

@@ -220,3 +220,10 @@ void Scene::RemoveGameObject(std::shared_ptr<GameObject> gameObject)
 	if (findIt != _gameObjects.end())
 		_gameObjects.erase(findIt);
 }
+
+std::shared_ptr<GameObject> Scene::FindGameObject(size_t hash)
+{
+	if (auto iter = std::find_if(_gameObjects.begin(), _gameObjects.end(), [=](std::shared_ptr<GameObject> obj) {return (obj->GetHash() == hash); }); iter == _gameObjects.end())
+		return *(iter);
+	return nullptr;
+}

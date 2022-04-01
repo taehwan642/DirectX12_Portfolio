@@ -1104,7 +1104,36 @@ void ImGuiManager::RenderInspector()
         // MONOBEHAVIOUR
         for (auto& iter : _currentGameObject->_scripts)
         {
+            ImGui::PushID(ws2s(iter->_className).c_str());
+
             ImGui::Text("%s", ws2s(iter->_className).c_str());
+
+            // Our buttons are both drag sources and drag targets here!
+            if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
+            {
+                // Set payload to carry the index of our item (could be anything)
+                ImGui::SetDragDropPayload("DND_DEMO_CELL", NULL, 0);
+
+                // Display preview (could be anything, e.g. when dragging an image we could decide to display
+                // the filename and a small preview of the image, etc.)
+                ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str());
+                ImGui::EndDragDropSource();
+            }
+            if (ImGui::BeginDragDropTarget())
+            {
+                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+                {
+                    IM_ASSERT(payload->DataSize == sizeof(size_t));
+                    size_t payload_n = *(const size_t*)payload->Data;
+
+                    // find hash
+                    iter->DragAndDrop(payload_n);
+
+                }
+                ImGui::EndDragDropTarget();
+            }
+            ImGui::PopID();
+
         }
 
         if (ImGui::BeginMenu("AddComponent"))

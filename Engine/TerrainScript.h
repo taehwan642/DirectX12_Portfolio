@@ -10,7 +10,9 @@ public:
 	virtual void LateUpdate() override;
 	void Picked(Vec4 rayOrigin, Vec4 rayDir, float distance);
 
-	std::shared_ptr<GameObject> _testObject;
+	virtual void DragAndDrop(size_t hash) override;
+
+	size_t _testObject;
 
 private:
 	RTTR_ENABLE()

@@ -190,14 +190,6 @@ public:								\
 
 #define CONST_BUFFER(type)	GEngine->GetConstantBuffer(type)
 
-#define MONOBEHAVIOUR(type)	type() { _className = s2ws(typeid(type).name()); }
-
-#define RTTRMONOLOAD(type)																\
-if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\
-{																						\
-	monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] = true;\
-}																						\
-
 // ÇÔ¼ö °´Ã¼ ClassNameToString
 template<typename T>
 struct ClassNameToString
@@ -210,6 +202,14 @@ struct ClassNameToString
 		return result;
 	}
 };
+
+#define MONOBEHAVIOUR(type)	type() { _className = s2ws(ClassNameToString< type >()()); }
+
+#define RTTRMONOLOAD(type)																\
+if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\
+{																						\
+	monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] = true;\
+}																						\
 
 #define RTTRMONOREGISTER(type) \
 rttr::registration::class_<type>( ClassNameToString< type >()() ) \

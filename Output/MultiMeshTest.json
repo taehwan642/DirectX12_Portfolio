@@ -11,13 +11,13 @@
             "_transform": {
                 "_localTransform": {
                     "_position": {
-                        "x": -227.01531982421875,
-                        "y": 87.95965576171875,
-                        "z": -319.6271667480469
+                        "x": -211.57081604003906,
+                        "y": 80.12456512451172,
+                        "z": -299.7765808105469
                     },
                     "_rotation": {
-                        "x": 0.11037276685237885,
-                        "y": 0.4879000186920166,
+                        "x": 0.18759925663471222,
+                        "y": 0.5689760446548462,
                         "z": 0.0
                     },
                     "_scale": {
@@ -28,13 +28,13 @@
                 },
                 "_worldTransform": {
                     "_position": {
-                        "x": -227.01531982421875,
-                        "y": 87.95965576171875,
-                        "z": -319.6271667480469
+                        "x": -211.57081604003906,
+                        "y": 80.12456512451172,
+                        "z": -299.7765808105469
                     },
                     "_rotation": {
-                        "x": 0.11037276685237885,
-                        "y": 0.4879000186920166,
+                        "x": 0.18759925663471222,
+                        "y": 0.5689760446548462,
                         "z": 0.0
                     },
                     "_scale": {
@@ -56,28 +56,28 @@
                 "_matView": {
                     "m": [
                         [
-                            0.8833192586898804,
-                            0.05163468047976494,
-                            0.4659195840358734,
+                            0.842453122138977,
+                            0.10048101097345352,
+                            0.5293169617652893,
                             -0.0
                         ],
                         [
                             0.0,
-                            0.9939152002334595,
-                            -0.11014881730079651,
+                            0.9824548959732056,
+                            -0.18650083243846893,
                             0.0
                         ],
                         [
-                            -0.4687719941139221,
-                            0.0972965732216835,
-                            0.8779444098472595,
+                            -0.5387697219848633,
+                            0.15711820125579834,
+                            0.8276721835136414,
                             0.0
                         ],
                         [
-                            50.69475555419922,
-                            -44.603946685791016,
-                            396.0744323730469,
-                            1.0
+                            16.727947235107422,
+                            -10.359562873840332,
+                            375.0480041503906,
+                            1.0000001192092896
                         ]
                     ]
                 },
@@ -115,7 +115,12 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": [
+                {
+                    "_speed": 300.0
+                }
+            ]
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -232,7 +237,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -502,7 +508,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -772,7 +779,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -1042,7 +1050,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -1312,7 +1321,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -1582,7 +1592,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -1852,7 +1863,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -2122,7 +2134,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -2547,13 +2560,15 @@
                     "_particleSystem": {},
                     "_terrain": {},
                     "_baseCollider": {},
-                    "_animator": {}
+                    "_animator": {},
+                    "_scripts": []
                 }
             },
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -2605,7 +2620,12 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": [
+                {
+                    "_testObject": 2734920893378910371
+                }
+            ]
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -2657,7 +2677,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -2931,7 +2952,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -3205,7 +3227,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -3479,7 +3502,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -3531,7 +3555,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -3583,7 +3608,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -3857,7 +3883,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -4131,7 +4158,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -4405,7 +4433,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -4457,7 +4486,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -4509,7 +4539,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -4783,7 +4814,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -5057,7 +5089,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
@@ -5331,7 +5364,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         }
     ],
     "_cameras": [
@@ -5346,28 +5380,28 @@
             "_matView": {
                 "m": [
                     [
-                        0.8833192586898804,
-                        0.05163468047976494,
-                        0.4659195840358734,
+                        0.842453122138977,
+                        0.10048101097345352,
+                        0.5293169617652893,
                         -0.0
                     ],
                     [
                         0.0,
-                        0.9939152002334595,
-                        -0.11014881730079651,
+                        0.9824548959732056,
+                        -0.18650083243846893,
                         0.0
                     ],
                     [
-                        -0.4687719941139221,
-                        0.0972965732216835,
-                        0.8779444098472595,
+                        -0.5387697219848633,
+                        0.15711820125579834,
+                        0.8276721835136414,
                         0.0
                     ],
                     [
-                        50.69475555419922,
-                        -44.603946685791016,
-                        396.0744323730469,
-                        1.0
+                        16.727947235107422,
+                        -10.359562873840332,
+                        375.0480041503906,
+                        1.0000001192092896
                     ]
                 ]
             },
@@ -5846,7 +5880,8 @@
                 "_particleSystem": {},
                 "_terrain": {},
                 "_baseCollider": {},
-                "_animator": {}
+                "_animator": {},
+                "_scripts": []
             }
         }
     ]

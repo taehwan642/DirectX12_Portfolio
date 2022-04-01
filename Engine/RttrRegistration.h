@@ -349,7 +349,8 @@ RTTR_REGISTRATION
 		.property("_particleSystem", &GameObject::_particleSystem)
 		.property("_terrain", &GameObject::_terrain)
 		.property("_baseCollider", &GameObject::_baseCollider)
-		.property("_animator", &GameObject::_animator);
+		.property("_animator", &GameObject::_animator)
+		.property("_scripts", &GameObject::_scripts);
 
 	// Transform
 	rttr::registration::class_<Transform>("Transfrom")
@@ -735,7 +736,8 @@ RTTR_REGISTRATION
 	
 	RTTRMONOREGISTER(GameManagerScript);
 
-	RTTRMONOREGISTER(TerrainScript);
+	RTTRMONOREGISTER(TerrainScript)
+		.property("_testObject", &TerrainScript::_testObject);
 
 	RTTRMONOREGISTER(TestCameraScript)
 		.property("_speed", &TestCameraScript::_speed);
