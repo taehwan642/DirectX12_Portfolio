@@ -50,6 +50,9 @@ void Camera::SortGameObject()
 
 	for (auto& gameObject : gameObjects)
 	{
+		if (gameObject->GetActive() == false)
+			continue;
+
 		if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
 		{
 			std::shared_ptr<GameObject> gm = gameObject->GetCollider()->GetColliderMesh();
@@ -101,6 +104,9 @@ void Camera::SortShadowObject()
 
 	for (auto& gameObject : gameObjects)
 	{
+		if (gameObject->GetActive() == false)
+			continue;
+
 		if (gameObject->GetMeshRenderer() == nullptr)
 			continue;
 

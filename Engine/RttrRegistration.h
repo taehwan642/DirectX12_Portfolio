@@ -338,6 +338,7 @@ RTTR_REGISTRATION
 	// GameObject
 	rttr::registration::class_<GameObject>("GameObject") // 이건 클래스 이름
 		.property("_name", &Object::_name)
+		.property("_isActive", &GameObject::_isActive)
 		.property("_checkFrustum", &GameObject::_checkFrustum)
 		.property("_layerIndex", &GameObject::_layerIndex)
 		.property("_static", &GameObject::_static)

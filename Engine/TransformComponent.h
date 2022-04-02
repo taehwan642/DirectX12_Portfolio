@@ -65,6 +65,7 @@ public:
 	void RemoveParent();
 
 	std::shared_ptr<TransformComponent> GetChild(int i) { return _childVector[i].lock(); }
+	size_t GetChildCount() { return _childVector.size(); }
 
 
 private: // 계층 구조를 위한 변수

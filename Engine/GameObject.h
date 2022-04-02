@@ -65,6 +65,10 @@ public:
 		// Hash°ª ³Ö±â
 		_hash = std::hash<std::wstring>()(_name);
 	}
+
+	bool GetActive() { return _isActive; }
+	void SetActive(bool active);
+
 private:
 	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
@@ -89,7 +93,7 @@ private:
 	std::shared_ptr<BaseCollider> _baseCollider;
 	std::shared_ptr<Animator> _animator;
 
-	
+	bool _isActive = true;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

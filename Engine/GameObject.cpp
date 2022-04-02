@@ -22,6 +22,8 @@ GameObject::~GameObject()
 
 void GameObject::Awake()
 {
+	if (_isActive == false)
+		return;
 	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -46,6 +48,8 @@ void GameObject::Awake()
 
 void GameObject::Start()
 {
+	if (_isActive == false)
+		return; 
 	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -70,6 +74,8 @@ void GameObject::Start()
 
 void GameObject::Update()
 {
+	if (_isActive == false)
+		return;
 	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -94,6 +100,8 @@ void GameObject::Update()
 
 void GameObject::LateUpdate()
 {
+	if (_isActive == false)
+		return;
 	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -118,6 +126,8 @@ void GameObject::LateUpdate()
 
 void GameObject::FinalUpdate()
 {
+	if (_isActive == false)
+		return;
 	for (std::shared_ptr<Component>& component : _components)
 	{
 		if (component)
@@ -193,5 +203,15 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 	else
 	{
 		_scripts.push_back(std::dynamic_pointer_cast<MonoBehaviour>(component));
+	}
+}
+
+void GameObject::SetActive(bool active)
+{
+	// 자식이 있다면, 자식들도 모두 꺼준다.
+	_isActive = active;
+	for (int i = 0; i < _transform->GetChildCount(); ++i)
+	{
+		_transform->GetChild(i)->GetGameObject()->SetActive(active);
 	}
 }

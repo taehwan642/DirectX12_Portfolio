@@ -603,6 +603,11 @@ void ImGuiManager::RenderInspector()
             _currentGameObject->GenerateHash();
         }
 
+        if (ImGui::Button("Active"))
+        {
+            _currentGameObject->SetActive(!_currentGameObject->GetActive());
+        }
+
         // Layer Ãâ·Â
         std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
         std::string comboName = "Layer";
