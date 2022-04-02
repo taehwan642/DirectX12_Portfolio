@@ -1,0 +1,960 @@
+{
+    "resources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4217.fbx\u0000"
+    ],
+    "gameObjects": [
+        {
+            "tag": "bg4217.fbx\u0000",
+            "hashValue": 11473475483023485058,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "mesh_root\u0000",
+            "hashValue": 5514151138106766407,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 11473475483023485058
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_0_straight_mesh0000\u0000",
+            "hashValue": 10946595466931233200,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "6a447b31\u0000"
+                            },
+                            {
+                                "tag": "227b8542\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "bg4217_metalwall_AAAx_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_0_straight_mesh0000\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_1_straight_mesh0001\u0000",
+            "hashValue": 3499510382044979088,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "3670c22c\u0000"
+                            },
+                            {
+                                "tag": "7e4f3c5f\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_Blastfurnace_Wall01_AAAx_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_1_straight_mesh0001\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_2_straight_mesh0002\u0000",
+            "hashValue": 10224101546580584560,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "3392a933\u0000"
+                            },
+                            {
+                                "tag": "7bad5740\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_crane01_AAAx_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_2_straight_mesh0002\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_3_straight_mesh0003\u0000",
+            "hashValue": 505719406583744208,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "7e985667\u0000"
+                            },
+                            {
+                                "tag": "36a7a814\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_duct01_AAAx_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_3_straight_mesh0003\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_4_straight_mesh0004\u0000",
+            "hashValue": 3518924608945165616,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "65caec56\u0000"
+                            },
+                            {
+                                "tag": "64874dc2\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_fence01_AAA1_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_4_straight_mesh0004\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_5_straight_mesh0005\u0000",
+            "hashValue": 13425938490065312272,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "467f9cfb\u0000"
+                            },
+                            {
+                                "tag": "e406288\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_metalpanel07_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_5_straight_mesh0005\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_6_straight_mesh0006\u0000",
+            "hashValue": 7959561518041000176,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "4c41e0dd\u0000"
+                            },
+                            {
+                                "tag": "47e1eae\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_pipefloor01_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_6_straight_mesh0006\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_7_straight_mesh0007\u0000",
+            "hashValue": 7689434000906549840,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "65dc3f42\u0000"
+                            },
+                            {
+                                "tag": "2de3c131\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_rust_frame01_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_7_straight_mesh0007\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_8_straight_mesh0008\u0000",
+            "hashValue": 3559522695898425632,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "4347152f\u0000"
+                            },
+                            {
+                                "tag": "b78eb5c\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_wallpanel03_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_8_straight_mesh0008\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_9_straight_mesh0009\u0000",
+            "hashValue": 4619114470056240640,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "19adce7\u0000"
+                            },
+                            {
+                                "tag": "49a52294\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_wallset02_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_9_straight_mesh0009\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_10_straight_mesh0010\u0000",
+            "hashValue": 11478458936979442584,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "16f36616\u0000"
+                            },
+                            {
+                                "tag": "5ecc9865\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "os09_pipe03_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_10_straight_mesh0010\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_11_straight_mesh0011\u0000",
+            "hashValue": 693476086020541352,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "18a9249\u0000"
+                            },
+                            {
+                                "tag": "1af32732\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "rail_albedo_aaax_tga1\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_11_straight_mesh0011\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_12_straight_mesh0012\u0000",
+            "hashValue": 6233009929304642136,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "lamp\u0000"
+                            },
+                            {
+                                "tag": "bayoflatnormal\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "lamp\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_12_straight_mesh0012\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        }
+    ],
+    "cameraObjects": [],
+    "lightObjects": []
+}

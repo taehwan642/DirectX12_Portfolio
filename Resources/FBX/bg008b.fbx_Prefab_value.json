@@ -1,0 +1,492 @@
+{
+    "resources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg008b.fbx\u0000"
+    ],
+    "gameObjects": [
+        {
+            "tag": "bg008b.fbx\u0000",
+            "hashValue": 2733874060645796784,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "mesh_root\u0000",
+            "hashValue": 5514151138106766407,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 2733874060645796784
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_0_bg008b_building_mesh0000\u0000",
+            "hashValue": 2335762047153955568,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "72f4a89b\u0000"
+                            },
+                            {
+                                "tag": "3acb56e8\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material00\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_0_bg008b_building_mesh0000\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_1_bg008b_building_mesh0001\u0000",
+            "hashValue": 15013703494824745304,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "1f948905\u0000"
+                            },
+                            {
+                                "tag": "58ab8e42\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material01\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_1_bg008b_building_mesh0001\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_2_bg008b_building_mesh0002\u0000",
+            "hashValue": 12832310005575048224,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "73fd02ea\u0000"
+                            },
+                            {
+                                "tag": "3bc2fc99\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material03\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_2_bg008b_building_mesh0002\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_3_bg008b_building_mesh0003\u0000",
+            "hashValue": 949457926728298952,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "116d15e8\u0000"
+                            },
+                            {
+                                "tag": "565212af\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material04\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_3_bg008b_building_mesh0003\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_4_bg008b_building_mesh0004\u0000",
+            "hashValue": 355083580482404944,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "1c9d7523\u0000"
+                            },
+                            {
+                                "tag": "5ba27264\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material05\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_4_bg008b_building_mesh0004\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_5_bg008b_building_mesh0005\u0000",
+            "hashValue": 9131429772183970360,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "3861d95e\u0000"
+                            },
+                            {
+                                "tag": "705e272d\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "Material07\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_5_bg008b_building_mesh0005\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        }
+    ],
+    "cameraObjects": [],
+    "lightObjects": []
+}

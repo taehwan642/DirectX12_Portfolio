@@ -1,0 +1,232 @@
+{
+    "tag": "\u0000",
+    "meshRenderValue": 6,
+    "meshValue": [
+        {
+            "tag": "LOD0_0_bg008b_building_mesh0000\u0000"
+        },
+        {
+            "tag": "LOD0_1_bg008b_building_mesh0001\u0000"
+        },
+        {
+            "tag": "LOD0_2_bg008b_building_mesh0002\u0000"
+        },
+        {
+            "tag": "LOD0_3_bg008b_building_mesh0003\u0000"
+        },
+        {
+            "tag": "LOD0_4_bg008b_building_mesh0004\u0000"
+        },
+        {
+            "tag": "LOD0_5_bg008b_building_mesh0005\u0000"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "72f4a89b\u0000"
+                    },
+                    {
+                        "tag": "3acb56e8\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material00\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "1f948905\u0000"
+                    },
+                    {
+                        "tag": "58ab8e42\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material01\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "73fd02ea\u0000"
+                    },
+                    {
+                        "tag": "3bc2fc99\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material03\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "116d15e8\u0000"
+                    },
+                    {
+                        "tag": "565212af\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material04\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "1c9d7523\u0000"
+                    },
+                    {
+                        "tag": "5ba27264\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material05\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "3861d95e\u0000"
+                    },
+                    {
+                        "tag": "705e272d\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "Material07\u0000"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        }
+    ]
+}

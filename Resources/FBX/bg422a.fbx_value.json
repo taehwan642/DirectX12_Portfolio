@@ -1,0 +1,195 @@
+{
+    "tag": "\u0000",
+    "meshRenderValue": 5,
+    "meshValue": [
+        {
+            "tag": "LOD0_0_buildings_mesh0000\u0000"
+        },
+        {
+            "tag": "LOD0_1_buildings_mesh0001\u0000"
+        },
+        {
+            "tag": "LOD0_2_buildings_mesh0002\u0000"
+        },
+        {
+            "tag": "LOD0_3_buildings_mesh0003\u0000"
+        },
+        {
+            "tag": "LOD0_4_buildings_mesh0004\u0000"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "3aa0ce14\u0000"
+                    },
+                    {
+                        "tag": "bayoflatnormal\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "bg422a_Whitecap01_AAA3_tga\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "325cf64\u0000"
+                    },
+                    {
+                        "tag": "4b1a3117\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_distancebuilding01_AAAx_tga\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "ab144fe\u0000"
+                    },
+                    {
+                        "tag": "4d8e43b9\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_distancebuilding01_AAAx_tga1\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "6a48370d\u0000"
+                    },
+                    {
+                        "tag": "2277c97e\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_distancechimny01_AAA1_tga\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "63dcbc97\u0000"
+                    },
+                    {
+                        "tag": "24e3bbd0\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_distancechimny02_AAAx_tga\u0000"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        }
+    ]
+}

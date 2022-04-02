@@ -2,8 +2,9 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 73,
+            "_id": 1336,
             "_name": "",
+            "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
@@ -50,12 +51,14 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 74,
+            "_id": 1337,
             "_name": "",
+            "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
@@ -102,12 +105,14 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 75,
+            "_id": 929,
             "_name": "",
+            "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
@@ -376,12 +381,14 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 78,
+            "_id": 932,
             "_name": "",
+            "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
@@ -650,12 +657,14 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 81,
+            "_id": 935,
             "_name": "",
+            "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
@@ -924,7 +933,8 @@
             "_particleSystem": {},
             "_terrain": {},
             "_baseCollider": {},
-            "_animator": {}
+            "_animator": {},
+            "_scripts": []
         }
     ],
     "_cameras": [],

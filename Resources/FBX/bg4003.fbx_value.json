@@ -1,0 +1,84 @@
+{
+    "tag": "\u0000",
+    "meshRenderValue": 2,
+    "meshValue": [
+        {
+            "tag": "LOD0_0_dc_mesh0000\u0000"
+        },
+        {
+            "tag": "LOD0_1_dc_mesh0001\u0000"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "a83d54\u0000"
+                    },
+                    {
+                        "tag": "4897c327\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_metalpanel02_AAAx_tga\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "42e720e5\u0000"
+                    },
+                    {
+                        "tag": "ad8de96\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "mas_wallpanel03_AAAx_tga\u0000"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        }
+    ]
+}

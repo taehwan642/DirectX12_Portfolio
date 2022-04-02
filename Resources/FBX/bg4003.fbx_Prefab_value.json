@@ -1,0 +1,224 @@
+{
+    "resources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000"
+    ],
+    "gameObjects": [
+        {
+            "tag": "bg4003.fbx\u0000",
+            "hashValue": 1626606647054902821,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "mesh_root\u0000",
+            "hashValue": 5514151138106766407,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 1626606647054902821
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_0_dc_mesh0000\u0000",
+            "hashValue": 4534963757783619985,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "a83d54\u0000"
+                            },
+                            {
+                                "tag": "4897c327\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_0_dc_mesh0000\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
+            "tag": "LOD0_1_dc_mesh0001\u0000",
+            "hashValue": 7155076883803949265,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 5514151138106766407
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "42e720e5\u0000"
+                            },
+                            {
+                                "tag": "ad8de96\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred\u0000"
+                        },
+                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "LOD0_1_dc_mesh0001\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        }
+    ],
+    "cameraObjects": [],
+    "lightObjects": []
+}

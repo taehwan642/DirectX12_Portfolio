@@ -1316,6 +1316,56 @@ void ImGuiManager::RenderDragAndDrop()
 {
     ImGui::Begin("Drag and Drop");
     ImGui::Text(inputPath.c_str());
+
+    if (ImGui::Button("Resource to prefab"))
+    {
+
+        std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
+        
+        // MeshData 불러오기
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
+
+        // 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
+        std::string objString = inputPath;
+        if (size_t pos = inputPath.find_last_of("\\"); pos != std::string::npos)
+        {
+            objString = inputPath.substr(pos + 1, inputPath.size());
+        }
+
+        // obj 이름은 맨 처음 "_"를 만나기 전.
+        std::string objName = objString;
+        if (size_t pos = objString.find_last_of("_"); pos != std::string::npos)
+        {
+            objName = objString.substr(0, pos);
+        }
+
+        std::string path = std::string("../Resources/FBX/") + objName;
+
+        // 불러온 MeshData Prefab으로 뽑기
+        std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();
+        meshDataObject->SetName(s2ws(objName.c_str()));
+        meshDataObject->GenerateHash();
+        sceneOnlyForSave->AddGameObject(meshDataObject);
+        std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
+        mesh_root->SetName(L"mesh_root");
+        mesh_root->GenerateHash();
+        sceneOnlyForSave->AddGameObject(mesh_root);
+        std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
+
+        meshDataObject->AddComponent(std::make_shared<TransformComponent>());
+        mesh_root->AddComponent(std::make_shared<TransformComponent>());
+
+        mesh_root->GetTransform()->SetParent(meshDataObject->GetTransform());
+        for (int i = 0; i < gameObjects.size(); ++i)
+        {
+            gameObjects[i]->GetTransform()->SetParent(mesh_root->GetTransform());
+            sceneOnlyForSave->AddGameObject(gameObjects[i]);
+        }
+
+        std::string finalPath = std::string(path.c_str()) + "_Prefab";
+        GET_SINGLE(JsonManager)->SaveScene(finalPath.c_str(), sceneOnlyForSave);
+    }
+
     // 프리팹 버튼
     if (ImGui::Button("Get prefab to scene"))
     {

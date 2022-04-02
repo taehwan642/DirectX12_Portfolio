@@ -22,7 +22,8 @@ void JsonManager::Save(const std::string& path, std::shared_ptr<GameObject> obje
 void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
 #ifdef TOOL
-	scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
+	if (scene->GetMainCamera() != nullptr)
+		scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
 #endif
 
 	std::string jsonString = io::to_json(*scene);
@@ -182,25 +183,28 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 	io::from_json(dataString, scene);
 
 #ifdef TOOL
-	std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
-	toolCamera->AddComponent(std::make_shared<TransformComponent>());
-	toolCamera->AddComponent(std::make_shared<Camera>());
-	toolCamera->AddComponent(std::make_shared<TestCameraScript>());
-	toolCamera->SetName(L"ToolCamera");
-	toolCamera->GenerateHash();
+	if (scene->_cameras.size() != 0)
+	{
+		std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
+		toolCamera->AddComponent(std::make_shared<TransformComponent>());
+		toolCamera->AddComponent(std::make_shared<Camera>());
+		toolCamera->AddComponent(std::make_shared<TestCameraScript>());
+		toolCamera->SetName(L"ToolCamera");
+		toolCamera->GenerateHash();
 
-	std::vector<std::shared_ptr<GameObject>> obj;
-	for (auto& iter : scene->_cameras)
-	{
-		obj.push_back(iter->GetGameObject());
+		std::vector<std::shared_ptr<GameObject>> obj;
+		for (auto& iter : scene->_cameras)
+		{
+			obj.push_back(iter->GetGameObject());
+		}
+		for (auto& iter : obj)
+		{
+			scene->RemoveGameObject(iter);
+		}
+		scene->AddGameObject(toolCamera);
+		for (auto& iter : obj)
+			scene->AddGameObject(iter);
 	}
-	for (auto& iter : obj)
-	{
-		scene->RemoveGameObject(iter);
-	}
-	scene->AddGameObject(toolCamera);
-	for (auto& iter : obj)
-		scene->AddGameObject(iter);
 #endif
 
 	for (int i = 0; i < hashValues.size(); ++i)
@@ -276,15 +280,19 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 		const int32 animCount = static_cast<int32>(mesh->_animClips.size());
 		for (int32 i = 0; i < animCount; i++)
 		{
+			// 클립 i번째
 			AnimClipInfo& animClip = mesh->_animClips[i];
 
 			// 애니메이션 프레임 정보
 			std::vector<AnimFrameParams> frameParams;
+			// 뼈 개수 * 클립의 프레임 카운트
 			frameParams.resize(mesh->_bones.size() * animClip.frameCount);
 
 			for (int32 b = 0; b < boneCount; b++)
 			{
-				const int32 keyFrameCount = static_cast<int32>(animClip.keyFrames[b].size());
+				// 이 때 키프레임의 사이즈 : 키프레임 카운트?
+				const int32 keyFrameCount = min(static_cast<int32>(animClip.keyFrames[b].size()), animClip.frameCount);
+				
 				for (int32 f = 0; f < keyFrameCount; f++)
 				{
 					int32 idx = static_cast<int32>(boneCount * f + b);
@@ -313,8 +321,7 @@ void JsonManager::LoadPrefab(const std::string& path, std::shared_ptr<GameObject
 
 void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object, int index)
 {
-	std::shared_ptr<MeshData> meshData = nullptr;
-
+	std::shared_ptr<Mesh> mesh = nullptr;
 	object->SetName(s2ws(value.tag).c_str());
 
 	object->_hash = value.hashValue;
@@ -335,7 +342,6 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 	{
 		std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
 		std::wstring meshTag = s2ws(value.meshRendererValue.meshValue.tag);
-		std::shared_ptr<Mesh> mesh;
 
 		bool isLoaded = false;
 
@@ -363,6 +369,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		{
 			// mesh = GET_SINGLE(Resources)->Get<Mesh>(meshTag);
 			std::shared_ptr<GameObject> obj = GET_SINGLE(Resources)->Get<GameObject>(meshTag);
+			mesh = obj->GetMeshRenderer()->GetMesh();
 			if (obj != nullptr)
 			{
 				object->AddComponent(obj->_meshRenderer->Clone());
@@ -453,8 +460,8 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 	{
 		std::shared_ptr<Animator> animator = std::make_shared<Animator>();
 		object->AddComponent(animator);
-		animator->SetBones(meshData->_meshRenders[0].mesh->GetBones());
-		animator->SetAnimClip(meshData->_meshRenders[0].mesh->GetAnimClip());
+		animator->SetBones(mesh->GetBones());
+		animator->SetAnimClip(mesh->GetAnimClip());
 	}
 	
 	LoadMonobehaviour(value, object);

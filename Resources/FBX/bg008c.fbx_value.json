@@ -1,0 +1,195 @@
+{
+    "tag": "\u0000",
+    "meshRenderValue": 5,
+    "meshValue": [
+        {
+            "tag": "LOD0_0_building_mesh0000\u0000"
+        },
+        {
+            "tag": "LOD0_1_building_mesh0001\u0000"
+        },
+        {
+            "tag": "LOD0_2_building_mesh0002\u0000"
+        },
+        {
+            "tag": "LOD0_3_building_mesh0003\u0000"
+        },
+        {
+            "tag": "LOD0_4_building_mesh0004\u0000"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "78892f92\u0000"
+                    },
+                    {
+                        "tag": "3fb628d5\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "OS09_BuildingParts01\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "577f3895\u0000"
+                    },
+                    {
+                        "tag": "1f40c6e6\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "OS09_BuildingTank01\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "567692e4\u0000"
+                    },
+                    {
+                        "tag": "1e496c97\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "OS09_CheckerPlate01\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "7ee9ff7\u0000"
+                    },
+                    {
+                        "tag": "40d198b0\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "OS09_PipeTiling01\u0000"
+            }
+        ],
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    true,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "104870cf\u0000"
+                    },
+                    {
+                        "tag": "57777788\u0000"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred\u0000"
+                },
+                "tag": "OS09_StairLadder01\u0000"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        },
+        {
+            "boneValue": 0,
+            "animationClipValue": 0,
+            "bones": [],
+            "animClips": []
+        }
+    ]
+}

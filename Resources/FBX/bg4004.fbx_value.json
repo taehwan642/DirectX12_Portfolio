@@ -3,13 +3,13 @@
     "meshRenderValue": 3,
     "meshValue": [
         {
-            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+            "tag": "LOD0_0_dc_mesh0000\u0000"
         },
         {
-            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+            "tag": "LOD0_1_dc_mesh0001\u0000"
         },
         {
-            "tag": "../Resources/FBX/bg4004.fbx\u0000"
+            "tag": "LOD0_2_dc_mesh0002\u0000"
         }
     ],
     "materialValues": [
