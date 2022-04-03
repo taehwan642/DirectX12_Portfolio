@@ -36,13 +36,13 @@ public:
 
 	void AddComponent(std::shared_ptr<Component> component);
 
-	void SetCheckFrustum(bool checkFrustum) { _checkFrustum = checkFrustum; }
+	void SetCheckFrustum(bool checkFrustum);
 	bool GetCheckFrustum() { return _checkFrustum; }
 
-	void SetLayerIndex(uint8 layer) { _layerIndex = layer; }
+	void SetLayerIndex(uint8 layer);
 	uint8 GetLayerIndex() { return _layerIndex; }
 
-	void SetStatic(bool flag) { _static = flag; }
+	void SetStatic(bool flag);
 	bool IsStatic() { return _static; }
 
 	size_t GetHash() { return _hash; }
@@ -60,11 +60,7 @@ public:
 		return nullptr;
 	}
 
-	void GenerateHash()
-	{
-		// Hash°ª ³Ö±â
-		_hash = std::hash<std::wstring>()(_name);
-	}
+	void GenerateHash();
 
 	bool GetActive() { return _isActive; }
 	void SetActive(bool active);

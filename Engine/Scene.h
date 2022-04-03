@@ -40,6 +40,7 @@ private:
 	friend class SceneManager;
 	friend class RTTRSceneValue;
 	friend class JsonManager;
+	friend class ImGuiManager;
 
 	std::vector<std::shared_ptr<GameObject>>		_gameObjects;
 	std::vector<std::shared_ptr<class Camera>>	_cameras;

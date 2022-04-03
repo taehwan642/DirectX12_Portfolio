@@ -474,6 +474,12 @@ void ImGuiManager::RenderHierarchy()
         std::string path = std::string("../Output/") + inputText;
         GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
     }
+    ImGui::SameLine();
+    if (ImGui::Button("Create"))
+    {
+        // TOOL CAMERA
+        GET_SINGLE(SceneManager)->GetActiveScene();
+    }
     ImGui::Separator();
 
     static int val = 0;
@@ -585,13 +591,13 @@ void ImGuiManager::RenderInspector()
         std::string frustumCheckLabel = (_currentGameObject->_checkFrustum == true) ? "Press to disable FrustumCulling" : "Press to enable FrustumCulling";
         if (ImGui::Button(frustumCheckLabel.c_str()))
         {
-            _currentGameObject->_checkFrustum = !_currentGameObject->_checkFrustum;
+            _currentGameObject->SetCheckFrustum(!_currentGameObject->_checkFrustum);
         }
 
         std::string shadowCheckLabel = (_currentGameObject->_static == true) ? "Press to enable Shadow" : "Press to disable Shadow";
         if (ImGui::Button(shadowCheckLabel.c_str()))
         {
-            _currentGameObject->_static = !_currentGameObject->_static;
+            _currentGameObject->SetCheckFrustum(!_currentGameObject->_static);
         }
 
         std::string hashValue = std::to_string(_currentGameObject->_hash);

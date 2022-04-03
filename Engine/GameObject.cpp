@@ -206,6 +206,43 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 	}
 }
 
+void GameObject::SetCheckFrustum(bool checkFrustum)
+{
+	_checkFrustum = checkFrustum;
+	for (int i = 0; i < _transform->GetChildCount(); ++i)
+	{
+		_transform->GetChild(i)->GetGameObject()->SetCheckFrustum(checkFrustum);
+	}
+}
+
+void GameObject::SetLayerIndex(uint8 layer)
+{
+	_layerIndex = layer;
+	for (int i = 0; i < _transform->GetChildCount(); ++i)
+	{
+		_transform->GetChild(i)->GetGameObject()->SetLayerIndex(layer);
+	}
+}
+
+void GameObject::SetStatic(bool flag)
+{
+	_static = flag;
+	for (int i = 0; i < _transform->GetChildCount(); ++i)
+	{
+		_transform->GetChild(i)->GetGameObject()->SetStatic(flag);
+	}
+}
+
+void GameObject::GenerateHash()
+{
+	// Hash값 넣기
+	_hash = std::hash<std::wstring>()(_name);
+	for (int i = 0; i < _transform->GetChildCount(); ++i)
+	{
+		_transform->GetChild(i)->GetGameObject()->GenerateHash();
+	}
+}
+
 void GameObject::SetActive(bool active)
 {
 	// 자식이 있다면, 자식들도 모두 꺼준다.
