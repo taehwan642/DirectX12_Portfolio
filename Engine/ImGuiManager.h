@@ -10,6 +10,7 @@ class SphereCollider;
 class Texture;
 class CubeCollider;
 class MeshCollider;
+class Scene;
 
 class ImGuiManager
 {
@@ -42,6 +43,8 @@ private:
 	void RenderDragAndDrop();
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
+
+	void AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent);
 
 private:
 

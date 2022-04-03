@@ -1,12 +1,11 @@
 {
     "resources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4210.fbx\u0000"
     ],
     "gameObjects": [
         {
-            "tag": "bg4210.fbx\u0000",
-            "hashValue": 13860491345392323565,
+            "tag": "bg4210.fbx0\u0000",
+            "hashValue": 1027322875652545893,
             "componentOnValue": [
                 true,
                 false,
@@ -45,8 +44,8 @@
             }
         },
         {
-            "tag": "mesh_root\u0000",
-            "hashValue": 5514151138106766407,
+            "tag": "mesh_root0\u0000",
+            "hashValue": 6140824157847890959,
             "componentOnValue": [
                 true,
                 false,
@@ -64,7 +63,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 13860491345392323565
+                "parentHashValue": 1027322875652545893
             },
             "meshRendererValue": {
                 "materialValues": [],
@@ -85,8 +84,8 @@
             }
         },
         {
-            "tag": "LOD0_0_entrance_mesh0000\u0000",
-            "hashValue": 4985888455591490298,
+            "tag": "LOD0_0_entrance_mesh00000\u0000",
+            "hashValue": 14903903751498596442,
             "componentOnValue": [
                 true,
                 true,
@@ -104,7 +103,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -152,8 +151,8 @@
             }
         },
         {
-            "tag": "LOD0_1_entrance_mesh0001\u0000",
-            "hashValue": 4480867081866412266,
+            "tag": "LOD0_1_entrance_mesh00010\u0000",
+            "hashValue": 8803626540754858218,
             "componentOnValue": [
                 true,
                 true,
@@ -171,7 +170,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -219,8 +218,8 @@
             }
         },
         {
-            "tag": "LOD0_2_entrance_mesh0002\u0000",
-            "hashValue": 3442299152071422746,
+            "tag": "LOD0_2_entrance_mesh00020\u0000",
+            "hashValue": 6984988962672390074,
             "componentOnValue": [
                 true,
                 true,
@@ -238,7 +237,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -286,8 +285,8 @@
             }
         },
         {
-            "tag": "LOD0_3_entrance_mesh0003\u0000",
-            "hashValue": 4577997180498907210,
+            "tag": "LOD0_3_entrance_mesh00030\u0000",
+            "hashValue": 15512863622673420682,
             "componentOnValue": [
                 true,
                 true,
@@ -305,7 +304,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -353,8 +352,8 @@
             }
         },
         {
-            "tag": "LOD0_4_entrance_mesh0004\u0000",
-            "hashValue": 9920389333287842042,
+            "tag": "LOD0_4_entrance_mesh00040\u0000",
+            "hashValue": 160889806944005722,
             "componentOnValue": [
                 true,
                 true,
@@ -372,7 +371,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -420,8 +419,8 @@
             }
         },
         {
-            "tag": "LOD0_5_entrance_mesh0005\u0000",
-            "hashValue": 15668633451758844522,
+            "tag": "LOD0_5_entrance_mesh00050\u0000",
+            "hashValue": 8613097313677633130,
             "componentOnValue": [
                 true,
                 true,
@@ -439,7 +438,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -487,8 +486,8 @@
             }
         },
         {
-            "tag": "LOD0_6_entrance_mesh0006\u0000",
-            "hashValue": 5147417131846344986,
+            "tag": "LOD0_6_entrance_mesh00060\u0000",
+            "hashValue": 3435746725282155962,
             "componentOnValue": [
                 true,
                 true,
@@ -506,7 +505,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -554,8 +553,8 @@
             }
         },
         {
-            "tag": "LOD0_7_entrance_mesh0007\u0000",
-            "hashValue": 7815069019157709002,
+            "tag": "LOD0_7_entrance_mesh00070\u0000",
+            "hashValue": 12879187443774526986,
             "componentOnValue": [
                 true,
                 true,
@@ -573,7 +572,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -621,8 +620,8 @@
             }
         },
         {
-            "tag": "LOD0_8_entrance_mesh0008\u0000",
-            "hashValue": 13464623648611083802,
+            "tag": "LOD0_8_entrance_mesh00080\u0000",
+            "hashValue": 2947762955622996666,
             "componentOnValue": [
                 true,
                 true,
@@ -640,7 +639,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -688,8 +687,8 @@
             }
         },
         {
-            "tag": "LOD0_9_entrance_mesh0009\u0000",
-            "hashValue": 3992188745178901994,
+            "tag": "LOD0_9_entrance_mesh00090\u0000",
+            "hashValue": 5214783978365052394,
             "componentOnValue": [
                 true,
                 true,
@@ -707,7 +706,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -755,8 +754,8 @@
             }
         },
         {
-            "tag": "LOD0_10_entrance_mesh0010\u0000",
-            "hashValue": 5457908462510654418,
+            "tag": "LOD0_10_entrance_mesh00100\u0000",
+            "hashValue": 13004935645432890674,
             "componentOnValue": [
                 true,
                 true,
@@ -774,7 +773,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -822,8 +821,8 @@
             }
         },
         {
-            "tag": "LOD0_11_entrance_mesh0011\u0000",
-            "hashValue": 13261260959696709906,
+            "tag": "LOD0_11_entrance_mesh00110\u0000",
+            "hashValue": 14708022951175257202,
             "componentOnValue": [
                 true,
                 true,
@@ -841,7 +840,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -889,8 +888,8 @@
             }
         },
         {
-            "tag": "LOD0_12_entrance_mesh0012\u0000",
-            "hashValue": 17873862254669321586,
+            "tag": "LOD0_12_entrance_mesh00120\u0000",
+            "hashValue": 6132779666970946962,
             "componentOnValue": [
                 true,
                 true,
@@ -908,7 +907,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -956,8 +955,8 @@
             }
         },
         {
-            "tag": "LOD0_13_entrance_mesh0013\u0000",
-            "hashValue": 15620499687139762290,
+            "tag": "LOD0_13_entrance_mesh00130\u0000",
+            "hashValue": 18404410544478122130,
             "componentOnValue": [
                 true,
                 true,
@@ -975,7 +974,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1023,8 +1022,8 @@
             }
         },
         {
-            "tag": "LOD0_14_entrance_mesh0014\u0000",
-            "hashValue": 18182827208133279954,
+            "tag": "LOD0_14_entrance_mesh00140\u0000",
+            "hashValue": 11808233120389401138,
             "componentOnValue": [
                 true,
                 true,
@@ -1042,7 +1041,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1090,8 +1089,8 @@
             }
         },
         {
-            "tag": "LOD0_15_entrance_mesh0015\u0000",
-            "hashValue": 17860931148316493970,
+            "tag": "LOD0_15_entrance_mesh00150\u0000",
+            "hashValue": 5606323409016080370,
             "componentOnValue": [
                 true,
                 true,
@@ -1109,7 +1108,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1157,8 +1156,8 @@
             }
         },
         {
-            "tag": "LOD0_16_entrance_mesh0016\u0000",
-            "hashValue": 10383969954195743986,
+            "tag": "LOD0_16_entrance_mesh00160\u0000",
+            "hashValue": 13429104076951415058,
             "componentOnValue": [
                 true,
                 true,
@@ -1176,7 +1175,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1224,8 +1223,8 @@
             }
         },
         {
-            "tag": "LOD0_17_entrance_mesh0017\u0000",
-            "hashValue": 7898024012235067506,
+            "tag": "LOD0_17_entrance_mesh00170\u0000",
+            "hashValue": 15816840416642588818,
             "componentOnValue": [
                 true,
                 true,
@@ -1243,7 +1242,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1291,8 +1290,8 @@
             }
         },
         {
-            "tag": "LOD0_18_entrance_mesh0018\u0000",
-            "hashValue": 13485849067002172770,
+            "tag": "LOD0_18_entrance_mesh00180\u0000",
+            "hashValue": 9232923163957239842,
             "componentOnValue": [
                 true,
                 true,
@@ -1310,7 +1309,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1358,8 +1357,8 @@
             }
         },
         {
-            "tag": "LOD0_19_entrance_mesh0019\u0000",
-            "hashValue": 13740429304148484866,
+            "tag": "LOD0_19_entrance_mesh00190\u0000",
+            "hashValue": 5887094392833194242,
             "componentOnValue": [
                 true,
                 true,
@@ -1377,7 +1376,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1425,8 +1424,8 @@
             }
         },
         {
-            "tag": "LOD0_20_entrance_mesh0020\u0000",
-            "hashValue": 4310471583946274034,
+            "tag": "LOD0_20_entrance_mesh00200\u0000",
+            "hashValue": 2906815680737622290,
             "componentOnValue": [
                 true,
                 true,
@@ -1444,7 +1443,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1492,8 +1491,8 @@
             }
         },
         {
-            "tag": "LOD0_21_entrance_mesh0021\u0000",
-            "hashValue": 13692844602107263362,
+            "tag": "LOD0_21_entrance_mesh00210\u0000",
+            "hashValue": 12219250231659352962,
             "componentOnValue": [
                 true,
                 true,
@@ -1511,7 +1510,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1559,8 +1558,8 @@
             }
         },
         {
-            "tag": "LOD0_22_entrance_mesh0022\u0000",
-            "hashValue": 13995921630573561970,
+            "tag": "LOD0_22_entrance_mesh00220\u0000",
+            "hashValue": 6754470886928734354,
             "componentOnValue": [
                 true,
                 true,
@@ -1578,7 +1577,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1626,8 +1625,8 @@
             }
         },
         {
-            "tag": "LOD0_23_entrance_mesh0023\u0000",
-            "hashValue": 18439946076683574530,
+            "tag": "LOD0_23_entrance_mesh00230\u0000",
+            "hashValue": 397210103237378818,
             "componentOnValue": [
                 true,
                 true,
@@ -1645,7 +1644,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1693,8 +1692,8 @@
             }
         },
         {
-            "tag": "LOD0_24_entrance_mesh0024\u0000",
-            "hashValue": 1231335666970387314,
+            "tag": "LOD0_24_entrance_mesh00240\u0000",
+            "hashValue": 9787221438998834066,
             "componentOnValue": [
                 true,
                 true,
@@ -1712,7 +1711,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1760,8 +1759,8 @@
             }
         },
         {
-            "tag": "LOD0_25_entrance_mesh0025\u0000",
-            "hashValue": 4463501987451008002,
+            "tag": "LOD0_25_entrance_mesh00250\u0000",
+            "hashValue": 15276338140116349442,
             "componentOnValue": [
                 true,
                 true,
@@ -1779,7 +1778,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1827,8 +1826,8 @@
             }
         },
         {
-            "tag": "LOD0_26_entrance_mesh0026\u0000",
-            "hashValue": 16826863687318645234,
+            "tag": "LOD0_26_entrance_mesh00260\u0000",
+            "hashValue": 13870720738031154706,
             "componentOnValue": [
                 true,
                 true,
@@ -1846,7 +1845,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1894,8 +1893,8 @@
             }
         },
         {
-            "tag": "LOD0_27_entrance_mesh0027\u0000",
-            "hashValue": 8754865514460916994,
+            "tag": "LOD0_27_entrance_mesh00270\u0000",
+            "hashValue": 3677462733317804802,
             "componentOnValue": [
                 true,
                 true,
@@ -1913,7 +1912,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -1961,8 +1960,8 @@
             }
         },
         {
-            "tag": "LOD0_28_entrance_mesh0028\u0000",
-            "hashValue": 6596879278442894290,
+            "tag": "LOD0_28_entrance_mesh00280\u0000",
+            "hashValue": 72483443330766130,
             "componentOnValue": [
                 true,
                 true,
@@ -1980,7 +1979,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 6140824157847890959
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -2006,7 +2005,7 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "ForwardAlphaBlend\u0000"
                         },
                         "tag": "mas_MtRobot_view02_AAA1_tga\u0000"
                     }

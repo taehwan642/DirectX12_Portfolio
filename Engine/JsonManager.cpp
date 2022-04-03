@@ -373,6 +373,10 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 			if (obj != nullptr)
 			{
 				object->AddComponent(obj->_meshRenderer->Clone());
+				for (int i = 0; i < value.meshRendererValue.materialValues.size(); ++i)
+				{
+					object->GetMeshRenderer()->GetMaterial(i)->SetShader(GET_SINGLE(Resources)->Get<Shader>(s2ws(value.meshRendererValue.materialValues[i].shaderValue.tag)));
+				}
 				isLoaded = true;
 			}
 		}

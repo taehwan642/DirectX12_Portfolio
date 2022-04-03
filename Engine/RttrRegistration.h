@@ -395,8 +395,6 @@ RTTR_REGISTRATION
 	// Shader
 	rttr::registration::class_<Shader>("Shader")
 		.constructor<>()
-		.property("_info", &Shader::_info)
-		.property("_arg", &Shader::_arg)
 		.property("_name", &Object::_name);
 
 	// ShaderInfo

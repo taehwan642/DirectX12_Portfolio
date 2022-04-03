@@ -2,13 +2,13 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 385,
+            "_id": 211,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13860491345392323565,
+            "_hash": 1027322875652545893,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -56,13 +56,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 386,
+            "_id": 213,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 5514151138106766407,
+            "_hash": 6140824157847890959,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -110,13 +110,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 387,
+            "_id": 215,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 4985888455591490298,
+            "_hash": 14903903751498596442,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -357,12 +357,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 222,
+                                "_id": 107,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 223,
+                                "_id": 108,
                                 "_name": ""
                             },
                             {},
@@ -372,7 +372,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 356,
+                    "_id": 182,
                     "_name": ""
                 }
             },
@@ -386,13 +386,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 390,
+            "_id": 218,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 4480867081866412266,
+            "_hash": 8803626540754858218,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -633,12 +633,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 224,
+                                "_id": 109,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 225,
+                                "_id": 110,
                                 "_name": ""
                             },
                             {},
@@ -648,7 +648,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 357,
+                    "_id": 183,
                     "_name": ""
                 }
             },
@@ -662,13 +662,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 393,
+            "_id": 221,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 3442299152071422746,
+            "_hash": 6984988962672390074,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -909,12 +909,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 226,
+                                "_id": 111,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 227,
+                                "_id": 112,
                                 "_name": ""
                             },
                             {},
@@ -924,7 +924,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 358,
+                    "_id": 184,
                     "_name": ""
                 }
             },
@@ -938,13 +938,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 396,
+            "_id": 224,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 4577997180498907210,
+            "_hash": 15512863622673420682,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -1185,12 +1185,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 228,
+                                "_id": 113,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 229,
+                                "_id": 114,
                                 "_name": ""
                             },
                             {},
@@ -1200,7 +1200,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 359,
+                    "_id": 185,
                     "_name": ""
                 }
             },
@@ -1214,13 +1214,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 399,
+            "_id": 227,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 9920389333287842042,
+            "_hash": 160889806944005722,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -1461,12 +1461,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 230,
+                                "_id": 115,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 231,
+                                "_id": 116,
                                 "_name": ""
                             },
                             {},
@@ -1476,7 +1476,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 360,
+                    "_id": 186,
                     "_name": ""
                 }
             },
@@ -1490,13 +1490,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 402,
+            "_id": 230,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 15668633451758844522,
+            "_hash": 8613097313677633130,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -1737,12 +1737,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 232,
+                                "_id": 117,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 233,
+                                "_id": 118,
                                 "_name": ""
                             },
                             {},
@@ -1752,7 +1752,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 361,
+                    "_id": 187,
                     "_name": ""
                 }
             },
@@ -1766,13 +1766,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 405,
+            "_id": 233,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 5147417131846344986,
+            "_hash": 3435746725282155962,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -2013,12 +2013,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 234,
+                                "_id": 119,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 235,
+                                "_id": 120,
                                 "_name": ""
                             },
                             {},
@@ -2028,7 +2028,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 362,
+                    "_id": 188,
                     "_name": ""
                 }
             },
@@ -2042,13 +2042,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 408,
+            "_id": 236,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 7815069019157709002,
+            "_hash": 12879187443774526986,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -2289,12 +2289,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 236,
+                                "_id": 121,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 237,
+                                "_id": 122,
                                 "_name": ""
                             },
                             {},
@@ -2304,7 +2304,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 363,
+                    "_id": 189,
                     "_name": ""
                 }
             },
@@ -2318,13 +2318,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 411,
+            "_id": 239,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13464623648611083802,
+            "_hash": 2947762955622996666,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -2565,12 +2565,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 238,
+                                "_id": 123,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 239,
+                                "_id": 124,
                                 "_name": ""
                             },
                             {},
@@ -2580,7 +2580,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 364,
+                    "_id": 190,
                     "_name": ""
                 }
             },
@@ -2594,13 +2594,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 414,
+            "_id": 242,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 3992188745178901994,
+            "_hash": 5214783978365052394,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -2841,12 +2841,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 240,
+                                "_id": 125,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 241,
+                                "_id": 126,
                                 "_name": ""
                             },
                             {},
@@ -2856,7 +2856,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 365,
+                    "_id": 191,
                     "_name": ""
                 }
             },
@@ -2870,13 +2870,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 417,
+            "_id": 245,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 5457908462510654418,
+            "_hash": 13004935645432890674,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -3117,12 +3117,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 242,
+                                "_id": 127,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 243,
+                                "_id": 128,
                                 "_name": ""
                             },
                             {},
@@ -3132,7 +3132,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 366,
+                    "_id": 192,
                     "_name": ""
                 }
             },
@@ -3146,13 +3146,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 420,
+            "_id": 248,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13261260959696709906,
+            "_hash": 14708022951175257202,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -3393,12 +3393,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 244,
+                                "_id": 129,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 245,
+                                "_id": 130,
                                 "_name": ""
                             },
                             {},
@@ -3408,7 +3408,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 367,
+                    "_id": 193,
                     "_name": ""
                 }
             },
@@ -3422,13 +3422,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 423,
+            "_id": 251,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 17873862254669321586,
+            "_hash": 6132779666970946962,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -3669,12 +3669,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 246,
+                                "_id": 131,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 247,
+                                "_id": 132,
                                 "_name": ""
                             },
                             {},
@@ -3684,7 +3684,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 368,
+                    "_id": 194,
                     "_name": ""
                 }
             },
@@ -3698,13 +3698,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 426,
+            "_id": 254,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 15620499687139762290,
+            "_hash": 18404410544478122130,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -3945,12 +3945,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 246,
+                                "_id": 131,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 247,
+                                "_id": 132,
                                 "_name": ""
                             },
                             {},
@@ -3960,7 +3960,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 369,
+                    "_id": 195,
                     "_name": ""
                 }
             },
@@ -3974,13 +3974,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 429,
+            "_id": 257,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 18182827208133279954,
+            "_hash": 11808233120389401138,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -4221,12 +4221,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 222,
+                                "_id": 107,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 223,
+                                "_id": 108,
                                 "_name": ""
                             },
                             {},
@@ -4236,7 +4236,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 370,
+                    "_id": 196,
                     "_name": ""
                 }
             },
@@ -4250,13 +4250,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 432,
+            "_id": 260,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 17860931148316493970,
+            "_hash": 5606323409016080370,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -4497,12 +4497,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 222,
+                                "_id": 107,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 223,
+                                "_id": 108,
                                 "_name": ""
                             },
                             {},
@@ -4512,7 +4512,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 371,
+                    "_id": 197,
                     "_name": ""
                 }
             },
@@ -4526,13 +4526,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 435,
+            "_id": 263,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 10383969954195743986,
+            "_hash": 13429104076951415058,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -4773,12 +4773,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 248,
+                                "_id": 133,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 249,
+                                "_id": 134,
                                 "_name": ""
                             },
                             {},
@@ -4788,7 +4788,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 372,
+                    "_id": 198,
                     "_name": ""
                 }
             },
@@ -4802,13 +4802,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 438,
+            "_id": 266,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 7898024012235067506,
+            "_hash": 15816840416642588818,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -5049,12 +5049,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 248,
+                                "_id": 133,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 249,
+                                "_id": 134,
                                 "_name": ""
                             },
                             {},
@@ -5064,7 +5064,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 373,
+                    "_id": 199,
                     "_name": ""
                 }
             },
@@ -5078,13 +5078,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 441,
+            "_id": 269,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13485849067002172770,
+            "_hash": 9232923163957239842,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -5325,12 +5325,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 250,
+                                "_id": 135,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 251,
+                                "_id": 136,
                                 "_name": ""
                             },
                             {},
@@ -5340,7 +5340,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 374,
+                    "_id": 200,
                     "_name": ""
                 }
             },
@@ -5354,13 +5354,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 444,
+            "_id": 272,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13740429304148484866,
+            "_hash": 5887094392833194242,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -5601,12 +5601,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 252,
+                                "_id": 137,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 253,
+                                "_id": 138,
                                 "_name": ""
                             },
                             {},
@@ -5616,7 +5616,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 375,
+                    "_id": 201,
                     "_name": ""
                 }
             },
@@ -5630,13 +5630,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 447,
+            "_id": 275,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 4310471583946274034,
+            "_hash": 2906815680737622290,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -5877,12 +5877,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 254,
+                                "_id": 139,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 255,
+                                "_id": 140,
                                 "_name": ""
                             },
                             {},
@@ -5892,7 +5892,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 376,
+                    "_id": 202,
                     "_name": ""
                 }
             },
@@ -5906,13 +5906,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 450,
+            "_id": 278,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13692844602107263362,
+            "_hash": 12219250231659352962,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -6153,12 +6153,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 254,
+                                "_id": 139,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 255,
+                                "_id": 140,
                                 "_name": ""
                             },
                             {},
@@ -6168,7 +6168,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 377,
+                    "_id": 203,
                     "_name": ""
                 }
             },
@@ -6182,13 +6182,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 453,
+            "_id": 281,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 13995921630573561970,
+            "_hash": 6754470886928734354,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -6429,12 +6429,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 256,
+                                "_id": 141,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 257,
+                                "_id": 142,
                                 "_name": ""
                             },
                             {},
@@ -6444,7 +6444,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 378,
+                    "_id": 204,
                     "_name": ""
                 }
             },
@@ -6458,13 +6458,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 456,
+            "_id": 284,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 18439946076683574530,
+            "_hash": 397210103237378818,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -6705,12 +6705,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 256,
+                                "_id": 141,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 257,
+                                "_id": 142,
                                 "_name": ""
                             },
                             {},
@@ -6720,7 +6720,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 379,
+                    "_id": 205,
                     "_name": ""
                 }
             },
@@ -6734,13 +6734,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 459,
+            "_id": 287,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 1231335666970387314,
+            "_hash": 9787221438998834066,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -6981,12 +6981,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 258,
+                                "_id": 143,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 259,
+                                "_id": 144,
                                 "_name": ""
                             },
                             {},
@@ -6996,7 +6996,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 380,
+                    "_id": 206,
                     "_name": ""
                 }
             },
@@ -7010,13 +7010,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 462,
+            "_id": 290,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 4463501987451008002,
+            "_hash": 15276338140116349442,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -7257,12 +7257,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 260,
+                                "_id": 145,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 261,
+                                "_id": 146,
                                 "_name": ""
                             },
                             {},
@@ -7272,7 +7272,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 381,
+                    "_id": 207,
                     "_name": ""
                 }
             },
@@ -7286,13 +7286,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 465,
+            "_id": 293,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 16826863687318645234,
+            "_hash": 13870720738031154706,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -7533,12 +7533,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 262,
+                                "_id": 147,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 263,
+                                "_id": 148,
                                 "_name": ""
                             },
                             {},
@@ -7548,7 +7548,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 382,
+                    "_id": 208,
                     "_name": ""
                 }
             },
@@ -7562,13 +7562,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 468,
+            "_id": 296,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 8754865514460916994,
+            "_hash": 3677462733317804802,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -7809,12 +7809,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 264,
+                                "_id": 149,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 265,
+                                "_id": 150,
                                 "_name": ""
                             },
                             {},
@@ -7824,7 +7824,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 383,
+                    "_id": 209,
                     "_name": ""
                 }
             },
@@ -7838,13 +7838,13 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 471,
+            "_id": 299,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 6596879278442894290,
+            "_hash": 72483443330766130,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -8064,12 +8064,12 @@
                         },
                         "_shader": {
                             "_objectType": "SHADER",
-                            "_id": 12,
+                            "_id": 14,
                             "_info": {
-                                "shaderType": "DEFERRED",
+                                "shaderType": "FORWARD",
                                 "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
+                                "depthStencilType": "LESS_NO_WRITE",
+                                "blendType": "ALPHA_BLEND",
                                 "topology": 4
                             },
                             "_arg": {
@@ -8085,12 +8085,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 266,
+                                "_id": 151,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 265,
+                                "_id": 150,
                                 "_name": ""
                             },
                             {},
@@ -8100,7 +8100,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 384,
+                    "_id": 210,
                     "_name": ""
                 }
             },

@@ -291,6 +291,41 @@ void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Materia
 
         if (ImGui::BeginMenu("Shader"))
         {
+            int item_current_idx{};
+
+            std::vector<std::string> stringVec;
+            int value = 0; // stringVec의 size는 이 때 1이니까.
+
+            for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::SHADER)])
+            {
+                if (material->_shader == iter.second)
+                {
+                    item_current_idx = value;
+                }
+                stringVec.push_back(ws2s(iter.first));
+                ++value;
+            }
+
+            std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+            std::string comboName = "Selected Material";
+            if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+            {
+                for (int n = 0; n < stringVec.size(); n++)
+                {
+                    const bool is_selected = (item_current_idx == n);
+                    if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                    {
+                        item_current_idx = n;
+                        std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::SHADER)].find(s2ws(stringVec[n]))->second;
+                        material->_shader = std::static_pointer_cast<Shader>(obj);
+                    }
+
+                    if (is_selected)
+                        ImGui::SetItemDefaultFocus();
+                }
+                ImGui::EndCombo();
+            }
+
             // ShaderInfo 출력
             ImGui::Text("Shader Info :");
             ImGui::SameLine();
@@ -578,6 +613,24 @@ void ImGuiManager::RenderInspector()
 
     if (_currentGameObject != nullptr)
     {
+        static std::string textinput;
+        // Text 적을 수 있게 해야함.
+        ImGui::InputText("FileName", const_cast<char*>(textinput.c_str()), 64);
+        if (ImGui::Button("Save Prefab"))
+        {
+            std::string inputText(textinput.c_str());
+            std::string path = std::string("../Resources/FBX/") + inputText;
+
+            std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
+
+            // 현재 게임오브젝트부터 자식들까지 모두 Scene에 담기
+            AddSceneChild(sceneOnlyForSave, _currentGameObject);
+
+            // 저장
+            std::string finalPath = path + "_Prefab";
+            GET_SINGLE(JsonManager)->SaveScene(finalPath.c_str(), sceneOnlyForSave);
+        }
+
         std::string input = ws2s(_currentGameObject->GetName()).c_str();
         // Text 적을 수 있게 해야함.
         if (ImGui::InputText("Name", const_cast<char*>(input.c_str()), 64))
@@ -1349,17 +1402,17 @@ void ImGuiManager::RenderDragAndDrop()
 
         // 불러온 MeshData Prefab으로 뽑기
         std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();
+        meshDataObject->AddComponent(std::make_shared<TransformComponent>());
         meshDataObject->SetName(s2ws(objName.c_str()));
         meshDataObject->GenerateHash();
         sceneOnlyForSave->AddGameObject(meshDataObject);
         std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
+        mesh_root->AddComponent(std::make_shared<TransformComponent>());
         mesh_root->SetName(L"mesh_root");
         mesh_root->GenerateHash();
         sceneOnlyForSave->AddGameObject(mesh_root);
         std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
 
-        meshDataObject->AddComponent(std::make_shared<TransformComponent>());
-        mesh_root->AddComponent(std::make_shared<TransformComponent>());
 
         mesh_root->GetTransform()->SetParent(meshDataObject->GetTransform());
         for (int i = 0; i < gameObjects.size(); ++i)
@@ -1506,4 +1559,13 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
         ImGui::TreePop();
     }
     ImGui::PopID();
+}
+
+void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent)
+{
+    scene->AddGameObject(parent);
+    for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
+    {
+        AddSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject());
+    }
 }

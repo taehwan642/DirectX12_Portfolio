@@ -373,6 +373,38 @@ void Resources::CreateDefaultShader()
 		Add<Shader>(L"Forward", shader);
 	}
 
+	// Forward AlphaBlend
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::FORWARD,
+			RASTERIZER_TYPE::CULL_BACK,
+			DEPTH_STENCIL_TYPE::LESS_NO_WRITE,
+			BLEND_TYPE::ALPHA_BLEND,
+			D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\forward.fx", info);
+		Add<Shader>(L"ForwardAlphaBlend", shader);
+	}
+
+	// Deferred AlphaBlend
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::DEFERRED,
+			RASTERIZER_TYPE::CULL_BACK,
+			DEPTH_STENCIL_TYPE::LESS_NO_WRITE,
+			BLEND_TYPE::ALPHA_BLEND,
+			D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\deferred.fx", info);
+		Add<Shader>(L"DeferredAlphaBlend", shader);
+	}
+
 	// Texture (Forward)
 	{
 		ShaderInfo info =
