@@ -254,3 +254,7 @@ struct array_deleter
 };
 
 #define TOOL
+
+#define PI ((FLOAT)  3.141592654f)
+#define RadianToDegree(radian) ((radian) * 180.f / PI)
+#define DegreeToRadian(degree) ((degree) * (PI / 180.f))

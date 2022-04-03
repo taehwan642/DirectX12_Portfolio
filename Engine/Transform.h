@@ -15,9 +15,9 @@ public:
 
 	void UpdateMatrix()
 	{
-		Matrix matRotation = Matrix::CreateRotationX(_rotation.x);
-		matRotation *= Matrix::CreateRotationY(_rotation.y);
-		matRotation *= Matrix::CreateRotationZ(_rotation.z);
+		Matrix matRotation = Matrix::CreateRotationX(DegreeToRadian(_rotation.x));
+		matRotation *= Matrix::CreateRotationY(DegreeToRadian(_rotation.y));
+		matRotation *= Matrix::CreateRotationZ(DegreeToRadian(_rotation.z));
 
 		_matrix._11 = matRotation.Right().x * _scale.x;
 		_matrix._12 = matRotation.Right().y * _scale.x;
