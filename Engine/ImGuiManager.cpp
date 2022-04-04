@@ -31,6 +31,7 @@
 #include "TerrainScript.h"
 #include "TestCameraScript.h"
 #include "TestDragon.h"
+#include "Sea.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1278,6 +1279,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(TerrainScript);
             IMGUIADDMONOBEHAVIOUR(TestCameraScript);
             IMGUIADDMONOBEHAVIOUR(TestDragon);
+            IMGUIADDMONOBEHAVIOUR(Sea);
 
             ImGui::EndMenu();
         }

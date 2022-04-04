@@ -210,6 +210,9 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Sea.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -395,6 +398,9 @@
     <ClInclude Include="TransformComponent.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Sea.h">
+      <Filter>Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -439,6 +445,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="..\Resources\Shader\math.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Resources\Shader\sea.fx">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

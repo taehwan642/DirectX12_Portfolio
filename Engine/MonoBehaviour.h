@@ -7,6 +7,7 @@ enum class MonoBehaviourType
 	TestDragon,
 	TerrainScript,
 	GameManagerScript,
+	Sea,
 	END
 };
 

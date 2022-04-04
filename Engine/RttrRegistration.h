@@ -27,7 +27,7 @@
 #include "TestCameraScript.h"
 #include "TestDragon.h"
 #include "GameManagerScript.h"
-
+#include "Sea.h"
 
 // Load때 필요한 오브젝트.
 
@@ -257,6 +257,7 @@ struct RTTRGameObjectValue
 			RTTRMONOLOAD(TerrainScript)
 			RTTRMONOLOAD(TestCameraScript)
 			RTTRMONOLOAD(TestDragon)
+			RTTRMONOLOAD(Sea)
 		}
 	}
 
@@ -742,5 +743,6 @@ RTTR_REGISTRATION
 		.property("_speed", &TestCameraScript::_speed);
 
 	RTTRMONOREGISTER(TestDragon);
+	RTTRMONOREGISTER(Sea);
 #pragma endregion
 }

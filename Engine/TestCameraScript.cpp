@@ -92,8 +92,8 @@ void TestCameraScript::LateUpdate()
 		float dx = (pos.x - pressedPos.x);
 		float dy = (pos.y - pressedPos.y);
 
-		rotation.y += dx * DELTA_TIME;
-		rotation.x += dy * DELTA_TIME;
+		rotation.y += dx * DELTA_TIME * 30.f;
+		rotation.x += dy * DELTA_TIME * 30.f;
 
 		pressedPos.x = pos.x;
 		pressedPos.y = pos.y;

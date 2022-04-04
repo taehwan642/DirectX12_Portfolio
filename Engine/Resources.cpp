@@ -361,6 +361,18 @@ void Resources::CreateDefaultShader()
 		Add<Shader>(L"Deferred", shader);
 	}
 
+	// Sea (Deferred)
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::DEFERRED
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\sea.fx", info);
+		Add<Shader>(L"Sea", shader);
+	}
+
 	// Forward (Forward)
 	{
 		ShaderInfo info =
@@ -387,22 +399,6 @@ void Resources::CreateDefaultShader()
 		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\forward.fx", info);
 		Add<Shader>(L"ForwardAlphaBlend", shader);
-	}
-
-	// Deferred AlphaBlend
-	{
-		ShaderInfo info =
-		{
-			SHADER_TYPE::DEFERRED,
-			RASTERIZER_TYPE::CULL_BACK,
-			DEPTH_STENCIL_TYPE::LESS_NO_WRITE,
-			BLEND_TYPE::ALPHA_BLEND,
-			D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
-		};
-
-		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
-		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\deferred.fx", info);
-		Add<Shader>(L"DeferredAlphaBlend", shader);
 	}
 
 	// Texture (Forward)
@@ -769,12 +765,12 @@ void Resources::CreateDefaultMaterial()
 	}
 
 	{
-		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Deferred");
-		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Terrain", L"..\\Resources\\Texture\\Terrain\\terrain.png");
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Sea");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Sea", L"..\\Resources\\Texture\\Sea_Normal.jpg");
 		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
-		Add<Material>(L"Plane", material);
+		Add<Material>(L"Sea", material);
 	}
 
 	{
