@@ -4,6 +4,7 @@
 class Mesh;
 class Material;
 class GameObject;
+class Visualizer;
 
 enum class ColliderType
 {
@@ -20,16 +21,14 @@ public:
 
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) { return false; };
 
-	std::shared_ptr<GameObject> GetColliderMesh() { return _colliderMeshGameObject; }
+	std::shared_ptr<Visualizer> GetColliderVisualizer() { return _colliderVisualizer; }
 	bool IsDrawMesh() { return _draw; }
 
 protected:
 	friend class ImGuiManager;
 	friend class RTTRColliderValue;
 	
-	std::shared_ptr<Mesh> _mesh;
-	std::shared_ptr<Material> _material;
-	std::shared_ptr<GameObject> _colliderMeshGameObject;
+	std::shared_ptr<Visualizer> _colliderVisualizer;
 
 	bool _draw = false;
 

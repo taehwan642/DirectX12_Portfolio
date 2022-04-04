@@ -20,6 +20,7 @@
 #include "Animator.h"
 #include "Scene.h"
 #include "SceneManager.h"
+#include "Visualizer.h"
 
 
 #include "MonoBehaviour.h"
@@ -341,6 +342,8 @@ RTTR_REGISTRATION
 		.property("_name", &Object::_name)
 		.property("_isActive", &GameObject::_isActive)
 		.property("_checkFrustum", &GameObject::_checkFrustum)
+		.property("_frustumCheckRadius", &GameObject::_frustumCheckRadius)
+		.property("_drawFrustumRaidusVisualizer", &GameObject::_drawFrustumRaidusVisualizer)
 		.property("_layerIndex", &GameObject::_layerIndex)
 		.property("_static", &GameObject::_static)
 		.property("_hash", &GameObject::_hash)
@@ -466,18 +469,24 @@ RTTR_REGISTRATION
 		.property("mesh", &MeshRenderInfo::mesh)
 		.property("materials", &MeshRenderInfo::materials);
 #pragma endregion
+
+	// Visualizer
+	rttr::registration::class_<Visualizer>("Visualizer")
+		.constructor<>()
+		.property("_radius", &Visualizer::_transform)
+		.property("_center", &Visualizer::_meshRenderer);
+
 #pragma region Collider
 
 	// BaseCollider
 	rttr::registration::class_<BaseCollider>("BaseCollider")
 		.constructor<ColliderType>()
-		.property("_mesh", &BaseCollider::_mesh)
-		.property("_material", &BaseCollider::_material)
-		.property("_colliderMeshGameObject", &BaseCollider::_colliderMeshGameObject);
+		.property("_colliderVisualizer", &BaseCollider::_colliderVisualizer);
 
 	// SphereCollider
 	rttr::registration::class_<SphereCollider>("SphereCollider")
 		.constructor<>()
+		.property("_draw", &BaseCollider::_draw)
 		.property("_radius", &SphereCollider::_radius)
 		.property("_center", &SphereCollider::_center)
 		.property("_colliderType", &BaseCollider::_colliderType);
@@ -485,13 +494,15 @@ RTTR_REGISTRATION
 	// CubeCollider
 	rttr::registration::class_<CubeCollider>("CubeCollider")
 		.constructor<>()
+		.property("_draw", &BaseCollider::_draw)
 		.property("_extents", &CubeCollider::_extents)
 		.property("_center", &CubeCollider::_center)
 		.property("_colliderType", &BaseCollider::_colliderType);
 
-	// CubeCollider
+	// MeshCollider
 	rttr::registration::class_<MeshCollider>("MeshCollider")
 		.constructor<>()
+		.property("_draw", &BaseCollider::_draw)
 		.property("_extents", &MeshCollider::_triCount)
 		.property("_center", &BaseCollider::_colliderType);
 

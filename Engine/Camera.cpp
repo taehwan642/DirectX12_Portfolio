@@ -12,6 +12,7 @@
 #include "InstancingManager.h"
 #include "BaseCollider.h"
 #include "SphereCollider.h"
+#include "Visualizer.h"
 
 Matrix Camera::S_MatView;
 Matrix Camera::S_MatProjection;
@@ -46,7 +47,7 @@ void Camera::SortGameObject()
 	_vecForward.clear();
 	_vecDeferred.clear();
 	_vecParticle.clear();
-	_vecColliderMesh.clear();
+	_vecVisualizerMesh.clear();
 
 	for (auto& gameObject : gameObjects)
 	{
@@ -55,8 +56,18 @@ void Camera::SortGameObject()
 
 		if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
 		{
-			std::shared_ptr<GameObject> gm = gameObject->GetCollider()->GetColliderMesh();
-			_vecColliderMesh.push_back(gm);
+			std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
+			gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizer()->_transform);
+			gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizer()->_meshRenderer);
+			_vecVisualizerMesh.push_back(gm);
+		}
+
+		if (gameObject->GetDrawFrustumRadius() == true)
+		{
+			std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
+			gm->AddComponent(gameObject->GetVisualizer()->_transform);
+			gm->AddComponent(gameObject->GetVisualizer()->_meshRenderer);
+			_vecVisualizerMesh.push_back(gm);
 		}
 
 		if (gameObject->GetMeshRenderer() == nullptr && gameObject->GetParticleSystem() == nullptr)
@@ -69,7 +80,7 @@ void Camera::SortGameObject()
 		{
 			if (_frustum.ContainsSphere(
 				gameObject->GetTransform()->GetWorldPosition(),
-				gameObject->GetTransform()->GetWorldTransform()->GetBoundingSphereRadius()) == false)
+				gameObject->GetFrustumRadius()) == false)
 			{
 				continue;
 			}
@@ -138,7 +149,7 @@ void Camera::Render_Deferred()
 	// Instancing그룹의 Deferred
 	// Non-Instancing 그룹의 Deferred로 나눠야함.
 	GET_SINGLE(InstancingManager)->Render(_vecDeferred);
-	for (auto& iter : _vecColliderMesh)
+	for (auto& iter : _vecVisualizerMesh)
 	{
 		iter->GetMeshRenderer()->Render();
 	}

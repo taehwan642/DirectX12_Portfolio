@@ -6,6 +6,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": false,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 16944570405146691913,
@@ -263,6 +265,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6369461910980368001,
@@ -520,6 +524,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6368505335864013656,
@@ -777,6 +783,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6371375061213076691,
@@ -1034,6 +1042,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6370418486096722346,
@@ -1291,6 +1301,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6373288211445785381,
@@ -1548,6 +1560,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 1,
             "_static": true,
             "_hash": 6372331636329431036,
@@ -1805,6 +1819,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 18121623904423847223,
@@ -2099,6 +2115,8 @@
                     "_name": "",
                     "_isActive": true,
                     "_checkFrustum": true,
+                    "_frustumCheckRadius": 1.0,
+                    "_drawFrustumRaidusVisualizer": false,
                     "_layerIndex": 0,
                     "_static": true,
                     "_hash": 0,
@@ -2225,6 +2243,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 100.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 14141447819906329258,
@@ -2476,7 +2496,254 @@
             "_light": {},
             "_particleSystem": {},
             "_terrain": {},
-            "_baseCollider": {},
+            "_baseCollider": {
+                "_colliderVisualizer": {
+                    "_radius": {
+                        "_localTransform": {
+                            "_position": {
+                                "x": 0.0,
+                                "y": -12.0,
+                                "z": 0.0
+                            },
+                            "_rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "_scale": {
+                                "x": 67.0,
+                                "y": 1.0,
+                                "z": 85.0
+                            }
+                        },
+                        "_worldTransform": {
+                            "_position": {
+                                "x": 0.0,
+                                "y": -12.0,
+                                "z": 0.0
+                            },
+                            "_rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "_scale": {
+                                "x": 67.0,
+                                "y": 1.0,
+                                "z": 85.0
+                            }
+                        }
+                    },
+                    "_center": {
+                        "_materials": [
+                            {
+                                "_params": {
+                                    "intParams": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "floatParams": [
+                                        0.0,
+                                        0.0,
+                                        0.0,
+                                        0.0
+                                    ],
+                                    "texOnParams": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "vec2Params": [
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0
+                                        }
+                                    ],
+                                    "vec4Params": [
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                            "w": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                            "w": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                            "w": 0.0
+                                        },
+                                        {
+                                            "x": 0.0,
+                                            "y": 0.0,
+                                            "z": 0.0,
+                                            "w": 0.0
+                                        }
+                                    ],
+                                    "matrixParams": [
+                                        {
+                                            "m": [
+                                                [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "m": [
+                                                [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "m": [
+                                                [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "m": [
+                                                [
+                                                    1.0,
+                                                    0.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    1.0,
+                                                    0.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    1.0,
+                                                    0.0
+                                                ],
+                                                [
+                                                    0.0,
+                                                    0.0,
+                                                    0.0,
+                                                    1.0
+                                                ]
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "_shader": {
+                                    "_objectType": "SHADER",
+                                    "_id": 27,
+                                    "_name": ""
+                                },
+                                "_textures": [
+                                    {},
+                                    {},
+                                    {},
+                                    {}
+                                ]
+                            }
+                        ],
+                        "_mesh": {
+                            "_objectType": "MESH",
+                            "_id": 58,
+                            "_name": ""
+                        }
+                    }
+                },
+                "_draw": true,
+                "_radius": 1.0,
+                "_center": {
+                    "x": 0.0,
+                    "y": -12.0,
+                    "z": 0.0
+                },
+                "_colliderType": "Sphere"
+            },
             "_animator": {},
             "_scripts": [
                 {}
@@ -2488,19 +2755,21 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 1652047311739494752,
             "_transform": {
                 "_localTransform": {
                     "_position": {
-                        "x": 143.5240478515625,
-                        "y": 12.250185012817383,
-                        "z": -27.09674644470215
+                        "x": -42.818603515625,
+                        "y": 47.67259979248047,
+                        "z": -91.22833251953125
                     },
                     "_rotation": {
-                        "x": 8.949514389038086,
-                        "y": -50.17868423461914,
+                        "x": 29.666004180908203,
+                        "y": 20.98583221435547,
                         "z": 0.0
                     },
                     "_scale": {
@@ -2511,13 +2780,13 @@
                 },
                 "_worldTransform": {
                     "_position": {
-                        "x": 143.5240478515625,
-                        "y": 12.250185012817383,
-                        "z": -27.09674644470215
+                        "x": -42.818603515625,
+                        "y": 47.67259979248047,
+                        "z": -91.22833251953125
                     },
                     "_rotation": {
-                        "x": 8.949514389038086,
-                        "y": -50.17868423461914,
+                        "x": 29.666004180908203,
+                        "y": 20.98583221435547,
                         "z": 0.0
                     },
                     "_scale": {
@@ -2539,27 +2808,27 @@
                 "_matView": {
                     "m": [
                         [
-                            0.6403954029083252,
-                            -0.11948028206825256,
-                            -0.7586949467658997,
-                            0.0
-                        ],
-                        [
-                            0.0,
-                            0.9878257513046265,
-                            -0.1555641144514084,
-                            0.0
-                        ],
-                        [
-                            0.7680453062057495,
-                            0.09962254017591476,
-                            0.6325991153717041,
+                            0.9336690306663513,
+                            0.1772575080394745,
+                            0.31119436025619507,
                             -0.0
                         ],
                         [
-                            -71.10061645507813,
-                            7.746693134307861,
-                            127.93803405761719,
+                            0.0,
+                            0.8689253330230713,
+                            -0.494943231344223,
+                            0.0
+                        ],
+                        [
+                            -0.3581370711326599,
+                            0.4621131420135498,
+                            0.8112886548042297,
+                            0.0
+                        ],
+                        [
+                            7.306154251098633,
+                            8.323802947998047,
+                            110.93264770507813,
                             1.0
                         ]
                     ]
@@ -2611,6 +2880,8 @@
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 10435265470670548171,
@@ -2737,27 +3008,27 @@
             "_matView": {
                 "m": [
                     [
-                        0.6403954029083252,
-                        -0.11948028206825256,
-                        -0.7586949467658997,
-                        0.0
-                    ],
-                    [
-                        0.0,
-                        0.9878257513046265,
-                        -0.1555641144514084,
-                        0.0
-                    ],
-                    [
-                        0.7680453062057495,
-                        0.09962254017591476,
-                        0.6325991153717041,
+                        0.9336690306663513,
+                        0.1772575080394745,
+                        0.31119436025619507,
                         -0.0
                     ],
                     [
-                        -71.10061645507813,
-                        7.746693134307861,
-                        127.93803405761719,
+                        0.0,
+                        0.8689253330230713,
+                        -0.494943231344223,
+                        0.0
+                    ],
+                    [
+                        -0.3581370711326599,
+                        0.4621131420135498,
+                        0.8112886548042297,
+                        0.0
+                    ],
+                    [
+                        7.306154251098633,
+                        8.323802947998047,
+                        110.93264770507813,
                         1.0
                     ]
                 ]
@@ -3113,6 +3384,8 @@
                 "_name": "",
                 "_isActive": true,
                 "_checkFrustum": true,
+                "_frustumCheckRadius": 1.0,
+                "_drawFrustumRaidusVisualizer": false,
                 "_layerIndex": 0,
                 "_static": true,
                 "_hash": 0,

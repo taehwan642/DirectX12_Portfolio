@@ -26,6 +26,7 @@
 #include "JsonManager.h"
 #include "MeshCollider.h"
 #include "MeshData.h"
+#include "Visualizer.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -684,6 +685,13 @@ void ImGuiManager::RenderInspector()
         {
             _currentGameObject->SetActive(!_currentGameObject->GetActive());
         }
+        ImGui::SameLine();
+        if (ImGui::Button("Visualize Frustum Radius"))
+        {
+            _currentGameObject->_drawFrustumRaidusVisualizer = !_currentGameObject->_drawFrustumRaidusVisualizer;
+        }
+        ImGui::SameLine();
+        ImGui::DragFloat("Frustum Radius", &_currentGameObject->_frustumCheckRadius);
 
         // Layer Ãâ·Â
         std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
@@ -1099,18 +1107,20 @@ void ImGuiManager::RenderInspector()
                 {
                     collider->_draw = !collider->_draw;
                 }
+                ImGui::SameLine();
+                ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&collider->_colliderVisualizer->_transform->_worldTransform->_scale)));
                 
                 if (ImGui::CollapsingHeader("ColliderMeshData"))
                 {
                     if (ImGui::BeginMenu("Mesh"))
                     {
-                        RenderMeshData(collider->_mesh);
+                        RenderMeshData(collider->_colliderVisualizer->_meshRenderer->_mesh);
                         ImGui::EndMenu();
                     }
 
                     if (ImGui::BeginMenu("Material"))
                     {
-                        RenderMaterialData(0, collider->_material);
+                        RenderMaterialData(0, collider->_colliderVisualizer->_meshRenderer->_materials[0]);
                         ImGui::EndMenu();
                     }
                 }

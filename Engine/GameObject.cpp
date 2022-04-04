@@ -9,10 +9,11 @@
 #include "Terrain.h"
 #include "BaseCollider.h"
 #include "Animator.h"
+#include "Visualizer.h"
 
 GameObject::GameObject() : Object(OBJECT_TYPE::GAMEOBJECT)
 {
-
+	_visualizer = std::make_shared<Visualizer>();
 }
 
 GameObject::~GameObject()
@@ -132,6 +133,12 @@ void GameObject::FinalUpdate()
 	{
 		if (component)
 			component->FinalUpdate();
+	}
+
+	if (_drawFrustumRaidusVisualizer)
+	{
+		_visualizer->FinalUpdate(GetTransform()->GetWorldPosition());
+		_visualizer->_transform->SetWorldScale(Vec3(_frustumCheckRadius));
 	}
 }
 

@@ -11,6 +11,7 @@ class ParticleSystem;
 class Terrain;
 class BaseCollider;
 class Animator;
+class Visualizer;
 
 class GameObject : public Object, public std::enable_shared_from_this<GameObject>
 {
@@ -64,6 +65,10 @@ public:
 	bool GetActive() { return _isActive; }
 	void SetActive(bool active);
 
+	bool GetDrawFrustumRadius() { return _drawFrustumRaidusVisualizer; }
+	std::shared_ptr<Visualizer> GetVisualizer() { return _visualizer; }
+	float GetFrustumRadius() { return _frustumCheckRadius; }
+
 private:
 	friend class ImGuiManager;
 	friend class RTTRGameObjectValue;
@@ -74,6 +79,8 @@ private:
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;
 
 	bool _checkFrustum = true;
+	float _frustumCheckRadius = 1.f;
+	bool _drawFrustumRaidusVisualizer = false;
 	uint8 _layerIndex = 0;
 	bool _static = true;
 
@@ -89,6 +96,10 @@ private:
 	std::shared_ptr<Animator> _animator;
 
 	bool _isActive = true;
+
+#ifdef TOOL
+	std::shared_ptr<Visualizer> _visualizer;
+#endif
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

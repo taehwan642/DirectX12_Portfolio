@@ -242,6 +242,7 @@
     <ClInclude Include="to_json.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="Visualizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Library\Include\Imgui\imgui.cpp">
@@ -335,6 +336,7 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="Visualizer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl" />
