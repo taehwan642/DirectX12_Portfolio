@@ -35,6 +35,7 @@ public:
 	const std::vector<std::shared_ptr<GameObject>>& GetGameObjects() { return _gameObjects; }
 
 	std::shared_ptr<GameObject> FindGameObject(size_t hash);
+	std::shared_ptr<GameObject> FindGameObject(std::wstring name);
 
 private:
 	friend class SceneManager;

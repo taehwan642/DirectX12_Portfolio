@@ -512,10 +512,26 @@ void ImGuiManager::RenderHierarchy()
         GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
     }
     ImGui::SameLine();
-    if (ImGui::Button("Create"))
+    if (ImGui::Button("Set Camera Same"))
     {
-        // TOOL CAMERA
-        GET_SINGLE(SceneManager)->GetActiveScene();
+        // TOOL CAMERA, Main Camera °Ë»ö
+        std::shared_ptr<GameObject> toolCamera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"ToolCamera");
+        std::shared_ptr<GameObject> mainCamera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"Main_Camera");
+
+        std::shared_ptr<TransformComponent> toolCameraTransform = toolCamera->GetTransform();
+        std::shared_ptr<TransformComponent> mainCameraTransform = mainCamera->GetTransform();
+        mainCameraTransform->SetWorldPosition(toolCameraTransform->GetWorldPosition());
+        mainCameraTransform->SetWorldRotation(toolCameraTransform->GetWorldRotation());
+        mainCameraTransform->SetWorldScale(toolCameraTransform->GetWorldScale());
+
+        std::shared_ptr<Camera> toolCameraCom = toolCamera->GetCamera();
+        std::shared_ptr<Camera> mainCameraCom = mainCamera->GetCamera();
+        mainCameraCom->_cullingMask = toolCameraCom->_cullingMask;
+        mainCameraCom->_far = toolCameraCom->_far;
+        mainCameraCom->_near = toolCameraCom->_near;
+        mainCameraCom->_width = toolCameraCom->_width;
+        mainCameraCom->_height = toolCameraCom->_height;
+        mainCameraCom->_type = toolCameraCom->_type;
     }
     ImGui::Separator();
 

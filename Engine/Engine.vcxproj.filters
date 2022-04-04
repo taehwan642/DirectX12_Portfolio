@@ -81,9 +81,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -213,6 +210,9 @@
     <ClCompile Include="Sea.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -261,9 +261,6 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
@@ -400,6 +397,9 @@
     </ClInclude>
     <ClInclude Include="Sea.h">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
