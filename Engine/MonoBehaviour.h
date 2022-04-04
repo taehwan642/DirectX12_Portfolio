@@ -11,7 +11,6 @@ enum class MonoBehaviourType
 	END
 };
 
-class ImGuiManager;
 class MonoBehaviour : public Component
 {
 public:

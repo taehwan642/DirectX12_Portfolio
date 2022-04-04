@@ -3,7 +3,6 @@
 
 class Mesh;
 class Material;
-class ImGuiManager;
 
 // [32][32]
 union InstanceID

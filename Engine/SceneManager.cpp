@@ -53,6 +53,10 @@ void SceneManager::Init()
 		}
 	}
 	valueFile.close();
+
+#ifndef TOOL
+	SetScene(0);
+#endif
 }
 
 void SceneManager::Update()

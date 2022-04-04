@@ -519,6 +519,74 @@
             }
         },
         {
+            "tag": "Sea\u0000",
+            "hashValue": 14141447819906329258,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                true
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            true,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "SeaTexture\u0000"
+                            },
+                            {
+                                "tag": "SeaNormal\u0000"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Sea\u0000"
+                        },
+                        "tag": "Sea\u0000"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "Rectangle\u0000"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            }
+        },
+        {
             "tag": "Main_Camera\u0000",
             "hashValue": 1652047311739494752,
             "componentOnValue": [
@@ -587,74 +655,6 @@
                 "meshRendererMaterialNumValue": 0,
                 "meshValue": {
                     "tag": ""
-                }
-            },
-            "colliderValue": {
-                "type": "Sphere"
-            },
-            "lightValue": {
-                "lightType": 0
-            },
-            "terrainValue": {
-                "sizeX": 0,
-                "sizeZ": 0
-            }
-        },
-        {
-            "tag": "Sea\u0000",
-            "hashValue": 14141447819906329258,
-            "componentOnValue": [
-                true,
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "monobehaviourOnValue": [
-                false,
-                false,
-                false,
-                false,
-                true
-            ],
-            "transformValue": {
-                "parentHashValue": 0
-            },
-            "meshRendererValue": {
-                "materialValues": [
-                    {
-                        "textureOnValue": [
-                            true,
-                            false,
-                            false,
-                            false
-                        ],
-                        "textureValues": [
-                            {
-                                "tag": "Sea\u0000"
-                            },
-                            {
-                                "tag": ""
-                            },
-                            {
-                                "tag": ""
-                            },
-                            {
-                                "tag": ""
-                            }
-                        ],
-                        "shaderValue": {
-                            "tag": "Sea\u0000"
-                        },
-                        "tag": "Sea\u0000"
-                    }
-                ],
-                "meshRendererMaterialNumValue": 1,
-                "meshValue": {
-                    "tag": "Rectangle\u0000"
                 }
             },
             "colliderValue": {

@@ -20,8 +20,9 @@ void TerrainScript::Picked(Vec4 rayOrigin, Vec4 rayDir, float distance)
 	if (obj != nullptr)
 		obj->GetTransform()->SetWorldPosition(Vec3(position.x, position.y, position.z));
 }
-
+#ifdef TOOL
 void TerrainScript::DragAndDrop(size_t hash)
 {
 	_testObject = hash;
 }
+#endif

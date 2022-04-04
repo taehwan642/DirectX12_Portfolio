@@ -473,23 +473,9 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 
 void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<GameObject> object)
 {
-	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::GameManagerScript)] == true)
-	{
-		object->AddComponent(std::make_shared<GameManagerScript>());
-	}
-
-	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TerrainScript)] == true)
-	{
-		object->AddComponent(std::make_shared<TerrainScript>());
-	}
-
-	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestCameraScript)] == true)
-	{
-		object->AddComponent(std::make_shared<TestCameraScript>());
-	}
-
-	if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType::TestDragon)] == true)
-	{
-		object->AddComponent(std::make_shared<TestDragon>());
-	}
+	RTTRMONOLOAD(GameManagerScript)
+	RTTRMONOLOAD(TerrainScript)
+	RTTRMONOLOAD(TestCameraScript)
+	RTTRMONOLOAD(TestDragon)
+	RTTRMONOLOAD(Sea)
 }

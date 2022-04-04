@@ -11,5 +11,7 @@ Sea::~Sea()
 
 void Sea::LateUpdate()
 {
-	GetMeshRenderer()->GetMaterial()->SetFloat(0, DELTA_TIME);
+	static float inputTime = 0;
+	inputTime += DELTA_TIME;
+	GetMeshRenderer()->GetMaterial()->SetFloat(0, inputTime);
 }

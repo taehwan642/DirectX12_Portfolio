@@ -766,10 +766,12 @@ void Resources::CreateDefaultMaterial()
 
 	{
 		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Sea");
-		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"Sea", L"..\\Resources\\Texture\\Sea_Normal.jpg");
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"SeaTexture", L"..\\Resources\\Texture\\Sea.jpg");
+		std::shared_ptr<Texture> normal = GET_SINGLE(Resources)->Load<Texture>(L"SeaNormal", L"..\\Resources\\Texture\\Sea_Normal.jpg");
 		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
+		material->SetTexture(1, normal);
 		Add<Material>(L"Sea", material);
 	}
 

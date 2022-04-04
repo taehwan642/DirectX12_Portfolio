@@ -4,7 +4,6 @@
 
 class Material;
 class StructuredBuffer;
-class ImGuiManager;
 
 struct IndexBufferInfo
 {

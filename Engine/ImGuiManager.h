@@ -1,5 +1,5 @@
 #pragma once
-
+#ifdef TOOL
 class Device;
 class GraphicsCommandQueue;
 class GameObject;
@@ -52,3 +52,4 @@ private:
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 };
 
+#endif

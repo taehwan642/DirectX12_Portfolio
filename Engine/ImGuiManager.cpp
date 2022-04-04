@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ImGuiManager.h"
+#ifdef TOOL
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx12.h"
@@ -1571,3 +1572,4 @@ void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<G
         AddSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject());
     }
 }
+#endif

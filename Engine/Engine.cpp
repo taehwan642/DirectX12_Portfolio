@@ -26,8 +26,9 @@ void Engine::Init(const WindowInfo& info)
 	_rootSignature->Init();
 	_graphicsDescHeap->Init(256);
 	_computeDescHeap->Init();
+#ifdef TOOL
 	_imguiManager = std::make_shared<ImGuiManager>(info.hwnd, _device);
-
+#endif
 	CreateConstantBuffer(CBV_REGISTER::b0, sizeof(LightParams), 1);
 	CreateConstantBuffer(CBV_REGISTER::b1, sizeof(TransformParams), 256);
 	CreateConstantBuffer(CBV_REGISTER::b2, sizeof(MaterialParams), 256);
@@ -58,11 +59,15 @@ void Engine::Render()
 {
 	RenderBegin();
 
+#ifdef TOOL
 	_imguiManager->_drawCall = 0;
 	GET_SINGLE(SceneManager)->Render();
 
 	_imguiManager->Render();
 	_imguiManager->SetPipeline(_graphicsCmdQueue);
+#else
+	GET_SINGLE(SceneManager)->Render();
+#endif
 
 	RenderEnd();
 }

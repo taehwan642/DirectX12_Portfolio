@@ -1,2 +1,1 @@
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\MultiMeshTest2
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\MultiMeshTest
+C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\SeaTest

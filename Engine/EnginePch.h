@@ -205,11 +205,17 @@ struct ClassNameToString
 
 #define MONOBEHAVIOUR(type)	type() { _className = s2ws(ClassNameToString< type >()()); }
 
-#define RTTRMONOLOAD(type)																\
+#define RTTRMONOSAVE(type)																\
 if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\
 {																						\
 	monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] = true;\
 }																						\
+
+#define RTTRMONOLOAD(type)																		\
+if (value.monobehaviourOnValue[static_cast<int>(MonoBehaviourType:: type)] == true)	\
+{																								\
+	object->AddComponent(std::make_shared<type>());								\
+}																								
 
 #define RTTRMONOREGISTER(type) \
 rttr::registration::class_<type>( ClassNameToString< type >()() ) \
@@ -253,7 +259,7 @@ struct array_deleter
 	}
 };
 
-#define TOOL
+// #define TOOL
 
 #define PI ((FLOAT)  3.141592654f)
 #define RadianToDegree(radian) ((radian) * 180.f / PI)

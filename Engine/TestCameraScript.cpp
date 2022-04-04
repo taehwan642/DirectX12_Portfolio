@@ -65,7 +65,9 @@ void TestCameraScript::LateUpdate()
 		std::shared_ptr<GameObject> pickedObject = GET_SINGLE(RaycastManager)->Pick(pos.x, pos.y);
 		if (pickedObject != nullptr)
 		{
+#ifdef TOOL
 			IMGUIMANAGER->_currentGameObject = pickedObject;
+#endif
 			// TODO : template을 통한 GetComponent 또는 GetScript 구현해서 받아오기. 일단 지금은 이름을 통해서 받아올거다.
 			std::shared_ptr<TerrainScript> tscript = pickedObject->GetComponent<TerrainScript>();
 			if (tscript != nullptr)
@@ -74,7 +76,11 @@ void TestCameraScript::LateUpdate()
 			}
 		}
 		else
+		{
+#ifdef TOOL
 			IMGUIMANAGER->_currentGameObject = nullptr;
+#endif
+		}
 	}
 
 	if (INPUT->GetButtonDown(KEY_TYPE::LBUTTON))

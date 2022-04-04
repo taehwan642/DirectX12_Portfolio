@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 
-class ImGuiManager;
 class Mesh;
 class Material;
 class GameObject;

@@ -2,8 +2,6 @@
 #include "Component.h"
 #include "Frustum.h"
 
-class ImGuiManager;
-
 enum class PROJECTION_TYPE
 {
 	PERSPECTIVE, // 원근 투영

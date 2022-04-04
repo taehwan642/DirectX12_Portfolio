@@ -253,11 +253,11 @@ struct RTTRGameObjectValue
 
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
-			RTTRMONOLOAD(GameManagerScript)
-			RTTRMONOLOAD(TerrainScript)
-			RTTRMONOLOAD(TestCameraScript)
-			RTTRMONOLOAD(TestDragon)
-			RTTRMONOLOAD(Sea)
+			RTTRMONOSAVE(GameManagerScript)
+			RTTRMONOSAVE(TerrainScript)
+			RTTRMONOSAVE(TestCameraScript)
+			RTTRMONOSAVE(TestDragon)
+			RTTRMONOSAVE(Sea)
 		}
 	}
 
