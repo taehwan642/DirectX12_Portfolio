@@ -5,7 +5,6 @@ class Material;
 class Mesh;
 class StructuredBuffer;
 class ImGuiManager;
-class TextureAnimator;
 
 struct ParticleInfo
 {
@@ -26,8 +25,7 @@ struct ComputeSharedInfo
 enum class ParticleMode
 {
 	RandomPos_RandomDir,
-	RandomPos_SetDir,
-	ZeroPos_ZeroDir
+	RandomPos_SetDir
 };
 
 class ParticleSystem : public Component
@@ -39,8 +37,6 @@ public:
 public:
 	virtual void FinalUpdate();
 	void Render();
-
-	void SpawnParticle(Vec3 worldPosition);
 
 public:
 	virtual void Load(const std::wstring& path) override { }
@@ -59,8 +55,6 @@ private:
 	std::shared_ptr<Material>		_material;
 	std::shared_ptr<Mesh>			_mesh;
 
-	bool _addParticle = false;
-
 	float				_createInterval = 0.005f;
 	float				_accTime = 0.f;
 
@@ -71,12 +65,9 @@ private:
 	float				_startScale = 10.f;
 	float				_endScale = 5.f;
 
-	std::shared_ptr<TextureAnimator> _textureAnimator;
-
 	ParticleMode _mode = ParticleMode::RandomPos_RandomDir;
 	Vec3 _ranges = Vec3(30, 30, 30);
 	Vec3 _direction = Vec3(0, 0, -1);
-	Vec3 _worldPosition = Vec3(0, 0, 0);
 
 	RTTR_REGISTRATION_FRIEND
 };

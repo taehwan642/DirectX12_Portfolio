@@ -18,7 +18,9 @@ void EnemyBullet::LateUpdate()
 	{
 		std::shared_ptr<GameObject> obj = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(_testObject);
 		if (obj != nullptr)
-			obj->GetParticleSystem()->SpawnParticle(GetTransform()->GetWorldPosition());
+		{
+			// Spawn Effect
+		}
 	}
 
 	Vec3 pos = GetTransform()->GetWorldPosition();

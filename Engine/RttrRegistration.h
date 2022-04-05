@@ -669,8 +669,7 @@ RTTR_REGISTRATION
 	rttr::registration::enumeration<ParticleMode>("ParticleMode")
 		(
 			rttr::value("RandomPos_RandomDir", ParticleMode::RandomPos_RandomDir),
-			rttr::value("RandomPos_SetDir", ParticleMode::RandomPos_SetDir),
-			rttr::value("ZeroPos_ZeroDir", ParticleMode::ZeroPos_ZeroDir)
+			rttr::value("RandomPos_SetDir", ParticleMode::RandomPos_SetDir)
 		);
 #pragma endregion
 

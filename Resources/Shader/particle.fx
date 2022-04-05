@@ -129,7 +129,6 @@ RWStructuredBuffer<ComputeShared> g_shared : register(u1);
 // g_vec4_0 : MinLifeTime / MaxLifeTime / MinSpeed / MaxSpeed
 // g_vec4_1 : x Range / y Range / z Range / null
 // g_vec4_2 : x dir / y dir / z dir / null
-// g_vec4_3 : x pos / y pos / z pos / null
 [numthreads(1024, 1, 1)]
 void CS_Main(int3 threadIndex : SV_DispatchThreadID)
 {
@@ -137,16 +136,11 @@ void CS_Main(int3 threadIndex : SV_DispatchThreadID)
         return;
 
     int mode = g_int_0;
-
     int maxCount = g_int_1;
     int addCount = g_int_2;
     
     float deltaTime = g_vec2_0.x;
     float accTime = g_vec2_0.y;
-
-    float xRange = g_vec4_1.x;
-    float yRange = g_vec4_1.y;
-    float zRange = g_vec4_1.z;
     
     float minLifeTime = g_vec4_0.x;
     float maxLifeTime = g_vec4_0.y;
@@ -154,12 +148,13 @@ void CS_Main(int3 threadIndex : SV_DispatchThreadID)
     float minSpeed = g_vec4_0.z;
     float maxSpeed = g_vec4_0.w;
 
+    float xRange = g_vec4_1.x;
+    float yRange = g_vec4_1.y;
+    float zRange = g_vec4_1.z;
+    
     float xDir = g_vec4_2.x;
     float yDir = g_vec4_2.y;
     float zDir = g_vec4_2.z;
-
-    float3 worldPosition = g_vec4_3.xyz;
-
 
     g_shared[0].addCount = addCount;
     GroupMemoryBarrierWithGroupSync();
@@ -293,16 +288,6 @@ void CS_Main(int3 threadIndex : SV_DispatchThreadID)
                 g_particle[threadIndex.x].worldDir = normalize(dir);
                 g_particle[threadIndex.x].worldPos = pos;
                 g_particle[threadIndex.x].lifeTime = ((maxLifeTime - minLifeTime) * (noise.x + noise.y + noise.z)) + minLifeTime;
-                g_particle[threadIndex.x].curTime = 0.f;
-            }
-            // 파티클이 고정 위치에 생성되어서 가만히 있는 파티클이라면
-            else
-            {
-                float3 dir = float3(0, 0, 0);
-                float3 pos = worldPosition;
-                g_particle[threadIndex.x].worldDir = normalize(dir);
-                g_particle[threadIndex.x].worldPos = pos;
-                g_particle[threadIndex.x].lifeTime = maxLifeTime;
                 g_particle[threadIndex.x].curTime = 0.f;
             }
         }

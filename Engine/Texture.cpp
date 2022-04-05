@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Texture.h"
 #include "Engine.h"
+#include "SceneManager.h"
 
 Texture::Texture() : Object(OBJECT_TYPE::TEXTURE)
 {
@@ -91,6 +92,12 @@ void Texture::Load(const std::wstring& path)
 	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 	srvDesc.Texture2D.MipLevels = 1;
 	DEVICE->CreateShaderResourceView(_tex2D.Get(), &srvDesc, _srvHeapBegin);
+
+	if (std::find(GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().begin(), GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end(),
+		path) == GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end())
+	{
+		GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().push_back(path);
+	}
 }
 
 void Texture::Create(DXGI_FORMAT format, uint32 width, uint32 height,

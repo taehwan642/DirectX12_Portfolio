@@ -54,7 +54,7 @@ void SceneManager::Init()
 	}
 	valueFile.close();
 
-#ifndef TOOL
+#ifdef TESTGAME
 	SetScene(0);
 #endif
 }

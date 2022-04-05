@@ -21,7 +21,7 @@ void JsonManager::Save(const std::string& path, std::shared_ptr<GameObject> obje
 
 void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
-#ifdef TOOL
+#ifndef TESTGAME
 	if (scene->GetMainCamera() != nullptr)
 		scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
 #endif
@@ -35,7 +35,7 @@ void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scen
 	std::ofstream ost2(path + "_value.json");
 	ost2 << jsonString2;
 
-#ifdef TOOL
+#ifndef TESTGAME
 	std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
 	toolCamera->AddComponent(std::make_shared<TransformComponent>());
 	toolCamera->AddComponent(std::make_shared<Camera>());
@@ -188,7 +188,7 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 
 	io::from_json(dataString, scene);
 
-#ifdef TOOL
+#ifndef TESTGAME
 	if (scene->_cameras.size() != 0)
 	{
 		std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();

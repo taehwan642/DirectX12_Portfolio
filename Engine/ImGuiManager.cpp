@@ -1028,7 +1028,6 @@ void ImGuiManager::RenderInspector()
                 std::vector<std::string> stringVec;
                 stringVec.push_back("RandomPos_RandomDir");
                 stringVec.push_back("RandomPos_SetDir");
-                stringVec.push_back("ZeroPos_ZeroDir");
 
                 std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
                 std::string comboName = "Particle Mode";
@@ -1548,11 +1547,6 @@ void ImGuiManager::RenderDragAndDrop()
     if (ImGui::Button("Add Texture"))
     {
         std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(inputPath.c_str()).c_str(), s2ws(inputPath.c_str()).c_str());
-        if (std::find(GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().begin(), GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end(),
-            s2ws(inputPath)) == GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end())
-        {
-            GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().push_back(s2ws(inputPath));
-        }
     }
 
     static std::string paths = "";

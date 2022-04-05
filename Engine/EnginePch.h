@@ -279,6 +279,7 @@ struct array_deleter
 };
 
 #define TOOL
+#define TESTGAME
 
 #define PI ((FLOAT)  3.141592654f)
 #define RadianToDegree(radian) ((radian) * 180.f / PI)
