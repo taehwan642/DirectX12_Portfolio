@@ -35,6 +35,8 @@
 #include "TestDragon.h"
 #include "Sea.h"
 #include "EnemyBullet.h"
+#include "EffectManagerScript.h"
+#include "Effect.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1339,6 +1341,8 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(TestDragon);
             IMGUIADDMONOBEHAVIOUR(Sea);
             IMGUIADDMONOBEHAVIOUR(EnemyBullet);
+            IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
+            IMGUIADDMONOBEHAVIOUR(Effect);
 
             ImGui::EndMenu();
         }
@@ -1566,6 +1570,27 @@ void ImGuiManager::RenderDragAndDrop()
         std::string txtString = paths;
         std::ofstream ost("../Output/Scenes.txt");
         ost << txtString;
+        paths.clear();
+    }
+
+    static std::string texturepaths = "";
+    ImGui::InputText("FileName", const_cast<char*>(texturepaths.c_str()), 64);
+    static std::string textureOutputpaths = "";
+    if (ImGui::Button("Add To TextureSet"))
+    {
+        textureOutputpaths += inputPath + "\n";
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Output TextureSet"))
+    {
+        std::string txtString = textureOutputpaths;
+        std::string txtName = texturepaths;
+        std::string finaltxtName = "../Resources/Animation/";
+        finaltxtName += txtName.c_str();
+        finaltxtName += ".txt";
+        std::ofstream ost(finaltxtName);
+        ost << txtString;
+        textureOutputpaths.clear();
     }
     
     ImGui::End();

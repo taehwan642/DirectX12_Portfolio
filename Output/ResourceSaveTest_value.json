@@ -34,6 +34,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -126,6 +128,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -228,6 +232,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -320,6 +326,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -422,6 +430,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -514,6 +524,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -616,6 +628,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -713,6 +727,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -783,6 +799,8 @@
                 false,
                 false,
                 true,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -880,6 +898,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -950,7 +970,9 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false,
+                false
             ],
             "transformValue": {
                 "parentHashValue": 0
@@ -1047,6 +1069,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1117,6 +1141,80 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere"
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            }
+        },
+        {
+            "tag": "EffectManager\u0000",
+            "hashValue": 3384872430648186473,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
                 false
             ],
             "transformValue": {
@@ -1189,6 +1287,8 @@
                 false,
                 false,
                 false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1254,6 +1354,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -1326,6 +1428,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,

@@ -34,6 +34,9 @@
     <Filter Include="Utils\rttr">
       <UniqueIdentifier>{7d5186e8-5f66-4444-95b8-c4ffbb875f45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script\Effect">
+      <UniqueIdentifier>{3e03eaaf-f32d-4e19-a59c-5c8d890efa5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -221,6 +224,12 @@
     </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManagerScript.cpp">
+      <Filter>Script\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Script\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +428,12 @@
     <ClInclude Include="EnemyBullet.h">
       <Filter>Script</Filter>
     </ClInclude>
+    <ClInclude Include="EffectManagerScript.h">
+      <Filter>Script\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Script\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -466,6 +481,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="..\Resources\Shader\sea.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Resources\Shader\effect.fx">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

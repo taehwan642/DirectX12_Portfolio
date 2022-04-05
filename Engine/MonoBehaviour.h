@@ -9,6 +9,8 @@ enum class MonoBehaviourType
 	GameManagerScript,
 	Sea,
 	EnemyBullet,
+	EffectManagerScript,
+	Effect,
 	END
 };
 

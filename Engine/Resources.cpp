@@ -619,6 +619,22 @@ void Resources::CreateDefaultShader()
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\deferred.fx", info);
 		Add<Shader>(L"WireFrame", shader);
 	}
+
+	// Effect Shader
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::FORWARD,
+			RASTERIZER_TYPE::CULL_BACK,
+			DEPTH_STENCIL_TYPE::LESS,
+			BLEND_TYPE::ALPHA_BLEND,
+			D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\effect.fx", info);
+		Add<Shader>(L"Effect", shader);
+	}
 }
 
 void Resources::CreateDefaultMaterial()
@@ -827,5 +843,12 @@ void Resources::CreateDefaultMaterial()
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
 		Add<Material>(L"ShadowRT", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Effect");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		material->SetShader(shader);
+		Add<Material>(L"Effect", material);
 	}
 }

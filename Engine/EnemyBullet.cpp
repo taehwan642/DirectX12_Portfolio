@@ -6,7 +6,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "GameObject.h"
-#include "ParticleSystem.h"
+#include "EffectManagerScript.h"
 
 EnemyBullet::~EnemyBullet()
 {
@@ -14,12 +14,13 @@ EnemyBullet::~EnemyBullet()
 
 void EnemyBullet::LateUpdate()
 {
-	if (INPUT->GetButton(KEY_TYPE::KEY_3))
+	if (INPUT->GetButtonDown(KEY_TYPE::KEY_3))
 	{
 		std::shared_ptr<GameObject> obj = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(_testObject);
 		if (obj != nullptr)
 		{
 			// Spawn Effect
+			obj->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());
 		}
 	}
 

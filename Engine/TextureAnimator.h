@@ -9,7 +9,7 @@ public:
 
 	void UpdateAnimation();
 
-	bool LoadAnimation(const std::wstring& path);
+	bool LoadAnimation(const std::string& path);
 	bool LoadAnimation(const std::wstring& key, const std::wstring& path, size_t count);
 
 	void SetInterval(float interval) { _interval = interval; }
@@ -25,6 +25,9 @@ public:
 
 	void SetCurrentIndex(int index) { _currentIndex = index; }
 
+	bool GetAnimationEnd() { return _isAnimationEnd; }
+	void SetAnimationEnd(bool isEnd) { _isAnimationEnd = isEnd; }
+
 private:
 	friend class ImGuiManager;
 
@@ -32,6 +35,8 @@ private:
 	bool _isLoop = true;
 	int _currentIndex = 0;
 	size_t _animationSize = 1;
+	bool _isAnimationEnd = false;
+	float _elapsedTime = 0.f;
 
 	std::vector<std::wstring> _tags;
 	std::vector<std::shared_ptr<Texture>> _textures;

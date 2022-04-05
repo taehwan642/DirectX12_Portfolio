@@ -163,7 +163,7 @@ void Scene::RenderForward()
 		{
 			if (camera == mainCamera)
 				continue;
-#ifdef TOOL
+#ifndef TESTGAME
 			if (camera->GetGameObject()->GetName() == L"Main_Camera")
 				continue;
 #endif

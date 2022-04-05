@@ -30,6 +30,8 @@
 #include "GameManagerScript.h"
 #include "Sea.h"
 #include "EnemyBullet.h"
+#include "EffectManagerScript.h"
+#include "Effect.h"
 
 // Load때 필요한 오브젝트.
 
@@ -277,6 +279,8 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(TestDragon)
 			RTTRMONOSAVE(Sea)
 			RTTRMONOSAVE(EnemyBullet)
+			RTTRMONOSAVE(EffectManagerScript)
+			RTTRMONOSAVE(Effect)
 		}
 	}
 
@@ -797,6 +801,9 @@ RTTR_REGISTRATION
 	RTTRMONOREGISTER(TestDragon);
 	RTTRMONOREGISTER(Sea);
 	RTTRMONOREGISTER(EnemyBullet)
-	.property("_testObject", &EnemyBullet::_testObject);
+		.property("_testObject", &EnemyBullet::_testObject);
+	RTTRMONOREGISTER(EffectManagerScript);
+	RTTRMONOREGISTER(Effect);
+
 #pragma endregion
 }
