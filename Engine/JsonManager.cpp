@@ -146,10 +146,16 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 	RTTRSceneValue sceneValue;
 	io::from_json(valueString, sceneValue);
 
-	for (int i = 0; i < sceneValue.resources.size(); ++i)
+	for (auto& iter : sceneValue.meshDataResources)
 	{
-		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(sceneValue.resources[i].c_str()).c_str());
+		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(iter.c_str()).c_str());
 		meshData->Instantiate();
+	}
+
+	for (auto& iter : sceneValue.textureResources)
+	{
+		// texture load
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(iter.c_str()).c_str(), s2ws(iter.c_str()).c_str());
 	}
 
 	for (int i = 0; i < sceneValue.gameObjects.size(); ++i)
@@ -428,7 +434,12 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::PARTICLE_SYSTEM)] == true)
-		object->AddComponent(std::make_shared<ParticleSystem>());
+	{
+		std::shared_ptr<ParticleSystem> ps = std::make_shared<ParticleSystem>();
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Get<Texture>(s2ws(value.particleSystemValue.materialValue.textureValues[0].tag));
+		ps->_material->SetTexture(0, texture);
+		object->AddComponent(ps);
+	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TERRAIN)] == true)
 	{
@@ -478,4 +489,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(TestCameraScript)
 	RTTRMONOLOAD(TestDragon)
 	RTTRMONOLOAD(Sea)
+	RTTRMONOLOAD(EnemyBullet)
 }

@@ -34,6 +34,7 @@
 #include "TestCameraScript.h"
 #include "TestDragon.h"
 #include "Sea.h"
+#include "EnemyBullet.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1021,6 +1022,34 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("Particle System"))
             {
                 std::shared_ptr<ParticleSystem> particle = _currentGameObject->GetParticleSystem();
+
+                int item_current_idx = static_cast<int>(particle->_mode);
+
+                std::vector<std::string> stringVec;
+                stringVec.push_back("RandomPos_RandomDir");
+                stringVec.push_back("RandomPos_SetDir");
+                stringVec.push_back("ZeroPos_ZeroDir");
+
+                std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                std::string comboName = "Particle Mode";
+                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                {
+                    for (int n = 0; n < stringVec.size(); n++)
+                    {
+                        const bool is_selected = (item_current_idx == n);
+                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                        {
+                            item_current_idx = n;
+                            particle->_mode = static_cast<ParticleMode>(item_current_idx);
+                        }
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
+                }
+
+
                 ImGui::InputInt("Max Particle", reinterpret_cast<int*>(&particle->_maxParticle));
                 ImGui::InputFloat("Create Interval", &particle->_createInterval);
                 ImGui::Text("Accumulated Time : %f", &particle->_accTime);
@@ -1030,6 +1059,9 @@ void ImGuiManager::RenderInspector()
                 ImGui::InputFloat("Max Speed", &particle->_maxSpeed);
                 ImGui::InputFloat("Start Scale", &particle->_startScale);
                 ImGui::InputFloat("End Scale", &particle->_endScale);
+
+                ImGui::DragFloat3("Range", reinterpret_cast<float*>(&particle->_ranges), 1.f);
+                ImGui::DragFloat3("Direction", reinterpret_cast<float*>(&particle->_direction), 1.f);
 
                 RenderMeshData(particle->_mesh);
                 if (ImGui::BeginMenu("Particle Material"))
@@ -1307,6 +1339,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(TestCameraScript);
             IMGUIADDMONOBEHAVIOUR(TestDragon);
             IMGUIADDMONOBEHAVIOUR(Sea);
+            IMGUIADDMONOBEHAVIOUR(EnemyBullet);
 
             ImGui::EndMenu();
         }
@@ -1505,13 +1538,21 @@ void ImGuiManager::RenderDragAndDrop()
     }
 
     // 리소스 버튼
-    if (ImGui::Button("Add To Resource"))
+    if (ImGui::Button("Add MeshData"))
     {
-        std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
-
         // MeshData 불러오기
         std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
         meshData->Instantiate();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Add Texture"))
+    {
+        std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(inputPath.c_str()).c_str(), s2ws(inputPath.c_str()).c_str());
+        if (std::find(GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().begin(), GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end(),
+            s2ws(inputPath)) == GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().end())
+        {
+            GET_SINGLE(SceneManager)->GetLoadedTextureTagVector().push_back(s2ws(inputPath));
+        }
     }
 
     static std::string paths = "";

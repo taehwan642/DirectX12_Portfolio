@@ -31,34 +31,6 @@ void TestCameraScript::LateUpdate()
 	if (INPUT->GetButton(KEY_TYPE::D))
 		pos += GetTransform()->GetWorldTransform()->GetRight() * _speed * DELTA_TIME;
 
-	if (INPUT->GetButton(KEY_TYPE::Q))
-	{
-		Vec3 rotation = GetTransform()->GetWorldRotation();
-		rotation.x += DELTA_TIME * 0.5f;
-		GetTransform()->SetWorldRotation(rotation);
-	}
-
-	if (INPUT->GetButton(KEY_TYPE::E))
-	{
-		Vec3 rotation = GetTransform()->GetWorldRotation();
-		rotation.x -= DELTA_TIME * 0.5f;
-		GetTransform()->SetWorldRotation(rotation);
-	}
-
-	if (INPUT->GetButton(KEY_TYPE::Z))
-	{
-		Vec3 rotation = GetTransform()->GetWorldRotation();
-		rotation.y += DELTA_TIME * 0.5f;
-		GetTransform()->SetWorldRotation(rotation);
-	}
-
-	if (INPUT->GetButton(KEY_TYPE::C))
-	{
-		Vec3 rotation = GetTransform()->GetWorldRotation();
-		rotation.y -= DELTA_TIME * 0.5f;
-		GetTransform()->SetWorldRotation(rotation);
-	}
-
 	if (INPUT->GetButtonDown(KEY_TYPE::RBUTTON))
 	{
 		const POINT& pos = INPUT->GetMousePos();

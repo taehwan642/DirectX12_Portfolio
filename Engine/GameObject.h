@@ -97,9 +97,7 @@ private:
 
 	bool _isActive = true;
 
-#ifdef TOOL
 	std::shared_ptr<Visualizer> _visualizer;
-#endif
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

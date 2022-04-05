@@ -122,25 +122,44 @@ RWStructuredBuffer<Particle> g_particle : register(u0);
 RWStructuredBuffer<ComputeShared> g_shared : register(u1);
 
 // CS_Main
-// g_vec2_1 : DeltaTime / AccTime
-// g_int_0  : Particle Max Count
-// g_int_1  : AddCount
+// g_vec2_0 : DeltaTime / AccTime
+// g_int_0  : Particle Mode
+// g_int_1  : Particle Max Count
+// g_int_2  : AddCount
 // g_vec4_0 : MinLifeTime / MaxLifeTime / MinSpeed / MaxSpeed
+// g_vec4_1 : x Range / y Range / z Range / null
+// g_vec4_2 : x dir / y dir / z dir / null
+// g_vec4_3 : x pos / y pos / z pos / null
 [numthreads(1024, 1, 1)]
 void CS_Main(int3 threadIndex : SV_DispatchThreadID)
 {
-    if (threadIndex.x >= g_int_0)
+    if (threadIndex.x >= g_int_1)
         return;
 
-    int maxCount = g_int_0;
-    int addCount = g_int_1;
-    int frameNumber = g_int_2;
-    float deltaTime = g_vec2_1.x;
-    float accTime = g_vec2_1.y;
+    int mode = g_int_0;
+
+    int maxCount = g_int_1;
+    int addCount = g_int_2;
+    
+    float deltaTime = g_vec2_0.x;
+    float accTime = g_vec2_0.y;
+
+    float xRange = g_vec4_1.x;
+    float yRange = g_vec4_1.y;
+    float zRange = g_vec4_1.z;
+    
     float minLifeTime = g_vec4_0.x;
     float maxLifeTime = g_vec4_0.y;
+    
     float minSpeed = g_vec4_0.z;
     float maxSpeed = g_vec4_0.w;
+
+    float xDir = g_vec4_2.x;
+    float yDir = g_vec4_2.y;
+    float zDir = g_vec4_2.z;
+
+    float3 worldPosition = g_vec4_3.xyz;
+
 
     g_shared[0].addCount = addCount;
     GroupMemoryBarrierWithGroupSync();
@@ -167,41 +186,140 @@ void CS_Main(int3 threadIndex : SV_DispatchThreadID)
 
         if (g_particle[threadIndex.x].alive == 1)
         {
-            float x = ((float)threadIndex.x / (float)maxCount) + accTime;
-
-            float r1 = Rand(float2(x, accTime));
-            float r2 = Rand(float2(x * accTime, accTime));
-            float r3 = Rand(float2(x * accTime * accTime, accTime * accTime));
-
-            // [0.5~1] -> [0~1]
-            float3 noise =
+            // 파티클이 랜덤 위치에 생성되어서 랜덤 방향으로 이동하는 파티클이라면
+            if (mode == 0)
             {
-                2 * r1 - 1,
-                2 * r2 - 1,
-                2 * r3 - 1
-            };
+                float x = ((float)threadIndex.x / (float)maxCount) + accTime;
 
-            // [0~1] -> [-1~1]
-            float3 dir = (noise - 0.5f) * 2.f;
+                float r1 = Rand(float2(x, accTime));
+                float r2 = Rand(float2(x * accTime, accTime));
+                float r3 = Rand(float2(x * accTime * accTime, accTime * accTime));
 
-            g_particle[threadIndex.x].worldDir = normalize(dir);
-            g_particle[threadIndex.x].worldPos = (noise.xyz - 0.5f) * 25;
-            g_particle[threadIndex.x].lifeTime = ((maxLifeTime - minLifeTime) * noise.x) + minLifeTime;
-            g_particle[threadIndex.x].curTime = 0.f;
+                // [0.5~1] -> [0~1]
+                float3 noise =
+                {
+                    2 * r1 - 1,
+                    2 * r2 - 1,
+                    2 * r3 - 1
+                };
+
+                // [0~1] -> [-1~1]
+                float3 dir = (noise - 0.5f) * 2.f;
+
+                float3 pos;
+                pos.x = (noise.x - 0.5f) * 2.f * xRange;
+                pos.y = (noise.y - 0.5f) * 2.f * yRange;
+                pos.z = (noise.z - 0.5f) * 2.f * zRange;
+                if (pos.x > xRange)
+                {
+                    pos.x = xRange;
+                }
+                else if (pos.x < -xRange)
+                {
+                    pos.x = -xRange;
+                }
+                if (pos.y > yRange)
+                {
+                    pos.y = yRange;
+                }
+                else if (pos.y < -yRange)
+                {
+                    pos.y = -yRange;
+                }
+                if (pos.z > zRange)
+                {
+                    pos.z = zRange;
+                }
+                else if (pos.z < -zRange)
+                {
+                    pos.z = -zRange;
+                }
+                g_particle[threadIndex.x].worldDir = normalize(dir);
+                g_particle[threadIndex.x].worldPos = pos;
+                g_particle[threadIndex.x].lifeTime = ((maxLifeTime - minLifeTime) * (noise.x + noise.y + noise.z)) + minLifeTime;
+                g_particle[threadIndex.x].curTime = 0.f;
+            }
+            // 파티클이 랜덤 위치에 생성되어서 주어진 방향으로 이동하는 파티클이라면
+            else if (mode == 1)
+            {
+                float x = ((float)threadIndex.x / (float)maxCount) + accTime;
+
+                float r1 = Rand(float2(x, accTime));
+                float r2 = Rand(float2(x * accTime, accTime));
+                float r3 = Rand(float2(x * accTime * accTime, accTime * accTime));
+
+                // [0.5~1] -> [0~1]
+                float3 noise =
+                {
+                    2 * r1 - 1,
+                    2 * r2 - 1,
+                    2 * r3 - 1
+                };
+
+                // [0~1] -> [-1~1]
+                float3 dir;
+                dir.x = xDir;
+                dir.y = yDir;
+                dir.z = zDir;
+
+                float3 pos;
+                pos.x = (noise.x - 0.5f) * 2.f * xRange;
+                pos.y = (noise.y - 0.5f) * 2.f * yRange;
+                pos.z = (noise.z - 0.5f) * 2.f * zRange;
+                if (pos.x > xRange)
+                {
+                    pos.x = xRange;
+                }
+                else if (pos.x < -xRange)
+                {
+                    pos.x = -xRange;
+                }
+                if (pos.y > yRange)
+                {
+                    pos.y = yRange;
+                }
+                else if (pos.y < -yRange)
+                {
+                    pos.y = -yRange;
+                }
+                if (pos.z > zRange)
+                {
+                    pos.z = zRange;
+                }
+                else if (pos.z < -zRange)
+                {
+                    pos.z = -zRange;
+                }
+                g_particle[threadIndex.x].worldDir = normalize(dir);
+                g_particle[threadIndex.x].worldPos = pos;
+                g_particle[threadIndex.x].lifeTime = ((maxLifeTime - minLifeTime) * (noise.x + noise.y + noise.z)) + minLifeTime;
+                g_particle[threadIndex.x].curTime = 0.f;
+            }
+            // 파티클이 고정 위치에 생성되어서 가만히 있는 파티클이라면
+            else
+            {
+                float3 dir = float3(0, 0, 0);
+                float3 pos = worldPosition;
+                g_particle[threadIndex.x].worldDir = normalize(dir);
+                g_particle[threadIndex.x].worldPos = pos;
+                g_particle[threadIndex.x].lifeTime = maxLifeTime;
+                g_particle[threadIndex.x].curTime = 0.f;
+            }
         }
     }
     else
     {
-        g_particle[threadIndex.x].curTime += deltaTime;
-        if (g_particle[threadIndex.x].lifeTime < g_particle[threadIndex.x].curTime)
-        {
-            g_particle[threadIndex.x].alive = 0;
-            return;
-        }
+         // 파티클이 랜덤 위치에 생성되어서 랜덤 방향으로 이동하는 파티클이라면
+         g_particle[threadIndex.x].curTime += deltaTime;
+         if (g_particle[threadIndex.x].lifeTime < g_particle[threadIndex.x].curTime)
+         {
+             g_particle[threadIndex.x].alive = 0;
+             return;
+         }
 
-        float ratio = g_particle[threadIndex.x].curTime / g_particle[threadIndex.x].lifeTime;
-        float speed = (maxSpeed - minSpeed) * ratio + minSpeed;
-        g_particle[threadIndex.x].worldPos += g_particle[threadIndex.x].worldDir * speed * deltaTime;
+         float ratio = g_particle[threadIndex.x].curTime / g_particle[threadIndex.x].lifeTime;
+         float speed = (maxSpeed - minSpeed) * ratio + minSpeed;
+         g_particle[threadIndex.x].worldPos += g_particle[threadIndex.x].worldDir * speed * deltaTime;
     }
 }
 

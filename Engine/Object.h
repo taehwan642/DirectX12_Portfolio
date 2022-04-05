@@ -1,24 +1,5 @@
 #pragma once
 
-enum class OBJECT_TYPE : uint8
-{
-	NONE,
-	GAMEOBJECT, // PREFAB
-	COMPONENT,
-	MATERIAL,
-	MESH,
-	MESH_DATA,
-	SHADER,
-	TEXTURE,
-
-	END
-};
-
-enum
-{
-	OBJECT_TYPE_COUNT = static_cast<uint8>(OBJECT_TYPE::END)
-};
-
 class Object
 {
 public:

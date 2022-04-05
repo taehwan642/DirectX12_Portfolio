@@ -76,9 +76,11 @@ std::shared_ptr<MeshData> MeshData::LoadFromFile(const std::wstring& path, bool 
 	//{
 	//	objString = path.substr(pos + 1, path.size());
 	//}
-	if (std::find(GET_SINGLE(SceneManager)->_loadedMeshDataTags.begin(), GET_SINGLE(SceneManager)->_loadedMeshDataTags.end(), objString) == GET_SINGLE(SceneManager)->_loadedMeshDataTags.end())
+
+	if (std::find(GET_SINGLE(SceneManager)->GetLoadedMeshDataTagVector().begin(), GET_SINGLE(SceneManager)->GetLoadedMeshDataTagVector().end(),
+		objString) == GET_SINGLE(SceneManager)->GetLoadedMeshDataTagVector().end())
 	{
-		GET_SINGLE(SceneManager)->_loadedMeshDataTags.push_back(objString);
+		GET_SINGLE(SceneManager)->GetLoadedMeshDataTagVector().push_back(objString);
 	}
 
 	return result;
@@ -86,12 +88,10 @@ std::shared_ptr<MeshData> MeshData::LoadFromFile(const std::wstring& path, bool 
 
 void MeshData::Load(const std::wstring& _strFilePath)
 {
-	// TODO
 }
 
 void MeshData::Save(const std::wstring& _strFilePath)
 {
-	// TODO
 }
 
 std::vector<std::shared_ptr<GameObject>> MeshData::Instantiate()

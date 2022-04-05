@@ -8,6 +8,7 @@ enum class MonoBehaviourType
 	TerrainScript,
 	GameManagerScript,
 	Sea,
+	EnemyBullet,
 	END
 };
 

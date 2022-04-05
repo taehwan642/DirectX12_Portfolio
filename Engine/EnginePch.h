@@ -130,6 +130,25 @@ enum
 	TOTAL_REGISTER_COUNT = CBV_SRV_REGISTER_COUNT + UAV_REGISTER_COUNT
 };
 
+enum class OBJECT_TYPE : uint8
+{
+	NONE,
+	GAMEOBJECT, // PREFAB
+	COMPONENT,
+	MATERIAL,
+	MESH,
+	MESH_DATA,
+	SHADER,
+	TEXTURE,
+
+	END
+};
+
+enum
+{
+	OBJECT_TYPE_COUNT = static_cast<uint8>(OBJECT_TYPE::END)
+};
+
 struct WindowInfo
 {
 	HWND	hwnd; // 출력 윈도우

@@ -26,12 +26,14 @@ public:
 public:
 	std::shared_ptr<Scene> GetActiveScene() { return _activeScene; }
 
+	std::vector<std::wstring>& GetLoadedMeshDataTagVector() { return _loadedMeshDataTags; }
+	std::vector<std::wstring>& GetLoadedTextureTagVector() { return _loadedTextureTags; }
+
 private:
 	std::shared_ptr<Scene> LoadTestScene();
 
 private:
 	friend class ImGuiManager;
-	friend class MeshData;
 	friend class RTTRSceneValue;
 
 	std::shared_ptr<Scene> _activeScene;
@@ -39,6 +41,7 @@ private:
 	std::array<std::wstring, MAX_LAYER> _layerNames;
 	std::map<std::wstring, uint8> _layerIndex;
 
+	std::vector<std::wstring> _loadedTextureTags;
 	std::vector<std::wstring> _loadedMeshDataTags;
 	std::vector<std::wstring> _sceneTags;
 };

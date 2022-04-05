@@ -31,11 +31,11 @@ void GameObject::Awake()
 			component->Awake();
 	}
 
-#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Awake();
 	}
+#ifndef TOOL
 #else
 	if (GetName() == L"ToolCamera")
 	{
@@ -57,11 +57,11 @@ void GameObject::Start()
 			component->Start();
 	}
 
-#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
 	}
+#ifndef TOOL
 #else
 	if (GetName() == L"ToolCamera")
 	{
@@ -83,11 +83,11 @@ void GameObject::Update()
 			component->Update();
 	}
 
-#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Update();
 	}
+#ifndef TOOL
 #else
 	if (GetName() == L"ToolCamera")
 	{
@@ -109,11 +109,11 @@ void GameObject::LateUpdate()
 			component->LateUpdate();
 	}
 
-#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
 	}
+#ifndef TOOL
 #else
 	if (GetName() == L"ToolCamera")
 	{

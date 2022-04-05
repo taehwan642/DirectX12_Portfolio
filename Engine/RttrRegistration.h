@@ -29,6 +29,7 @@
 #include "TestDragon.h"
 #include "GameManagerScript.h"
 #include "Sea.h"
+#include "EnemyBullet.h"
 
 // Load때 필요한 오브젝트.
 
@@ -197,6 +198,17 @@ struct RTTRTerrainValue
 	int sizeZ = 0;
 };
 
+struct RTTRParticleSystemValue
+{
+	RTTRParticleSystemValue() = default;
+	RTTRParticleSystemValue(std::shared_ptr<ParticleSystem> particle)
+	{
+		materialValue = RTTRMaterialValue(particle->_material);
+	}
+
+	RTTRMaterialValue materialValue;
+};
+
 struct RTTRTransformValue
 {
 	RTTRTransformValue() = default;
@@ -252,6 +264,11 @@ struct RTTRGameObjectValue
 			terrainValue = RTTRTerrainValue(gameObject->GetTerrain());
 		}
 
+		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::PARTICLE_SYSTEM)] == true)
+		{
+			particleSystemValue = RTTRParticleSystemValue(gameObject->GetParticleSystem());
+		}
+
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
 			RTTRMONOSAVE(GameManagerScript)
@@ -259,6 +276,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(TestCameraScript)
 			RTTRMONOSAVE(TestDragon)
 			RTTRMONOSAVE(Sea)
+			RTTRMONOSAVE(EnemyBullet)
 		}
 	}
 
@@ -270,6 +288,7 @@ struct RTTRGameObjectValue
 	RTTRColliderValue colliderValue;
 	RTTRLightValue lightValue;
 	RTTRTerrainValue terrainValue;
+	RTTRParticleSystemValue particleSystemValue;
 	std::string tag;
 };
 
@@ -278,9 +297,14 @@ struct RTTRSceneValue
 	RTTRSceneValue() = default;
 	RTTRSceneValue(std::shared_ptr<Scene> scene)
 	{
-		for (int i = 0; i < GET_SINGLE(SceneManager)->_loadedMeshDataTags.size(); ++i)
+		for (auto& iter : GET_SINGLE(SceneManager)->_loadedMeshDataTags)
 		{
-			resources.push_back(ws2s(GET_SINGLE(SceneManager)->_loadedMeshDataTags[i]));
+			meshDataResources.push_back(ws2s(iter));
+		}
+
+		for (auto& iter : GET_SINGLE(SceneManager)->_loadedTextureTags)
+		{
+			textureResources.push_back(ws2s(iter));
 		}
 
 		for (int i = 0; i < scene->_gameObjects.size(); ++i)
@@ -299,7 +323,8 @@ struct RTTRSceneValue
 		}
 	}
 	
-	std::vector<std::string> resources;
+	std::vector<std::string> meshDataResources;
+	std::vector<std::string> textureResources;
 	std::vector<RTTRGameObjectValue> gameObjects;
 	std::vector<RTTRGameObjectValue> cameraObjects;
 	std::vector<RTTRGameObjectValue> lightObjects;
@@ -561,6 +586,7 @@ RTTR_REGISTRATION
 	// ParticleSystem
 	rttr::registration::class_<ParticleSystem>("ParticleSystem")
 		.constructor<>()
+		.property("_mode", &ParticleSystem::_mode)
 		.property("_maxParticle", &ParticleSystem::_maxParticle)
 		.property("_computeMaterial", &ParticleSystem::_computeMaterial)
 		.property("_material", &ParticleSystem::_material)
@@ -572,7 +598,9 @@ RTTR_REGISTRATION
 		.property("_minSpeed", &ParticleSystem::_minSpeed)
 		.property("_maxSpeed", &ParticleSystem::_maxSpeed)
 		.property("_startScale", &ParticleSystem::_startScale)
-		.property("_endScale", &ParticleSystem::_endScale);
+		.property("_endScale", &ParticleSystem::_endScale)
+		.property("_ranges", &ParticleSystem::_ranges)
+		.property("_direction", &ParticleSystem::_direction);
 
 #pragma region Enum
 	rttr::registration::enumeration<OBJECT_TYPE>("OBJECT_TYPE")
@@ -637,6 +665,13 @@ RTTR_REGISTRATION
 			rttr::value("Cube", ColliderType::Cube),
 			rttr::value("Mesh", ColliderType::Mesh)
 		);
+
+	rttr::registration::enumeration<ParticleMode>("ParticleMode")
+		(
+			rttr::value("RandomPos_RandomDir", ParticleMode::RandomPos_RandomDir),
+			rttr::value("RandomPos_SetDir", ParticleMode::RandomPos_SetDir),
+			rttr::value("ZeroPos_ZeroDir", ParticleMode::ZeroPos_ZeroDir)
+		);
 #pragma endregion
 
 	// Animator
@@ -656,7 +691,8 @@ RTTR_REGISTRATION
 		.property("meshRendererValue", &RTTRGameObjectValue::meshRendererValue)
 		.property("colliderValue", &RTTRGameObjectValue::colliderValue)
 		.property("lightValue", &RTTRGameObjectValue::lightValue)
-		.property("terrainValue", &RTTRGameObjectValue::terrainValue);
+		.property("terrainValue", &RTTRGameObjectValue::terrainValue)
+		.property("particleSystemValue", &RTTRGameObjectValue::particleSystemValue);
 
 	rttr::registration::class_<RTTRMaterialValue>("RTTRMaterialValue")
 		.constructor<>()
@@ -719,6 +755,11 @@ RTTR_REGISTRATION
 		.property("sizeX", &RTTRTerrainValue::sizeX)
 		.property("sizeZ", &RTTRTerrainValue::sizeZ);
 
+	rttr::registration::class_<RTTRParticleSystemValue>("RTTRParticleSystemValue")
+		.constructor<>()
+		.constructor<std::shared_ptr<ParticleSystem>>()
+		.property("materialValue", &RTTRParticleSystemValue::materialValue);
+
 	rttr::registration::class_<RTTRMeshRendererValue>("RTTRMeshRendererValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<GameObject>>()
@@ -729,7 +770,8 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRSceneValue>("RTTRSceneValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<Scene>>()
-		.property("resources", &RTTRSceneValue::resources)
+		.property("meshDataResources", &RTTRSceneValue::meshDataResources)
+		.property("textureResources", &RTTRSceneValue::textureResources)
 		.property("gameObjects", &RTTRSceneValue::gameObjects)
 		.property("cameraObjects", &RTTRSceneValue::cameraObjects)
 		.property("lightObjects", &RTTRSceneValue::lightObjects);
@@ -755,5 +797,7 @@ RTTR_REGISTRATION
 
 	RTTRMONOREGISTER(TestDragon);
 	RTTRMONOREGISTER(Sea);
+	RTTRMONOREGISTER(EnemyBullet)
+	.property("_testObject", &EnemyBullet::_testObject);
 #pragma endregion
 }

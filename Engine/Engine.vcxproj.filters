@@ -216,6 +216,12 @@
     <ClCompile Include="Visualizer.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="TextureAnimator.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -406,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="Visualizer.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureAnimator.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

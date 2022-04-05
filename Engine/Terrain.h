@@ -1,7 +1,6 @@
 #pragma once
 #include "Component.h"
 
-class ImGuiManager;
 class Terrain : public Component
 {
 public:
