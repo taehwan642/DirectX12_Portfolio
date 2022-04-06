@@ -34,9 +34,11 @@ void Scene::Update()
 
 void Scene::LateUpdate()
 {
-	for (const std::shared_ptr<GameObject>& gameObject : _gameObjects)
+	// 실시간으로 오브젝트를 LateUpdate (MonoBehaviour)에서 추가하는 경우가 있으니, ranged-for를 인덱스 참조로 교체해야 크래시가 나지 않는다.
+	size_t size = _gameObjects.size();
+	for (int i = 0; i < size; ++i)
 	{
-		gameObject->LateUpdate();
+		_gameObjects[i]->LateUpdate();
 	}
 }
 
