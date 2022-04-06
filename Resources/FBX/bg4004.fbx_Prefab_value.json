@@ -1,6 +1,5 @@
 {
     "meshDataResources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000"
     ],
     "textureResources": [
@@ -14,12 +13,9 @@
         "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
         "..\\Resources\\Texture\\Sea.jpg\u0000",
         "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
         "../Resources/Texture/Particle/bubble.png\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
@@ -42,6 +38,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -121,6 +118,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -193,6 +191,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -209,10 +208,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4ef8c1fc\u0000"
+                                "tag": "b36eefd\u0000"
                             },
                             {
-                                "tag": "6c73f8f\u0000"
+                                "tag": "4c09e9ba\u0000"
                             },
                             {
                                 "tag": ""
@@ -224,7 +223,7 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
+                        "tag": "frame_Material03\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
@@ -292,6 +291,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -308,10 +308,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2b00a6bd\u0000"
+                                "tag": "a83d54\u0000"
                             },
                             {
-                                "tag": "633f58ce\u0000"
+                                "tag": "4897c327\u0000"
                             },
                             {
                                 "tag": ""
@@ -323,7 +323,7 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
+                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
@@ -391,6 +391,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -407,10 +408,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2b00a6bd\u0000"
+                                "tag": "42e720e5\u0000"
                             },
                             {
-                                "tag": "633f58ce\u0000"
+                                "tag": "ad8de96\u0000"
                             },
                             {
                                 "tag": ""

@@ -1,6 +1,25 @@
 {
-    "resources": [
+    "meshDataResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbx\u0000"
+    ],
+    "textureResources": [
+        "..\\Resources\\Texture\\Tile.png\u0000",
+        "..\\Resources\\Texture\\Leather.jpg\u0000",
+        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
+        "..\\Resources\\Texture\\Fabric.jpg\u0000",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sea.jpg\u0000",
+        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
+        "../Resources/Texture/Particle/bubble.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Bump_Col2.jpg\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor_mirror2.jpg\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_ground_color.jpg\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor.jpg\u0000"
     ],
     "gameObjects": [
         {
@@ -17,6 +36,11 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -41,11 +65,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "mesh_root\u0000",
-            "hashValue": 5514151138106766407,
+            "tag": "Dragon.fbx_mesh_root\u0000",
+            "hashValue": 10295146065488708539,
             "componentOnValue": [
                 true,
                 false,
@@ -57,6 +109,11 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -81,6 +138,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -100,10 +185,15 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 10295146065488708539
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -252,6 +342,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         }
     ],
