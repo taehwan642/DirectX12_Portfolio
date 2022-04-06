@@ -11,6 +11,7 @@ enum class MonoBehaviourType
 	EnemyBullet,
 	EffectManagerScript,
 	Effect,
+	InfinitePassage,
 	END
 };
 

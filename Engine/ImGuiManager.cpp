@@ -37,6 +37,7 @@
 #include "EnemyBullet.h"
 #include "EffectManagerScript.h"
 #include "Effect.h"
+#include "InfinitePassage.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -649,7 +650,7 @@ void ImGuiManager::RenderInspector()
             bool lastCharIsNum = false;
             for (int i = 0; i < 10; ++i)
             {
-                if (_currentGameObject->GetName()[_currentGameObject->GetName().size() - 1] == std::to_wstring(i)[0]);
+                if (_currentGameObject->GetName()[_currentGameObject->GetName().size() - 1] == std::to_wstring(i)[0])
                 {
                     lastCharIsNum = true;
                     break;
@@ -1361,6 +1362,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(EnemyBullet);
             IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
             IMGUIADDMONOBEHAVIOUR(Effect);
+            IMGUIADDMONOBEHAVIOUR(InfinitePassage);
 
             ImGui::EndMenu();
         }

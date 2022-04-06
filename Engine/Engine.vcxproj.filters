@@ -231,6 +231,9 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Script\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="InfinitePassage.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Script\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="InfinitePassage.h">
+      <Filter>Script</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

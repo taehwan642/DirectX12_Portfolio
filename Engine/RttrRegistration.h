@@ -32,6 +32,7 @@
 #include "EnemyBullet.h"
 #include "EffectManagerScript.h"
 #include "Effect.h"
+#include "InfinitePassage.h"
 
 // Load때 필요한 오브젝트.
 
@@ -281,6 +282,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(EnemyBullet)
 			RTTRMONOSAVE(EffectManagerScript)
 			RTTRMONOSAVE(Effect)
+			RTTRMONOSAVE(InfinitePassage)
 		}
 	}
 
@@ -804,6 +806,7 @@ RTTR_REGISTRATION
 		.property("_testObject", &EnemyBullet::_testObject);
 	RTTRMONOREGISTER(EffectManagerScript);
 	RTTRMONOREGISTER(Effect);
+	RTTRMONOREGISTER(InfinitePassage);
 
 #pragma endregion
 }
