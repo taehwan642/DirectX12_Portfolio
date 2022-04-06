@@ -1251,38 +1251,60 @@ void ImGuiManager::RenderInspector()
         }
 
         // MONOBEHAVIOUR
-        for (auto& iter : _currentGameObject->_scripts)
+        for (auto iter = std::begin(_currentGameObject->_scripts); iter != std::end(_currentGameObject->_scripts);)
         {
-            ImGui::PushID(ws2s(iter->_className).c_str());
-
-            ImGui::Text("%s", ws2s(iter->_className).c_str());
-
-            // Our buttons are both drag sources and drag targets here!
-            if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
+            auto& script = *iter;
+            bool erase = false;
+            if (ImGui::BeginMenu(ws2s(script->_className).c_str()))
             {
-                // Set payload to carry the index of our item (could be anything)
-                ImGui::SetDragDropPayload("DND_DEMO_CELL", NULL, 0);
+                ImGui::PushID(ws2s(script->_className).c_str());
 
-                // Display preview (could be anything, e.g. when dragging an image we could decide to display
-                // the filename and a small preview of the image, etc.)
-                ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str());
-                ImGui::EndDragDropSource();
-            }
-            if (ImGui::BeginDragDropTarget())
-            {
-                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+                ImGui::Text("%s", ws2s(script->_className).c_str());
+
+                // Our buttons are both drag sources and drag targets here!
+                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
                 {
-                    IM_ASSERT(payload->DataSize == sizeof(size_t));
-                    size_t payload_n = *(const size_t*)payload->Data;
+                    // Set payload to carry the index of our item (could be anything)
+                    ImGui::SetDragDropPayload("DND_DEMO_CELL", NULL, 0);
 
-                    // find hash
-                    iter->DragAndDrop(payload_n);
-
+                    // Display preview (could be anything, e.g. when dragging an image we could decide to display
+                    // the filename and a small preview of the image, etc.)
+                    ImGui::Text("Set Child %s", ws2s(script->GetName().c_str()).c_str());
+                    ImGui::EndDragDropSource();
                 }
-                ImGui::EndDragDropTarget();
-            }
-            ImGui::PopID();
+                if (ImGui::BeginDragDropTarget())
+                {
+                    if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_CELL"))
+                    {
+                        IM_ASSERT(payload->DataSize == sizeof(size_t));
+                        size_t payload_n = *(const size_t*)payload->Data;
 
+                        // find hash
+                        script->DragAndDrop(payload_n);
+
+                    }
+                    ImGui::EndDragDropTarget();
+                }
+                ImGui::PopID();
+
+                if (ImGui::Button("Delete Component"))
+                {
+                    erase = true;
+                }
+                ImGui::EndMenu();
+            }
+
+            if (erase == true)
+            {
+                // 벡터는 erase되면 모든 요소를 재할당하기 때문에 모든 반복자가 무효화된다.
+                // 그렇기 때문에 그냥 break를 걸어준다.
+                _currentGameObject->_scripts.erase(iter);
+                break;
+            }
+            else
+            {
+                ++iter;
+            }
         }
 
         if (ImGui::BeginMenu("AddComponent"))
