@@ -672,7 +672,7 @@ void ImGuiManager::RenderInspector()
         std::string shadowCheckLabel = (_currentGameObject->_static == true) ? "Press to enable Shadow" : "Press to disable Shadow";
         if (ImGui::Button(shadowCheckLabel.c_str()))
         {
-            _currentGameObject->SetCheckFrustum(!_currentGameObject->_static);
+            _currentGameObject->SetStatic(!_currentGameObject->_static);
         }
 
         std::string hashValue = std::to_string(_currentGameObject->_hash);
@@ -694,7 +694,16 @@ void ImGuiManager::RenderInspector()
             _currentGameObject->_drawFrustumRaidusVisualizer = !_currentGameObject->_drawFrustumRaidusVisualizer;
         }
         ImGui::SameLine();
+        if (ImGui::Button("Set FrustumRadius to all child"))
+        {
+            for (int i = 0; i < _currentGameObject->_transform->GetChildCount(); ++i)
+            {
+                _currentGameObject->_transform->GetChild(i)->GetGameObject()->_frustumCheckRadius = _currentGameObject->_frustumCheckRadius;
+            }
+        }
+        ImGui::SameLine();
         ImGui::DragFloat("Frustum Radius", &_currentGameObject->_frustumCheckRadius);
+        
 
         // Layer 출력
         std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
@@ -1652,6 +1661,9 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
 
 void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent)
 {
+    // 이름 뒤에 숫자 하나 빼고 넣기.
+    parent->SetName(parent->GetName().substr(0, parent->GetName().size() - 1));
+    parent->GenerateHash();
     scene->AddGameObject(parent);
     for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
     {
