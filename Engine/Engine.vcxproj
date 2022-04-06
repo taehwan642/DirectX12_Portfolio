@@ -356,6 +356,7 @@
     <FxCompile Include="..\Resources\Shader\compute.fx" />
     <FxCompile Include="..\Resources\Shader\deferred.fx" />
     <FxCompile Include="..\Resources\Shader\effect.fx" />
+    <FxCompile Include="..\Resources\Shader\enemybullet.fx" />
     <FxCompile Include="..\Resources\Shader\forward.fx" />
     <FxCompile Include="..\Resources\Shader\lighting.fx" />
     <FxCompile Include="..\Resources\Shader\math.fx" />

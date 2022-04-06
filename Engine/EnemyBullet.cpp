@@ -7,6 +7,8 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "EffectManagerScript.h"
+#include "MeshRenderer.h"
+#include "Material.h"
 
 EnemyBullet::~EnemyBullet()
 {
@@ -26,19 +28,24 @@ void EnemyBullet::LateUpdate()
 
 	Vec3 pos = GetTransform()->GetWorldPosition();
 
-	if (INPUT->GetButton(KEY_TYPE::Z))
-		pos += GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
-
-	if (INPUT->GetButton(KEY_TYPE::C))
-		pos -= GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
-
-	if (INPUT->GetButton(KEY_TYPE::Q))
-		pos += GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
-
-	if (INPUT->GetButton(KEY_TYPE::E))
-		pos -= GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
+	//if (INPUT->GetButton(KEY_TYPE::Z))
+	//	pos += GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
+	//
+	//if (INPUT->GetButton(KEY_TYPE::C))
+	//	pos -= GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
+	//
+	//if (INPUT->GetButton(KEY_TYPE::Q))
+	//	pos += GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
+	//
+	//if (INPUT->GetButton(KEY_TYPE::E))
+	//	pos -= GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
 
 	GetTransform()->SetWorldPosition(pos);
+
+	static float inputTime = 0;
+	inputTime += DELTA_TIME;
+	GetMeshRenderer()->GetMaterial()->SetFloat(0, inputTime);
+	GetMeshRenderer()->GetMaterial()->SetInt(3, static_cast<int32>(_state));
 }
 
 #ifdef TOOL

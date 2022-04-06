@@ -635,6 +635,18 @@ void Resources::CreateDefaultShader()
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\effect.fx", info);
 		Add<Shader>(L"Effect", shader);
 	}
+
+	// EnemyBullet Shader
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::DEFERRED
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\enemybullet.fx", info);
+		Add<Shader>(L"EnemyBullet", shader);
+	}
 }
 
 void Resources::CreateDefaultMaterial()
@@ -850,5 +862,14 @@ void Resources::CreateDefaultMaterial()
 		std::shared_ptr<Material> material = std::make_shared<Material>();
 		material->SetShader(shader);
 		Add<Material>(L"Effect", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"EnemyBullet");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"EnemyBullet", L"..\\Resources\\Texture\\EnemyBullet.png");
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"EnemyBullet", material);
 	}
 }
