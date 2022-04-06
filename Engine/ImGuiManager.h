@@ -44,7 +44,7 @@ private:
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
 
-	void AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent);
+	void AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent, bool eraseLastChar);
 
 private:
 

@@ -646,7 +646,16 @@ void ImGuiManager::RenderInspector()
             std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
 
             // 현재 게임오브젝트부터 자식들까지 모두 Scene에 담기
-            AddSceneChild(sceneOnlyForSave, _currentGameObject);
+            bool lastCharIsNum = false;
+            for (int i = 0; i < 10; ++i)
+            {
+                if (_currentGameObject->GetName()[_currentGameObject->GetName().size() - 1] == std::to_wstring(i)[0]);
+                {
+                    lastCharIsNum = true;
+                    break;
+                }
+            }
+            AddSceneChild(sceneOnlyForSave, _currentGameObject, lastCharIsNum);
 
             // 저장
             std::string finalPath = path + "_Prefab";
@@ -1659,15 +1668,19 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
     ImGui::PopID();
 }
 
-void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent)
+void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent, bool eraseLastChar)
 {
     // 이름 뒤에 숫자 하나 빼고 넣기.
-    parent->SetName(parent->GetName().substr(0, parent->GetName().size() - 1));
-    parent->GenerateHash();
+    if (eraseLastChar == true)
+    {
+        parent->SetName(parent->GetName().substr(0, parent->GetName().size() - 1));
+        parent->GenerateHash();
+    }
+   
     scene->AddGameObject(parent);
     for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
     {
-        AddSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject());
+        AddSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject(), eraseLastChar);
     }
 }
 #endif
