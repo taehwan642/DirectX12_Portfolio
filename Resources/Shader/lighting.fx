@@ -44,6 +44,10 @@ PS_OUT PS_DirLight(VS_OUT input)
 {
     PS_OUT output = (PS_OUT)0;
 
+    float fogStart = 50.f;
+    float fogRange = 100.f;
+    float4 fogColor = float4(0.0f, 0.0f, 0.0f, 1.f);
+
     float3 viewPos = g_tex_0.Sample(g_sam_0, input.uv).xyz;
     if (viewPos.z <= 0.f)
         clip(-1);
@@ -78,8 +82,13 @@ PS_OUT PS_DirLight(VS_OUT input)
         }
     }
 
-    output.diffuse = color.diffuse + color.ambient;
-    output.specular = color.specular;
+    float3 toEyeVec = -viewPos;
+    float distance = length(toEyeVec);
+
+    float fogAmount = saturate((distance - fogStart) / fogRange);
+
+    output.diffuse = lerp(color.diffuse + color.ambient, fogColor, fogAmount);
+    output.specular = lerp(color.specular, fogColor, fogAmount);
 
     return output;
 }

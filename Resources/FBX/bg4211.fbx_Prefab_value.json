@@ -1,8 +1,42 @@
 {
-    "resources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4210.fbx\u0000",
+    "meshDataResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbx\u0000"
+    ],
+    "textureResources": [
+        "..\\Resources\\Texture\\Tile.png\u0000",
+        "..\\Resources\\Texture\\Leather.jpg\u0000",
+        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
+        "..\\Resources\\Texture\\Fabric.jpg\u0000",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sea.jpg\u0000",
+        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "../Resources/Texture/Particle/bubble.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\lamp\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\bayoflatnormal\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\271112b5\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\6f2eecc6\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\2d093f83\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\6536c1f0\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\13f7e990\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\43b3faca\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\348ec67b\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\7cb13808\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\3a7ce51b\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\72431b68\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\172d65c2\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\5f129bb1\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\357a10e9\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\7d45ee9a\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\1c46d7f4\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\54792987\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\b2f6d05\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\43109376\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\26be2541\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4211.fbm\\3dc7903a\u0000"
     ],
     "gameObjects": [
         {
@@ -19,6 +53,10 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -43,11 +81,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "mesh_root\u0000",
-            "hashValue": 5514151138106766407,
+            "tag": "bg4211.fbx_mesh_root\u0000",
+            "hashValue": 3041219750603957521,
             "componentOnValue": [
                 true,
                 false,
@@ -59,6 +125,10 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -83,6 +153,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -102,10 +200,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -150,6 +252,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -169,10 +299,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -185,10 +319,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4416cb91\u0000"
+                                "tag": "271112b5\u0000"
                             },
                             {
-                                "tag": "c2935e2\u0000"
+                                "tag": "6f2eecc6\u0000"
                             },
                             {
                                 "tag": ""
@@ -217,6 +351,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -236,10 +398,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -252,10 +418,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "361ae12\u0000"
+                                "tag": "2d093f83\u0000"
                             },
                             {
-                                "tag": "4b5e5061\u0000"
+                                "tag": "6536c1f0\u0000"
                             },
                             {
                                 "tag": ""
@@ -284,6 +450,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -303,10 +497,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -319,10 +517,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "c2d6a0e\u0000"
+                                "tag": "13f7e990\u0000"
                             },
                             {
-                                "tag": "44153189\u0000"
+                                "tag": "43b3faca\u0000"
                             },
                             {
                                 "tag": ""
@@ -351,6 +549,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -370,10 +596,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -386,10 +616,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "23a6a2bb\u0000"
+                                "tag": "348ec67b\u0000"
                             },
                             {
-                                "tag": "6b995cc8\u0000"
+                                "tag": "7cb13808\u0000"
                             },
                             {
                                 "tag": ""
@@ -418,6 +648,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -437,10 +695,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -453,10 +715,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "25a66685\u0000"
+                                "tag": "3a7ce51b\u0000"
                             },
                             {
-                                "tag": "6d9998f6\u0000"
+                                "tag": "72431b68\u0000"
                             },
                             {
                                 "tag": ""
@@ -485,6 +747,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -504,10 +794,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -520,10 +814,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "50102\u0000"
+                                "tag": "172d65c2\u0000"
                             },
                             {
-                                "tag": "483aff71\u0000"
+                                "tag": "5f129bb1\u0000"
                             },
                             {
                                 "tag": ""
@@ -552,6 +846,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -571,10 +893,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -587,10 +913,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2aa09377\u0000"
+                                "tag": "357a10e9\u0000"
                             },
                             {
-                                "tag": "629f6d04\u0000"
+                                "tag": "7d45ee9a\u0000"
                             },
                             {
                                 "tag": ""
@@ -619,6 +945,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -638,10 +992,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -654,10 +1012,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4ba457ac\u0000"
+                                "tag": "1c46d7f4\u0000"
                             },
                             {
-                                "tag": "39ba9df\u0000"
+                                "tag": "54792987\u0000"
                             },
                             {
                                 "tag": ""
@@ -686,6 +1044,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -705,10 +1091,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -721,10 +1111,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "5ccded5d\u0000"
+                                "tag": "b2f6d05\u0000"
                             },
                             {
-                                "tag": "14f2132e\u0000"
+                                "tag": "43109376\u0000"
                             },
                             {
                                 "tag": ""
@@ -753,6 +1143,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
@@ -772,10 +1190,14 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 3041219750603957521
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -788,10 +1210,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2118ee02\u0000"
+                                "tag": "26be2541\u0000"
                             },
                             {
-                                "tag": "3a615b79\u0000"
+                                "tag": "3dc7903a\u0000"
                             },
                             {
                                 "tag": ""
@@ -820,6 +1242,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         }
     ],

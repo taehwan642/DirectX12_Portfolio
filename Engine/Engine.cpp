@@ -132,6 +132,11 @@ void Engine::CreateRenderTargetGroups()
 			ComPtr<ID3D12Resource> resource;
 			_swapChain->GetSwapChain()->GetBuffer(i, IID_PPV_ARGS(&resource));
 			rtVec[i].target = GET_SINGLE(Resources)->CreateTextureFromResource(name, resource);
+			FogData fog = GET_SINGLE(SceneManager)->GetFogData();
+			rtVec[i].clearColor[0] = fog.fogColor.x;
+			rtVec[i].clearColor[1] = fog.fogColor.y;
+			rtVec[i].clearColor[2] = fog.fogColor.z;
+			rtVec[i].clearColor[3] = fog.fogColor.w;
 		}
 
 		_rtGroups[static_cast<uint8>(RENDER_TARGET_GROUP_TYPE::SWAP_CHAIN)] = std::make_shared<RenderTargetGroup>();

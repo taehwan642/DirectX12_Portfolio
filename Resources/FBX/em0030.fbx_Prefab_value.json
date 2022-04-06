@@ -1,7 +1,6 @@
 {
     "meshDataResources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx\u0000"
     ],
     "textureResources": [
         "..\\Resources\\Texture\\Tile.png\u0000",
@@ -16,21 +15,15 @@
         "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
         "../Resources/Texture/Particle/bubble.png\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96\u0000"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\370479b7\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\2c7dcccc\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\3fb1ad5d\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826\u0000"
     ],
     "gameObjects": [
         {
-            "tag": "bg4004.fbx\u0000",
-            "hashValue": 12685461743740650202,
+            "tag": "em0030.fbx\u0000",
+            "hashValue": 9690220935289619684,
             "componentOnValue": [
                 true,
                 false,
@@ -101,8 +94,8 @@
             }
         },
         {
-            "tag": "bg4004.fbx_mesh_root\u0000",
-            "hashValue": 8045542123776314719,
+            "tag": "em0030.fbx_mesh_root\u0000",
+            "hashValue": 141391931242307009,
             "componentOnValue": [
                 true,
                 false,
@@ -124,7 +117,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 12685461743740650202
+                "parentHashValue": 9690220935289619684
             },
             "meshRendererValue": {
                 "materialValues": [],
@@ -173,8 +166,8 @@
             }
         },
         {
-            "tag": "LOD0_0_dc_mesh0000\u0000",
-            "hashValue": 4534963757783619985,
+            "tag": "LOD0_0_body_mesh0000\u0000",
+            "hashValue": 3488834311885664502,
             "componentOnValue": [
                 true,
                 true,
@@ -183,7 +176,7 @@
                 false,
                 false,
                 false,
-                false
+                true
             ],
             "monobehaviourOnValue": [
                 false,
@@ -196,7 +189,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 8045542123776314719
+                "parentHashValue": 141391931242307009
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -209,10 +202,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4ef8c1fc\u0000"
+                                "tag": "370479b7\u0000"
                             },
                             {
-                                "tag": "6c73f8f\u0000"
+                                "tag": "2c7dcccc\u0000"
                             },
                             {
                                 "tag": ""
@@ -224,12 +217,12 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
+                        "tag": "Fly\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_0_dc_mesh0000\u0000"
+                    "tag": "LOD0_0_body_mesh0000\u0000"
                 }
             },
             "colliderValue": {
@@ -272,8 +265,8 @@
             }
         },
         {
-            "tag": "LOD0_1_dc_mesh0001\u0000",
-            "hashValue": 7155076883803949265,
+            "tag": "LOD0_1_body_mesh0001\u0000",
+            "hashValue": 6199722429804076598,
             "componentOnValue": [
                 true,
                 true,
@@ -282,7 +275,7 @@
                 false,
                 false,
                 false,
-                false
+                true
             ],
             "monobehaviourOnValue": [
                 false,
@@ -295,7 +288,7 @@
                 false
             ],
             "transformValue": {
-                "parentHashValue": 8045542123776314719
+                "parentHashValue": 141391931242307009
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -308,109 +301,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2b00a6bd\u0000"
+                                "tag": "3fb1ad5d\u0000"
                             },
                             {
-                                "tag": "633f58ce\u0000"
-                            },
-                            {
-                                "tag": ""
-                            },
-                            {
-                                "tag": ""
-                            }
-                        ],
-                        "shaderValue": {
-                            "tag": "Deferred\u0000"
-                        },
-                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
-                    }
-                ],
-                "meshRendererMaterialNumValue": 1,
-                "meshValue": {
-                    "tag": "LOD0_1_dc_mesh0001\u0000"
-                }
-            },
-            "colliderValue": {
-                "type": "Sphere"
-            },
-            "lightValue": {
-                "lightType": 0
-            },
-            "terrainValue": {
-                "sizeX": 0,
-                "sizeZ": 0
-            },
-            "particleSystemValue": {
-                "materialValue": {
-                    "textureOnValue": [
-                        false,
-                        false,
-                        false,
-                        false
-                    ],
-                    "textureValues": [
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        }
-                    ],
-                    "shaderValue": {
-                        "tag": ""
-                    },
-                    "tag": ""
-                }
-            }
-        },
-        {
-            "tag": "LOD0_2_dc_mesh0002\u0000",
-            "hashValue": 18370453718327125809,
-            "componentOnValue": [
-                true,
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "monobehaviourOnValue": [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "transformValue": {
-                "parentHashValue": 8045542123776314719
-            },
-            "meshRendererValue": {
-                "materialValues": [
-                    {
-                        "textureOnValue": [
-                            true,
-                            true,
-                            false,
-                            false
-                        ],
-                        "textureValues": [
-                            {
-                                "tag": "2b00a6bd\u0000"
-                            },
-                            {
-                                "tag": "633f58ce\u0000"
+                                "tag": "24c81826\u0000"
                             },
                             {
                                 "tag": ""
@@ -422,12 +316,12 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
+                        "tag": "Zako\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_2_dc_mesh0002\u0000"
+                    "tag": "LOD0_1_body_mesh0001\u0000"
                 }
             },
             "colliderValue": {

@@ -2,10 +2,12 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 865,
+            "_id": 228,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 11363510916437000788,
@@ -56,13 +58,15 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 866,
+            "_id": 233,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 5514151138106766407,
+            "_hash": 3041219750603957521,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -110,10 +114,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 867,
+            "_id": 238,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 10946595466931233200,
@@ -337,32 +343,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 264,
+                                "_id": 183,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 265,
+                                "_id": 184,
                                 "_name": ""
                             },
                             {},
@@ -372,7 +363,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 665,
+                    "_id": 217,
                     "_name": ""
                 }
             },
@@ -386,10 +377,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 870,
+            "_id": 244,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 3499510382044979088,
@@ -613,32 +606,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 226,
+                                "_id": 185,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 227,
+                                "_id": 186,
                                 "_name": ""
                             },
                             {},
@@ -648,7 +626,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 666,
+                    "_id": 218,
                     "_name": ""
                 }
             },
@@ -662,10 +640,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 873,
+            "_id": 250,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 10224101546580584560,
@@ -889,32 +869,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 230,
+                                "_id": 187,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 231,
+                                "_id": 188,
                                 "_name": ""
                             },
                             {},
@@ -924,7 +889,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 667,
+                    "_id": 219,
                     "_name": ""
                 }
             },
@@ -938,10 +903,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 876,
+            "_id": 256,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 505719406583744208,
@@ -1165,32 +1132,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 232,
+                                "_id": 189,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 233,
+                                "_id": 190,
                                 "_name": ""
                             },
                             {},
@@ -1200,7 +1152,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 668,
+                    "_id": 220,
                     "_name": ""
                 }
             },
@@ -1214,10 +1166,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 879,
+            "_id": 262,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 3518924608945165616,
@@ -1441,32 +1395,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 234,
+                                "_id": 191,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 235,
+                                "_id": 192,
                                 "_name": ""
                             },
                             {},
@@ -1476,7 +1415,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 669,
+                    "_id": 221,
                     "_name": ""
                 }
             },
@@ -1490,10 +1429,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 882,
+            "_id": 268,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 13425938490065312272,
@@ -1717,32 +1658,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 236,
+                                "_id": 193,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 237,
+                                "_id": 194,
                                 "_name": ""
                             },
                             {},
@@ -1752,7 +1678,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 670,
+                    "_id": 222,
                     "_name": ""
                 }
             },
@@ -1766,10 +1692,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 885,
+            "_id": 274,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 7959561518041000176,
@@ -1993,32 +1921,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 238,
+                                "_id": 195,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 239,
+                                "_id": 196,
                                 "_name": ""
                             },
                             {},
@@ -2028,7 +1941,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 671,
+                    "_id": 223,
                     "_name": ""
                 }
             },
@@ -2042,10 +1955,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 888,
+            "_id": 280,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 7689434000906549840,
@@ -2269,32 +2184,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 242,
+                                "_id": 197,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 243,
+                                "_id": 198,
                                 "_name": ""
                             },
                             {},
@@ -2304,7 +2204,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 672,
+                    "_id": 224,
                     "_name": ""
                 }
             },
@@ -2318,10 +2218,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 891,
+            "_id": 286,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 3559522695898425632,
@@ -2545,32 +2447,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 244,
+                                "_id": 199,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 245,
+                                "_id": 200,
                                 "_name": ""
                             },
                             {},
@@ -2580,7 +2467,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 673,
+                    "_id": 225,
                     "_name": ""
                 }
             },
@@ -2594,10 +2481,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 894,
+            "_id": 292,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 4619114470056240640,
@@ -2821,32 +2710,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 250,
+                                "_id": 201,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 251,
+                                "_id": 202,
                                 "_name": ""
                             },
                             {},
@@ -2856,7 +2730,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 674,
+                    "_id": 226,
                     "_name": ""
                 }
             },
@@ -2870,10 +2744,12 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 897,
+            "_id": 298,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
+            "_frustumCheckRadius": 1.0,
+            "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
             "_hash": 11478458936979442584,
@@ -3097,32 +2973,17 @@
                         "_shader": {
                             "_objectType": "SHADER",
                             "_id": 12,
-                            "_info": {
-                                "shaderType": "DEFERRED",
-                                "rasterizerType": "CULL_BACK",
-                                "depthStencilType": "LESS",
-                                "blendType": "DEFAULT",
-                                "topology": 4
-                            },
-                            "_arg": {
-                                "vs": "VS_Main",
-                                "hs": "",
-                                "ds": "",
-                                "gs": "",
-                                "ps": "PS_Main",
-                                "cs": ""
-                            },
                             "_name": ""
                         },
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 262,
+                                "_id": 203,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 263,
+                                "_id": 204,
                                 "_name": ""
                             },
                             {},
@@ -3132,7 +2993,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 675,
+                    "_id": 227,
                     "_name": ""
                 }
             },

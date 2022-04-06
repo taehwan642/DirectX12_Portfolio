@@ -1473,7 +1473,7 @@ void ImGuiManager::RenderDragAndDrop()
         sceneOnlyForSave->AddGameObject(meshDataObject);
         std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
         mesh_root->AddComponent(std::make_shared<TransformComponent>());
-        mesh_root->SetName(L"mesh_root");
+        mesh_root->SetName(s2ws(objName) + L"_mesh_root");
         mesh_root->GenerateHash();
         sceneOnlyForSave->AddGameObject(mesh_root);
         std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();

@@ -29,6 +29,9 @@ public:
 	std::vector<std::wstring>& GetLoadedMeshDataTagVector() { return _loadedMeshDataTags; }
 	std::vector<std::wstring>& GetLoadedTextureTagVector() { return _loadedTextureTags; }
 
+	FogData GetFogData() { return _fogData; }
+	void SetFogData(const FogData& data) { _fogData = data; }
+
 private:
 	std::shared_ptr<Scene> LoadTestScene();
 
@@ -44,5 +47,7 @@ private:
 	std::vector<std::wstring> _loadedTextureTags;
 	std::vector<std::wstring> _loadedMeshDataTags;
 	std::vector<std::wstring> _sceneTags;
+
+	FogData _fogData;
 };
 

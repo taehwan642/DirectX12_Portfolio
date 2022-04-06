@@ -17,8 +17,6 @@ void Texture::Load(const std::wstring& path)
 {
 	std::wstring finalPath = path;
 
-	
-
 	// 파일 확장자 얻기
 	std::wstring ext = std::filesystem::path(finalPath).extension();
 

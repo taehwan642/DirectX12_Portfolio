@@ -491,4 +491,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(Sea)
 	RTTRMONOLOAD(EnemyBullet)
 	RTTRMONOLOAD(EffectManagerScript)
+	RTTRMONOLOAD(Effect)
 }

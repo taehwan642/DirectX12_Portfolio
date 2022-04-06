@@ -74,6 +74,10 @@ PS_OUT PS_Main(VS_OUT input)
 {
     PS_OUT output = (PS_OUT)0;
 
+    float fogStart = 50.f;
+    float fogRange = 100.f;
+    float4 fogColor = float4(0.3f, 0.3f, 0.3f, 1.f);
+
     float4 color = float4(1.f, 1.f, 1.f, 1.f);
     if (g_tex_on_0 == 1)
         color = g_tex_0.Sample(g_sam_0, input.uv);
@@ -91,7 +95,12 @@ PS_OUT PS_Main(VS_OUT input)
 
     output.position = float4(input.viewPos.xyz, 0.f);
     output.normal = float4(viewNormal.xyz, 0.f);
-    output.color = color;
+
+    float3 toEyeVec = -input.viewPos;
+    float distance = length(toEyeVec);
+
+    float fogAmount = saturate((distance - fogStart) / fogRange);
+    output.color = lerp(color, fogColor, fogAmount);
 
     return output;
 }
