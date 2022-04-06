@@ -45,6 +45,9 @@ void Light::Render()
 
 		Matrix matVP = _shadowCamera->GetCamera()->GetViewMatrix() * _shadowCamera->GetCamera()->GetProjectionMatrix();
 		_lightMaterial->SetMatrix(0, matVP);
+
+		Matrix fogMatrix = GET_SINGLE(SceneManager)->GetFogMatrix();
+		_lightMaterial->SetMatrix(3, fogMatrix);
 	}
 	else
 	{

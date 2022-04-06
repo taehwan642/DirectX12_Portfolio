@@ -29,8 +29,20 @@ public:
 	std::vector<std::wstring>& GetLoadedMeshDataTagVector() { return _loadedMeshDataTags; }
 	std::vector<std::wstring>& GetLoadedTextureTagVector() { return _loadedTextureTags; }
 
-	FogData GetFogData() { return _fogData; }
+	const FogData& GetFogData() { return _fogData; }
 	void SetFogData(const FogData& data) { _fogData = data; }
+	Matrix GetFogMatrix() 
+	{
+		Matrix fogMatrix;
+		FogData fogData = GET_SINGLE(SceneManager)->GetFogData();
+		fogMatrix._11 = fogData.fogStart;
+		fogMatrix._12 = fogData.fogRange;
+		fogMatrix._21 = fogData.fogColor.x;
+		fogMatrix._22 = fogData.fogColor.y;
+		fogMatrix._23 = fogData.fogColor.z;
+		fogMatrix._24 = fogData.fogColor.w;
+		return fogMatrix;
+	}
 
 private:
 	std::shared_ptr<Scene> LoadTestScene();

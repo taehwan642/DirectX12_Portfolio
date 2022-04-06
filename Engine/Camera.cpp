@@ -49,6 +49,8 @@ void Camera::SortGameObject()
 	_vecParticle.clear();
 	_vecVisualizerMesh.clear();
 
+	Matrix fogMatrix = GET_SINGLE(SceneManager)->GetFogMatrix();
+
 	for (auto& gameObject : gameObjects)
 	{
 		if (gameObject->GetActive() == false)
@@ -92,6 +94,7 @@ void Camera::SortGameObject()
 			switch (shaderType)
 			{
 			case SHADER_TYPE::DEFERRED:
+				gameObject->GetMeshRenderer()->GetMaterial()->SetMatrix(3, fogMatrix);
 				_vecDeferred.push_back(gameObject);
 				break;
 			case SHADER_TYPE::FORWARD:

@@ -44,8 +44,8 @@ PS_OUT PS_DirLight(VS_OUT input)
 {
     PS_OUT output = (PS_OUT)0;
 
-    float fogStart = 50.f;
-    float fogRange = 100.f;
+    float fogStart = g_mat_3._m00;
+    float fogRange = g_mat_3._m01;
     float4 fogColor = float4(0.0f, 0.0f, 0.0f, 1.f);
 
     float3 viewPos = g_tex_0.Sample(g_sam_0, input.uv).xyz;

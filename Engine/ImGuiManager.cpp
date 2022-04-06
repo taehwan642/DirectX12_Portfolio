@@ -552,6 +552,11 @@ void ImGuiManager::RenderHierarchy()
         ImGui::End();
         return;
     }
+    ImGui::Separator();
+    ImGui::InputFloat("Fog Start", &GET_SINGLE(SceneManager)->_fogData.fogStart);
+    ImGui::InputFloat("Fog Range", &GET_SINGLE(SceneManager)->_fogData.fogRange);
+    ImGui::InputFloat4("Fog Color", reinterpret_cast<float*>(&GET_SINGLE(SceneManager)->_fogData.fogColor.x));
+    ImGui::Separator();
 
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
 

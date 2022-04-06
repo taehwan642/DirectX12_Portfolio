@@ -74,9 +74,13 @@ PS_OUT PS_Main(VS_OUT input)
 {
     PS_OUT output = (PS_OUT)0;
 
-    float fogStart = 50.f;
-    float fogRange = 100.f;
-    float4 fogColor = float4(0.3f, 0.3f, 0.3f, 1.f);
+    float fogStart = g_mat_3._m00;
+    float fogRange = g_mat_3._m01;
+    float4 fogColor;
+    fogColor.x = g_mat_3._m10;
+    fogColor.y = g_mat_3._m11;
+    fogColor.z = g_mat_3._m12;
+    fogColor.w = g_mat_3._m13;
 
     float4 color = float4(1.f, 1.f, 1.f, 1.f);
     if (g_tex_on_0 == 1)
