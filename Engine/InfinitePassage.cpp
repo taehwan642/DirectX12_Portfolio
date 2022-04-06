@@ -13,12 +13,12 @@ void InfinitePassage::LateUpdate()
 	for (int i = 0; i < GetTransform()->GetChildCount(); ++i)
 	{
 		std::shared_ptr<GameObject> obj = GetTransform()->GetChild(i)->GetGameObject();
-		Vec3 worldPos = obj->GetTransform()->GetWorldPosition();
-		worldPos.z -= 0.3f;
-		if (worldPos.z < -300.f)
+		Vec3 localPos = obj->GetTransform()->GetLocalPosition();
+		localPos.z -= 0.3f;
+		if (localPos.z < -300.f)
 		{
-			worldPos.z = 200.f;
+			localPos.z = 200.f;
 		}
-		obj->GetTransform()->SetWorldPosition(worldPos);
+		obj->GetTransform()->SetLocalPosition(localPos);
 	}
 }
