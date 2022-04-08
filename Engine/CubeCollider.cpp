@@ -24,11 +24,11 @@ void CubeCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition());
+		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), GetGameObject()->GetTransform()->GetWorldScale());
 	}
 
 	_boundingBox.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
-	_boundingBox.Extents = _extents = GetGameObject()->GetTransform()->GetLocalScale();
+	_boundingBox.Extents = _extents = GetGameObject()->GetTransform()->GetWorldScale();
 }
 
 bool CubeCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)

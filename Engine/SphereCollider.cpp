@@ -24,7 +24,7 @@ void SphereCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition());
+		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), GetGameObject()->GetTransform()->GetWorldScale());
 	}
 
 	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
