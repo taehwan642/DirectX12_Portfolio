@@ -116,24 +116,22 @@ void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
         {
             ImGui::Text("ParentIndex = %d", iter.parentIdx);
             RenderMatrixData(iter.matOffset);
-            if (ImGui::Button("Press To Visualize Bone"))
+            // 0번째 애니메이션의 i번째 본의 0번째 프레임 속 toRoot
+            if (mesh->_animClips[0].keyFrames[i].size() != 0)
             {
-                // 0번째 애니메이션의 i번째 본의 0번째 프레임 속 toRoot
-                if (mesh->_animClips[0].keyFrames[i].size() != 0)
-                {
-                    const AnimClipInfo& info = mesh->_animClips[0];
-                    const std::vector<KeyFrameInfo>& keyFrames = info.keyFrames[i];
-                    const KeyFrameInfo& keyFrame = keyFrames[0];
+                const AnimClipInfo& info = mesh->_animClips[0];
+                const std::vector<KeyFrameInfo>& keyFrames = info.keyFrames[i];
+                const KeyFrameInfo& keyFrame = keyFrames[0];
 
-                    Matrix matBone = Matrix::CreateScale(keyFrame.scale.x, keyFrame.scale.y, keyFrame.scale.z);
-                    matBone *= Matrix::CreateFromQuaternion(SimpleMath::Quaternion(
-                        keyFrame.rotation.x,
-                        keyFrame.rotation.y,
-                        keyFrame.rotation.z,
-                        keyFrame.rotation.w));
-                    matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
-                    GET_SINGLE(SceneManager)->_boneVisualizerObject->GetTransform()->SetWorldPosition(Vec3(matBone._41, matBone._42, matBone._43));
-                }
+                Matrix matBone = Matrix::CreateScale(keyFrame.scale.x, keyFrame.scale.y, keyFrame.scale.z);
+                matBone *= Matrix::CreateFromQuaternion(SimpleMath::Quaternion(
+                    keyFrame.rotation.x,
+                    keyFrame.rotation.y,
+                    keyFrame.rotation.z,
+                    keyFrame.rotation.w));
+                matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
+                matBone *= _currentGameObject->_transform->GetWorldMatrix();
+                GET_SINGLE(SceneManager)->_boneVisualizerObject->GetTransform()->SetWorldPosition(Vec3(matBone._41, matBone._42, matBone._43));
             }
             ImGui::EndMenu();
         }
@@ -484,26 +482,30 @@ void ImGuiManager::RenderBoneColliderData(std::shared_ptr<BoneCollider> boneColl
 {
     ImGui::Text("Type : Bone");
     // Bone Collider에서 Bone을 선택해 Add할 줄 있어야 한다.
-   
-    ImGui::Begin("Bones");
-
-    // Mesh에 연결된 Bone이 뜨게.
+    
+    ImGui::Begin("Bones"); // Mesh에 연결된 Bone이 뜨게.
     int i = 0;
     for (auto& iter : boneCollider->GetGameObject()->GetMeshRenderer()->GetMesh()->_bones)
     {
         if (ImGui::BeginMenu(iter.boneName.c_str()))
         {
-            static float radius = 1.f;
-            if (ImGui::DragFloat("Radius", &radius))
+            // 0번째 애니메이션의 i번째 본의 0번째 프레임 속 toRoot
+            if (boneCollider->GetMeshRenderer()->GetMesh()->_animClips[0].keyFrames[i].size() != 0)
             {
-                auto boneiter = std::find_if(boneCollider->_boneColliders.begin(), 
-                    boneCollider->_boneColliders.end(), [=](const BoneColliderInfo& info) {return (iter.boneName == info.boneName); });
-                
-                // 이미 존재한다면
-                if (boneiter != boneCollider->_boneColliders.end())
-                {
-                    boneCollider->SetBoneColliderRadius(iter.boneName, radius);
-                }
+                std::shared_ptr<Mesh> mesh = boneCollider->GetMeshRenderer()->GetMesh();
+                const AnimClipInfo& info = mesh->_animClips[0];
+                const std::vector<KeyFrameInfo>& keyFrames = info.keyFrames[i];
+                const KeyFrameInfo& keyFrame = keyFrames[0];
+
+                Matrix matBone = Matrix::CreateScale(keyFrame.scale.x, keyFrame.scale.y, keyFrame.scale.z);
+                matBone *= Matrix::CreateFromQuaternion(SimpleMath::Quaternion(
+                    keyFrame.rotation.x,
+                    keyFrame.rotation.y,
+                    keyFrame.rotation.z,
+                    keyFrame.rotation.w));
+                matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
+                matBone *= _currentGameObject->_transform->GetWorldMatrix();
+                GET_SINGLE(SceneManager)->_boneVisualizerObject->GetTransform()->SetWorldPosition(Vec3(matBone._41, matBone._42, matBone._43));
             }
             if (ImGui::Button("Add Bone"))
             {
@@ -513,8 +515,26 @@ void ImGuiManager::RenderBoneColliderData(std::shared_ptr<BoneCollider> boneColl
         }
         ++i;
     }
-
     ImGui::End();
+
+    if (ImGui::CollapsingHeader("Bones"))
+    {
+        int i = 0;
+        for (auto& iter : boneCollider->_boneColliders)
+        {
+            ImGui::Text(iter.boneName.c_str());
+            float radius = iter.sphere.Radius;
+            if (ImGui::DragFloat(("Radius##" + std::to_string(i)).c_str(), &radius))
+            {
+                iter.sphere.Radius = radius;
+            }
+            if (ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
+            {
+                boneCollider->RemoveBoneCollider(iter.boneName);
+            }
+            ++i;
+        }
+    }
 }
 
 void ImGuiManager::RenderMatrixData(const Matrix& matrix)

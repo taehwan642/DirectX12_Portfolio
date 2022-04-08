@@ -72,6 +72,9 @@ bool BoneCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT flo
 
 void BoneCollider::AddBoneCollider(const std::string& boneName, float radius)
 {
+	auto iter = std::find_if(_boneColliders.begin(), _boneColliders.end(), [=](const BoneColliderInfo& info) {return (boneName == info.boneName); });
+	if (iter != _boneColliders.end())
+		return;
 	auto vec = GetMeshRenderer()->GetMesh()->GetBones();
 	for (int i = 0; i < vec->size(); ++i)
 	{
