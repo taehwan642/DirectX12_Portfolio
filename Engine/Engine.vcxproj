@@ -190,6 +190,7 @@
     <ClInclude Include="..\Library\Include\Imgui\imstb_truetype.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="BaseCollider.h" />
+    <ClInclude Include="BoneCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CommandQueue.h" />
@@ -281,6 +282,7 @@
     </ClCompile>
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="BaseCollider.cpp" />
+    <ClCompile Include="BoneCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="CommandQueue.cpp" />

@@ -92,10 +92,6 @@ PS_OUT PS_Main(VS_OUT input)
     output.position = float4(input.viewPos.xyz, 0.f);
     output.normal = float4(viewNormal.xyz, 0.f);
 
-    float3 toEyeVec = -input.viewPos;
-    float distance = length(toEyeVec);
-
-    float fogAmount = saturate((distance - fogStart) / fogRange);
     output.color = color;
 
     return output;

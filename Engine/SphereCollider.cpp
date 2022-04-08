@@ -10,11 +10,9 @@
 #include "Visualizer.h"
 #include "Scene.h"
 
-int SphereCollider::_num = 0;
-
 SphereCollider::SphereCollider() : BaseCollider(ColliderType::Sphere)
 {
-	_colliderVisualizer = std::make_shared<Visualizer>();
+	_colliderVisualizers.push_back(std::make_shared<Visualizer>());
 }
 
 SphereCollider::~SphereCollider()
@@ -26,7 +24,7 @@ void SphereCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizer->FinalUpdate(GetTransform()->GetWorldPosition());
+		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition());
 	}
 
 	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();

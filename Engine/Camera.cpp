@@ -56,10 +56,13 @@ void Camera::SortGameObject()
 
 		if (gameObject->GetCollider() != nullptr && gameObject->GetCollider()->IsDrawMesh() == true)
 		{
-			std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
-			gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizer()->_transform);
-			gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizer()->_meshRenderer);
-			_vecVisualizerMesh.push_back(gm);
+			for (int i = 0; i < gameObject->GetCollider()->GetColliderVisualizers().size(); ++i)
+			{
+				std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
+				gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizers()[i]->_transform);
+				gm->AddComponent(gameObject->GetCollider()->GetColliderVisualizers()[i]->_meshRenderer);
+				_vecVisualizerMesh.push_back(gm);
+			}
 		}
 
 		if (gameObject->GetDrawFrustumRadius() == true)
@@ -153,6 +156,15 @@ void Camera::Render_Deferred()
 	{
 		iter->GetMeshRenderer()->Render();
 	}
+
+	std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> bvo = GET_SINGLE(SceneManager)->_boneVisualizerObject;
+	bvo->SetDrawFrustumRadius(true);
+	bvo->FinalUpdate();
+	gm->AddComponent(bvo->GetVisualizer()->_transform);
+	gm->GetTransform()->SetWorldScale(Vec3(5, 5, 5));
+	gm->AddComponent(bvo->GetVisualizer()->_meshRenderer);
+	gm->GetMeshRenderer()->Render();
 }
 
 void Camera::Render_Forward()

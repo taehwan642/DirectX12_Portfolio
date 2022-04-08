@@ -57,6 +57,9 @@ void SceneManager::Init()
 #ifdef TESTGAME
 	SetScene(0);
 #endif
+
+	_boneVisualizerObject = std::make_shared<GameObject>();
+	_boneVisualizerObject->AddComponent(std::make_shared<TransformComponent>());
 }
 
 void SceneManager::Update()

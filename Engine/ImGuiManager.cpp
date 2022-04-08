@@ -27,6 +27,7 @@
 #include "MeshCollider.h"
 #include "MeshData.h"
 #include "Visualizer.h"
+#include "BoneCollider.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -104,6 +105,42 @@ void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
 {
     ImGui::Text("Mesh VertexCount : %d", mesh->_vertexCount);
     ImGui::Text("Mesh SubsetCount : %d", mesh->GetSubsetCount());
+
+    ImGui::Begin("Bones");
+
+    // Mesh에 연결된 Bone이 뜨게.
+    int i = 0;
+    for (auto& iter : mesh->_bones)
+    {
+        if (ImGui::BeginMenu(iter.boneName.c_str()))
+        {
+            ImGui::Text("ParentIndex = %d", iter.parentIdx);
+            RenderMatrixData(iter.matOffset);
+            if (ImGui::Button("Press To Visualize Bone"))
+            {
+                // 0번째 애니메이션의 i번째 본의 0번째 프레임 속 toRoot
+                if (mesh->_animClips[0].keyFrames[i].size() != 0)
+                {
+                    const AnimClipInfo& info = mesh->_animClips[0];
+                    const std::vector<KeyFrameInfo>& keyFrames = info.keyFrames[i];
+                    const KeyFrameInfo& keyFrame = keyFrames[0];
+
+                    Matrix matBone = Matrix::CreateScale(keyFrame.scale.x, keyFrame.scale.y, keyFrame.scale.z);
+                    matBone *= Matrix::CreateFromQuaternion(SimpleMath::Quaternion(
+                        keyFrame.rotation.x,
+                        keyFrame.rotation.y,
+                        keyFrame.rotation.z,
+                        keyFrame.rotation.w));
+                    matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
+                    GET_SINGLE(SceneManager)->_boneVisualizerObject->GetTransform()->SetWorldPosition(Vec3(matBone._41, matBone._42, matBone._43));
+                }
+            }
+            ImGui::EndMenu();
+        }
+        ++i;
+    }
+
+    ImGui::End();
 }
 
 void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Material> material)
@@ -195,101 +232,25 @@ void ImGuiManager::RenderMaterialData(int materialIndex, std::shared_ptr<Materia
         {
             if (ImGui::BeginMenu("Matrix1"))
             {
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[0]._11,
-                    material->_params.matrixParams[0]._12,
-                    material->_params.matrixParams[0]._13,
-                    material->_params.matrixParams[0]._14);
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[0]._21,
-                    material->_params.matrixParams[0]._22,
-                    material->_params.matrixParams[0]._23,
-                    material->_params.matrixParams[0]._24);
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[0]._31,
-                    material->_params.matrixParams[0]._32,
-                    material->_params.matrixParams[0]._33,
-                    material->_params.matrixParams[0]._34);
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[0]._41,
-                    material->_params.matrixParams[0]._42,
-                    material->_params.matrixParams[0]._43,
-                    material->_params.matrixParams[0]._44);
+                RenderMatrixData(material->_params.matrixParams[0]);
                 ImGui::EndMenu();
             }
 
             if (ImGui::BeginMenu("Matrix2"))
             {
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[1]._11,
-                    material->_params.matrixParams[1]._12,
-                    material->_params.matrixParams[1]._13,
-                    material->_params.matrixParams[1]._14);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[1]._21,
-                    material->_params.matrixParams[1]._22,
-                    material->_params.matrixParams[1]._23,
-                    material->_params.matrixParams[1]._24);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[1]._31,
-                    material->_params.matrixParams[1]._32,
-                    material->_params.matrixParams[1]._33,
-                    material->_params.matrixParams[1]._34);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[1]._41,
-                    material->_params.matrixParams[1]._42,
-                    material->_params.matrixParams[1]._43,
-                    material->_params.matrixParams[1]._44);
+                RenderMatrixData(material->_params.matrixParams[1]);
                 ImGui::EndMenu();
             }
 
             if (ImGui::BeginMenu("Matrix3"))
             {
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[2]._11,
-                    material->_params.matrixParams[2]._12,
-                    material->_params.matrixParams[2]._13,
-                    material->_params.matrixParams[2]._14);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[2]._21,
-                    material->_params.matrixParams[2]._22,
-                    material->_params.matrixParams[2]._23,
-                    material->_params.matrixParams[2]._24);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[2]._31,
-                    material->_params.matrixParams[2]._32,
-                    material->_params.matrixParams[2]._33,
-                    material->_params.matrixParams[2]._34);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[2]._41,
-                    material->_params.matrixParams[2]._42,
-                    material->_params.matrixParams[2]._43,
-                    material->_params.matrixParams[2]._44);
+                RenderMatrixData(material->_params.matrixParams[2]);
                 ImGui::EndMenu();
             }
 
             if (ImGui::BeginMenu("Matrix4"))
             {
-                ImGui::Text("%f, %f, %f, %f", 
-                    material->_params.matrixParams[3]._11,
-                    material->_params.matrixParams[3]._12,
-                    material->_params.matrixParams[3]._13,
-                    material->_params.matrixParams[3]._14);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[3]._21,
-                    material->_params.matrixParams[3]._22,
-                    material->_params.matrixParams[3]._23,
-                    material->_params.matrixParams[3]._24);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[3]._31,
-                    material->_params.matrixParams[3]._32,
-                    material->_params.matrixParams[3]._33,
-                    material->_params.matrixParams[3]._34);
-                ImGui::Text("%f, %f, %f, %f",      
-                    material->_params.matrixParams[3]._41,
-                    material->_params.matrixParams[3]._42,
-                    material->_params.matrixParams[3]._43,
-                    material->_params.matrixParams[3]._44);
+                RenderMatrixData(material->_params.matrixParams[3]);
                 ImGui::EndMenu();
             }
 
@@ -465,6 +426,23 @@ void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphe
 
     ImGui::Text("Radius : %f", sphereCollider->_boundingSphere.Radius);
     ImGui::Text("Center : %f %f %f", sphereCollider->_boundingSphere.Center.x, sphereCollider->_boundingSphere.Center.y, sphereCollider->_boundingSphere.Center.z);
+
+    ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&sphereCollider->_colliderVisualizers[0]->_transform->_worldTransform->_scale)));
+
+    if (ImGui::CollapsingHeader("ColliderMeshData"))
+    {
+        if (ImGui::BeginMenu("Mesh"))
+        {
+            RenderMeshData(sphereCollider->_colliderVisualizers[0]->_meshRenderer->_mesh);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Material"))
+        {
+            RenderMaterialData(0, sphereCollider->_colliderVisualizers[0]->_meshRenderer->_materials[0]);
+            ImGui::EndMenu();
+        }
+    }
 }
 
 void ImGuiManager::RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider)
@@ -476,6 +454,23 @@ void ImGuiManager::RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeColl
         cubeCollider->_boundingBox.Extents.x, 
         cubeCollider->_boundingBox.Extents.y,
         cubeCollider->_boundingBox.Extents.z);
+
+    ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&cubeCollider->_colliderVisualizers[0]->_transform->_worldTransform->_scale)));
+
+    if (ImGui::CollapsingHeader("ColliderMeshData"))
+    {
+        if (ImGui::BeginMenu("Mesh"))
+        {
+            RenderMeshData(cubeCollider->_colliderVisualizers[0]->_meshRenderer->_mesh);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Material"))
+        {
+            RenderMaterialData(0, cubeCollider->_colliderVisualizers[0]->_meshRenderer->_materials[0]);
+            ImGui::EndMenu();
+        }
+    }
 }
 
 void ImGuiManager::RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider)
@@ -483,6 +478,67 @@ void ImGuiManager::RenderMeshColliderData(std::shared_ptr<MeshCollider> meshColl
     ImGui::Text("Type : Mesh");
 
     ImGui::Text("Triangle Count : %d", meshCollider->_triCount);
+}
+
+void ImGuiManager::RenderBoneColliderData(std::shared_ptr<BoneCollider> boneCollider)
+{
+    ImGui::Text("Type : Bone");
+    // Bone Collider에서 Bone을 선택해 Add할 줄 있어야 한다.
+   
+    ImGui::Begin("Bones");
+
+    // Mesh에 연결된 Bone이 뜨게.
+    int i = 0;
+    for (auto& iter : boneCollider->GetGameObject()->GetMeshRenderer()->GetMesh()->_bones)
+    {
+        if (ImGui::BeginMenu(iter.boneName.c_str()))
+        {
+            static float radius = 1.f;
+            if (ImGui::DragFloat("Radius", &radius))
+            {
+                auto boneiter = std::find_if(boneCollider->_boneColliders.begin(), 
+                    boneCollider->_boneColliders.end(), [=](const BoneColliderInfo& info) {return (iter.boneName == info.boneName); });
+                
+                // 이미 존재한다면
+                if (boneiter != boneCollider->_boneColliders.end())
+                {
+                    boneCollider->SetBoneColliderRadius(iter.boneName, radius);
+                }
+            }
+            if (ImGui::Button("Add Bone"))
+            {
+                boneCollider->AddBoneCollider(iter.boneName);
+            }
+            ImGui::EndMenu();
+        }
+        ++i;
+    }
+
+    ImGui::End();
+}
+
+void ImGuiManager::RenderMatrixData(const Matrix& matrix)
+{
+    ImGui::Text("%f, %f, %f, %f",
+        matrix._11,
+        matrix._12,
+        matrix._13,
+        matrix._14);
+    ImGui::Text("%f, %f, %f, %f",
+        matrix._21,
+        matrix._22,
+        matrix._23,
+        matrix._24);
+    ImGui::Text("%f, %f, %f, %f",
+        matrix._31,
+        matrix._32,
+        matrix._33,
+        matrix._34);
+    ImGui::Text("%f, %f, %f, %f",
+        matrix._41,
+        matrix._42,
+        matrix._43,
+        matrix._44);
 }
 
 void ImGuiManager::RenderClientData()
@@ -546,7 +602,6 @@ void ImGuiManager::RenderHierarchy()
         GET_SINGLE(SceneManager)->SetScene(val);
     }
 
-    ImGui::Separator();
     if (GET_SINGLE(SceneManager)->GetActiveScene() == nullptr)
     {
         ImGui::End();
@@ -1143,20 +1198,26 @@ void ImGuiManager::RenderInspector()
                 {
                     std::shared_ptr<SphereCollider> sphereCollider = std::static_pointer_cast<SphereCollider>(collider);
                     RenderSphereColliderData(sphereCollider);
-                }
                     break;
+                }
                 case ColliderType::Cube:
                 {
                     std::shared_ptr<CubeCollider> cubeCollider = std::static_pointer_cast<CubeCollider>(collider);
                     RenderCubeColliderData(cubeCollider);
+                    break;
                 }
-
                 case ColliderType::Mesh:
                 {
                     std::shared_ptr<MeshCollider> meshCollider = std::static_pointer_cast<MeshCollider>(collider);
                     RenderMeshColliderData(meshCollider);
-                }
                     break;
+                }
+                case ColliderType::Bone:
+                {
+                    std::shared_ptr<BoneCollider> boneCollider = std::static_pointer_cast<BoneCollider>(collider);
+                    RenderBoneColliderData(boneCollider);
+                    break;
+                }
                 }
                 
                 std::string s = (collider->_draw == true ? "Press To Turn Off DrawMode" : "Press To Turn On DrawMode");
@@ -1164,23 +1225,7 @@ void ImGuiManager::RenderInspector()
                 {
                     collider->_draw = !collider->_draw;
                 }
-                ImGui::SameLine();
-                ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&collider->_colliderVisualizer->_transform->_worldTransform->_scale)));
-                
-                if (ImGui::CollapsingHeader("ColliderMeshData"))
-                {
-                    if (ImGui::BeginMenu("Mesh"))
-                    {
-                        RenderMeshData(collider->_colliderVisualizer->_meshRenderer->_mesh);
-                        ImGui::EndMenu();
-                    }
-
-                    if (ImGui::BeginMenu("Material"))
-                    {
-                        RenderMaterialData(0, collider->_colliderVisualizer->_meshRenderer->_materials[0]);
-                        ImGui::EndMenu();
-                    }
-                }
+                // ImGui::SameLine();
 
                 if (ImGui::Button("Delete Component"))
                 {
@@ -1368,6 +1413,12 @@ void ImGuiManager::RenderInspector()
                     std::shared_ptr<MeshCollider> mc = std::make_shared<MeshCollider>();
                     _currentGameObject->AddComponent(mc);
                     mc->Init();
+                }
+
+                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Bone Collider"))
+                {
+                    std::shared_ptr<BoneCollider> boneCollider = std::make_shared<BoneCollider>();
+                    _currentGameObject->AddComponent(boneCollider);
                 }
                 ImGui::EndMenu();
             }

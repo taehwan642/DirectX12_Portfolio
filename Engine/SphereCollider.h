@@ -6,9 +6,6 @@ class ImGuiManager;
 class SphereCollider : public BaseCollider
 {
 public:
-	static int _num;
-
-public:
 	SphereCollider();
 	virtual ~SphereCollider();
 

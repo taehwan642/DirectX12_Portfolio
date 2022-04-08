@@ -36,7 +36,8 @@ void Visualizer::SetSphereMesh()
 	_meshRenderer->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
 }
 
-void Visualizer::FinalUpdate(const Vec3& position)
+void Visualizer::FinalUpdate(const Vec3& position, const Vec3& scale)
 {
 	_transform->SetWorldPosition(position);
+	_transform->SetWorldScale(scale);
 }

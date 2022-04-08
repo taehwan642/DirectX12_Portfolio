@@ -66,6 +66,7 @@ public:
 	void SetActive(bool active);
 
 	bool GetDrawFrustumRadius() { return _drawFrustumRaidusVisualizer; }
+	void SetDrawFrustumRadius(bool draw) { _drawFrustumRaidusVisualizer = draw; }
 	std::shared_ptr<Visualizer> GetVisualizer() { return _visualizer; }
 	float GetFrustumRadius() { return _frustumCheckRadius; }
 

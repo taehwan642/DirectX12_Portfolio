@@ -4,9 +4,6 @@ class MeshCollider :
     public BaseCollider
 {
 public:
-	static int _num;
-
-public:
 	MeshCollider();
 	virtual ~MeshCollider();
 

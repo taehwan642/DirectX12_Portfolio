@@ -19,6 +19,7 @@ public:
 
 	int32 GetAnimCount() { return static_cast<uint32>(_animClips->size()); }
 	int32 GetCurrentClipIndex() { return _clipIndex; }
+	int32 GetCurrentFrame() { return _frame; }
 	void Play(uint32 idx);
 
 public:

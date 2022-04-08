@@ -512,7 +512,7 @@ RTTR_REGISTRATION
 	// BaseCollider
 	rttr::registration::class_<BaseCollider>("BaseCollider")
 		.constructor<ColliderType>()
-		.property("_colliderVisualizer", &BaseCollider::_colliderVisualizer);
+		.property("_colliderVisualizer", &BaseCollider::_colliderVisualizers);
 
 	// SphereCollider
 	rttr::registration::class_<SphereCollider>("SphereCollider")

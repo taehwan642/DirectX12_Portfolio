@@ -10,12 +10,10 @@
 #include "Scene.h"
 #include "Visualizer.h"
 
-int CubeCollider::_num = 0;
-
 CubeCollider::CubeCollider() : BaseCollider(ColliderType::Cube)
 {
-	_colliderVisualizer = std::make_shared<Visualizer>();
-	_colliderVisualizer->SetCubeMesh();
+	_colliderVisualizers.push_back(std::make_shared<Visualizer>());
+	_colliderVisualizers[0]->SetCubeMesh();
 }
 
 CubeCollider::~CubeCollider()
@@ -26,7 +24,7 @@ void CubeCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizer->FinalUpdate(GetTransform()->GetWorldPosition());
+		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition());
 	}
 
 	_boundingBox.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();

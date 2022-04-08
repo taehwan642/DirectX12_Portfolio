@@ -11,6 +11,7 @@ class Texture;
 class CubeCollider;
 class MeshCollider;
 class Scene;
+class BoneCollider;
 
 class ImGuiManager
 {
@@ -34,6 +35,8 @@ private:
 	void RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider);
 	void RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider);
 	void RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider);
+	void RenderBoneColliderData(std::shared_ptr<BoneCollider> boneCollider);
+	void RenderMatrixData(const Matrix& matrix);
 
 private:
 	void RenderClientData();

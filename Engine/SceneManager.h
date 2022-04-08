@@ -7,6 +7,7 @@ enum
 	MAX_LAYER = 32
 };
 
+class GameObject;
 class SceneManager
 {
 	DECLARE_SINGLE(SceneManager);
@@ -43,6 +44,7 @@ public:
 		fogMatrix._24 = fogData.fogColor.w;
 		return fogMatrix;
 	}
+	std::shared_ptr<GameObject> _boneVisualizerObject;
 
 private:
 	std::shared_ptr<Scene> LoadTestScene();
@@ -52,6 +54,7 @@ private:
 	friend class RTTRSceneValue;
 
 	std::shared_ptr<Scene> _activeScene;
+
 
 	std::array<std::wstring, MAX_LAYER> _layerNames;
 	std::map<std::wstring, uint8> _layerIndex;

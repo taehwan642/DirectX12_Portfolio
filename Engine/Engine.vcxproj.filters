@@ -237,6 +237,9 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="BoneCollider.cpp">
+      <Filter>Object\Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneCollider.h">
+      <Filter>Object\Component\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

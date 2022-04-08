@@ -4,9 +4,6 @@ class CubeCollider :
     public BaseCollider
 {
 public:
-	static int _num;
-
-public:
 	CubeCollider();
 	virtual ~CubeCollider();
 

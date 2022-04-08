@@ -137,8 +137,7 @@ void GameObject::FinalUpdate()
 
 	if (_drawFrustumRaidusVisualizer)
 	{
-		_visualizer->FinalUpdate(GetTransform()->GetWorldPosition());
-		_visualizer->_transform->SetWorldScale(Vec3(_frustumCheckRadius));
+		_visualizer->FinalUpdate(GetTransform()->GetWorldPosition(), Vec3(_frustumCheckRadius));
 	}
 }
 
