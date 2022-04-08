@@ -21,6 +21,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "Visualizer.h"
+#include "BoneCollider.h"
 
 
 #include "MonoBehaviour.h"
@@ -42,9 +43,11 @@ struct RTTRColliderValue
 	RTTRColliderValue(std::shared_ptr<BaseCollider> collider)
 	{
 		type = collider->_colliderType;
+		visualizerSize = collider->_colliderVisualizers.size();
 	}
 
 	ColliderType type = ColliderType::Sphere;
+	size_t visualizerSize = 0;
 };
 
 struct RTTRTextureValue
@@ -509,10 +512,16 @@ RTTR_REGISTRATION
 
 #pragma region Collider
 
+	// BoundingSphere
+	rttr::registration::class_<BoundingSphere>("BoundingSphere")
+		.constructor<>()
+		.property("Radius", &BoundingSphere::Radius)
+		.property("Center", &BoundingSphere::Center);
+
 	// BaseCollider
 	rttr::registration::class_<BaseCollider>("BaseCollider")
 		.constructor<ColliderType>()
-		.property("_colliderVisualizer", &BaseCollider::_colliderVisualizers);
+		.property("_name", &BaseCollider::_name);
 
 	// SphereCollider
 	rttr::registration::class_<SphereCollider>("SphereCollider")
@@ -535,7 +544,21 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.property("_draw", &BaseCollider::_draw)
 		.property("_extents", &MeshCollider::_triCount)
-		.property("_center", &BaseCollider::_colliderType);
+		.property("_colliderType", &BaseCollider::_colliderType);
+
+	// BoneColliderInfo
+	rttr::registration::class_<BoneColliderInfo>("BoneColliderInfo")
+		.constructor<>()
+		.property("boneIndex", &BoneColliderInfo::boneIndex)
+		.property("boneName", &BoneColliderInfo::boneName)
+		.property("sphere", &BoneColliderInfo::sphere);
+
+	// BoneCollider
+	rttr::registration::class_<BoneCollider>("BoneCollider")
+		.constructor<>()
+		.property("_draw", &BaseCollider::_draw)
+		.property("_boneColliders", &BoneCollider::_boneColliders)
+		.property("_colliderType", &BaseCollider::_colliderType);
 
 #pragma endregion
 
@@ -669,7 +692,8 @@ RTTR_REGISTRATION
 		(
 			rttr::value("Sphere", ColliderType::Sphere),
 			rttr::value("Cube", ColliderType::Cube),
-			rttr::value("Mesh", ColliderType::Mesh)
+			rttr::value("Mesh", ColliderType::Mesh),
+			rttr::value("Bone", ColliderType::Bone)
 		);
 
 	rttr::registration::enumeration<ParticleMode>("ParticleMode")
@@ -725,7 +749,8 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRColliderValue>("RTTRColliderValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<BaseCollider>>()
-		.property("type", &RTTRColliderValue::type);
+		.property("type", &RTTRColliderValue::type)
+		.property("visualizerSize", &RTTRColliderValue::visualizerSize);
 
 	rttr::registration::class_<RTTRTransformValue>("RTTRTransformValue")
 		.constructor<>()

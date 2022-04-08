@@ -466,6 +466,16 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 			mc->Init();
 			break;
 		}
+		case ColliderType::Bone:
+		{
+			std::shared_ptr<BoneCollider> bc = std::make_shared<BoneCollider>();
+			object->AddComponent(bc);
+			for (int i = 0; i < value.colliderValue.visualizerSize; ++i)
+			{
+				bc->_colliderVisualizers.push_back(std::make_shared<Visualizer>());
+			}
+			break;
+		}
 		default:
 			break;
 		}

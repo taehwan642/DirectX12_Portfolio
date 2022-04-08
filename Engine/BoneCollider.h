@@ -23,11 +23,9 @@ public:
 	void RemoveBoneCollider(const std::string& boneName);
 	void SetBoneColliderRadius(const std::string& boneName, float radius);
 
-	void LoadCollider(const std::string& colliderName);
-	void SaveCollider(const std::string& colliderName);
-
 private:
 	friend class ImGuiManager;
+	friend class JsonManager;
 
 	std::vector<BoneColliderInfo> _boneColliders;
 

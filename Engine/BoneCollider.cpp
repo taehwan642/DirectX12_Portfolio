@@ -106,11 +106,3 @@ void BoneCollider::SetBoneColliderRadius(const std::string& boneName, float radi
 		iter->sphere.Radius = radius;
 	}
 }
-
-void BoneCollider::LoadCollider(const std::string& colliderName)
-{
-}
-
-void BoneCollider::SaveCollider(const std::string& colliderName)
-{
-}
