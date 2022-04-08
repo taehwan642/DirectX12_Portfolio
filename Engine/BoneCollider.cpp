@@ -42,14 +42,17 @@ void BoneCollider::FinalUpdate()
 				keyFrame.rotation.z,
 				keyFrame.rotation.w));
 			matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
+			
+			// Local -> World
+			matBone *= GetTransform()->GetWorldMatrix();
 
 			info.sphere.Center.x = matBone._41;
 			info.sphere.Center.y = matBone._42;
 			info.sphere.Center.z = matBone._43;
-
+			
 			if (_draw)
 			{
-				_colliderVisualizers[i]->FinalUpdate(Vec3(matBone._41, matBone._42, matBone._43), Vec3(info.sphere.Radius));
+				_colliderVisualizers[i]->FinalUpdate(Vec3(info.sphere.Center.x, info.sphere.Center.y, info.sphere.Center.z), Vec3(info.sphere.Radius));
 			}
 		}
 	}
