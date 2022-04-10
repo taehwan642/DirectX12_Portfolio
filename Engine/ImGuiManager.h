@@ -44,6 +44,7 @@ private:
 	void RenderInspector();
 	void RenderResources();
 	void RenderDragAndDrop();
+	void RenderCollisionManager();
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
 

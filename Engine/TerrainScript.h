@@ -7,6 +7,10 @@ public:
 	MONOBEHAVIOUR(TerrainScript)
 	virtual ~TerrainScript();
 
+	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) override {}
+
 	virtual void LateUpdate() override;
 	void Picked(Vec4 rayOrigin, Vec4 rayDir, float distance);
 

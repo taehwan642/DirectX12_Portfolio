@@ -24,13 +24,13 @@ void SphereCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), GetGameObject()->GetTransform()->GetWorldScale());
+		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), Vec3(_radius));
 	}
 
 	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
 
 	Vec3 scale = GetGameObject()->GetTransform()->GetWorldScale();
-	_boundingSphere.Radius = _radius * max(max(scale.x, scale.y), scale.z);
+	_boundingSphere.Radius = _radius;
 }
 
 bool SphereCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)

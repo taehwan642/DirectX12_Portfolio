@@ -23,6 +23,8 @@ public:
 	void RemoveBoneCollider(const std::string& boneName);
 	void SetBoneColliderRadius(const std::string& boneName, float radius);
 
+	std::vector<BoneColliderInfo>& GetBoneColliders() { return _boneColliders; }
+
 private:
 	friend class ImGuiManager;
 	friend class JsonManager;

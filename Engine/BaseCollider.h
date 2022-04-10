@@ -25,6 +25,8 @@ public:
 	std::vector<std::shared_ptr<Visualizer>>& GetColliderVisualizers() { return _colliderVisualizers; }
 	bool IsDrawMesh() { return _draw; }
 
+	ColliderType GetColliderType() { return _colliderType; }
+
 protected:
 	friend class ImGuiManager;
 	friend class RTTRColliderValue;

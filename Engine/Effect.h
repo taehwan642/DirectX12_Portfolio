@@ -9,6 +9,10 @@ public:
 
 	virtual ~Effect();
 
+	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) override {}
+
 	void Init(const std::wstring& path);
 
 	virtual void LateUpdate() override;

@@ -8,6 +8,10 @@ public:
 
 	virtual ~EffectManagerScript();
 
+	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
+	virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) override {}
+
 	virtual void LateUpdate() override;
 
 	void SpawnEffect(const std::string& path, const Vec3& worldPosition);

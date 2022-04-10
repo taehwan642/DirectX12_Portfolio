@@ -10,6 +10,15 @@
 #include "Camera.h"
 #include "Light.h"
 
+#include "ImGuiManager.h"
+#include "CubeCollider.h"
+#include "TerrainScript.h"
+#include "JsonManager.h"
+#include "Animator.h"
+#include "MeshCollider.h"
+
+#include "CollisionManager.h"
+
 #include "TestCameraScript.h"
 #include "Resources.h"
 #include "ParticleSystem.h"
@@ -17,15 +26,6 @@
 #include "SphereCollider.h"
 #include "MeshData.h"
 #include "TestDragon.h"
-
-#include "ImGuiManager.h"
-#include "CubeCollider.h"
-#include "TerrainScript.h"
-
-#include "JsonManager.h"
-#include "Animator.h"
-
-#include "MeshCollider.h"
 
 void SceneManager::Init()
 {
@@ -69,6 +69,8 @@ void SceneManager::Update()
 
 	_activeScene->Update();
 	_activeScene->LateUpdate();
+	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER, CollisionObjectType::ENEMY);
+	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER_WEAPON, CollisionObjectType::ENEMY);
 	_activeScene->FinalUpdate();
 }
 

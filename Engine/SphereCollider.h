@@ -13,6 +13,7 @@ public:
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
 	void SetRadius(float radius) { _radius = radius; }
+	float GetRadius() { return _radius; }
 	void SetCenter(Vec3 center) { _center = center; }
 
 private:

@@ -9,9 +9,22 @@
 #include "EffectManagerScript.h"
 #include "MeshRenderer.h"
 #include "Material.h"
+#include "BaseCollider.h"
+#include "BoneCollider.h"
+#include "SphereCollider.h"
 
 EnemyBullet::~EnemyBullet()
 {
+}
+
+void EnemyBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+{
+	if (collider->GetColliderType() == ColliderType::Sphere)
+	{
+	}
+	else if (collider->GetColliderType() == ColliderType::Bone)
+	{
+	}
 }
 
 void EnemyBullet::LateUpdate()

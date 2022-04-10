@@ -75,6 +75,7 @@ private:
 	friend class RTTRGameObjectValue;
 	friend class RTTRMeshRendererValue;
 	friend class JsonManager;
+	friend class CollisionManager;
 
 	std::array<std::shared_ptr<Component>, FIXED_COMPONENT_COUNT> _components;
 	std::vector<std::shared_ptr<MonoBehaviour>> _scripts;

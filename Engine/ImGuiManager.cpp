@@ -28,6 +28,7 @@
 #include "MeshData.h"
 #include "Visualizer.h"
 #include "BoneCollider.h"
+#include "CollisionManager.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -83,6 +84,7 @@ void ImGuiManager::Render()
     RenderInspector();
     RenderResources();
     RenderDragAndDrop();
+    RenderCollisionManager();
     ImGui::ShowDemoWindow();
 
     ImGui::Render();
@@ -1711,6 +1713,26 @@ void ImGuiManager::RenderDragAndDrop()
         textureOutputpaths.clear();
     }
     
+    ImGui::End();
+}
+
+void ImGuiManager::RenderCollisionManager()
+{
+    ImGui::Begin("CollisionManager");
+
+    // ComboBox로 CollisionObjectType 정해서, CurrentObject Add하기
+    static CollisionObjectType type = CollisionObjectType::PLAYER;
+    const char* elems_names[static_cast<int>(CollisionObjectType::END)] = { "Player", "Player Weapon", "Enemy" };
+    const char* elem_name = (static_cast<int>(type) >= 0 && static_cast<int>(type) < static_cast<int>(CollisionObjectType::END)) ? elems_names[static_cast<int>(type)] : "Unknown";
+    ImGui::SliderInt("slider enum", reinterpret_cast<int*>(&type), 0, static_cast<int>(CollisionObjectType::END) - 1, elem_name);
+
+    // CurrentObject가 현재 어떤 CollisionObjectType인지 확인
+    if (ImGui::Button("Press To Add"))
+    {
+        GET_SINGLE(CollisionManager)->AddObject(type, _currentGameObject);
+    }
+
+
     ImGui::End();
 }
 
