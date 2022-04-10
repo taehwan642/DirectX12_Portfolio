@@ -94,10 +94,10 @@ bool TextureAnimator::LoadAnimation(const std::wstring& key, const std::wstring&
 
 std::shared_ptr<Texture> TextureAnimator::GetTexture(int index)
 {
-	return _textures[index];
+	return _textures[index].lock();
 }
 
 std::shared_ptr<Texture> TextureAnimator::GetCurrentAnimationTexture()
 {
-	return _textures[_currentIndex];
+	return _textures[_currentIndex].lock();
 }

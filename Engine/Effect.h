@@ -24,7 +24,7 @@ public:
 #endif
 
 	size_t _cameraObject;
-	std::shared_ptr<GameObject> _camera;
+	std::weak_ptr<GameObject> _camera;
 
 	std::shared_ptr<TextureAnimator> _animator;
 

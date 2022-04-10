@@ -22,10 +22,10 @@ void Effect::Init(const std::wstring& path)
 
 void Effect::LateUpdate()
 {
-	if (_camera != nullptr)
+	if (_camera.lock() != nullptr)
 	{
 		// Spawn Effect
-		GetTransform()->SetWorldRotation(_camera->GetTransform()->GetWorldRotation());
+		GetTransform()->SetWorldRotation(_camera.lock()->GetTransform()->GetWorldRotation());
 	}
 
 	_animator->UpdateAnimation();

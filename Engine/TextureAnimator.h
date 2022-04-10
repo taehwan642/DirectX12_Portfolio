@@ -5,7 +5,7 @@ class TextureAnimator
 {
 public:
 	TextureAnimator();
-	virtual ~TextureAnimator();
+	~TextureAnimator();
 
 	void UpdateAnimation();
 
@@ -39,6 +39,6 @@ private:
 	float _elapsedTime = 0.f;
 
 	std::vector<std::wstring> _tags;
-	std::vector<std::shared_ptr<Texture>> _textures;
+	std::vector<std::weak_ptr<Texture>> _textures;
 };
 
