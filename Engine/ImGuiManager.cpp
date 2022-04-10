@@ -634,6 +634,10 @@ void ImGuiManager::RenderHierarchy()
     ImGui::InputFloat("Fog Range", &GET_SINGLE(SceneManager)->_fogData.fogRange);
     ImGui::InputFloat4("Fog Color", reinterpret_cast<float*>(&GET_SINGLE(SceneManager)->_fogData.fogColor.x));
     ImGui::Separator();
+    std::string s = (GET_SINGLE(SceneManager)->_boneVisualizerObject->GetActive() == true) ? "Press to deactivate boneVisualizer" : "Press to activate boneVisualizer";
+    if (ImGui::Button(s.c_str()))
+        GET_SINGLE(SceneManager)->_boneVisualizerObject->SetActive(!GET_SINGLE(SceneManager)->_boneVisualizerObject->GetActive());
+    ImGui::Separator();
 
     const std::vector<std::shared_ptr<GameObject>>& vec = GET_SINGLE(SceneManager)->GetActiveScene()->GetGameObjects();
 
@@ -745,6 +749,8 @@ void ImGuiManager::RenderInspector()
             GET_SINGLE(JsonManager)->SaveScene(finalPath.c_str(), sceneOnlyForSave);
         }
 
+        ImGui::Separator();
+
         std::string input = ws2s(_currentGameObject->GetName()).c_str();
         // Text 적을 수 있게 해야함.
         if (ImGui::InputText("Name", const_cast<char*>(input.c_str()), 64))
@@ -752,8 +758,8 @@ void ImGuiManager::RenderInspector()
             _currentGameObject->SetName(s2ws(input).c_str());
         }
 
-        std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
-        ImGui::Text("Selected Object : %s", tempString.c_str());
+        //std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
+        //ImGui::Text("Selected Object : %s", tempString.c_str());
 
         std::string frustumCheckLabel = (_currentGameObject->_checkFrustum == true) ? "Press to disable FrustumCulling" : "Press to enable FrustumCulling";
         if (ImGui::Button(frustumCheckLabel.c_str()))
@@ -770,18 +776,19 @@ void ImGuiManager::RenderInspector()
         std::string hashValue = std::to_string(_currentGameObject->_hash);
         ImGui::Text(("Hash Value : " + hashValue).c_str());
 
-        ImGui::SameLine();
         if (ImGui::Button("Generate Hash"))
         {
             _currentGameObject->GenerateHash();
         }
 
-        if (ImGui::Button("Active"))
+        std::string activeLabel = (_currentGameObject->_isActive == true) ? "Press to deactivate" : "Press to activate";
+        if (ImGui::Button(activeLabel.c_str()))
         {
             _currentGameObject->SetActive(!_currentGameObject->GetActive());
         }
-        ImGui::SameLine();
-        if (ImGui::Button("Visualize Frustum Radius"))
+        ImGui::Separator();
+        std::string frustumLabel = (_currentGameObject->_drawFrustumRaidusVisualizer == true) ? "Press to hide frustum radius" : "Press to show frustum radius";
+        if (ImGui::Button(frustumLabel.c_str()))
         {
             _currentGameObject->_drawFrustumRaidusVisualizer = !_currentGameObject->_drawFrustumRaidusVisualizer;
         }
@@ -793,9 +800,9 @@ void ImGuiManager::RenderInspector()
                 _currentGameObject->_transform->GetChild(i)->GetGameObject()->_frustumCheckRadius = _currentGameObject->_frustumCheckRadius;
             }
         }
-        ImGui::SameLine();
         ImGui::DragFloat("Frustum Radius", &_currentGameObject->_frustumCheckRadius);
-        
+        ImGui::Separator();
+
 
         // Layer 출력
         std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
@@ -818,6 +825,7 @@ void ImGuiManager::RenderInspector()
             }
             ImGui::EndCombo();
         }
+        ImGui::Separator();
 
         // Component들 출력
 
@@ -1466,6 +1474,8 @@ void ImGuiManager::RenderInspector()
 
             ImGui::EndMenu();
         }
+
+        ImGui::Separator();
 
         if (ImGui::Button("Delete GameObject"))
         {

@@ -157,14 +157,19 @@ void Camera::Render_Deferred()
 		iter->GetMeshRenderer()->Render();
 	}
 
-	std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
-	std::shared_ptr<GameObject> bvo = GET_SINGLE(SceneManager)->_boneVisualizerObject;
-	bvo->SetDrawFrustumRadius(true);
-	bvo->FinalUpdate();
-	gm->AddComponent(bvo->GetVisualizer()->_transform);
-	gm->GetTransform()->SetWorldScale(Vec3(5, 5, 5));
-	gm->AddComponent(bvo->GetVisualizer()->_meshRenderer);
-	gm->GetMeshRenderer()->Render();
+#ifdef TOOL
+	if (GET_SINGLE(SceneManager)->_boneVisualizerObject->GetActive() == true)
+	{
+		std::shared_ptr<GameObject> gm = std::make_shared<GameObject>();
+		std::shared_ptr<GameObject> bvo = GET_SINGLE(SceneManager)->_boneVisualizerObject;
+		bvo->SetDrawFrustumRadius(true);
+		bvo->FinalUpdate();
+		gm->AddComponent(bvo->GetVisualizer()->_transform);
+		gm->GetTransform()->SetWorldScale(Vec3(5, 5, 5));
+		gm->AddComponent(bvo->GetVisualizer()->_meshRenderer);
+		gm->GetMeshRenderer()->Render();
+	}
+#endif
 }
 
 void Camera::Render_Forward()
