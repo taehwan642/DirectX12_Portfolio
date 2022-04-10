@@ -388,7 +388,7 @@ void ImGuiManager::RenderCameraData(std::shared_ptr<Camera> camera)
     // Layer 출력
     static uint8 layerIDX = 0;
 
-    std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(layerIDX).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
+    std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(layerIDX));  // Pass in the preview value visible before opening the combo (it could be anything)
     std::string comboName = "Layer";
 
     if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
@@ -399,7 +399,7 @@ void ImGuiManager::RenderCameraData(std::shared_ptr<Camera> camera)
             if (layerArray[n].empty())
                 break;
             const bool is_selected = (layerIDX == n);
-            if (ImGui::Selectable(ws2s(layerArray[n].c_str()).c_str(), is_selected))
+            if (ImGui::Selectable(ws2s(layerArray[n]).c_str(), is_selected))
             {
                 layerIDX = n;
             }
@@ -597,29 +597,32 @@ void ImGuiManager::RenderHierarchy()
     {
         std::string inputText(input.c_str());
         std::string path = std::string("../Output/") + inputText;
-        GET_SINGLE(SceneManager)->LoadScene(s2ws(path).c_str());
+        GET_SINGLE(SceneManager)->LoadScene(s2ws(path));
     }
     ImGui::SameLine();
     if (ImGui::Button("Set Camera Same"))
     {
         // TOOL CAMERA, Main Camera 검색
         std::shared_ptr<GameObject> toolCamera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"ToolCamera");
-        std::shared_ptr<GameObject> mainCamera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"Main_Camera");
+        if (toolCamera != nullptr)
+        {
+            std::shared_ptr<GameObject> mainCamera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"Main_Camera");
 
-        std::shared_ptr<TransformComponent> toolCameraTransform = toolCamera->GetTransform();
-        std::shared_ptr<TransformComponent> mainCameraTransform = mainCamera->GetTransform();
-        mainCameraTransform->SetWorldPosition(toolCameraTransform->GetWorldPosition());
-        mainCameraTransform->SetWorldRotation(toolCameraTransform->GetWorldRotation());
-        mainCameraTransform->SetWorldScale(toolCameraTransform->GetWorldScale());
+            std::shared_ptr<TransformComponent> toolCameraTransform = toolCamera->GetTransform();
+            std::shared_ptr<TransformComponent> mainCameraTransform = mainCamera->GetTransform();
+            mainCameraTransform->SetWorldPosition(toolCameraTransform->GetWorldPosition());
+            mainCameraTransform->SetWorldRotation(toolCameraTransform->GetWorldRotation());
+            mainCameraTransform->SetWorldScale(toolCameraTransform->GetWorldScale());
 
-        std::shared_ptr<Camera> toolCameraCom = toolCamera->GetCamera();
-        std::shared_ptr<Camera> mainCameraCom = mainCamera->GetCamera();
-        mainCameraCom->_cullingMask = toolCameraCom->_cullingMask;
-        mainCameraCom->_far = toolCameraCom->_far;
-        mainCameraCom->_near = toolCameraCom->_near;
-        mainCameraCom->_width = toolCameraCom->_width;
-        mainCameraCom->_height = toolCameraCom->_height;
-        mainCameraCom->_type = toolCameraCom->_type;
+            std::shared_ptr<Camera> toolCameraCom = toolCamera->GetCamera();
+            std::shared_ptr<Camera> mainCameraCom = mainCamera->GetCamera();
+            mainCameraCom->_cullingMask = toolCameraCom->_cullingMask;
+            mainCameraCom->_far = toolCameraCom->_far;
+            mainCameraCom->_near = toolCameraCom->_near;
+            mainCameraCom->_width = toolCameraCom->_width;
+            mainCameraCom->_height = toolCameraCom->_height;
+            mainCameraCom->_type = toolCameraCom->_type;
+        }
     }
     ImGui::Separator();
 
@@ -671,7 +674,7 @@ void ImGuiManager::RenderHierarchy()
 
             // Display preview (could be anything, e.g. when dragging an image we could decide to display
             // the filename and a small preview of the image, etc.)
-            ImGui::Text("Set Child %s", ws2s(iter->GetName().c_str()).c_str());
+            ImGui::Text("Set Child %s", ws2s(iter->GetName()));
             ImGui::EndDragDropSource();
         }
         if (ImGui::BeginDragDropTarget())
@@ -756,11 +759,11 @@ void ImGuiManager::RenderInspector()
 
         ImGui::Separator();
 
-        std::string input = ws2s(_currentGameObject->GetName()).c_str();
+        std::string input = ws2s(_currentGameObject->GetName());
         // Text 적을 수 있게 해야함.
         if (ImGui::InputText("Name", const_cast<char*>(input.c_str()), 64))
         {
-            _currentGameObject->SetName(s2ws(input).c_str());
+            _currentGameObject->SetName(s2ws(input));
         }
 
         //std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
@@ -810,7 +813,7 @@ void ImGuiManager::RenderInspector()
 
 
         // Layer 출력
-        std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex).c_str()).c_str();  // Pass in the preview value visible before opening the combo (it could be anything)
+        std::string combo_preview_value = ws2s(GET_SINGLE(SceneManager)->IndexToLayerName(_currentGameObject->_layerIndex));  // Pass in the preview value visible before opening the combo (it could be anything)
         std::string comboName = "Layer";
         if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
         {
@@ -820,7 +823,7 @@ void ImGuiManager::RenderInspector()
                 if (layerArray[n].empty())
                     break;
                 const bool is_selected = (_currentGameObject->_layerIndex == n);
-                if (ImGui::Selectable(ws2s(layerArray[n].c_str()).c_str(), is_selected))
+                if (ImGui::Selectable(ws2s(layerArray[n]).c_str(), is_selected))
                 {
                     _currentGameObject->_layerIndex = n;
                 }
@@ -1335,11 +1338,12 @@ void ImGuiManager::RenderInspector()
         {
             auto& script = *iter;
             bool erase = false;
-            if (ImGui::BeginMenu(ws2s(script->_className).c_str()))
+            std::string s_scriptClassName = ws2s(script->_className);
+            if (ImGui::BeginMenu(s_scriptClassName.c_str()))
             {
-                ImGui::PushID(ws2s(script->_className).c_str());
+                ImGui::PushID(s_scriptClassName.c_str());
 
-                ImGui::Text("%s", ws2s(script->_className).c_str());
+                ImGui::Text("%s", s_scriptClassName.c_str());
 
                 // Our buttons are both drag sources and drag targets here!
                 if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
@@ -1349,7 +1353,7 @@ void ImGuiManager::RenderInspector()
 
                     // Display preview (could be anything, e.g. when dragging an image we could decide to display
                     // the filename and a small preview of the image, etc.)
-                    ImGui::Text("Set Child %s", ws2s(script->GetName().c_str()).c_str());
+                    ImGui::Text("Set Child %s", ws2s(script->GetName()).c_str());
                     ImGui::EndDragDropSource();
                 }
                 if (ImGui::BeginDragDropTarget())
@@ -1511,11 +1515,11 @@ void ImGuiManager::RenderResources()
         std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
 
         // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(path.c_str()).c_str());
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(path));
 
         // 불러온 MeshData Prefab으로 뽑기
         std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();
-        meshDataObject->SetName(s2ws(inputText.c_str()));
+        meshDataObject->SetName(s2ws(inputText));
         meshDataObject->GenerateHash();
         sceneOnlyForSave->AddGameObject(meshDataObject);
         std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
@@ -1595,19 +1599,21 @@ void ImGuiManager::RenderDragAndDrop()
 
         std::string path = std::string("../Resources/FBX/") + objName;
 
+        std::wstring w_objName = s2ws(objName);
+
         // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath.c_str()).c_str());
-        meshData->SetMeshName(s2ws(objName));
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath));
+        meshData->SetMeshName(w_objName);
 
         // 불러온 MeshData Prefab으로 뽑기
         std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();
         meshDataObject->AddComponent(std::make_shared<TransformComponent>());
-        meshDataObject->SetName(s2ws(objName.c_str()));
+        meshDataObject->SetName(w_objName);
         meshDataObject->GenerateHash();
         sceneOnlyForSave->AddGameObject(meshDataObject);
         std::shared_ptr<GameObject> mesh_root = std::make_shared<GameObject>();
         mesh_root->AddComponent(std::make_shared<TransformComponent>());
-        mesh_root->SetName(s2ws(objName) + L"_mesh_root");
+        mesh_root->SetName(w_objName + L"_mesh_root");
         mesh_root->GenerateHash();
         sceneOnlyForSave->AddGameObject(mesh_root);
         std::vector<std::shared_ptr<GameObject>> gameObjects = meshData->Instantiate();
@@ -1620,8 +1626,8 @@ void ImGuiManager::RenderDragAndDrop()
             sceneOnlyForSave->AddGameObject(gameObjects[i]);
         }
 
-        std::string finalPath = std::string(path.c_str()) + "_Prefab";
-        GET_SINGLE(JsonManager)->SaveScene(finalPath.c_str(), sceneOnlyForSave);
+        std::string finalPath = path + "_Prefab";
+        GET_SINGLE(JsonManager)->SaveScene(finalPath, sceneOnlyForSave);
     }
 
     // 프리팹 버튼
@@ -1671,20 +1677,20 @@ void ImGuiManager::RenderDragAndDrop()
     if (ImGui::Button("Load"))
     {
         std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
-        GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath).c_str());
+        GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath));
     }
 
     // 리소스 버튼
     if (ImGui::Button("Add MeshData"))
     {
         // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath.c_str()).c_str());
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath));
         meshData->Instantiate();
     }
     ImGui::SameLine();
     if (ImGui::Button("Add Texture"))
     {
-        std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(_inputPath.c_str()).c_str(), s2ws(_inputPath.c_str()).c_str());
+        std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(_inputPath), s2ws(_inputPath));
     }
 
     static std::string paths = "";
@@ -1757,7 +1763,7 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
     std::shared_ptr<GameObject> child = parent->GetTransform()->GetChild(i)->GetGameObject();
     ImGui::PushID(child->_hash);
 
-    bool treeopen = ImGui::TreeNodeEx(ws2s(child->GetName().c_str()).c_str(), ImGuiTreeNodeFlags_AllowItemOverlap);
+    bool treeopen = ImGui::TreeNodeEx(ws2s(child->GetName()).c_str(), ImGuiTreeNodeFlags_AllowItemOverlap);
     ImGui::SameLine();
     if (ImGui::Button("+")) 
         _currentGameObject = child;
@@ -1769,7 +1775,7 @@ void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)
 
         // Display preview (could be anything, e.g. when dragging an image we could decide to display
         // the filename and a small preview of the image, etc.)
-        ImGui::Text("Set Child %s", ws2s(child->GetName().c_str()).c_str());
+        ImGui::Text("Set Child %s", ws2s(child->GetName()).c_str());
         ImGui::EndDragDropSource();
     }
     if (ImGui::BeginDragDropTarget())

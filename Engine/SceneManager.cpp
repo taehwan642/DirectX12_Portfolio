@@ -96,7 +96,7 @@ void SceneManager::LoadScene(const std::wstring& sceneName)
 		IMGUIMANAGER->_currentGameObject = nullptr;
 	}
 
-	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
+	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName), _activeScene);
 
 	// TEST
 	// _activeScene = LoadTestScene();

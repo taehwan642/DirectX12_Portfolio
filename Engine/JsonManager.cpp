@@ -163,7 +163,7 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 			objName = objString.substr(0, pos);
 		}
 
-		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(iter.c_str()).c_str());
+		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(iter));
 		meshData->SetMeshName(objName);
 		meshData->Instantiate();
 	}
@@ -171,7 +171,7 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 	for (auto& iter : sceneValue.textureResources)
 	{
 		// texture load
-		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(iter.c_str()).c_str(), s2ws(iter.c_str()).c_str());
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(iter), s2ws(iter));
 	}
 
 	for (int i = 0; i < sceneValue.gameObjects.size(); ++i)
@@ -348,7 +348,7 @@ void JsonManager::LoadPrefab(const std::string& path, std::shared_ptr<GameObject
 void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<GameObject> object, int index)
 {
 	std::shared_ptr<Mesh> mesh = nullptr;
-	object->SetName(s2ws(value.tag).c_str());
+	object->SetName(s2ws(value.tag));
 
 	object->_hash = value.hashValue;
 

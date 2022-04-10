@@ -58,16 +58,16 @@ std::shared_ptr<MeshData> MeshData::LoadFromFile(const std::wstring& path, bool 
 	{
 		// MeshData의 Animation을 Json으로 로드 시도, 없다면
 		result = LoadFromFBX(path, true);
-		if (GET_SINGLE(JsonManager)->LoadMeshData(ws2s(path).c_str(), result) == false)
+		if (GET_SINGLE(JsonManager)->LoadMeshData(ws2s(path), result) == false)
 		{
 			result = LoadFromFBX(path, false);
-			GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path).c_str(), result);
+			GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path), result);
 		}
 	}
 	else
 	{
 		result = LoadFromFBX(path, jsonLoad);
-		GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path).c_str(), result);
+		GET_SINGLE(JsonManager)->SaveMeshData(ws2s(path), result);
 	}
 
 	// 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
