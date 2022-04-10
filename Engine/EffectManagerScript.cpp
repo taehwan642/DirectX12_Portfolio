@@ -41,7 +41,7 @@ void EffectManagerScript::SpawnEffect(const std::string& path, const Vec3& world
 		object->GetTransform()->SetWorldScale(Vec3(10, 10, 10));
 
 		std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
-		mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Effect"));
+		mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Effect")->Clone());
 		mr->SetMesh(GET_SINGLE(Resources)->LoadRectangleMesh());
 		object->AddComponent(mr);
 
