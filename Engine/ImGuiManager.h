@@ -23,6 +23,7 @@ public:
 	ImGuiManager(HWND hwnd, std::shared_ptr<Device> device);
 	~ImGuiManager();
 
+	void Update();
 	void Render();
 	void SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdq);
 
@@ -53,8 +54,9 @@ private:
 
 private:
 
-	std::string inputPath = "";
+	std::string _inputPath = "";
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
+	std::queue<void(*)(void)> _functionQueue;
 };
 
 #endif

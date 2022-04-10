@@ -45,6 +45,8 @@ void Engine::Init(const WindowInfo& info)
 
 void Engine::Update()
 {
+	_imguiManager->Update();
+
 	GET_SINGLE(Input)->Update();
 	GET_SINGLE(Timer)->Update();
 	GET_SINGLE(SceneManager)->Update();

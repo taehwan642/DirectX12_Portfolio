@@ -296,8 +296,12 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 			offsetVec[b] = mesh->_bones[b].matOffset;
 
 		// OffsetMatrix StructuredBuffer 세팅
-		mesh->_offsetBuffer = std::make_shared<StructuredBuffer>();
-		mesh->_offsetBuffer->Init(sizeof(Matrix), static_cast<uint32>(offsetVec.size()), offsetVec.data());
+		// Size가 0이라면 Buffer를 만들지 않아도 됨.
+		if (mesh->_animClips.size() != 0)
+		{
+			mesh->_offsetBuffer = std::make_shared<StructuredBuffer>();
+			mesh->_offsetBuffer->Init(sizeof(Matrix), static_cast<uint32>(offsetVec.size()), offsetVec.data());
+		}
 
 		const int32 animCount = static_cast<int32>(mesh->_animClips.size());
 		for (int32 i = 0; i < animCount; i++)

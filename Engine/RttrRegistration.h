@@ -507,8 +507,8 @@ RTTR_REGISTRATION
 	// Visualizer
 	rttr::registration::class_<Visualizer>("Visualizer")
 		.constructor<>()
-		.property("_radius", &Visualizer::_transform)
-		.property("_center", &Visualizer::_meshRenderer);
+		.property("_transform", &Visualizer::_transform)
+		.property("_meshRenderer", &Visualizer::_meshRenderer);
 
 #pragma region Collider
 
@@ -543,7 +543,7 @@ RTTR_REGISTRATION
 	rttr::registration::class_<MeshCollider>("MeshCollider")
 		.constructor<>()
 		.property("_draw", &BaseCollider::_draw)
-		.property("_extents", &MeshCollider::_triCount)
+		.property("_triCount", &MeshCollider::_triCount)
 		.property("_colliderType", &BaseCollider::_colliderType);
 
 	// BoneColliderInfo

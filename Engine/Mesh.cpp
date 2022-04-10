@@ -218,8 +218,12 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 			offsetVec[b] = _bones[b].matOffset;
 
 		// OffsetMatrix StructuredBuffer 세팅
-		_offsetBuffer = std::make_shared<StructuredBuffer>();
-		_offsetBuffer->Init(sizeof(Matrix), static_cast<uint32>(offsetVec.size()), offsetVec.data());
+		// Size가 0이라면 Buffer를 만들지 않아도 됨.
+		if (_animClips.size() != 0)
+		{
+			_offsetBuffer = std::make_shared<StructuredBuffer>();
+			_offsetBuffer->Init(sizeof(Matrix), static_cast<uint32>(offsetVec.size()), offsetVec.data());
+		}
 
 		const int32 animCount = static_cast<int32>(_animClips.size());
 		for (int32 i = 0; i < animCount; i++)

@@ -47,15 +47,11 @@ ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
     desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
     desc.NumDescriptors = 1;
     desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-    if (device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) != S_OK)
-    {
-        return;
-    }
+
     assert(device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) == S_OK);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
 
     ImGui::StyleColorsClassic();
 
@@ -71,6 +67,15 @@ ImGuiManager::~ImGuiManager()
     ImGui_ImplDX12_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
+}
+
+void ImGuiManager::Update()
+{
+    while (!_functionQueue.empty())
+    {
+        (_functionQueue.front())();
+        _functionQueue.pop();
+    }
 }
 
 void ImGuiManager::Render()
@@ -100,7 +105,7 @@ void ImGuiManager::SetPipeline(std::shared_ptr<GraphicsCommandQueue> cmdqueue)
 void ImGuiManager::DragAndDrop(const std::wstring& path)
 {
     // inputPath = ws2s(path.substr(0, path.size() - 5));
-    inputPath = ws2s(path);
+    _inputPath = ws2s(path);
 }
 
 void ImGuiManager::RenderMeshData(std::shared_ptr<Mesh> mesh)
@@ -621,7 +626,7 @@ void ImGuiManager::RenderHierarchy()
     static int val = 0;
     if (ImGui::InputInt("Scene Index", &val))
     {
-        GET_SINGLE(SceneManager)->SetScene(val);
+        _functionQueue.push([]() { GET_SINGLE(SceneManager)->SetScene(val); });
     }
 
     if (GET_SINGLE(SceneManager)->GetActiveScene() == nullptr)
@@ -1568,17 +1573,17 @@ void ImGuiManager::RenderResources()
 void ImGuiManager::RenderDragAndDrop()
 {
     ImGui::Begin("Drag and Drop");
-    ImGui::Text(inputPath.c_str());
+    ImGui::Text(_inputPath.c_str());
 
     if (ImGui::Button("Resource to prefab"))
     {
         std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
 
         // 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
-        std::string objString = inputPath;
-        if (size_t pos = inputPath.find_last_of("\\"); pos != std::string::npos)
+        std::string objString = _inputPath;
+        if (size_t pos = _inputPath.find_last_of("\\"); pos != std::string::npos)
         {
-            objString = inputPath.substr(pos + 1, inputPath.size());
+            objString = _inputPath.substr(pos + 1, _inputPath.size());
         }
 
         // obj 이름은 맨 처음 "_"를 만나기 전.
@@ -1591,7 +1596,7 @@ void ImGuiManager::RenderDragAndDrop()
         std::string path = std::string("../Resources/FBX/") + objName;
 
         // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath.c_str()).c_str());
         meshData->SetMeshName(s2ws(objName));
 
         // 불러온 MeshData Prefab으로 뽑기
@@ -1622,7 +1627,7 @@ void ImGuiManager::RenderDragAndDrop()
     // 프리팹 버튼
     if (ImGui::Button("Get prefab to scene"))
     {
-        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
 
         int tempNum = 0;
         std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
@@ -1665,7 +1670,7 @@ void ImGuiManager::RenderDragAndDrop()
     // 씬 버튼
     if (ImGui::Button("Load"))
     {
-        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
         GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath).c_str());
     }
 
@@ -1673,13 +1678,13 @@ void ImGuiManager::RenderDragAndDrop()
     if (ImGui::Button("Add MeshData"))
     {
         // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(_inputPath.c_str()).c_str());
         meshData->Instantiate();
     }
     ImGui::SameLine();
     if (ImGui::Button("Add Texture"))
     {
-        std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(inputPath.c_str()).c_str(), s2ws(inputPath.c_str()).c_str());
+        std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(_inputPath.c_str()).c_str(), s2ws(_inputPath.c_str()).c_str());
     }
 
     static std::string paths = "";
@@ -1690,7 +1695,7 @@ void ImGuiManager::RenderDragAndDrop()
             경로 1 \n
             경로 2 \n ...
         */
-        std::string finalInputPath = (inputPath.substr(0, inputPath.size() - 6));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
         paths += finalInputPath + "\n";
     }
     ImGui::SameLine();
@@ -1707,7 +1712,7 @@ void ImGuiManager::RenderDragAndDrop()
     static std::string textureOutputpaths = "";
     if (ImGui::Button("Add To TextureSet"))
     {
-        textureOutputpaths += inputPath + "\n";
+        textureOutputpaths += _inputPath + "\n";
     }
     ImGui::SameLine();
     if (ImGui::Button("Output TextureSet"))

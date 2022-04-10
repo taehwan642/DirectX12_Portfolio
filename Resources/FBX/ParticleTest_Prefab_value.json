@@ -1,6 +1,33 @@
 {
-    "meshDataResources": [],
-    "textureResources": [],
+    "meshDataResources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000"
+    ],
+    "textureResources": [
+        "..\\Resources\\Texture\\Tile.png\u0000",
+        "..\\Resources\\Texture\\Leather.jpg\u0000",
+        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
+        "..\\Resources\\Texture\\Fabric.jpg\u0000",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sea.jpg\u0000",
+        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96\u0000",
+        "../Resources/Texture/Particle/bubble.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000"
+    ],
     "gameObjects": [
         {
             "tag": "Particle00\u0000",
@@ -20,6 +47,10 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -33,7 +64,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0

@@ -27,6 +27,7 @@ ParticleSystem::ParticleSystem() : Component(COMPONENT_TYPE::PARTICLE_SYSTEM)
 
 ParticleSystem::~ParticleSystem()
 {
+	return;
 }
 
 void ParticleSystem::FinalUpdate()

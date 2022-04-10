@@ -1,5 +1,7 @@
 {
     "meshDataResources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbx\u0000"
     ],
     "textureResources": [
@@ -14,6 +16,16 @@
         "..\\Resources\\Texture\\Sea.jpg\u0000",
         "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
         "..\\Resources\\Texture\\EnemyBullet.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96\u0000",
         "../Resources/Texture/Particle/bubble.png\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Bump_Col2.jpg\u0000",
@@ -57,7 +69,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -130,7 +143,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -169,8 +183,8 @@
             }
         },
         {
-            "tag": "Dragon_Mesh\u0000",
-            "hashValue": 10775319057209446272,
+            "tag": "Dragon.fbxDragon_Mesh\u0000",
+            "hashValue": 15709993466243104387,
             "componentOnValue": [
                 true,
                 true,
@@ -334,7 +348,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0

@@ -92,6 +92,8 @@ void SceneManager::LoadScene(const std::wstring& sceneName)
 
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::MESH_DATA)].clear();
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::GAMEOBJECT)].clear();
+
+		IMGUIMANAGER->_currentGameObject = nullptr;
 	}
 
 	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName).c_str(), _activeScene);
