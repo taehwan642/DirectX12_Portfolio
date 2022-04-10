@@ -227,6 +227,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="RaycastManager.h" />
     <ClInclude Include="RenderTargetGroup.h" />
+    <ClInclude Include="RenderTargetScript.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="RootSignature.h" />
     <ClInclude Include="RttrRegistration.h" />
@@ -326,6 +327,7 @@
     </ClCompile>
     <ClCompile Include="RaycastManager.cpp" />
     <ClCompile Include="RenderTargetGroup.cpp" />
+    <ClCompile Include="RenderTargetScript.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="RootSignature.cpp" />
     <ClCompile Include="Scene.cpp" />

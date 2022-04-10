@@ -12,6 +12,7 @@ enum class MonoBehaviourType
 	EffectManagerScript,
 	Effect,
 	InfinitePassage,
+	RenderTargetScript,
 	END
 };
 

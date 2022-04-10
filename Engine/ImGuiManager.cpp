@@ -40,6 +40,7 @@
 #include "EffectManagerScript.h"
 #include "Effect.h"
 #include "InfinitePassage.h"
+#include "RenderTargetScript.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1480,6 +1481,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
             IMGUIADDMONOBEHAVIOUR(Effect);
             IMGUIADDMONOBEHAVIOUR(InfinitePassage);
+            IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
 
             ImGui::EndMenu();
         }

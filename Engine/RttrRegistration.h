@@ -34,6 +34,7 @@
 #include "EffectManagerScript.h"
 #include "Effect.h"
 #include "InfinitePassage.h"
+#include "RenderTargetScript.h"
 
 // Load때 필요한 오브젝트.
 
@@ -286,6 +287,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(EffectManagerScript)
 			RTTRMONOSAVE(Effect)
 			RTTRMONOSAVE(InfinitePassage)
+			RTTRMONOSAVE(RenderTargetScript)
 		}
 	}
 
@@ -832,6 +834,7 @@ RTTR_REGISTRATION
 	RTTRMONOREGISTER(EffectManagerScript);
 	RTTRMONOREGISTER(Effect);
 	RTTRMONOREGISTER(InfinitePassage);
+	RTTRMONOREGISTER(RenderTargetScript);
 
 #pragma endregion
 }

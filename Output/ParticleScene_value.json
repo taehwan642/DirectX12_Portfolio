@@ -1,36 +1,36 @@
 {
     "meshDataResources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx"
     ],
     "textureResources": [
-        "..\\Resources\\Texture\\Tile.png\u0000",
-        "..\\Resources\\Texture\\Leather.jpg\u0000",
-        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
-        "..\\Resources\\Texture\\Fabric.jpg\u0000",
-        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sea.jpg\u0000",
-        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96\u0000",
-        "../Resources/Texture/Particle/bubble.png\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000"
+        "..\\Resources\\Texture\\Tile.png",
+        "..\\Resources\\Texture\\Leather.jpg",
+        "..\\Resources\\Texture\\Leather_Normal.jpg",
+        "..\\Resources\\Texture\\Terrain\\terrain.png",
+        "..\\Resources\\Texture\\Fabric.jpg",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg",
+        "..\\Resources\\Texture\\Sci-Fi.jpg",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg",
+        "..\\Resources\\Texture\\Sea.jpg",
+        "..\\Resources\\Texture\\Sea_Normal.jpg",
+        "..\\Resources\\Texture\\EnemyBullet.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96",
+        "../Resources/Texture/Particle/bubble.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds"
     ],
     "gameObjects": [
         {
-            "tag": "Skybox\u0000",
+            "tag": "Skybox",
             "hashValue": 16944570405146691913,
             "componentOnValue": [
                 true,
@@ -51,6 +51,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -67,7 +68,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Sky01\u0000"
+                                "tag": "Sky01"
                             },
                             {
                                 "tag": ""
@@ -80,14 +81,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Skybox\u0000"
+                            "tag": "Skybox"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Sphere\u0000"
+                    "tag": "Sphere"
                 }
             },
             "colliderValue": {
@@ -131,7 +132,7 @@
             }
         },
         {
-            "tag": "UI 0\u0000",
+            "tag": "UI 0",
             "hashValue": 6369461910980368001,
             "componentOnValue": [
                 true,
@@ -152,10 +153,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -168,7 +170,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "PositionTarget\u0000"
+                                "tag": "PositionTarget"
                             },
                             {
                                 "tag": ""
@@ -181,14 +183,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -232,7 +234,7 @@
             }
         },
         {
-            "tag": "UI 1\u0000",
+            "tag": "UI 1",
             "hashValue": 6368505335864013656,
             "componentOnValue": [
                 true,
@@ -253,10 +255,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -269,7 +272,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "NormalTarget\u0000"
+                                "tag": "NormalTarget"
                             },
                             {
                                 "tag": ""
@@ -282,14 +285,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -333,7 +336,7 @@
             }
         },
         {
-            "tag": "UI 2\u0000",
+            "tag": "UI 2",
             "hashValue": 6371375061213076691,
             "componentOnValue": [
                 true,
@@ -354,10 +357,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -370,7 +374,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "DiffuseTarget\u0000"
+                                "tag": "DiffuseTarget"
                             },
                             {
                                 "tag": ""
@@ -383,14 +387,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -434,7 +438,7 @@
             }
         },
         {
-            "tag": "UI 3\u0000",
+            "tag": "UI 3",
             "hashValue": 6370418486096722346,
             "componentOnValue": [
                 true,
@@ -455,10 +459,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -471,7 +476,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "DiffuseLightTarget\u0000"
+                                "tag": "DiffuseLightTarget"
                             },
                             {
                                 "tag": ""
@@ -484,14 +489,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -535,7 +540,7 @@
             }
         },
         {
-            "tag": "UI 4\u0000",
+            "tag": "UI 4",
             "hashValue": 6373288211445785381,
             "componentOnValue": [
                 true,
@@ -556,10 +561,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -572,7 +578,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "SpecularLightTarget\u0000"
+                                "tag": "SpecularLightTarget"
                             },
                             {
                                 "tag": ""
@@ -585,14 +591,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -636,7 +642,7 @@
             }
         },
         {
-            "tag": "UI 5\u0000",
+            "tag": "UI 5",
             "hashValue": 6372331636329431036,
             "componentOnValue": [
                 true,
@@ -657,10 +663,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 0
+                "parentHashValue": 5640538142168738141
             },
             "meshRendererValue": {
                 "materialValues": [
@@ -673,7 +680,7 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "ShadowTarget\u0000"
+                                "tag": "ShadowTarget"
                             },
                             {
                                 "tag": ""
@@ -686,14 +693,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Texture\u0000"
+                            "tag": "Texture"
                         },
-                        "tag": "\u0000"
+                        "tag": ""
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -737,7 +744,7 @@
             }
         },
         {
-            "tag": "DLight\u0000",
+            "tag": "DLight",
             "hashValue": 18121623904423847223,
             "componentOnValue": [
                 true,
@@ -750,6 +757,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -811,7 +819,7 @@
             }
         },
         {
-            "tag": "Sea\u0000",
+            "tag": "Sea",
             "hashValue": 14141447819906329258,
             "componentOnValue": [
                 true,
@@ -832,6 +840,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -848,10 +857,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "SeaTexture\u0000"
+                                "tag": "SeaTexture"
                             },
                             {
-                                "tag": "SeaNormal\u0000"
+                                "tag": "SeaNormal"
                             },
                             {
                                 "tag": ""
@@ -861,14 +870,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Sea\u0000"
+                            "tag": "Sea"
                         },
-                        "tag": "Sea\u0000"
+                        "tag": "Sea"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Rectangle\u0000"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
@@ -912,7 +921,7 @@
             }
         },
         {
-            "tag": "EnemyBullet\u0000",
+            "tag": "EnemyBullet",
             "hashValue": 16663227383778396065,
             "componentOnValue": [
                 true,
@@ -933,6 +942,7 @@
                 true,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -949,10 +959,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Leather\u0000"
+                                "tag": "Leather"
                             },
                             {
-                                "tag": "Leather_Normal\u0000"
+                                "tag": "Leather_Normal"
                             },
                             {
                                 "tag": ""
@@ -962,14 +972,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "GameObject\u0000"
+                        "tag": "GameObject"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Sphere\u0000"
+                    "tag": "Sphere"
                 }
             },
             "colliderValue": {
@@ -1013,7 +1023,7 @@
             }
         },
         {
-            "tag": "Main_Camera\u0000",
+            "tag": "Main_Camera",
             "hashValue": 1652047311739494752,
             "componentOnValue": [
                 true,
@@ -1034,6 +1044,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1087,7 +1098,7 @@
             }
         },
         {
-            "tag": "Orthographic_Camera\u0000",
+            "tag": "Orthographic_Camera",
             "hashValue": 10435265470670548171,
             "componentOnValue": [
                 true,
@@ -1108,6 +1119,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1161,7 +1173,7 @@
             }
         },
         {
-            "tag": "EffectManager\u0000",
+            "tag": "EffectManager",
             "hashValue": 3384872430648186473,
             "componentOnValue": [
                 true,
@@ -1182,6 +1194,7 @@
                 false,
                 true,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1235,7 +1248,7 @@
             }
         },
         {
-            "tag": "bg4003.fbx0\u0000",
+            "tag": "bg4003.fbx0",
             "hashValue": 12693695335739668573,
             "componentOnValue": [
                 true,
@@ -1256,6 +1269,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1309,7 +1323,7 @@
             }
         },
         {
-            "tag": "bg4003.fbx_mesh_root0\u0000",
+            "tag": "bg4003.fbx_mesh_root0",
             "hashValue": 11141370358798069872,
             "componentOnValue": [
                 true,
@@ -1322,6 +1336,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1383,7 +1398,7 @@
             }
         },
         {
-            "tag": "bg4003.fbxLOD0_0_dc_mesh00000\u0000",
+            "tag": "bg4003.fbxLOD0_0_dc_mesh00000",
             "hashValue": 13728874784687098057,
             "componentOnValue": [
                 true,
@@ -1404,6 +1419,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1420,10 +1436,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4ef8c1fc\u0000"
+                                "tag": "4ef8c1fc"
                             },
                             {
-                                "tag": "6c73f8f\u0000"
+                                "tag": "6c73f8f"
                             },
                             {
                                 "tag": ""
@@ -1433,14 +1449,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
+                        "tag": "mas_metalpanel02_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_0_dc_mesh0000\u0000"
+                    "tag": "LOD0_0_dc_mesh0000"
                 }
             },
             "colliderValue": {
@@ -1484,7 +1500,7 @@
             }
         },
         {
-            "tag": "bg4003.fbxLOD0_1_dc_mesh00010\u0000",
+            "tag": "bg4003.fbxLOD0_1_dc_mesh00010",
             "hashValue": 4402492639186278921,
             "componentOnValue": [
                 true,
@@ -1505,6 +1521,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1521,10 +1538,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2b00a6bd\u0000"
+                                "tag": "2b00a6bd"
                             },
                             {
-                                "tag": "633f58ce\u0000"
+                                "tag": "633f58ce"
                             },
                             {
                                 "tag": ""
@@ -1534,14 +1551,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
+                        "tag": "mas_wallpanel03_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_1_dc_mesh0001\u0000"
+                    "tag": "LOD0_1_dc_mesh0001"
                 }
             },
             "colliderValue": {
@@ -1585,7 +1602,7 @@
             }
         },
         {
-            "tag": "bg4004.fbx0\u0000",
+            "tag": "bg4004.fbx0",
             "hashValue": 2733964318262556026,
             "componentOnValue": [
                 true,
@@ -1598,6 +1615,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1659,7 +1677,7 @@
             }
         },
         {
-            "tag": "bg4004.fbx_mesh_root0\u0000",
+            "tag": "bg4004.fbx_mesh_root0",
             "hashValue": 13947818721793971143,
             "componentOnValue": [
                 true,
@@ -1672,6 +1690,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1733,7 +1752,7 @@
             }
         },
         {
-            "tag": "bg4004.fbxLOD0_0_dc_mesh00000\u0000",
+            "tag": "bg4004.fbxLOD0_0_dc_mesh00000",
             "hashValue": 289839544526148878,
             "componentOnValue": [
                 true,
@@ -1754,6 +1773,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1770,10 +1790,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "b36eefd\u0000"
+                                "tag": "b36eefd"
                             },
                             {
-                                "tag": "4c09e9ba\u0000"
+                                "tag": "4c09e9ba"
                             },
                             {
                                 "tag": ""
@@ -1783,14 +1803,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "frame_Material03\u0000"
+                        "tag": "frame_Material03"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_0_dc_mesh0000\u0000"
+                    "tag": "LOD0_0_dc_mesh0000"
                 }
             },
             "colliderValue": {
@@ -1834,7 +1854,7 @@
             }
         },
         {
-            "tag": "bg4004.fbxLOD0_1_dc_mesh00010\u0000",
+            "tag": "bg4004.fbxLOD0_1_dc_mesh00010",
             "hashValue": 5816465128248433358,
             "componentOnValue": [
                 true,
@@ -1855,6 +1875,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1871,10 +1892,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "4ef8c1fc\u0000"
+                                "tag": "4ef8c1fc"
                             },
                             {
-                                "tag": "6c73f8f\u0000"
+                                "tag": "6c73f8f"
                             },
                             {
                                 "tag": ""
@@ -1884,14 +1905,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "mas_metalpanel02_AAAx_tga\u0000"
+                        "tag": "mas_metalpanel02_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_1_dc_mesh0001\u0000"
+                    "tag": "LOD0_1_dc_mesh0001"
                 }
             },
             "colliderValue": {
@@ -1935,7 +1956,7 @@
             }
         },
         {
-            "tag": "bg4004.fbxLOD0_2_dc_mesh00020\u0000",
+            "tag": "bg4004.fbxLOD0_2_dc_mesh00020",
             "hashValue": 6210079867255648686,
             "componentOnValue": [
                 true,
@@ -1956,6 +1977,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1972,10 +1994,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "2b00a6bd\u0000"
+                                "tag": "2b00a6bd"
                             },
                             {
-                                "tag": "633f58ce\u0000"
+                                "tag": "633f58ce"
                             },
                             {
                                 "tag": ""
@@ -1985,14 +2007,14 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "mas_wallpanel03_AAAx_tga\u0000"
+                        "tag": "mas_wallpanel03_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_2_dc_mesh0002\u0000"
+                    "tag": "LOD0_2_dc_mesh0002"
                 }
             },
             "colliderValue": {
@@ -2036,7 +2058,7 @@
             }
         },
         {
-            "tag": "Particle000\u0000",
+            "tag": "Particle000",
             "hashValue": 9920412010792344113,
             "componentOnValue": [
                 true,
@@ -2049,6 +2071,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2090,7 +2113,7 @@
                     ],
                     "textureValues": [
                         {
-                            "tag": "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000"
+                            "tag": "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds"
                         },
                         {
                             "tag": ""
@@ -2103,16 +2126,91 @@
                         }
                     ],
                     "shaderValue": {
-                        "tag": "Particle\u0000"
+                        "tag": "Particle"
                     },
-                    "tag": "Particle\u0000"
+                    "tag": "Particle"
+                }
+            }
+        },
+        {
+            "tag": "UIParent",
+            "hashValue": 5640538142168738141,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
                 }
             }
         }
     ],
     "cameraObjects": [
         {
-            "tag": "Main_Camera\u0000",
+            "tag": "Main_Camera",
             "hashValue": 1652047311739494752,
             "componentOnValue": [
                 true,
@@ -2126,6 +2224,7 @@
             ],
             "monobehaviourOnValue": [
                 true,
+                false,
                 false,
                 false,
                 false,
@@ -2186,7 +2285,7 @@
             }
         },
         {
-            "tag": "Orthographic_Camera\u0000",
+            "tag": "Orthographic_Camera",
             "hashValue": 10435265470670548171,
             "componentOnValue": [
                 true,
@@ -2199,6 +2298,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2262,7 +2362,7 @@
     ],
     "lightObjects": [
         {
-            "tag": "DLight\u0000",
+            "tag": "DLight",
             "hashValue": 18121623904423847223,
             "componentOnValue": [
                 true,
@@ -2275,6 +2375,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,

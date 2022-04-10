@@ -532,4 +532,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(EffectManagerScript)
 	RTTRMONOLOAD(Effect)
 	RTTRMONOLOAD(InfinitePassage)
+	RTTRMONOLOAD(RenderTargetScript)
 }
