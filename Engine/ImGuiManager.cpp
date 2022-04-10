@@ -1469,8 +1469,7 @@ void ImGuiManager::RenderInspector()
 
         if (ImGui::Button("Delete GameObject"))
         {
-            _currentGameObject->GetTransform()->RemoveParent();
-            GET_SINGLE(SceneManager)->GetActiveScene()->RemoveGameObject(_currentGameObject);
+            RemoveSceneChild(GET_SINGLE(SceneManager)->GetActiveScene(), _currentGameObject);
             _currentGameObject = nullptr;
         }
     }
@@ -1803,6 +1802,15 @@ void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<G
     for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
     {
         AddSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject(), eraseLastChar);
+    }
+}
+
+void ImGuiManager::RemoveSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent)
+{
+    scene->RemoveGameObject(parent);
+    for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
+    {
+        RemoveSceneChild(scene, parent->GetTransform()->GetChild(i)->GetGameObject());
     }
 }
 #endif
