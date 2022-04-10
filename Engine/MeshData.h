@@ -26,11 +26,14 @@ public:
 
 	std::vector<std::shared_ptr<GameObject>> Instantiate();
 
+	void SetMeshName(const std::wstring& name) { _objectName = name; }
+
 private:
 	friend class Resources;
 	friend class RTTRMeshDataValue;
 	friend class JsonManager;
 
+	std::wstring _objectName;
 	std::vector<MeshRenderInfo> _meshRenders;
 
 	RTTR_ENABLE()

@@ -148,7 +148,23 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 
 	for (auto& iter : sceneValue.meshDataResources)
 	{
+		// 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
+		std::wstring name = s2ws(iter);
+		std::wstring objString = name;
+		if (size_t pos = name.find_last_of(L"\\"); pos != std::wstring::npos)
+		{
+			objString = name.substr(pos + 1, name.size());
+		}
+
+		// obj 이름은 맨 처음 "_"를 만나기 전.
+		std::wstring objName = objString;
+		if (size_t pos = objString.find_last_of(L"_"); pos != std::wstring::npos)
+		{
+			objName = objString.substr(0, pos);
+		}
+
 		std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(iter.c_str()).c_str());
+		meshData->SetMeshName(objName);
 		meshData->Instantiate();
 	}
 
@@ -374,7 +390,16 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		else
 		{
 			// mesh = GET_SINGLE(Resources)->Get<Mesh>(meshTag);
-			std::shared_ptr<GameObject> obj = GET_SINGLE(Resources)->Get<GameObject>(meshTag);
+			// 앞에 fbx 가져오기
+			std::wstring name = s2ws(value.tag);
+			std::wstring objString = name;
+			if (size_t pos = name.find_last_of(L"."); pos != std::wstring::npos)
+			{
+				// .fbx 까지
+				objString = name.substr(0, pos + 4);
+			}
+
+			std::shared_ptr<GameObject> obj = GET_SINGLE(Resources)->Get<GameObject>(objString + meshTag);
 			mesh = obj->GetMeshRenderer()->GetMesh();
 			if (obj != nullptr)
 			{

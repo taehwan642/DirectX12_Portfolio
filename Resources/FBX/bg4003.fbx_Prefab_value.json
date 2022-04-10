@@ -13,6 +13,7 @@
         "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
         "..\\Resources\\Texture\\Sea.jpg\u0000",
         "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
         "../Resources/Texture/Particle/bubble.png\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
@@ -42,6 +43,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -55,7 +57,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -114,6 +117,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -127,7 +131,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -166,8 +171,8 @@
             }
         },
         {
-            "tag": "LOD0_0_dc_mesh0000\u0000",
-            "hashValue": 4534963757783619985,
+            "tag": "bg4003.fbxLOD0_0_dc_mesh0000\u0000",
+            "hashValue": 13654207910663867537,
             "componentOnValue": [
                 true,
                 true,
@@ -179,6 +184,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -226,7 +232,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -265,8 +272,8 @@
             }
         },
         {
-            "tag": "LOD0_1_dc_mesh0001\u0000",
-            "hashValue": 7155076883803949265,
+            "tag": "bg4003.fbxLOD0_1_dc_mesh0001\u0000",
+            "hashValue": 16274321036684196817,
             "componentOnValue": [
                 true,
                 true,
@@ -278,6 +285,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -325,7 +333,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0

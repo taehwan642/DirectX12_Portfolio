@@ -1,9 +1,26 @@
 {
-    "resources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg008b.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg008c.fbx\u0000",
+    "meshDataResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbx\u0000"
+    ],
+    "textureResources": [
+        "..\\Resources\\Texture\\Tile.png\u0000",
+        "..\\Resources\\Texture\\Leather.jpg\u0000",
+        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
+        "..\\Resources\\Texture\\Fabric.jpg\u0000",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\Sea.jpg\u0000",
+        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
+        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
+        "../Resources/Texture/Particle/bubble.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbm\\3aa0ce14.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbm\\325cf64.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbm\\ab144fe.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbm\\6a48370d.png\u0000",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg422a.fbm\\63dcbc97.png\u0000"
     ],
     "gameObjects": [
         {
@@ -23,6 +40,11 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
@@ -36,7 +58,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -44,11 +67,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "mesh_root\u0000",
-            "hashValue": 5514151138106766407,
+            "tag": "bg422a.fbx_mesh_root\u0000",
+            "hashValue": 1069788850690744946,
             "componentOnValue": [
                 true,
                 false,
@@ -60,6 +111,11 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -76,7 +132,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -84,11 +141,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "LOD0_0_buildings_mesh0000\u0000",
-            "hashValue": 15933270339916184171,
+            "tag": "\u0000",
+            "hashValue": 14695981039346656037,
             "componentOnValue": [
                 true,
                 true,
@@ -103,26 +188,31 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 1069788850690744946
             },
             "meshRendererValue": {
                 "materialValues": [
                     {
                         "textureOnValue": [
                             true,
-                            true,
+                            false,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "3aa0ce14\u0000"
+                                "tag": "3aa0ce14.png\u0000"
                             },
                             {
-                                "tag": "bayoflatnormal\u0000"
+                                "tag": ""
                             },
                             {
                                 "tag": ""
@@ -134,16 +224,17 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "bg422a_Whitecap01_AAA3_tga\u0000"
+                        "tag": "bg422a_WhiteCap\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_0_buildings_mesh0000\u0000"
+                    "tag": "\u0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -151,11 +242,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "LOD0_1_buildings_mesh0001\u0000",
-            "hashValue": 4759509248082469699,
+            "tag": "\u0000",
+            "hashValue": 14695981039346656037,
             "componentOnValue": [
                 true,
                 true,
@@ -170,26 +289,31 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 1069788850690744946
             },
             "meshRendererValue": {
                 "materialValues": [
                     {
                         "textureOnValue": [
                             true,
-                            true,
+                            false,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "325cf64\u0000"
+                                "tag": "3aa0ce14.png\u0000"
                             },
                             {
-                                "tag": "4b1a3117\u0000"
+                                "tag": ""
                             },
                             {
                                 "tag": ""
@@ -201,16 +325,17 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_distancebuilding01_AAAx_tga\u0000"
+                        "tag": "bg422a_WhiteCap\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_1_buildings_mesh0001\u0000"
+                    "tag": "\u0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -218,11 +343,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "LOD0_2_buildings_mesh0002\u0000",
-            "hashValue": 2475411277930860667,
+            "tag": "\u0000",
+            "hashValue": 14695981039346656037,
             "componentOnValue": [
                 true,
                 true,
@@ -237,26 +390,31 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 1069788850690744946
             },
             "meshRendererValue": {
                 "materialValues": [
                     {
                         "textureOnValue": [
                             true,
-                            true,
+                            false,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "ab144fe\u0000"
+                                "tag": "3aa0ce14.png\u0000"
                             },
                             {
-                                "tag": "4d8e43b9\u0000"
+                                "tag": ""
                             },
                             {
                                 "tag": ""
@@ -268,16 +426,17 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_distancebuilding01_AAAx_tga1\u0000"
+                        "tag": "bg422a_WhiteCap\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_2_buildings_mesh0002\u0000"
+                    "tag": "\u0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -285,11 +444,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "LOD0_3_buildings_mesh0003\u0000",
-            "hashValue": 734975997975579091,
+            "tag": "\u0000",
+            "hashValue": 14695981039346656037,
             "componentOnValue": [
                 true,
                 true,
@@ -304,26 +491,31 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 1069788850690744946
             },
             "meshRendererValue": {
                 "materialValues": [
                     {
                         "textureOnValue": [
                             true,
-                            true,
+                            false,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "6a48370d\u0000"
+                                "tag": "3aa0ce14.png\u0000"
                             },
                             {
-                                "tag": "2277c97e\u0000"
+                                "tag": ""
                             },
                             {
                                 "tag": ""
@@ -335,16 +527,17 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_distancechimny01_AAA1_tga\u0000"
+                        "tag": "bg422a_WhiteCap\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_3_buildings_mesh0003\u0000"
+                    "tag": "\u0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -352,11 +545,39 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         },
         {
-            "tag": "LOD0_4_buildings_mesh0004\u0000",
-            "hashValue": 18101272912182505803,
+            "tag": "\u0000",
+            "hashValue": 14695981039346656037,
             "componentOnValue": [
                 true,
                 true,
@@ -371,26 +592,31 @@
                 false,
                 false,
                 false,
+                false,
+                false,
+                false,
+                false,
+                false,
                 false
             ],
             "transformValue": {
-                "parentHashValue": 5514151138106766407
+                "parentHashValue": 1069788850690744946
             },
             "meshRendererValue": {
                 "materialValues": [
                     {
                         "textureOnValue": [
                             true,
-                            true,
+                            false,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "63dcbc97\u0000"
+                                "tag": "3aa0ce14.png\u0000"
                             },
                             {
-                                "tag": "24e3bbd0\u0000"
+                                "tag": ""
                             },
                             {
                                 "tag": ""
@@ -402,16 +628,17 @@
                         "shaderValue": {
                             "tag": "Deferred\u0000"
                         },
-                        "tag": "mas_distancechimny02_AAAx_tga\u0000"
+                        "tag": "bg422a_WhiteCap\u0000"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_4_buildings_mesh0004\u0000"
+                    "tag": "\u0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -419,6 +646,34 @@
             "terrainValue": {
                 "sizeX": 0,
                 "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
             }
         }
     ],

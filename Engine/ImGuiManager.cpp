@@ -1572,11 +1572,7 @@ void ImGuiManager::RenderDragAndDrop()
 
     if (ImGui::Button("Resource to prefab"))
     {
-
         std::shared_ptr<Scene> sceneOnlyForSave = std::make_shared<Scene>();
-        
-        // MeshData 불러오기
-        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
 
         // 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
         std::string objString = inputPath;
@@ -1593,6 +1589,10 @@ void ImGuiManager::RenderDragAndDrop()
         }
 
         std::string path = std::string("../Resources/FBX/") + objName;
+
+        // MeshData 불러오기
+        std::shared_ptr<MeshData> meshData = GET_SINGLE(Resources)->LoadFBX(s2ws(inputPath.c_str()).c_str());
+        meshData->SetMeshName(s2ws(objName));
 
         // 불러온 MeshData Prefab으로 뽑기
         std::shared_ptr<GameObject> meshDataObject = std::make_shared<GameObject>();

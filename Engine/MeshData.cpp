@@ -100,13 +100,13 @@ std::vector<std::shared_ptr<GameObject>> MeshData::Instantiate()
 
 	for (MeshRenderInfo& info : _meshRenders)
 	{
-		std::shared_ptr<GameObject> gameObject = GET_SINGLE(Resources)->Get<GameObject>(info.mesh->GetName());
+		std::shared_ptr<GameObject> gameObject = GET_SINGLE(Resources)->Get<GameObject>(_objectName + info.mesh->GetName());
 		if (gameObject == nullptr)
 		{
 			gameObject = std::make_shared<GameObject>();
 			gameObject->AddComponent(std::make_shared<TransformComponent>());
 			gameObject->AddComponent(std::make_shared<MeshRenderer>());
-			gameObject->SetName(info.mesh->GetName());
+			gameObject->SetName(_objectName + info.mesh->GetName());
 			gameObject->GenerateHash();
 			gameObject->GetMeshRenderer()->SetMesh(info.mesh);
 
@@ -122,7 +122,7 @@ std::vector<std::shared_ptr<GameObject>> MeshData::Instantiate()
 			}
 		}
 		v.push_back(gameObject);
-		GET_SINGLE(Resources)->Add<GameObject>(info.mesh->GetName(), gameObject);
+		GET_SINGLE(Resources)->Add<GameObject>(_objectName + info.mesh->GetName(), gameObject);
 	}
 
 	return v;
