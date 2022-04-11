@@ -1635,7 +1635,7 @@ void ImGuiManager::RenderDragAndDrop()
     // ÇÁ¸®ÆÕ ¹öÆ°
     if (ImGui::Button("Get prefab to scene"))
     {
-        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 5));
 
         int tempNum = 0;
         std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();

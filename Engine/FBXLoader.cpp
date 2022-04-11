@@ -40,6 +40,8 @@ void FBXLoader::LoadFbx(const std::wstring& path, bool jsonLoad)
 	// 快府 备炼俊 嘎霸 Texture / Material 积己
 	CreateTextures();
 	CreateMaterials();
+
+	_meshNum = 0;
 }
 
 void FBXLoader::Import(const std::wstring& path)
@@ -107,6 +109,8 @@ void FBXLoader::LoadMesh(FbxMesh* mesh)
 	FbxMeshInfo& meshInfo = _meshes.back();
 
 	meshInfo.name = s2ws(mesh->GetName());
+	if (meshInfo.name.empty())
+		meshInfo.name = std::to_wstring(_meshNum++);
 
 	const int32 vertexCount = mesh->GetControlPointsCount();
 	meshInfo.vertices.resize(vertexCount);

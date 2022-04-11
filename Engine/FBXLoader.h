@@ -139,4 +139,6 @@ private:
 	std::vector<std::shared_ptr<FbxBoneInfo>>		_bones;
 	std::vector<std::shared_ptr<FbxAnimClipInfo>>	_animClips;
 	FbxArray<FbxString*>				_animNames;
+
+	int _meshNum = 0;
 };
