@@ -66,5 +66,10 @@ private:
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> _imguiManager;
 #endif
+	std::unique_ptr<DirectX::SoundEffect> m_explode;
+	std::unique_ptr<DirectX::SoundEffect> m_ambient;
+	std::unique_ptr<DirectX::AudioEngine> m_audEngine;
+
+	float m_explodeDelay = 2.f;
 };
 

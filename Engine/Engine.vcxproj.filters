@@ -243,6 +243,9 @@
     <ClCompile Include="RenderTargetScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="AudioSource.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -457,6 +460,9 @@
     </ClInclude>
     <ClInclude Include="RenderTargetScript.h">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioSource.h">
+      <Filter>Object\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

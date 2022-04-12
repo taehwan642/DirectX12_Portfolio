@@ -189,6 +189,7 @@
     <ClInclude Include="..\Library\Include\Imgui\imstb_textedit.h" />
     <ClInclude Include="..\Library\Include\Imgui\imstb_truetype.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="AudioSource.h" />
     <ClInclude Include="BaseCollider.h" />
     <ClInclude Include="BoneCollider.h" />
     <ClInclude Include="Camera.h" />
@@ -282,6 +283,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Animator.cpp" />
+    <ClCompile Include="AudioSource.cpp" />
     <ClCompile Include="BaseCollider.cpp" />
     <ClCompile Include="BoneCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
