@@ -77,12 +77,6 @@ using namespace Microsoft::WRL;
 #endif
 
 #ifdef _DEBUG
-#pragma comment(lib, "Json\\debug\\jsoncpp.lib")
-#else
-#pragma comment(lib, "Json\\release\\jsoncpp.lib")
-#endif
-
-#ifdef _DEBUG
 #pragma comment(lib, "Rttr\\debug\\rttr_core_d.lib")
 #else
 #pragma comment(lib, "Rttr\\release\\rttr_core.lib")
