@@ -10,6 +10,7 @@
 #include "InstancingManager.h"
 #include "JsonManager.h"
 #include "Scene.h"
+#include "AudioSource.h"
 
 void Engine::Init(const WindowInfo& info)
 {
@@ -42,16 +43,9 @@ void Engine::Init(const WindowInfo& info)
 	GET_SINGLE(Resources)->Init();
 	GET_SINGLE(SceneManager)->Init();
 
-	AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-#ifdef _DEBUG
-	eflags |= AudioEngine_Debug;
-#endif
-	m_audEngine = std::make_unique<AudioEngine>(eflags);
-
-	m_explode = std::make_unique<SoundEffect>(m_audEngine.get(),
-		L"../Resources/Audio/media_Explo1.wav");
-	m_ambient = std::make_unique<SoundEffect>(m_audEngine.get(),
-		L"../Resources/Audio//media_NightAmbienceSimple_02.wav");
+	source = std::make_shared<AudioSource>(); source->LoadAudio(L"../Resources/Audio/media_NightAmbienceSimple_02.wav");
+	source->SetLoop(true);
+	source->Play();
 }
 
 void Engine::Update()
@@ -64,8 +58,6 @@ void Engine::Update()
 	GET_SINGLE(InstancingManager)->ClearBuffer();
 
 	Render();
-
-	ShowFps();
 }
 
 void Engine::Render()
@@ -103,23 +95,6 @@ void Engine::ResizeWindow(int32 width, int32 height)
 	RECT rect = { 0, 0, width, height };
 	::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 	::SetWindowPos(_window.hwnd, 0, 100, 100, rect.right - rect.left, rect.bottom - rect.top, 0);
-}
-
-void Engine::ShowFps()
-{
-	m_explodeDelay -= DELTA_TIME;
-	if (m_explodeDelay < 0.f)
-	{
-		m_explode->Play();
-
-		m_explodeDelay = 2.f;
-	}
-	/*uint32 fps = GET_SINGLE(Timer)->GetFps();
-
-	WCHAR text[100] = L"";
-	::wsprintf(text, L"FPS : %d", fps);
-
-	::SetWindowText(_window.hwnd, text);*/
 }
 
 void Engine::CreateConstantBuffer(CBV_REGISTER reg, uint32 bufferSize, uint32 count)

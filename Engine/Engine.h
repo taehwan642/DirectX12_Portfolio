@@ -43,7 +43,6 @@ public:
 	void ResizeWindow(int32 width, int32 height);
 
 private:
-	void ShowFps();
 	void CreateConstantBuffer(CBV_REGISTER reg, uint32 bufferSize, uint32 count);
 	void CreateRenderTargetGroups();
 
@@ -66,10 +65,7 @@ private:
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> _imguiManager;
 #endif
-	std::unique_ptr<DirectX::SoundEffect> m_explode;
-	std::unique_ptr<DirectX::SoundEffect> m_ambient;
-	std::unique_ptr<DirectX::AudioEngine> m_audEngine;
 
-	float m_explodeDelay = 2.f;
+	std::shared_ptr<class AudioSource> source;
 };
 
