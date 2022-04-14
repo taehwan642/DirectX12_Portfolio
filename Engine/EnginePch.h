@@ -160,6 +160,7 @@ enum class OBJECT_TYPE : uint8
 	MESH_DATA,
 	SHADER,
 	TEXTURE,
+	AUDIOCLIP,
 
 	END
 };
