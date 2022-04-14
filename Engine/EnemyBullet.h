@@ -30,7 +30,6 @@ private:
 	size_t _testObject;
 	Vec3 _direction;
 
-
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
 };

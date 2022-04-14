@@ -29,6 +29,7 @@
 #include "Visualizer.h"
 #include "BoneCollider.h"
 #include "CollisionManager.h"
+#include "AudioSource.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -1334,6 +1335,63 @@ void ImGuiManager::RenderInspector()
             }
         }
 
+        // AUDIOSOURCE
+        if (_currentGameObject->GetAudioSource() != nullptr)
+        {
+            if (ImGui::BeginMenu("AudioSource"))
+            {
+                int item_current_idx{};
+
+                std::vector<std::string> stringVec;
+                stringVec.push_back("NONE");
+                int value = 1; // stringVec의 size는 이 때 1이니까.
+
+                for (auto& iter : GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::AUDIOCLIP)])
+                {
+                    if (_currentGameObject->GetAudioSource()->_audioClip != nullptr && _currentGameObject->GetAudioSource()->_audioClip == iter.second)
+                    {
+                        item_current_idx = value;
+                    }
+                    stringVec.push_back(ws2s(iter.first));
+                    ++value;
+                }
+
+                std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                std::string comboName = "Selected AudioClip";
+                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                {
+                    for (int n = 0; n < stringVec.size(); n++)
+                    {
+                        const bool is_selected = (item_current_idx == n);
+                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                        {
+                            item_current_idx = n;
+                            if (n != 0)
+                            {
+                                std::shared_ptr<Object> obj = GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::AUDIOCLIP)].find(s2ws(stringVec[n]))->second;
+                                _currentGameObject->GetAudioSource()->_audioClip = std::static_pointer_cast<AudioClip>(obj);
+                            }
+                            else
+                            {
+                                _currentGameObject->GetAudioSource()->_audioClip = nullptr;
+                            }
+                        }
+
+                        if (is_selected)
+                            ImGui::SetItemDefaultFocus();
+                    }
+                    ImGui::EndCombo();
+                }
+
+                if (ImGui::Button("Play"))
+                {
+                    _currentGameObject->_audioSource->Play();
+                }
+
+                ImGui::EndMenu();
+            }
+        }
+
         // MONOBEHAVIOUR
         for (auto iter = std::begin(_currentGameObject->_scripts); iter != std::end(_currentGameObject->_scripts);)
         {
@@ -1470,6 +1528,12 @@ void ImGuiManager::RenderInspector()
                 _currentGameObject->AddComponent(animator);
                 animator->SetBones(_currentGameObject->_meshRenderer->_mesh->GetBones());
                 animator->SetAnimClip(_currentGameObject->_meshRenderer->_mesh->GetAnimClip());
+            }
+
+            if (_currentGameObject->GetAudioSource() == nullptr && ImGui::Button("AudioSource"))
+            {
+                std::shared_ptr<AudioSource> audioSource = std::make_shared<AudioSource>();
+                _currentGameObject->AddComponent(audioSource);
             }
 
             IMGUIADDMONOBEHAVIOUR(GameManagerScript);
@@ -1693,6 +1757,11 @@ void ImGuiManager::RenderDragAndDrop()
     if (ImGui::Button("Add Texture"))
     {
         std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(_inputPath), s2ws(_inputPath));
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Add Audio"))
+    {
+        std::shared_ptr<AudioClip> texture = GET_SINGLE(Resources)->Load<AudioClip>(s2ws(_inputPath), s2ws(_inputPath));
     }
 
     static std::string paths = "";

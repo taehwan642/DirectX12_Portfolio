@@ -205,6 +205,17 @@ struct RTTRTerrainValue
 	int sizeZ = 0;
 };
 
+struct RTTRAudioSourceValue
+{
+	RTTRAudioSourceValue() = default;
+	RTTRAudioSourceValue(std::shared_ptr<AudioSource> audioSource)
+	{
+		tag = ws2s(audioSource->_audioClip->GetName());
+	}
+
+	std::string tag = "";
+};
+
 struct RTTRParticleSystemValue
 {
 	RTTRParticleSystemValue() = default;
@@ -276,6 +287,11 @@ struct RTTRGameObjectValue
 			particleSystemValue = RTTRParticleSystemValue(gameObject->GetParticleSystem());
 		}
 
+		if (componentOnValue[static_cast<int>(COMPONENT_TYPE::AUDIOSOURCE)] == true)
+		{
+			audioSourceValue = RTTRAudioSourceValue(gameObject->GetAudioSource());
+		}
+
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
 			RTTRMONOSAVE(GameManagerScript)
@@ -300,6 +316,7 @@ struct RTTRGameObjectValue
 	RTTRLightValue lightValue;
 	RTTRTerrainValue terrainValue;
 	RTTRParticleSystemValue particleSystemValue;
+	RTTRAudioSourceValue audioSourceValue;
 	std::string tag;
 };
 
@@ -716,6 +733,11 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.property("_computeMaterial", &Animator::_computeMaterial);
 
+	// AudioSource
+	rttr::registration::class_<AudioSource>("AudioSource")
+		.constructor<>()
+		.property("_loop", &AudioSource::_loop);
+
 #pragma region RTTRValue
 	rttr::registration::class_<RTTRGameObjectValue>("RTTRGameObjectValue")
 		.constructor<>()
@@ -729,7 +751,8 @@ RTTR_REGISTRATION
 		.property("colliderValue", &RTTRGameObjectValue::colliderValue)
 		.property("lightValue", &RTTRGameObjectValue::lightValue)
 		.property("terrainValue", &RTTRGameObjectValue::terrainValue)
-		.property("particleSystemValue", &RTTRGameObjectValue::particleSystemValue);
+		.property("particleSystemValue", &RTTRGameObjectValue::particleSystemValue)
+		.property("audioSourceValue", &RTTRGameObjectValue::audioSourceValue);
 
 	rttr::registration::class_<RTTRMaterialValue>("RTTRMaterialValue")
 		.constructor<>()
@@ -797,6 +820,11 @@ RTTR_REGISTRATION
 		.constructor<>()
 		.constructor<std::shared_ptr<ParticleSystem>>()
 		.property("materialValue", &RTTRParticleSystemValue::materialValue);
+
+	rttr::registration::class_<RTTRAudioSourceValue>("RTTRAudioSourceValue")
+		.constructor<>()
+		.constructor<std::shared_ptr<AudioSource>>()
+		.property("materialValue", &RTTRAudioSourceValue::tag);
 
 	rttr::registration::class_<RTTRMeshRendererValue>("RTTRMeshRendererValue")
 		.constructor<>()

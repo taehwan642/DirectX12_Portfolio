@@ -42,10 +42,6 @@ void Engine::Init(const WindowInfo& info)
 	GET_SINGLE(Timer)->Init();
 	GET_SINGLE(Resources)->Init();
 	GET_SINGLE(SceneManager)->Init();
-
-	source = std::make_shared<AudioSource>(); source->LoadAudio(L"../Resources/Audio/media_NightAmbienceSimple_02.wav");
-	source->SetLoop(true);
-	source->Play();
 }
 
 void Engine::Update()

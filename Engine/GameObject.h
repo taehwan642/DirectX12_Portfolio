@@ -12,6 +12,7 @@ class Terrain;
 class BaseCollider;
 class Animator;
 class Visualizer;
+class AudioSource;
 
 class GameObject : public Object, public std::enable_shared_from_this<GameObject>
 {
@@ -33,6 +34,7 @@ public:
 	std::shared_ptr<Terrain> GetTerrain();
 	std::shared_ptr<BaseCollider> GetCollider();
 	std::shared_ptr<Animator> GetAnimator();
+	std::shared_ptr<AudioSource> GetAudioSource();
 
 	void AddComponent(std::shared_ptr<Component> component);
 
@@ -96,6 +98,7 @@ private:
 	std::shared_ptr<Terrain> _terrain;
 	std::shared_ptr<BaseCollider> _baseCollider;
 	std::shared_ptr<Animator> _animator;
+	std::shared_ptr<AudioSource> _audioSource;
 
 	bool _isActive = true;
 

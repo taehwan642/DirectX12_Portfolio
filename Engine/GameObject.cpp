@@ -10,6 +10,7 @@
 #include "BaseCollider.h"
 #include "Animator.h"
 #include "Visualizer.h"
+#include "AudioSource.h"
 
 GameObject::GameObject() : Object(OBJECT_TYPE::GAMEOBJECT)
 {
@@ -181,6 +182,11 @@ std::shared_ptr<Animator> GameObject::GetAnimator()
 	return _animator;
 }
 
+std::shared_ptr<AudioSource> GameObject::GetAudioSource()
+{
+	return _audioSource;
+}
+
 void GameObject::AddComponent(std::shared_ptr<Component> component)
 {
 	component->SetGameObject(shared_from_this());
@@ -205,6 +211,8 @@ void GameObject::AddComponent(std::shared_ptr<Component> component)
 			_baseCollider = std::static_pointer_cast<BaseCollider>(component);
 		if (index == static_cast<uint8>(COMPONENT_TYPE::ANIMATOR))
 			_animator = std::static_pointer_cast<Animator>(component);
+		if (index == static_cast<uint8>(COMPONENT_TYPE::AUDIOSOURCE))
+			_audioSource = std::static_pointer_cast<AudioSource>(component);
 	}
 	else
 	{

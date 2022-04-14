@@ -7,6 +7,12 @@ void Resources::Init()
 {
 	CreateDefaultShader();
 	CreateDefaultMaterial();
+
+	AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
+#ifdef _DEBUG
+	eflags |= AudioEngine_Debug;
+#endif
+	_audioEngine = std::make_unique<AudioEngine>(eflags);
 }
 
 std::shared_ptr<Mesh> Resources::LoadPointMesh()

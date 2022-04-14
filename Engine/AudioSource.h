@@ -14,8 +14,6 @@ private:
 private:
 	friend class AudioSource;
 
-	static std::unique_ptr<DirectX::AudioEngine> _audioEngine;
-
 	std::unique_ptr<DirectX::SoundEffect> _audio;
 	std::unique_ptr<DirectX::SoundEffectInstance> _loopInstance;
 };
@@ -38,10 +36,13 @@ public:
 	virtual void FinalUpdate() override;
 
 private:
+	friend class ImGuiManager;
+	friend class RTTRAudioSourceValue;
+
 	bool _loop = false;
 	bool _playOnAwake = false;
 
-	std::shared_ptr<AudioClip> _audioClip;
+	std::shared_ptr<AudioClip> _audioClip = nullptr;
 
 
 	RTTR_REGISTRATION_FRIEND

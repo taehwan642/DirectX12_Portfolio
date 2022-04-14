@@ -523,6 +523,13 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		animator->SetBones(mesh->GetBones());
 		animator->SetAnimClip(mesh->GetAnimClip());
 	}
+
+	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::AUDIOSOURCE)] == true)
+	{
+		std::shared_ptr<AudioSource> audioSource = std::make_shared<AudioSource>();
+		object->AddComponent(audioSource);
+		audioSource->LoadAudio(s2ws(value.audioSourceValue.tag));
+	}
 	
 	LoadMonobehaviour(value, object);
 }

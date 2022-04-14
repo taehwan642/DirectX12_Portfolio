@@ -5,6 +5,7 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "AudioSource.h"
 
 class Resources
 {
@@ -39,6 +40,7 @@ public:
 	
 	std::shared_ptr<class MeshData> LoadFBX(const std::wstring& path, bool jsonLoad = true);
 
+
 private:
 	void CreateDefaultShader();
 	void CreateDefaultMaterial();
@@ -49,6 +51,9 @@ private:
 
 	using KeyObjMap = std::map<std::wstring/*key*/, std::shared_ptr<Object>>;
 	std::array<KeyObjMap, OBJECT_TYPE_COUNT> _resources;
+
+public:
+	std::unique_ptr<DirectX::AudioEngine> _audioEngine = nullptr;
 };
 
 template<typename T>
@@ -111,6 +116,8 @@ inline OBJECT_TYPE Resources::GetObjectType()
 		return OBJECT_TYPE::SHADER;
 	else if (std::is_same_v<T, Texture>)
 		return OBJECT_TYPE::TEXTURE;
+	else if (std::is_same_v<T, AudioClip>)
+		return OBJECT_TYPE::AUDIOCLIP;
 	else if (std::is_convertible_v<T, Component>)
 		return OBJECT_TYPE::COMPONENT;
 	else

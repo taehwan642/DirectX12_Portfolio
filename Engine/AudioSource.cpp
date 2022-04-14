@@ -2,8 +2,7 @@
 #include "AudioSource.h"
 #include "Resources.h"
 #include "SceneManager.h"
-
-std::unique_ptr<DirectX::AudioEngine> AudioClip::_audioEngine = nullptr;
+#include "Engine.h"
 
 AudioSource::AudioSource() : Component(COMPONENT_TYPE::AUDIOSOURCE)
 {
@@ -53,19 +52,12 @@ void AudioSource::FinalUpdate()
 
 AudioClip::AudioClip() : Object(OBJECT_TYPE::AUDIOCLIP)
 {
-	if (_audioEngine == nullptr)
-	{
-		AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-#ifdef _DEBUG
-		eflags |= AudioEngine_Debug;
-#endif
-		_audioEngine = std::make_unique<AudioEngine>(eflags);
-	}
+	
 }
 
 void AudioClip::Load(const std::wstring& path)
 {
-	_audio = std::make_unique<SoundEffect>(_audioEngine.get(),
+	_audio = std::make_unique<SoundEffect>(GET_SINGLE(Resources)->_audioEngine.get(),
 		path.c_str());
 
 	_loopInstance = _audio->CreateInstance();

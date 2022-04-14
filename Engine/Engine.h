@@ -35,6 +35,10 @@ public:
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> GetImGuiManager() { return _imguiManager; }
 #endif
+
+	// std::shared_ptr<DirectX::AudioEngine> GetAudioEngine() { return _audioEngine; };
+
+
 public:
 	void Render();
 	void RenderBegin();
@@ -65,7 +69,5 @@ private:
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> _imguiManager;
 #endif
-
-	std::shared_ptr<class AudioSource> source;
 };
 
