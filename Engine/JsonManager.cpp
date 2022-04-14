@@ -174,6 +174,12 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(s2ws(iter), s2ws(iter));
 	}
 
+	for (auto& iter : sceneValue.audioResources)
+	{
+		// audio load
+		std::shared_ptr<AudioClip> texture = GET_SINGLE(Resources)->Load<AudioClip>(s2ws(iter), s2ws(iter));
+	}
+
 	for (int i = 0; i < sceneValue.gameObjects.size(); ++i)
 	{
 		RTTRGameObjectValue value = sceneValue.gameObjects[i];

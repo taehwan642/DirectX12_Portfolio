@@ -29,6 +29,7 @@ public:
 
 	std::vector<std::wstring>& GetLoadedMeshDataTagVector() { return _loadedMeshDataTags; }
 	std::vector<std::wstring>& GetLoadedTextureTagVector() { return _loadedTextureTags; }
+	std::vector<std::wstring>& GetLoadedAudioTagVector() { return _loadedAudioTags; }
 
 	const FogData& GetFogData() { return _fogData; }
 	void SetFogData(const FogData& data) { _fogData = data; }
@@ -61,6 +62,7 @@ private:
 
 	std::vector<std::wstring> _loadedTextureTags;
 	std::vector<std::wstring> _loadedMeshDataTags;
+	std::vector<std::wstring> _loadedAudioTags;
 	std::vector<std::wstring> _sceneTags;
 
 	FogData _fogData;

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AudioSource.h"
 #include "Resources.h"
+#include "SceneManager.h"
 
 std::unique_ptr<DirectX::AudioEngine> AudioClip::_audioEngine = nullptr;
 
@@ -22,10 +23,6 @@ void AudioSource::LoadAudio(const std::wstring& path)
 void AudioSource::SetLoop(bool loop)
 {
 	_loop = loop;
-	if (loop == true && _audioClip->_loopInstance == nullptr)
-	{
-		_audioClip->_loopInstance = _audioClip->_audio->CreateInstance();
-	}
 }
 
 //void AudioSource::SetLoopVolume(float volume)
@@ -70,6 +67,14 @@ void AudioClip::Load(const std::wstring& path)
 {
 	_audio = std::make_unique<SoundEffect>(_audioEngine.get(),
 		path.c_str());
+
+	_loopInstance = _audio->CreateInstance();
+
+	if (std::find(GET_SINGLE(SceneManager)->GetLoadedAudioTagVector().begin(), GET_SINGLE(SceneManager)->GetLoadedAudioTagVector().end(),
+		path) == GET_SINGLE(SceneManager)->GetLoadedAudioTagVector().end())
+	{
+		GET_SINGLE(SceneManager)->GetLoadedAudioTagVector().push_back(path);
+	}
 }
 
 void AudioClip::Play(bool loop)

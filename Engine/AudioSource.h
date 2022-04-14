@@ -1,7 +1,7 @@
 #pragma once
 #include "Component.h"
 
-class AudioClip : Object
+class AudioClip : public Object
 {
 public:
 	AudioClip();

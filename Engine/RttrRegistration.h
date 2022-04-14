@@ -22,7 +22,7 @@
 #include "SceneManager.h"
 #include "Visualizer.h"
 #include "BoneCollider.h"
-
+#include "AudioSource.h"
 
 #include "MonoBehaviour.h"
 #include "TerrainScript.h"
@@ -318,6 +318,11 @@ struct RTTRSceneValue
 			textureResources.push_back(ws2s(iter));
 		}
 
+		for (auto& iter : GET_SINGLE(SceneManager)->_loadedAudioTags)
+		{
+			audioResources.push_back(ws2s(iter));
+		}
+
 		for (int i = 0; i < scene->_gameObjects.size(); ++i)
 		{
 			gameObjects.push_back(RTTRGameObjectValue(scene->_gameObjects[i]));
@@ -336,6 +341,7 @@ struct RTTRSceneValue
 	
 	std::vector<std::string> meshDataResources;
 	std::vector<std::string> textureResources;
+	std::vector<std::string> audioResources;
 	std::vector<RTTRGameObjectValue> gameObjects;
 	std::vector<RTTRGameObjectValue> cameraObjects;
 	std::vector<RTTRGameObjectValue> lightObjects;
@@ -804,6 +810,7 @@ RTTR_REGISTRATION
 		.constructor<std::shared_ptr<Scene>>()
 		.property("meshDataResources", &RTTRSceneValue::meshDataResources)
 		.property("textureResources", &RTTRSceneValue::textureResources)
+		.property("audioResources", &RTTRSceneValue::audioResources)
 		.property("gameObjects", &RTTRSceneValue::gameObjects)
 		.property("cameraObjects", &RTTRSceneValue::cameraObjects)
 		.property("lightObjects", &RTTRSceneValue::lightObjects);
