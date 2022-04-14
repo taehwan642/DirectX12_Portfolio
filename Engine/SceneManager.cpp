@@ -94,7 +94,10 @@ void SceneManager::LoadScene(const std::wstring& sceneName)
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::GAMEOBJECT)].clear();
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::AUDIOCLIP)].clear();
 
+#ifdef TOOL
 		IMGUIMANAGER->_currentGameObject = nullptr;
+#endif
+		GET_SINGLE(Resources)->_audioEngine->Reset();
 	}
 
 	GET_SINGLE(JsonManager)->LoadScene(ws2s(sceneName), _activeScene);

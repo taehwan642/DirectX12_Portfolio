@@ -162,7 +162,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Engine\Timer.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
@@ -171,7 +170,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Engine\Timer.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="pch.cpp">
