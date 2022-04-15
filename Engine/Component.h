@@ -29,7 +29,7 @@ class Animator;
 
 class Component : public Object
 {
-public:
+protected:
 	Component(COMPONENT_TYPE type);
 	virtual ~Component();
 

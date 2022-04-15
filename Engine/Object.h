@@ -2,10 +2,11 @@
 
 class Object
 {
-public:
+protected:
 	Object(OBJECT_TYPE type);
 	virtual ~Object();
 
+public:
 	OBJECT_TYPE GetType() { return _objectType; }
 
 	void SetName(const std::wstring& name) { _name = name; }
