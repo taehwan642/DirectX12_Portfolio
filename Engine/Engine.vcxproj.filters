@@ -37,6 +37,9 @@
     <Filter Include="Script\Effect">
       <UniqueIdentifier>{3e03eaaf-f32d-4e19-a59c-5c8d890efa5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script\Camera">
+      <UniqueIdentifier>{55025f75-3c81-4df3-bd15-5ac915c08716}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -92,9 +95,6 @@
     </ClCompile>
     <ClCompile Include="SimpleMath.cpp">
       <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="TestCameraScript.cpp">
-      <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Manager</Filter>
@@ -246,6 +246,12 @@
     <ClCompile Include="AudioSource.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="TestCameraScript.cpp">
+      <Filter>Script\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PathTraceCameraScript.cpp">
+      <Filter>Script\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -304,9 +310,6 @@
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="TestCameraScript.h">
-      <Filter>Script</Filter>
     </ClInclude>
     <ClInclude Include="Resources.h">
       <Filter>Manager</Filter>
@@ -463,6 +466,12 @@
     </ClInclude>
     <ClInclude Include="AudioSource.h">
       <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="TestCameraScript.h">
+      <Filter>Script\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PathTraceCameraScript.h">
+      <Filter>Script\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

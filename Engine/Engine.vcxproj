@@ -225,6 +225,7 @@
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PathTraceCameraScript.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RaycastManager.h" />
     <ClInclude Include="RenderTargetGroup.h" />
@@ -321,6 +322,7 @@
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PathTraceCameraScript.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
