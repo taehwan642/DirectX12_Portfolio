@@ -305,6 +305,43 @@ std::shared_ptr<Mesh> Resources::LoadTerrainMesh(int32 sizeX, int32 sizeZ)
 	return mesh;
 }
 
+std::shared_ptr<Mesh> Resources::LoadSquarePyramidMesh()
+{
+	std::shared_ptr<Mesh> findMesh = Get<Mesh>(L"SquarePyramid");
+	if (findMesh)
+		return findMesh;
+
+	float w2 = 0.5f;
+	float h2 = 0.5f;
+	float d2 = 0.5f;
+
+	std::vector<Vertex> vec(5);
+
+	vec[0] = Vertex(Vec3(-w2, -h2, +d2), Vec2(0.0f, 1.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
+	vec[1] = Vertex(Vec3(-w2, +h2, +d2), Vec2(0.0f, 0.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
+	vec[2] = Vertex(Vec3(+w2, +h2, +d2), Vec2(1.0f, 0.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
+	vec[3] = Vertex(Vec3(+w2, -h2, +d2), Vec2(1.0f, 1.0f), Vec3(0.0f, 0.0f, -1.0f), Vec3(1.0f, 0.0f, 0.0f));
+	vec[4] = Vertex(Vec3(0, 0, -d2), Vec2(1.0f, 1.0f), Vec3(0.0f, 0.0f, 1.0f), Vec3(-1.0f, 0.0f, 0.0f));
+
+	std::vector<uint32> idx(18);
+
+	// ¾Õ¸é
+	idx[0] = 0; idx[1] = 2; idx[2] = 1;
+	idx[3] = 0; idx[4] = 3; idx[5] = 2;
+	// ¿·¸é
+	idx[6] = 1; idx[7] = 5; idx[8] = 0;
+	idx[9] = 2; idx[10] = 5; idx[11] = 1;
+	idx[12] = 3; idx[13] = 5; idx[14] = 2;
+	idx[15] = 0; idx[16] = 5; idx[17] = 3;
+	
+
+	std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
+	mesh->Create(vec, idx);
+	Add(L"SquarePyramid", mesh);
+
+	return mesh;
+}
+
 std::shared_ptr<Texture> Resources::CreateTexture(const std::wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
 	const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
 	D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor)

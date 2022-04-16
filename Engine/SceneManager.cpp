@@ -35,6 +35,7 @@ void SceneManager::Init()
 	GET_SINGLE(Resources)->LoadPointMesh();
 	GET_SINGLE(Resources)->LoadRectangleMesh();
 	GET_SINGLE(Resources)->LoadSphereMesh();
+	GET_SINGLE(Resources)->LoadSquarePyramidMesh();
 
 	SetLayerName(0, L"Default");
 	SetLayerName(1, L"UI");

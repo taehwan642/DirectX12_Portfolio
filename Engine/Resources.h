@@ -31,6 +31,7 @@ public:
 	std::shared_ptr<Mesh> LoadCubeMesh();
 	std::shared_ptr<Mesh> LoadSphereMesh();
 	std::shared_ptr<Mesh> LoadTerrainMesh(int32 sizeX = 15, int32 sizeZ = 15);
+	std::shared_ptr<Mesh> LoadSquarePyramidMesh();
 
 	std::shared_ptr<Texture> CreateTexture(const std::wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
 		const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
