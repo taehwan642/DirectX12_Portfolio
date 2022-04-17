@@ -4,8 +4,6 @@
 class Transform
 {
 public:
-
-public:
 	const Vec3& GetPosition() { return _position; }
 	const Vec3& GetRotation() { return _rotation; }
 	const Vec3& GetScale() { return _scale; }
@@ -13,31 +11,7 @@ public:
 	// TEMP
 	float GetBoundingSphereRadius() { return max(max(_scale.x, _scale.y), _scale.z); }
 
-	void UpdateMatrix()
-	{
-		Matrix matRotation = Matrix::CreateRotationX(DegreeToRadian(_rotation.x));
-		matRotation *= Matrix::CreateRotationY(DegreeToRadian(_rotation.y));
-		matRotation *= Matrix::CreateRotationZ(DegreeToRadian(_rotation.z));
-
-		_matrix._11 = matRotation.Right().x * _scale.x;
-		_matrix._12 = matRotation.Right().y * _scale.x;
-		_matrix._13 = matRotation.Right().z * _scale.x;
-		_matrix._14 = 0;
-		_matrix._21 = matRotation.Up().x * _scale.y;
-		_matrix._22 = matRotation.Up().y * _scale.y;
-		_matrix._23 = matRotation.Up().z * _scale.y;
-		_matrix._24 = 0;
-		_matrix._31 = matRotation.Backward().x * _scale.z;
-		_matrix._32 = matRotation.Backward().y * _scale.z;
-		_matrix._33 = matRotation.Backward().z * _scale.z;
-		_matrix._34 = 0;
-		_matrix._41 = _position.x;
-		_matrix._42 = _position.y;
-		_matrix._43 = _position.z;
-		_matrix._44 = 1;
-
-		//_matrix = matScale * matRotation * matTranslation;
-	}
+	void UpdateMatrix();
 	const Matrix& GetMatrix() 
 	{ 
 		UpdateMatrix();

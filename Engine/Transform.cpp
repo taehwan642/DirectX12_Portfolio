@@ -8,6 +8,35 @@ Transform::Transform()
 
 }
 
+void Transform::UpdateMatrix()
+{
+	Matrix matScale = Matrix::CreateScale(_scale);
+
+	SimpleMath::Quaternion q;
+
+	float sp = 0.f, sy = 0.f, sr = 0.f;
+	float cp = 0.f, cy = 0.f, cr = 0.f;
+
+	sp = sinf(DegreeToRadian(_rotation.x) * 0.5f);
+	cp = cosf(DegreeToRadian(_rotation.x) * 0.5f);
+
+	sy = sinf(DegreeToRadian(_rotation.y) * 0.5f);
+	cy = cosf(DegreeToRadian(_rotation.y) * 0.5f);
+
+	sr = sinf(DegreeToRadian(_rotation.z) * 0.5f);
+	cr = cosf(DegreeToRadian(_rotation.z) * 0.5f);
+
+	q.w = sy * sp * sr + cy * cp * cr;
+	q.x = sy * sr * cp + sp * cy * cr;
+	q.y = sy * cp * cr - sp * sr * cy;
+	q.z = -sy * sp * cr + sr * cy * cp;
+
+	Matrix matRotation = Matrix::CreateFromQuaternion(q);
+	Matrix matTranslation = Matrix::CreateTranslation(_position);
+
+	_matrix = matScale * matRotation * matTranslation;
+}
+
 void Transform::LookAt(const Vec3& dir)
 {
 	Vec3 front = dir;
@@ -111,7 +140,6 @@ std::shared_ptr<Transform> Transform::Inverse()
 	positionResult.z = AxisZ.Dot(pos);
 
 	result->_position = positionResult;
-	// result->_position = result->_rotation * (result->_scale * -_position);
 	return result;
 }
 
@@ -132,13 +160,13 @@ std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> pa
 	AxisY.Normalize();
 	AxisZ.Normalize();
 
-	Vec3 pos = _position * parentWorldTransform->_scale;
+	Vec3 pos = _position;
 
 	positionResult.x = AxisX.Dot(pos);
 	positionResult.y = AxisY.Dot(pos);
 	positionResult.z = AxisZ.Dot(pos);
 
-	result->_position = positionResult + parentWorldTransform->_position;
+	result->_position = positionResult * parentWorldTransform->_scale + parentWorldTransform->_position;
 	return result;
 }
 
