@@ -13,6 +13,7 @@ enum class MonoBehaviourType
 	Effect,
 	InfinitePassage,
 	RenderTargetScript,
+	PathTraceCameraScript,
 	END
 };
 

@@ -393,6 +393,10 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		{
 			mesh = GET_SINGLE(Resources)->LoadSphereMesh();
 		}
+		else if (meshTag == L"SquarePyramid")
+		{
+			mesh = GET_SINGLE(Resources)->LoadSquarePyramidMesh();
+		}
 		/*else if (meshTag == L"Terrain")
 		{
 			mesh = GET_SINGLE(Resources)->LoadTerrainMesh();
@@ -481,7 +485,6 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		std::shared_ptr<Terrain> terrain = std::make_shared<Terrain>();
 		object->AddComponent(terrain);
 		terrain->Init(value.terrainValue.sizeX, value.terrainValue.sizeZ);
-
 	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::COLLIDER)] == true)
@@ -546,4 +549,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(Effect)
 	RTTRMONOLOAD(InfinitePassage)
 	RTTRMONOLOAD(RenderTargetScript)
+	RTTRMONOLOAD(PathTraceCameraScript)
 }

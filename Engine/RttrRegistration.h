@@ -35,6 +35,7 @@
 #include "Effect.h"
 #include "InfinitePassage.h"
 #include "RenderTargetScript.h"
+#include "PathTraceCameraScript.h"
 
 // Load때 필요한 오브젝트.
 
@@ -304,6 +305,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(Effect)
 			RTTRMONOSAVE(InfinitePassage)
 			RTTRMONOSAVE(RenderTargetScript)
+			RTTRMONOSAVE(PathTraceCameraScript)
 		}
 	}
 
@@ -870,6 +872,8 @@ RTTR_REGISTRATION
 	RTTRMONOREGISTER(Effect);
 	RTTRMONOREGISTER(InfinitePassage);
 	RTTRMONOREGISTER(RenderTargetScript);
+	RTTRMONOREGISTER(PathTraceCameraScript)
+		.property("_objects", &PathTraceCameraScript::_objects);
 
 #pragma endregion
 }

@@ -14,7 +14,12 @@ public:
 
 	virtual void LateUpdate() override;
 
+#ifdef TOOL
+	virtual void DragAndDrop(size_t hash) override;
+#endif
+
 private:
+	std::vector<size_t> _objects;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

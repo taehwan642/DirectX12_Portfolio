@@ -42,6 +42,7 @@
 #include "Effect.h"
 #include "InfinitePassage.h"
 #include "RenderTargetScript.h"
+#include "PathTraceCameraScript.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1422,7 +1423,7 @@ void ImGuiManager::RenderInspector()
             auto& script = *iter;
             bool erase = false;
             std::string s_scriptClassName = ws2s(script->_className);
-            if (ImGui::BeginMenu(s_scriptClassName.c_str()))
+            if (ImGui::CollapsingHeader(s_scriptClassName.c_str()))
             {
                 ImGui::PushID(s_scriptClassName.c_str());
 
@@ -1458,9 +1459,8 @@ void ImGuiManager::RenderInspector()
                 {
                     erase = true;
                 }
-                ImGui::EndMenu();
             }
-
+            
             if (erase == true)
             {
                 // 벡터는 erase되면 모든 요소를 재할당하기 때문에 모든 반복자가 무효화된다.
@@ -1570,6 +1570,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(Effect);
             IMGUIADDMONOBEHAVIOUR(InfinitePassage);
             IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
+            IMGUIADDMONOBEHAVIOUR(PathTraceCameraScript);
 
             ImGui::EndMenu();
         }
