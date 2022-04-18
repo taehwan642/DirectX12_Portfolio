@@ -1,6 +1,14 @@
 #pragma once
 #include "GameObject.h"
 
+enum class VisualizerMeshType
+{
+    SPHERE,
+    CUBE,
+    SQUAREPYRAMID,
+    END
+};
+
 class Mesh;
 class Material;
 class GameObject;
@@ -13,6 +21,7 @@ public:
 
     void SetCubeMesh();
     void SetSphereMesh();
+    void SetSquarePyramidMesh();
 
     std::shared_ptr<Mesh> _mesh;
     std::shared_ptr<Material> _material;

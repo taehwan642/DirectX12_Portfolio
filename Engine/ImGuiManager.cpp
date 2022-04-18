@@ -802,7 +802,31 @@ void ImGuiManager::RenderInspector()
         {
             _currentGameObject->_drawFrustumRaidusVisualizer = !_currentGameObject->_drawFrustumRaidusVisualizer;
         }
-        ImGui::SameLine();
+
+        // Visualizer Mesh Type ¼³Á¤
+        static VisualizerMeshType type = VisualizerMeshType::SPHERE;
+        const char* elems_names[static_cast<int>(VisualizerMeshType::END)] = { "SPHERE", "CUBE", "SQUAREPYRAMID" };
+        const char* elem_name = (static_cast<int>(type) >= 0 && static_cast<int>(type) < static_cast<int>(VisualizerMeshType::END)) ? elems_names[static_cast<int>(type)] : "Unknown";
+        if (ImGui::SliderInt("slider enum", reinterpret_cast<int*>(&type), 0, static_cast<int>(VisualizerMeshType::END) - 1, elem_name))
+        {
+            switch (type)
+            {
+            case VisualizerMeshType::SPHERE:
+                _currentGameObject->_visualizer->SetSphereMesh();
+                break;
+            case VisualizerMeshType::CUBE:
+                _currentGameObject->_visualizer->SetCubeMesh();
+                break;
+            case VisualizerMeshType::SQUAREPYRAMID:
+                _currentGameObject->_visualizer->SetSquarePyramidMesh();
+                break;
+            case VisualizerMeshType::END:
+                break;
+            default:
+                break;
+            }
+        }
+
         if (ImGui::Button("Set FrustumRadius to all child"))
         {
             for (int i = 0; i < _currentGameObject->_transform->GetChildCount(); ++i)
@@ -851,14 +875,14 @@ void ImGuiManager::RenderInspector()
 
                 if (ImGui::DragFloat3("World Position", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_position))))
                     trans->UpdateLocal();
-                if (ImGui::DragFloat3("World Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_rotation)), 0.1f))
+                if (ImGui::DragFloat3("World Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_rotation))))
                     trans->UpdateLocal();
                 if (ImGui::DragFloat3("World Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_scale))))
                     trans->UpdateLocal();
 
                 if (ImGui::DragFloat3("Local Position", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_position))))
                     trans->UpdateWorld();
-                if (ImGui::DragFloat3("Local Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_rotation)), 0.1f))
+                if (ImGui::DragFloat3("Local Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_rotation))))
                     trans->UpdateWorld();
                 if (ImGui::DragFloat3("Local Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_scale))))
                     trans->UpdateWorld();
