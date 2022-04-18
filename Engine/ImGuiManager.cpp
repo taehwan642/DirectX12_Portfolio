@@ -767,6 +767,7 @@ void ImGuiManager::RenderInspector()
         if (ImGui::InputText("Name", const_cast<char*>(input.c_str()), 64))
         {
             _currentGameObject->SetName(s2ws(input));
+            _currentGameObject->GenerateHash();
         }
 
         //std::string tempString = std::string(_currentGameObject->GetName().begin(), _currentGameObject->GetName().end());
