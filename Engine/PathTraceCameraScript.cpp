@@ -28,23 +28,61 @@ void PathTraceCameraScript::LateUpdate()
 	// Path와 Path 사이를 Area라고 부르기로 했다.
 	// 이 때 area는? Area 0이라면 Child 1과 Child 2 사이를 뜻한다.
 	int area = FindCurrentArea();
+	static float t = 0;
 
-	// t 구하기
-	Vec3 path1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
-	Vec3 path2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
-	float dist = (((path2Pos.z - path1Pos.z) - (path2Pos.z - position.z)) / (path2Pos.z - path1Pos.z));
-	float time = max(0, dist);
+	// 현재 Area가 FOLLOW인지, NON-FOLLOW인지 구별
+	// FOLLOW라면? 보간
+	if (pathParent->GetTransform()->GetChild(1 + area)->GetChildCount() == 0)
+	{
+		t = 0;
+		Vec3 path1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
+		Vec3 path2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
+		
+		Vec3 child0Pos = pathParent->GetTransform()->GetChild(0 + area)->GetWorldPosition();
+		Vec3 child1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
+		Vec3 child2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
+		Vec3 child3Pos = pathParent->GetTransform()->GetChild(3 + area)->GetWorldPosition();
+		
+		// t 구하기
+		float dist;
+		float time;
+		
+		// 그 Area를 벗어났다면? 고정 pos to b 해야 할텐데, 그건 어떻게?
+		// 이전 Area가 고정 Area였다면, 
+		if (pathParent->GetTransform()->GetChild(area)->GetChildCount() == 1)
+		{
+			Vec3 fixedPosition = pathParent->GetTransform()->GetChild(area)->GetChild(0)->GetWorldPosition();
+			dist = (((path2Pos.z - fixedPosition.z) - (path2Pos.z - position.z)) / (path2Pos.z - fixedPosition.z));
+			time = min(1, max(0, dist));
 
-	// Catmull-Rom 보간
+			// Catmull-Rom 보간
+			Vec3::CatmullRom(child0Pos, fixedPosition, child2Pos, child3Pos, time, result);
 
-	Vec3 child0Pos = pathParent->GetTransform()->GetChild(0 + area)->GetWorldPosition();
-	Vec3 child1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
-	Vec3 child2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
-	Vec3 child3Pos = pathParent->GetTransform()->GetChild(3 + area)->GetWorldPosition();
+		}
+		else
+		{
+			dist = (((path2Pos.z - path1Pos.z) - (path2Pos.z - position.z)) / (path2Pos.z - path1Pos.z));
+			time = min(1, max(0, dist));
 
-	Vec3::CatmullRom(child0Pos, child1Pos, child2Pos, child3Pos, time, result);
+			// Catmull-Rom 보간
+			Vec3::CatmullRom(child0Pos, child1Pos, child2Pos, child3Pos, time, result);
+		}
 
-	lockObject->GetTransform()->SetWorldPosition(result);
+		lockObject->GetTransform()->SetWorldPosition(result);
+	}
+	// NON-FOLLOW라면?
+	else
+	{
+		// 그 Child가 바로 영역 속 고정될 위치이니, 그곳으로 Lerp.
+		// a to 고정 pos
+		Vec3 fixedPosition = pathParent->GetTransform()->GetChild(1 + area)->GetChild(0)->GetWorldPosition();
+		if (t > 1.f)
+			t = 1.f; 
+		Vec3::Lerp(pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition(), fixedPosition, t, result);
+		t += DELTA_TIME;
+		
+		lockObject->GetTransform()->SetWorldPosition(result);
+	}
 }
 
 #ifdef TOOL
