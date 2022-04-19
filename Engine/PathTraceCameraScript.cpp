@@ -78,7 +78,20 @@ int PathTraceCameraScript::FindCurrentArea()
 	// 영역들 내에 존재. 어느 영역에 있는지 확인
 	else
 	{
-
+		bool found = false;
+		Vec3 path1Pos = pathParent->GetTransform()->GetChild(1)->GetWorldPosition();
+		path2Pos = pathParent->GetTransform()->GetChild(2)->GetWorldPosition();
+		while (found == false)
+		{
+			if (path1Pos.z < position.z && path2Pos.z > position.z)
+			{
+				found = true;
+				break;
+			}
+			++area;
+			path1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
+			path2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
+		}
 	}
 
 	return area;
