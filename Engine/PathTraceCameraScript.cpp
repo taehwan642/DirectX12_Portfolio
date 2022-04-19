@@ -19,7 +19,8 @@ void PathTraceCameraScript::LateUpdate()
 	std::shared_ptr<GameObject> pathParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(_objects[1]);
 	Vec3 position = GetTransform()->GetWorldPosition();
 	Vec3 lockObjectPos = lockObject->GetTransform()->GetWorldPosition();
-	Vec3 result = Vec3::Zero;
+	Vec3 resultPosition = Vec3::Zero;
+	Vec3 resultRotation = Vec3::Zero;
 
 	// LockObject의 z를 기준으로, n번째 path와 n + 1 path사이를 CatMull-Rom 보간해 position에 넣는다.
 	// 하지만 지금은 Camera를 움직임으로써 LockObject를 보간한다 (원하는 목표의 반대로 움직이는 것.)
@@ -35,12 +36,13 @@ void PathTraceCameraScript::LateUpdate()
 	if (pathParent->GetTransform()->GetChild(1 + area)->GetChildCount() == 0)
 	{
 		t = 0;
-		Vec3 path1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
-		Vec3 path2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
-		
+
+		std::shared_ptr<TransformComponent> child1 = pathParent->GetTransform()->GetChild(1 + area);
+		std::shared_ptr<TransformComponent> child2 = pathParent->GetTransform()->GetChild(2 + area);
+
 		Vec3 child0Pos = pathParent->GetTransform()->GetChild(0 + area)->GetWorldPosition();
-		Vec3 child1Pos = pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition();
-		Vec3 child2Pos = pathParent->GetTransform()->GetChild(2 + area)->GetWorldPosition();
+		Vec3 child1Pos = child1->GetWorldPosition();
+		Vec3 child2Pos = child2->GetWorldPosition();
 		Vec3 child3Pos = pathParent->GetTransform()->GetChild(3 + area)->GetWorldPosition();
 		
 		// t 구하기
@@ -52,23 +54,27 @@ void PathTraceCameraScript::LateUpdate()
 		if (pathParent->GetTransform()->GetChild(area)->GetChildCount() == 1)
 		{
 			Vec3 fixedPosition = pathParent->GetTransform()->GetChild(area)->GetChild(0)->GetWorldPosition();
-			dist = (((path2Pos.z - fixedPosition.z) - (path2Pos.z - position.z)) / (path2Pos.z - fixedPosition.z));
+			dist = (((child2Pos.z - fixedPosition.z) - (child2Pos.z - position.z)) / (child2Pos.z - fixedPosition.z));
 			time = min(1, max(0, dist));
 
 			// Catmull-Rom 보간
-			Vec3::CatmullRom(child0Pos, fixedPosition, child2Pos, child3Pos, time, result);
+			Vec3::CatmullRom(child0Pos, fixedPosition, child2Pos, child3Pos, time, resultPosition);
 
+			// Rotation 보간
+			Vec3::Lerp(pathParent->GetTransform()->GetChild(area)->GetChild(0)->GetWorldRotation(), 
+				child2->GetWorldRotation(), time, resultRotation);
 		}
 		else
 		{
-			dist = (((path2Pos.z - path1Pos.z) - (path2Pos.z - position.z)) / (path2Pos.z - path1Pos.z));
+			dist = (((child2Pos.z - child1Pos.z) - (child2Pos.z - position.z)) / (child2Pos.z - child1Pos.z));
 			time = min(1, max(0, dist));
 
 			// Catmull-Rom 보간
-			Vec3::CatmullRom(child0Pos, child1Pos, child2Pos, child3Pos, time, result);
-		}
+			Vec3::CatmullRom(child0Pos, child1Pos, child2Pos, child3Pos, time, resultPosition);
 
-		lockObject->GetTransform()->SetWorldPosition(result);
+			// Rotation 보간
+			Vec3::Lerp(child1->GetWorldRotation(), child2->GetWorldRotation(), time, resultRotation);
+		}
 	}
 	// NON-FOLLOW라면?
 	else
@@ -78,11 +84,16 @@ void PathTraceCameraScript::LateUpdate()
 		Vec3 fixedPosition = pathParent->GetTransform()->GetChild(1 + area)->GetChild(0)->GetWorldPosition();
 		if (t > 1.f)
 			t = 1.f; 
-		Vec3::Lerp(pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition(), fixedPosition, t, result);
+		Vec3::Lerp(pathParent->GetTransform()->GetChild(1 + area)->GetWorldPosition(), fixedPosition, t, resultPosition);
 		t += DELTA_TIME;
-		
-		lockObject->GetTransform()->SetWorldPosition(result);
+
+		// Rotation 보간
+		Vec3::Lerp(pathParent->GetTransform()->GetChild(1 + area)->GetWorldRotation(), 
+			pathParent->GetTransform()->GetChild(1 + area)->GetChild(0)->GetWorldRotation(), t, resultRotation);
 	}
+
+	lockObject->GetTransform()->SetWorldPosition(resultPosition);
+	lockObject->GetTransform()->SetWorldRotation(resultRotation);
 }
 
 #ifdef TOOL
