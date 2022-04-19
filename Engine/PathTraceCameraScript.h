@@ -19,6 +19,9 @@ public:
 #endif
 
 private:
+	int FindCurrentArea();
+
+private:
 	std::vector<size_t> _objects;
 
 	RTTR_ENABLE()
