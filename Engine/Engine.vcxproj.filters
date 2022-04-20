@@ -40,6 +40,9 @@
     <Filter Include="Script\Camera">
       <UniqueIdentifier>{55025f75-3c81-4df3-bd15-5ac915c08716}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Component\Math">
+      <UniqueIdentifier>{126d38dd-9d80-485f-b20c-447ec4bc33b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -112,9 +115,6 @@
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="MonoBehaviour.cpp">
-      <Filter>Object\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
@@ -207,9 +207,6 @@
     <ClCompile Include="MeshCollider.cpp">
       <Filter>Object\Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="TransformComponent.cpp">
-      <Filter>Object\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Sea.cpp">
       <Filter>Script</Filter>
     </ClCompile>
@@ -251,6 +248,12 @@
     </ClCompile>
     <ClCompile Include="PathTraceCameraScript.cpp">
       <Filter>Script\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Object\Component\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Object\Component\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,9 +330,6 @@
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="MonoBehaviour.h">
-      <Filter>Object\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
@@ -428,9 +428,6 @@
     <ClInclude Include="MeshCollider.h">
       <Filter>Object\Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="TransformComponent.h">
-      <Filter>Object\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Sea.h">
       <Filter>Script</Filter>
     </ClInclude>
@@ -472,6 +469,12 @@
     </ClInclude>
     <ClInclude Include="PathTraceCameraScript.h">
       <Filter>Script\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Object\Component\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Object\Component\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

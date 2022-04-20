@@ -536,7 +536,8 @@ void FBXLoader::LoadKeyframe(int32 animIndex, FbxNode* node, FbxCluster* cluster
 {
 	if (_animClips.empty())
 		return;
-
+	if (!_animClips[animIndex]->keyFrames[boneIdx].empty())
+		return;
 	FbxVector4	v1 = { 1, 0, 0, 0 };
 	FbxVector4	v2 = { 0, 0, 1, 0 };
 	FbxVector4	v3 = { 0, 1, 0, 0 };
