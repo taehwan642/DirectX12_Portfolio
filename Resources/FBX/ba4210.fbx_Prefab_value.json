@@ -28,8 +28,32 @@
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96",
         "../Resources/Texture/Particle/bubble.png",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\5e641fb8.png"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\5e641fb8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\165be1cb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\lamp",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\bayoflatnormal",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\7239a9bb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3a0657c8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\74233c7",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4f7dcdb4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\67f606a8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3228344f",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\1c787f0a",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\54478179",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4e7d0a23",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\642f450",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3fdbdcb3",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\77e422c0",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\417bffd1",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\94401a2",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\31079f27",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\79386154",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\266e25d6",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\6e51dba5",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\5725ebc4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4c5c5ebf"
     ],
+    "audioResources": [],
     "gameObjects": [
         {
             "tag": "ba4210.fbx",
@@ -42,9 +66,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -104,6 +130,9 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
@@ -117,9 +146,11 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -179,11 +210,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx0",
-            "hashValue": 3594542772680787171,
+            "tag": "ba4210.fbxLOD0_0_straight_mesh0000",
+            "hashValue": 5448057751996837502,
             "componentOnValue": [
                 true,
                 true,
@@ -192,9 +226,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -214,16 +250,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "5e641fb8"
                             },
                             {
-                                "tag": ""
+                                "tag": "165be1cb"
                             },
                             {
                                 "tag": ""
@@ -235,12 +271,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "b07_factorygate00_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "0"
+                    "tag": "LOD0_0_straight_mesh0000"
                 }
             },
             "colliderValue": {
@@ -281,11 +317,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx1",
-            "hashValue": 3593586197564432826,
+            "tag": "ba4210.fbxLOD0_1_straight_mesh0001",
+            "hashValue": 7169313571232985822,
             "componentOnValue": [
                 true,
                 true,
@@ -294,9 +333,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -316,16 +357,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "lamp"
                             },
                             {
-                                "tag": ""
+                                "tag": "bayoflatnormal"
                             },
                             {
                                 "tag": ""
@@ -337,12 +378,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "lamp"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "1"
+                    "tag": "LOD0_1_straight_mesh0001"
                 }
             },
             "colliderValue": {
@@ -383,11 +424,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx2",
-            "hashValue": 3592629622448078481,
+            "tag": "ba4210.fbxLOD0_2_straight_mesh0002",
+            "hashValue": 12298022886388037438,
             "componentOnValue": [
                 true,
                 true,
@@ -396,9 +440,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -418,16 +464,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "7239a9bb"
                             },
                             {
-                                "tag": ""
+                                "tag": "3a0657c8"
                             },
                             {
                                 "tag": ""
@@ -439,12 +485,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_Blastfurnace_Wall01_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "2"
+                    "tag": "LOD0_2_straight_mesh0002"
                 }
             },
             "colliderValue": {
@@ -485,11 +531,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx3",
-            "hashValue": 3591673047331724136,
+            "tag": "ba4210.fbxLOD0_3_straight_mesh0003",
+            "hashValue": 3465736034791381790,
             "componentOnValue": [
                 true,
                 true,
@@ -498,9 +547,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -520,16 +571,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "74233c7"
                             },
                             {
-                                "tag": ""
+                                "tag": "4f7dcdb4"
                             },
                             {
                                 "tag": ""
@@ -541,12 +592,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_duct01_AAAx_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "3"
+                    "tag": "LOD0_3_straight_mesh0003"
                 }
             },
             "colliderValue": {
@@ -587,11 +638,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx4",
-            "hashValue": 3598369073146204551,
+            "tag": "ba4210.fbxLOD0_4_straight_mesh0004",
+            "hashValue": 7705791278219895934,
             "componentOnValue": [
                 true,
                 true,
@@ -600,9 +654,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -622,16 +678,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "67f606a8"
                             },
                             {
-                                "tag": ""
+                                "tag": "3228344f"
                             },
                             {
                                 "tag": ""
@@ -643,12 +699,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_fence01_AAA1_tga"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "4"
+                    "tag": "LOD0_4_straight_mesh0004"
                 }
             },
             "colliderValue": {
@@ -689,11 +745,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx5",
-            "hashValue": 3597412498029850206,
+            "tag": "ba4210.fbxLOD0_5_straight_mesh0005",
+            "hashValue": 16325784747898413406,
             "componentOnValue": [
                 true,
                 true,
@@ -702,9 +761,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -724,16 +785,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "1c787f0a"
                             },
                             {
-                                "tag": ""
+                                "tag": "54478179"
                             },
                             {
                                 "tag": ""
@@ -745,12 +806,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_metalpanel07_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "5"
+                    "tag": "LOD0_5_straight_mesh0005"
                 }
             },
             "colliderValue": {
@@ -791,11 +852,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx6",
-            "hashValue": 3596455922913495861,
+            "tag": "ba4210.fbxLOD0_6_straight_mesh0006",
+            "hashValue": 3782375800295240894,
             "componentOnValue": [
                 true,
                 true,
@@ -804,9 +868,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -826,16 +892,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "4e7d0a23"
                             },
                             {
-                                "tag": ""
+                                "tag": "642f450"
                             },
                             {
                                 "tag": ""
@@ -847,12 +913,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_pipefloor01_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "6"
+                    "tag": "LOD0_6_straight_mesh0006"
                 }
             },
             "colliderValue": {
@@ -893,11 +959,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx7",
-            "hashValue": 3595499347797141516,
+            "tag": "ba4210.fbxLOD0_7_straight_mesh0007",
+            "hashValue": 3828891976846074526,
             "componentOnValue": [
                 true,
                 true,
@@ -906,9 +975,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -928,16 +999,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "3fdbdcb3"
                             },
                             {
-                                "tag": ""
+                                "tag": "77e422c0"
                             },
                             {
                                 "tag": ""
@@ -949,12 +1020,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_rust_frame01_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "7"
+                    "tag": "LOD0_7_straight_mesh0007"
                 }
             },
             "colliderValue": {
@@ -995,11 +1066,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx8",
-            "hashValue": 3586890171749952411,
+            "tag": "ba4210.fbxLOD0_8_straight_mesh0008",
+            "hashValue": 377873434079557518,
             "componentOnValue": [
                 true,
                 true,
@@ -1008,9 +1082,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1030,16 +1106,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "417bffd1"
                             },
                             {
-                                "tag": ""
+                                "tag": "94401a2"
                             },
                             {
                                 "tag": ""
@@ -1051,12 +1127,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_wallpanel03_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "8"
+                    "tag": "LOD0_8_straight_mesh0008"
                 }
             },
             "colliderValue": {
@@ -1097,11 +1173,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx9",
-            "hashValue": 3585933596633598066,
+            "tag": "ba4210.fbxLOD0_9_straight_mesh0009",
+            "hashValue": 15203715709282898798,
             "componentOnValue": [
                 true,
                 true,
@@ -1110,9 +1189,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1132,16 +1213,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "31079f27"
                             },
                             {
-                                "tag": ""
+                                "tag": "79386154"
                             },
                             {
                                 "tag": ""
@@ -1153,12 +1234,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "os09_pipe03_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "9"
+                    "tag": "LOD0_9_straight_mesh0009"
                 }
             },
             "colliderValue": {
@@ -1199,11 +1280,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx10",
-            "hashValue": 12755007651522395418,
+            "tag": "ba4210.fbxLOD0_10_straight_mesh0010",
+            "hashValue": 7835240928344870710,
             "componentOnValue": [
                 true,
                 true,
@@ -1212,9 +1296,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1234,16 +1320,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "266e25d6"
                             },
                             {
-                                "tag": ""
+                                "tag": "6e51dba5"
                             },
                             {
                                 "tag": ""
@@ -1255,12 +1341,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "mas_wallset02_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "10"
+                    "tag": "LOD0_10_straight_mesh0010"
                 }
             },
             "colliderValue": {
@@ -1301,11 +1387,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "ba4210.fbx11",
-            "hashValue": 12755964226638749763,
+            "tag": "ba4210.fbxLOD0_11_straight_mesh0011",
+            "hashValue": 10812589792365047046,
             "componentOnValue": [
                 true,
                 true,
@@ -1314,9 +1403,11 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1336,16 +1427,16 @@
                     {
                         "textureOnValue": [
                             true,
-                            false,
+                            true,
                             false,
                             false
                         ],
                         "textureValues": [
                             {
-                                "tag": "5e641fb8.png"
+                                "tag": "5725ebc4"
                             },
                             {
-                                "tag": ""
+                                "tag": "4c5c5ebf"
                             },
                             {
                                 "tag": ""
@@ -1357,12 +1448,12 @@
                         "shaderValue": {
                             "tag": "Deferred"
                         },
-                        "tag": "01 - Default"
+                        "tag": "rail_albedo_aaax_tga1"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "11"
+                    "tag": "LOD0_11_straight_mesh0011"
                 }
             },
             "colliderValue": {
@@ -1403,6 +1494,9 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         }
     ],

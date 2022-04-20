@@ -168,8 +168,7 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 		{
 			auto& vec = ac->keyFrames[b];
 
-			const int32 size = static_cast<int32>(vec.size());
-			frameCount = max(frameCount, static_cast<uint32>(size));
+			const int32 size = min(info.frameCount, static_cast<int32>(vec.size()));
 			info.keyFrames[b].resize(size);
 
 			for (int32 f = 0; f < size; f++)
