@@ -14,6 +14,7 @@ enum class MonoBehaviourType
 	InfinitePassage,
 	RenderTargetScript,
 	PathTraceCameraScript,
+	LaserScript,
 	END
 };
 

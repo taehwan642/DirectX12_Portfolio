@@ -43,6 +43,7 @@
 #include "InfinitePassage.h"
 #include "RenderTargetScript.h"
 #include "PathTraceCameraScript.h"
+#include "LaserScript.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1572,6 +1573,7 @@ void ImGuiManager::RenderInspector()
             IMGUIADDMONOBEHAVIOUR(InfinitePassage);
             IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
             IMGUIADDMONOBEHAVIOUR(PathTraceCameraScript);
+            IMGUIADDMONOBEHAVIOUR(LaserScript);
 
             ImGui::EndMenu();
         }

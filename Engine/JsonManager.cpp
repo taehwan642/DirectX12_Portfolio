@@ -550,4 +550,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(InfinitePassage)
 	RTTRMONOLOAD(RenderTargetScript)
 	RTTRMONOLOAD(PathTraceCameraScript)
+	RTTRMONOLOAD(LaserScript)
 }
