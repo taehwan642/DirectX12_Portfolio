@@ -12,7 +12,8 @@
         "..\\Resources\\Texture\\Sea.jpg",
         "..\\Resources\\Texture\\Sea_Normal.jpg",
         "..\\Resources\\Texture\\EnemyBullet.png",
-        "..\\Resources\\Texture\\LaserLock.png"
+        "..\\Resources\\Texture\\LaserLock.png",
+        "../Resources/Texture/Particle/bubble.png"
     ],
     "audioResources": [],
     "gameObjects": [
@@ -123,7 +124,7 @@
                 false,
                 false,
                 false,
-                false
+                true
             ],
             "transformValue": {
                 "parentHashValue": 0
@@ -159,7 +160,7 @@
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "Cube"
+                    "tag": "Rectangle"
                 }
             },
             "colliderValue": {
