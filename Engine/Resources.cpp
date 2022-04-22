@@ -690,6 +690,22 @@ void Resources::CreateDefaultShader()
 		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\enemybullet.fx", info);
 		Add<Shader>(L"EnemyBullet", shader);
 	}
+
+	// Laser Shader
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::FORWARD,
+			RASTERIZER_TYPE::CULL_BACK,
+			DEPTH_STENCIL_TYPE::LESS_NO_WRITE,
+			BLEND_TYPE::ALPHA_BLEND,
+			D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+		};
+
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\laser.fx", info);
+		Add<Shader>(L"Laser", shader);
+	}
 }
 
 void Resources::CreateDefaultMaterial()
@@ -914,5 +930,14 @@ void Resources::CreateDefaultMaterial()
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
 		Add<Material>(L"EnemyBullet", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Laser");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"LaserLock", L"..\\Resources\\Texture\\LaserLock.png");
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"Laser", material);
 	}
 }

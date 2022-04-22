@@ -537,5 +537,8 @@
     <FxCompile Include="..\Resources\Shader\enemybullet.fx">
       <Filter>Shader</Filter>
     </FxCompile>
+    <FxCompile Include="..\Resources\Shader\laser.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

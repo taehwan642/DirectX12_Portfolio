@@ -370,6 +370,7 @@
     <FxCompile Include="..\Resources\Shader\effect.fx" />
     <FxCompile Include="..\Resources\Shader\enemybullet.fx" />
     <FxCompile Include="..\Resources\Shader\forward.fx" />
+    <FxCompile Include="..\Resources\Shader\laser.fx" />
     <FxCompile Include="..\Resources\Shader\lighting.fx" />
     <FxCompile Include="..\Resources\Shader\math.fx" />
     <FxCompile Include="..\Resources\Shader\params.fx" />
