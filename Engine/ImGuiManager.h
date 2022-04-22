@@ -56,7 +56,7 @@ private:
 
 	std::string _inputPath = "";
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
-	std::queue<void(*)(void)> _functionQueue;
+	std::queue<std::function<void()>> _functionQueue;
 };
 
 #endif

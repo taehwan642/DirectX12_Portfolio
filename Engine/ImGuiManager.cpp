@@ -601,7 +601,7 @@ void ImGuiManager::RenderHierarchy()
     {
         std::string inputText(input.c_str());
         std::string path = std::string("../Output/") + inputText;
-        GET_SINGLE(SceneManager)->LoadScene(s2ws(path));
+        _functionQueue.push([=]() {  GET_SINGLE(SceneManager)->LoadScene(s2ws(path)); });
     }
     ImGui::SameLine();
     if (ImGui::Button("Set Camera Same"))
@@ -1770,8 +1770,8 @@ void ImGuiManager::RenderDragAndDrop()
     // 씬 버튼
     if (ImGui::Button("Load"))
     {
-        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
-        GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 5));
+        _functionQueue.push([=]() {  GET_SINGLE(SceneManager)->LoadScene(s2ws(finalInputPath)); });
     }
 
     // 리소스 버튼
@@ -1800,7 +1800,7 @@ void ImGuiManager::RenderDragAndDrop()
             경로 1 \n
             경로 2 \n ...
         */
-        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 6));
+        std::string finalInputPath = (_inputPath.substr(0, _inputPath.size() - 5));
         paths += finalInputPath + "\n";
     }
     ImGui::SameLine();

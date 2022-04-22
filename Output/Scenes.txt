@@ -1,3 +1,2 @@
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\PathTest
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\SeaTest2
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\SeaTest
+C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Output\LaserTest
+C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Output\ParticleTest
