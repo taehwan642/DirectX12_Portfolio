@@ -2,7 +2,7 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 197,
+            "_id": 767758,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -58,7 +58,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 202,
+            "_id": 767763,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -114,7 +114,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 207,
+            "_id": 767768,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -122,7 +122,7 @@
             "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 3488834311885664502,
+            "_hash": 1255338431150049207,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -348,12 +348,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 183,
+                                "_id": 767744,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 184,
+                                "_id": 767745,
                                 "_name": ""
                             },
                             {},
@@ -363,7 +363,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 195,
+                    "_id": 767756,
                     "_name": ""
                 }
             },
@@ -569,7 +569,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 214,
+            "_id": 767775,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -577,7 +577,7 @@
             "_drawFrustumRaidusVisualizer": false,
             "_layerIndex": 0,
             "_static": true,
-            "_hash": 6199722429804076598,
+            "_hash": 9155081854332879895,
             "_transform": {
                 "_localTransform": {
                     "_position": {
@@ -803,12 +803,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 185,
+                                "_id": 767746,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 186,
+                                "_id": 767747,
                                 "_name": ""
                             },
                             {},
@@ -818,7 +818,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 196,
+                    "_id": 767757,
                     "_name": ""
                 }
             },

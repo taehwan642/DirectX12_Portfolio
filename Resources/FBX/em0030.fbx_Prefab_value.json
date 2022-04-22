@@ -1,28 +1,42 @@
 {
     "meshDataResources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx\u0000"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx"
     ],
     "textureResources": [
-        "..\\Resources\\Texture\\Tile.png\u0000",
-        "..\\Resources\\Texture\\Leather.jpg\u0000",
-        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
-        "..\\Resources\\Texture\\Fabric.jpg\u0000",
-        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sea.jpg\u0000",
-        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
-        "../Resources/Texture/Particle/bubble.png\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\370479b7\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\2c7dcccc\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\3fb1ad5d\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826\u0000"
+        "..\\Resources\\Texture\\Tile.png",
+        "..\\Resources\\Texture\\Leather.jpg",
+        "..\\Resources\\Texture\\Leather_Normal.jpg",
+        "..\\Resources\\Texture\\Terrain\\terrain.png",
+        "..\\Resources\\Texture\\Fabric.jpg",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg",
+        "..\\Resources\\Texture\\Sci-Fi.jpg",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg",
+        "..\\Resources\\Texture\\Sea.jpg",
+        "..\\Resources\\Texture\\Sea_Normal.jpg",
+        "..\\Resources\\Texture\\EnemyBullet.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96",
+        "../Resources/Texture/Particle/bubble.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\370479b7",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\2c7dcccc",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\3fb1ad5d",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826"
     ],
+    "audioResources": [],
     "gameObjects": [
         {
-            "tag": "em0030.fbx\u0000",
+            "tag": "em0030.fbx",
             "hashValue": 9690220935289619684,
             "componentOnValue": [
                 true,
@@ -32,9 +46,13 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -55,7 +73,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -91,10 +110,13 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "em0030.fbx_mesh_root\u0000",
+            "tag": "em0030.fbx_mesh_root",
             "hashValue": 141391931242307009,
             "componentOnValue": [
                 true,
@@ -104,9 +126,13 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -127,7 +153,8 @@
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -163,11 +190,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "LOD0_0_body_mesh0000\u0000",
-            "hashValue": 3488834311885664502,
+            "tag": "em0030.fbxLOD0_0_body_mesh0000",
+            "hashValue": 1255338431150049207,
             "componentOnValue": [
                 true,
                 true,
@@ -176,9 +206,13 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -202,10 +236,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "370479b7\u0000"
+                                "tag": "370479b7"
                             },
                             {
-                                "tag": "2c7dcccc\u0000"
+                                "tag": "2c7dcccc"
                             },
                             {
                                 "tag": ""
@@ -215,18 +249,19 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Fly\u0000"
+                        "tag": "Fly"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_0_body_mesh0000\u0000"
+                    "tag": "LOD0_0_body_mesh0000"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -262,11 +297,14 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "LOD0_1_body_mesh0001\u0000",
-            "hashValue": 6199722429804076598,
+            "tag": "em0030.fbxLOD0_1_body_mesh0001",
+            "hashValue": 9155081854332879895,
             "componentOnValue": [
                 true,
                 true,
@@ -275,9 +313,13 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -301,10 +343,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "3fb1ad5d\u0000"
+                                "tag": "3fb1ad5d"
                             },
                             {
-                                "tag": "24c81826\u0000"
+                                "tag": "24c81826"
                             },
                             {
                                 "tag": ""
@@ -314,18 +356,19 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Zako\u0000"
+                        "tag": "Zako"
                     }
                 ],
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
-                    "tag": "LOD0_1_body_mesh0001\u0000"
+                    "tag": "LOD0_1_body_mesh0001"
                 }
             },
             "colliderValue": {
-                "type": "Sphere"
+                "type": "Sphere",
+                "visualizerSize": 0
             },
             "lightValue": {
                 "lightType": 0
@@ -361,6 +404,9 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         }
     ],
