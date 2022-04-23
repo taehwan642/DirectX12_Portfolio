@@ -92,6 +92,13 @@ void PathTraceCameraScript::LateUpdate()
 			pathParent->GetTransform()->GetChild(1 + area)->GetChild(0)->GetWorldRotation(), t, resultRotation);
 	}
 
+	// 만약 흔들리고 있다면?? 
+	if (_shakeTime > 0.f)
+	{
+		_shakeTime -= DELTA_TIME;
+		resultPosition += GetRandomVec3();
+	}
+
 	lockObject->GetTransform()->SetWorldPosition(resultPosition);
 	lockObject->GetTransform()->SetWorldRotation(resultRotation);
 }
@@ -144,4 +151,25 @@ int PathTraceCameraScript::FindCurrentArea()
 	}
 
 	return area;
+}
+
+void PathTraceCameraScript::ShakeCamera()
+{
+	_shakeTime = 0.5f;
+}
+
+const Vec3& PathTraceCameraScript::GetRandomVec3()
+{
+	// 현재 위치에서 셰이크
+	float min = -1.f;
+	float max = 1.f;
+
+	Vec3 result;
+	std::random_device rd;
+	std::mt19937 generator(rd());
+	std::uniform_real_distribution<float> dist(min, max);
+
+	result = Vec3(dist(generator), dist(generator), dist(generator));
+
+	return result;
 }

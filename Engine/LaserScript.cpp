@@ -7,6 +7,9 @@
 #include "TextureAnimator.h"
 #include "Input.h"
 #include "TransformComponent.h"
+#include "Scene.h"
+#include "SceneManager.h"
+#include "PathTraceCameraScript.h"
 
 void LaserScript::Init()
 {
@@ -18,6 +21,8 @@ void LaserScript::Init()
 		_animator->SetLoop(false);
 	}
 	SetFireTime(3.f);
+	_camera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"Main_Camera");
+	_cameraScript = _camera.lock()->GetComponent<PathTraceCameraScript>();
 }
 
 LaserScript::~LaserScript()
@@ -36,6 +41,7 @@ void LaserScript::LateUpdate()
 	// 만약 Fire 상태일 때?
 	else if (_laserState == LaserState::FIRE)
 	{
+		_cameraScript->ShakeCamera();
 		GetMeshRenderer()->GetMaterial()->SetTexture(0, _animator->GetTexture(1));
 		_scrollSpeed = 7.f;
 

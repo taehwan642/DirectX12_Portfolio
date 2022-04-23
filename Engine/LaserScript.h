@@ -9,6 +9,7 @@ enum class LaserState
 };
 
 class TextureAnimator;
+class PathTraceCameraScript;
 class LaserScript :
     public MonoBehaviour
 {
@@ -33,6 +34,9 @@ private:
     float _scrollSpeed = 1.f;
     
     std::shared_ptr<TextureAnimator> _animator;
+
+    std::weak_ptr<GameObject> _camera;
+    std::shared_ptr<PathTraceCameraScript> _cameraScript;
 
     RTTR_ENABLE()
     RTTR_REGISTRATION_FRIEND

@@ -18,11 +18,15 @@ public:
 	virtual void DragAndDrop(size_t hash) override;
 #endif
 
+	void ShakeCamera();
+
 private:
 	int FindCurrentArea();
+	const Vec3& GetRandomVec3();
 
 private:
 	std::vector<size_t> _objects;
+	float _shakeTime = 0.f;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
