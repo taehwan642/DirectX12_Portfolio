@@ -13,20 +13,18 @@ struct IndexBufferInfo
 	uint32						count;
 };
 
-struct KeyFrameInfo
-{
-	double	time;
-	int32	frame;
-	Vec3	scale;
-	Vec4	rotation;
-	Vec3	translate;
-};
-
 struct BoneInfo
 {
 	std::string					boneName;
 	int32					parentIdx;
 	Matrix					matOffset;
+};
+
+struct KeyFrameInfo
+{
+	Vec3	scale = Vec3::One;
+	Vec4	rotation;
+	Vec3	translate;
 };
 
 struct AnimClipInfo

@@ -1,41 +1,43 @@
 {
     "meshDataResources": [
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbx\u0000"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbx"
     ],
     "textureResources": [
-        "..\\Resources\\Texture\\Tile.png\u0000",
-        "..\\Resources\\Texture\\Leather.jpg\u0000",
-        "..\\Resources\\Texture\\Leather_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Terrain\\terrain.png\u0000",
-        "..\\Resources\\Texture\\Fabric.jpg\u0000",
-        "..\\Resources\\Texture\\Fabric_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi.jpg\u0000",
-        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\Sea.jpg\u0000",
-        "..\\Resources\\Texture\\Sea_Normal.jpg\u0000",
-        "..\\Resources\\Texture\\EnemyBullet.png\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96\u0000",
-        "../Resources/Texture/Particle/bubble.png\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Bump_Col2.jpg\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor_mirror2.jpg\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_ground_color.jpg\u0000",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor.jpg\u0000"
+        "..\\Resources\\Texture\\Tile.png",
+        "..\\Resources\\Texture\\Leather.jpg",
+        "..\\Resources\\Texture\\Leather_Normal.jpg",
+        "..\\Resources\\Texture\\Terrain\\terrain.png",
+        "..\\Resources\\Texture\\Fabric.jpg",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg",
+        "..\\Resources\\Texture\\Sci-Fi.jpg",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg",
+        "..\\Resources\\Texture\\Sea.jpg",
+        "..\\Resources\\Texture\\Sea_Normal.jpg",
+        "..\\Resources\\Texture\\EnemyBullet.png",
+        "..\\Resources\\Texture\\LaserLock.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\633f58ce",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\b36eefd",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4c09e9ba",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\a83d54",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\4897c327",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\42e720e5",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4004.fbm\\ad8de96",
+        "../Resources/Texture/Particle/bubble.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Texture\\MissileSmog\\333_18.dds",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Bump_Col2.jpg",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor_mirror2.jpg",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_ground_color.jpg",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\Dragon.fbm\\Dragon_Nor.jpg"
     ],
+    "audioResources": [],
     "gameObjects": [
         {
-            "tag": "Dragon.fbx\u0000",
+            "tag": "Dragon.fbx",
             "hashValue": 17984047650359839614,
             "componentOnValue": [
                 true,
@@ -45,9 +47,13 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -106,10 +112,13 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "Dragon.fbx_mesh_root\u0000",
+            "tag": "Dragon.fbx_mesh_root",
             "hashValue": 10295146065488708539,
             "componentOnValue": [
                 true,
@@ -119,9 +128,13 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -180,10 +193,13 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         },
         {
-            "tag": "Dragon.fbxDragon_Mesh\u0000",
+            "tag": "Dragon.fbxDragon_Mesh",
             "hashValue": 15709993466243104387,
             "componentOnValue": [
                 true,
@@ -193,9 +209,13 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -220,22 +240,22 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
-                                "tag": "Dragon_Nor_mirror2.jpg\u0000"
+                                "tag": "Dragon_Nor_mirror2.jpg"
                             },
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
                                 "tag": ""
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Game_dragon.002\u0000"
+                        "tag": "Game_dragon.002"
                     },
                     {
                         "textureOnValue": [
@@ -246,22 +266,22 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
-                                "tag": "Dragon_Nor_mirror2.jpg\u0000"
+                                "tag": "Dragon_Nor_mirror2.jpg"
                             },
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
                                 "tag": ""
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Game_dragon.003\u0000"
+                        "tag": "Game_dragon.003"
                     },
                     {
                         "textureOnValue": [
@@ -272,22 +292,22 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
-                                "tag": "Dragon_Nor_mirror2.jpg\u0000"
+                                "tag": "Dragon_Nor_mirror2.jpg"
                             },
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
                                 "tag": ""
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "EYES.001\u0000"
+                        "tag": "EYES.001"
                     },
                     {
                         "textureOnValue": [
@@ -298,10 +318,10 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Dragon_ground_color.jpg\u0000"
+                                "tag": "Dragon_ground_color.jpg"
                             },
                             {
-                                "tag": "Dragon_Nor.jpg\u0000"
+                                "tag": "Dragon_Nor.jpg"
                             },
                             {
                                 "tag": ""
@@ -311,9 +331,9 @@
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Material.002\u0000"
+                        "tag": "Material.002"
                     },
                     {
                         "textureOnValue": [
@@ -324,27 +344,27 @@
                         ],
                         "textureValues": [
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
-                                "tag": "Dragon_Nor_mirror2.jpg\u0000"
+                                "tag": "Dragon_Nor_mirror2.jpg"
                             },
                             {
-                                "tag": "Dragon_Bump_Col2.jpg\u0000"
+                                "tag": "Dragon_Bump_Col2.jpg"
                             },
                             {
                                 "tag": ""
                             }
                         ],
                         "shaderValue": {
-                            "tag": "Deferred\u0000"
+                            "tag": "Deferred"
                         },
-                        "tag": "Material.004\u0000"
+                        "tag": "Material.004"
                     }
                 ],
                 "meshRendererMaterialNumValue": 5,
                 "meshValue": {
-                    "tag": "Dragon_Mesh\u0000"
+                    "tag": "Dragon_Mesh"
                 }
             },
             "colliderValue": {
@@ -385,6 +405,9 @@
                     },
                     "tag": ""
                 }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
             }
         }
     ],

@@ -176,8 +176,6 @@ void Mesh::CreateBonesAndAnimations(class FBXLoader& loader)
 				FbxKeyFrameInfo& kf = vec[f];
 				// FBX에서 파싱한 정보들로 채워준다
 				KeyFrameInfo& kfInfo = info.keyFrames[b][f];
-				kfInfo.time = kf.time;
-				kfInfo.frame = static_cast<int32>(size);
 				kfInfo.scale.x = static_cast<float>(kf.matTransform.GetS().mData[0]);
 				kfInfo.scale.y = static_cast<float>(kf.matTransform.GetS().mData[1]);
 				kfInfo.scale.z = static_cast<float>(kf.matTransform.GetS().mData[2]);

@@ -291,8 +291,8 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 		MeshRenderInfo info;
 
 		// Animation
-		data->_meshRenders[i].mesh->_animClips = mdValue.animationValue[i].animClips;
-		data->_meshRenders[i].mesh->_bones = mdValue.animationValue[i].bones;
+		data->_meshRenders[i].mesh->_animClips = mdValue.animationValue[0].animClips;
+		data->_meshRenders[i].mesh->_bones = mdValue.animationValue[0].bones;
 
 		std::shared_ptr<Mesh> mesh = data->_meshRenders[i].mesh;
 		// BoneOffet За·Д

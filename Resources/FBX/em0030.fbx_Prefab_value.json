@@ -16,6 +16,7 @@
         "..\\Resources\\Texture\\Sea.jpg",
         "..\\Resources\\Texture\\Sea_Normal.jpg",
         "..\\Resources\\Texture\\EnemyBullet.png",
+        "..\\Resources\\Texture\\LaserLock.png",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\4ef8c1fc",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\6c73f8f",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bg4003.fbm\\2b00a6bd",
@@ -50,6 +51,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -140,6 +142,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -210,6 +213,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -317,6 +321,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,

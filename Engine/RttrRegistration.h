@@ -173,10 +173,10 @@ struct RTTRMeshDataValue
 		tag = ws2s(data->_name);
 		meshRenderValue = data->_meshRenders.size();
 
+		animationValue.push_back(RTTRAnimationValue(data->_meshRenders[0].mesh));
 		for (int i = 0; i < meshRenderValue; ++i)
 		{
 			meshValue.push_back(RTTRMeshValue(data->_meshRenders[i].mesh));
-			animationValue.push_back(RTTRAnimationValue(data->_meshRenders[i].mesh));
 			std::vector<RTTRMaterialValue> values;
 			for (int j = 0; j < data->_meshRenders[i].materials.size(); ++j)
 			{
@@ -497,9 +497,6 @@ RTTR_REGISTRATION
 	// KeyFrameInfo
 	rttr::registration::class_<KeyFrameInfo>("KeyFrameInfo")
 		.constructor<>()
-		.property("time", &KeyFrameInfo::time)
-		.property("frame", &KeyFrameInfo::frame)
-		.property("scale", &KeyFrameInfo::scale)
 		.property("rotation", &KeyFrameInfo::rotation)
 		.property("translate", &KeyFrameInfo::translate);
 
