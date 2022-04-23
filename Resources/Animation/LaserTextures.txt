@@ -1,2 +1,2 @@
-C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Resources\Texture\laserLock.png
-C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Resources\Texture\laserFire.png
+C:\Users\OWNER\Desktop\DirectX12_Portfolio\Resources\Texture\laserLock.png
+C:\Users\OWNER\Desktop\DirectX12_Portfolio\Resources\Texture\laserFire.png

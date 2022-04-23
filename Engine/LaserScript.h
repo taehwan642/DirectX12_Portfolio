@@ -25,14 +25,13 @@ public:
     virtual void LateUpdate() override;
 
     void SetFireTime(float time) { _fireTime = time; };
+    void Fire();
 
 private:
     LaserState _laserState = LaserState::LOCKON;
     float _fireTime = 10.0f;
     float _scrollSpeed = 1.f;
     
-    bool _init = false;
-
     std::shared_ptr<TextureAnimator> _animator;
 
     RTTR_ENABLE()

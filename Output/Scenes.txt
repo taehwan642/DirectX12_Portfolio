@@ -1,2 +1,1 @@
-C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Output\LaserTest
-C:\Users\taehw\Documents\GitHub\DirectX12_Portfolio\Output\ParticleTest
+C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\LaserTest
