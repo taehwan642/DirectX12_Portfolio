@@ -57,7 +57,10 @@ void LaserScript::LateUpdate()
 	{
 		GetMeshRenderer()->GetMaterial()->SetTexture(0, _animator->GetTexture(1));
 		Vec3 scale = GetTransform()->GetWorldScale();
-		scale.x -= DELTA_TIME * 6;
+		// _maxSizeX가 0보다 작다면, 초기 상태이기 때문에 이 때 scale.x를 넣어준다면 그게 최대 X 크기이다.
+		if (_maxSizeX < 0)
+			_maxSizeX = scale.x;
+		scale.x -= DELTA_TIME * _maxSizeX * _endSpeed;
 		if (scale.x < 0)
 		{
 			GetGameObject()->SetActive(false);

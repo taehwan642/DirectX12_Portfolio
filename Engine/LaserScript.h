@@ -32,7 +32,9 @@ private:
     LaserState _laserState = LaserState::LOCKON;
     float _fireTime = 10.0f;
     float _scrollSpeed = 1.f;
-    
+    float _maxSizeX = -1.f;
+    float _endSpeed = 4.f;
+
     std::shared_ptr<TextureAnimator> _animator;
 
     std::weak_ptr<GameObject> _camera;
