@@ -300,7 +300,7 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 			{
 				for (auto& keyFrame : boneKey)
 				{
-					quant::decode101010_quat(keyFrame.rotation, mdValue.animationValue[0].keyframeRotValue[keyFrameRotationIndex].encodedQuat);
+					quant::decode101010_quat(keyFrame.rotation, mdValue.animationValue[0].keyframeRotValue[keyFrameRotationIndex]);
 					++keyFrameRotationIndex;
 				}
 			}

@@ -146,16 +146,6 @@ struct RTTRLightValue
 	int lightType = 0;
 };
 
-struct RTTRKeyFrameValue
-{
-	RTTRKeyFrameValue() = default;
-	RTTRKeyFrameValue(const KeyFrameInfo& keyFrame)
-	{
-		quant::encode101010_quat(encodedQuat, keyFrame.rotation);
-	}
-	uint32_t encodedQuat = 0;
-};
-
 struct RTTRAnimationValue
 {
 	RTTRAnimationValue() = default;
@@ -170,14 +160,16 @@ struct RTTRAnimationValue
 			{
 				for (auto& keyFrame : boneKey)
 				{
-					keyframeRotValue.push_back(keyFrame);
+					uint32_t encodedQuat;
+					quant::encode101010_quat(encodedQuat, keyFrame.rotation);
+					keyframeRotValue.push_back(encodedQuat);
 				}
 			}
 		}
 	}
 
 	// 애니메이션 관련 클립 전부 저장
-	std::vector<RTTRKeyFrameValue> keyframeRotValue{};
+	std::vector<uint32_t> keyframeRotValue{};
 	std::vector<AnimClipInfo>			animClips{};
 	std::vector<BoneInfo>				bones{};
 };
@@ -818,11 +810,6 @@ RTTR_REGISTRATION
 		.property("meshValue", &RTTRMeshDataValue::meshValue)
 		.property("materialValues", &RTTRMeshDataValue::materialValues)
 		.property("animationValue", &RTTRMeshDataValue::animationValue);
-
-	rttr::registration::class_<RTTRKeyFrameValue>("RTTRKeyFrameValue")
-		.constructor<>()
-		.constructor<const KeyFrameInfo&>()
-		.property("encodedQuat", &RTTRKeyFrameValue::encodedQuat);
 
 	rttr::registration::class_<RTTRAnimationValue>("RTTRAnimationValue")
 		.constructor<>()
