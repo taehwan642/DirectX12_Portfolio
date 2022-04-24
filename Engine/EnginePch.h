@@ -55,6 +55,8 @@ using namespace Microsoft::WRL;
 #include <DirectXTK/VertexTypes.h>
 #include <DirectXTK/WICTextureLoader.h>
 
+#include <quant/quant.hpp>
+
 // °¢Á¾ lib
 #pragma comment(lib, "d3d12")
 #pragma comment(lib, "dxgi")

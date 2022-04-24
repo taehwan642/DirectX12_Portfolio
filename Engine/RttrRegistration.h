@@ -146,21 +146,38 @@ struct RTTRLightValue
 	int lightType = 0;
 };
 
+struct RTTRKeyFrameValue
+{
+	RTTRKeyFrameValue() = default;
+	RTTRKeyFrameValue(const KeyFrameInfo& keyFrame)
+	{
+		quant::encode101010_quat(encodedQuat, keyFrame.rotation);
+	}
+	uint32_t encodedQuat = 0;
+};
+
 struct RTTRAnimationValue
 {
 	RTTRAnimationValue() = default;
 	RTTRAnimationValue(std::shared_ptr<Mesh> mesh)
 	{
-		animationClipValue = mesh->_animClips.size();
-		boneValue = mesh->_bones.size();
-
 		animClips = mesh->_animClips;
 		bones = mesh->_bones;
+
+		for (auto& iter : animClips)
+		{
+			for (auto& boneKey : iter.keyFrames)
+			{
+				for (auto& keyFrame : boneKey)
+				{
+					keyframeRotValue.push_back(keyFrame);
+				}
+			}
+		}
 	}
 
-	int animationClipValue = 0;
-	int boneValue = 0;
 	// 애니메이션 관련 클립 전부 저장
+	std::vector<RTTRKeyFrameValue> keyframeRotValue{};
 	std::vector<AnimClipInfo>			animClips{};
 	std::vector<BoneInfo>				bones{};
 };
@@ -497,7 +514,6 @@ RTTR_REGISTRATION
 	// KeyFrameInfo
 	rttr::registration::class_<KeyFrameInfo>("KeyFrameInfo")
 		.constructor<>()
-		.property("rotation", &KeyFrameInfo::rotation)
 		.property("translate", &KeyFrameInfo::translate);
 
 	// BoneInfo
@@ -803,12 +819,16 @@ RTTR_REGISTRATION
 		.property("materialValues", &RTTRMeshDataValue::materialValues)
 		.property("animationValue", &RTTRMeshDataValue::animationValue);
 
+	rttr::registration::class_<RTTRKeyFrameValue>("RTTRKeyFrameValue")
+		.constructor<>()
+		.constructor<const KeyFrameInfo&>()
+		.property("encodedQuat", &RTTRKeyFrameValue::encodedQuat);
+
 	rttr::registration::class_<RTTRAnimationValue>("RTTRAnimationValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<Mesh>>()
-		.property("boneValue", &RTTRAnimationValue::boneValue)
-		.property("animationClipValue", &RTTRAnimationValue::animationClipValue)
 		.property("bones", &RTTRAnimationValue::bones)
+		.property("keyframeRotValue", &RTTRAnimationValue::keyframeRotValue)
 		.property("animClips", &RTTRAnimationValue::animClips);
 
 	rttr::registration::class_<RTTRTerrainValue>("RTTRTerrainValue")

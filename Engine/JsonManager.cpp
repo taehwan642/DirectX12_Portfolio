@@ -286,15 +286,26 @@ bool JsonManager::LoadMeshData(const std::string& path, std::shared_ptr<MeshData
 
 	for (int i = 0; i < mdValue.meshRenderValue; ++i)
 	{
-		mdValue.tag;
-		
-		MeshRenderInfo info;
-
 		// Animation
-		data->_meshRenders[i].mesh->_animClips = mdValue.animationValue[0].animClips;
-		data->_meshRenders[i].mesh->_bones = mdValue.animationValue[0].bones;
-
 		std::shared_ptr<Mesh> mesh = data->_meshRenders[i].mesh;
+		mesh->_animClips = mdValue.animationValue[0].animClips;
+		mesh->_bones = mdValue.animationValue[0].bones;
+
+		// encodeµÈ Quaternion decode
+		int keyFrameRotationIndex = 0;
+
+		for (auto& iter : mesh->_animClips)
+		{
+			for (auto& boneKey : iter.keyFrames)
+			{
+				for (auto& keyFrame : boneKey)
+				{
+					quant::decode101010_quat(keyFrame.rotation, mdValue.animationValue[0].keyframeRotValue[keyFrameRotationIndex].encodedQuat);
+					++keyFrameRotationIndex;
+				}
+			}
+		}
+
 		// BoneOffet Çà·Ä
 		const int32 boneCount = static_cast<int32>(mesh->_bones.size());
 		std::vector<Matrix> offsetVec(boneCount);
