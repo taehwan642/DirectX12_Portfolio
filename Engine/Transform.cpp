@@ -125,21 +125,19 @@ std::shared_ptr<Transform> Transform::Inverse()
 
 	Vec3 positionResult = Vec3::Zero;
 
-	Vec3 AxisX = Vec3(GetRight().x, GetUp().x, GetLook().x);
-	Vec3 AxisY = Vec3(GetRight().y, GetUp().y, GetLook().y);
-	Vec3 AxisZ = Vec3(GetRight().z, GetUp().z, GetLook().z);
+	Vec3 AxisX = Vec3(result->GetRight().x, result->GetUp().x, result->GetLook().x);
+	Vec3 AxisY = Vec3(result->GetRight().y, result->GetUp().y, result->GetLook().y);
+	Vec3 AxisZ = Vec3(result->GetRight().z, result->GetUp().z, result->GetLook().z);
 
 	AxisX.Normalize();
 	AxisY.Normalize();
 	AxisZ.Normalize();
 
-	Vec3 pos = -_position * result->_scale;
+	positionResult.x = AxisX.Dot(-_position);
+	positionResult.y = AxisY.Dot(-_position);
+	positionResult.z = AxisZ.Dot(-_position);
 
-	positionResult.x = AxisX.Dot(pos);
-	positionResult.y = AxisY.Dot(pos);
-	positionResult.z = AxisZ.Dot(pos);
-
-	result->_position = positionResult;
+	result->_position = positionResult * result->_scale;
 	return result;
 }
 
@@ -160,11 +158,9 @@ std::shared_ptr<Transform> Transform::LocalToWorld(std::shared_ptr<Transform> pa
 	AxisY.Normalize();
 	AxisZ.Normalize();
 
-	Vec3 pos = _position;
-
-	positionResult.x = AxisX.Dot(pos);
-	positionResult.y = AxisY.Dot(pos);
-	positionResult.z = AxisZ.Dot(pos);
+	positionResult.x = AxisX.Dot(_position);
+	positionResult.y = AxisY.Dot(_position);
+	positionResult.z = AxisZ.Dot(_position);
 
 	result->_position = positionResult * parentWorldTransform->_scale + parentWorldTransform->_position;
 	return result;
@@ -190,12 +186,10 @@ std::shared_ptr<Transform> Transform::WorldToLocal(std::shared_ptr<Transform> pa
 	AxisY.Normalize();
 	AxisZ.Normalize();
 
-	Vec3 pos = _position * invParent->_scale;
+	positionResult.x = AxisX.Dot(_position);
+	positionResult.y = AxisY.Dot(_position);
+	positionResult.z = AxisZ.Dot(_position);
 
-	positionResult.x = AxisX.Dot(pos);
-	positionResult.y = AxisY.Dot(pos);
-	positionResult.z = AxisZ.Dot(pos);
-
-	result->_position = positionResult + invParent->_position;
+	result->_position = positionResult * invParent->_scale + invParent->_position;
 	return result;
 }
