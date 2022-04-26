@@ -258,6 +258,9 @@
     <ClCompile Include="LaserScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
+    <ClCompile Include="NierAnimator.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -481,6 +484,9 @@
     </ClInclude>
     <ClInclude Include="LaserScript.h">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="NierAnimator.h">
+      <Filter>Object\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
