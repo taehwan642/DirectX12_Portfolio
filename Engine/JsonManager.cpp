@@ -537,10 +537,25 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		if (mesh->GetAnimClip()->size() == 1)
 		{
 			// 파일 읽어오기
-			// objString이 메시파일 이름. 여기에 _anim.txt붙여서 불러오기
 			std::vector<int> vec;
-			vec.push_back(1);
-			vec.push_back(120);
+			// objString이 메시파일 이름. 여기에 _anim.txt붙여서 불러오기
+			std::ifstream valueFile;
+			valueFile.open("../Resources/FBX/" + ws2s(objString) + "_anim.txt");
+			if (valueFile.is_open())
+			{
+				while (!valueFile.eof())
+				{
+					char arr[256];
+					valueFile.getline(arr, 256);
+					std::string line = arr;
+					if (!line.empty())
+					{
+						int value = std::stoi(line);
+						vec.push_back(value);
+					}
+				}
+			}
+			valueFile.close();
 			std::shared_ptr<NierAnimator> animator = std::make_shared<NierAnimator>();
 			object->AddComponent(animator);
 			animator->SetBones(mesh->GetBones());

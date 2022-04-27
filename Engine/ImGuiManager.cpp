@@ -52,8 +52,8 @@ ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
     desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
     desc.NumDescriptors = 1;
     desc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-
-    assert(device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap)) == S_OK);
+    HRESULT result = device->GetDevice()->CreateDescriptorHeap(&desc, IID_PPV_ARGS(&_srvDescHeap));
+    assert(result == S_OK);
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
