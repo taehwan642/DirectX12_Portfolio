@@ -30,6 +30,7 @@
 #include "BoneCollider.h"
 #include "CollisionManager.h"
 #include "AudioSource.h"
+#include "NierAnimator.h"
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
@@ -1551,6 +1552,14 @@ void ImGuiManager::RenderInspector()
             if (_currentGameObject->GetAnimator() == nullptr && ImGui::Button("Animator"))
             {
                 std::shared_ptr<Animator> animator = std::make_shared<Animator>();
+                _currentGameObject->AddComponent(animator);
+                animator->SetBones(_currentGameObject->_meshRenderer->_mesh->GetBones());
+                animator->SetAnimClip(_currentGameObject->_meshRenderer->_mesh->GetAnimClip());
+            }
+
+            if (_currentGameObject->GetAnimator() == nullptr && ImGui::Button("NierAnimator"))
+            {
+                std::shared_ptr<NierAnimator> animator = std::make_shared<NierAnimator>();
                 _currentGameObject->AddComponent(animator);
                 animator->SetBones(_currentGameObject->_meshRenderer->_mesh->GetBones());
                 animator->SetAnimClip(_currentGameObject->_meshRenderer->_mesh->GetAnimClip());

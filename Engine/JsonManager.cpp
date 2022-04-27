@@ -532,10 +532,21 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::ANIMATOR)] == true)
 	{
-		std::shared_ptr<Animator> animator = std::make_shared<Animator>();
-		object->AddComponent(animator);
-		animator->SetBones(mesh->GetBones());
-		animator->SetAnimClip(mesh->GetAnimClip());
+		// 만약 애니메이션이 1개라면
+		if (mesh->GetAnimClip()->size() == 1)
+		{
+			std::shared_ptr<NierAnimator> animator = std::make_shared<NierAnimator>();
+			object->AddComponent(animator);
+			animator->SetBones(mesh->GetBones());
+			animator->SetAnimClip(mesh->GetAnimClip());
+		}
+		else
+		{
+			std::shared_ptr<Animator> animator = std::make_shared<Animator>();
+			object->AddComponent(animator);
+			animator->SetBones(mesh->GetBones());
+			animator->SetAnimClip(mesh->GetAnimClip());
+		}
 	}
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::AUDIOSOURCE)] == true)

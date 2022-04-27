@@ -23,6 +23,7 @@
 #include "Visualizer.h"
 #include "BoneCollider.h"
 #include "AudioSource.h"
+#include "NierAnimator.h"
 
 #include "MonoBehaviour.h"
 #include "TerrainScript.h"
@@ -741,6 +742,11 @@ RTTR_REGISTRATION
 	rttr::registration::class_<Animator>("Animator")
 		.constructor<>()
 		.property("_computeMaterial", &Animator::_computeMaterial);
+	
+	// NierAnimator
+	rttr::registration::class_<NierAnimator>("NierAnimator")
+		.constructor<>()
+		.property("_computeMaterial", &NierAnimator::_computeMaterial);
 
 	// AudioSource
 	rttr::registration::class_<AudioSource>("AudioSource")
