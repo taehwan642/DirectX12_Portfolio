@@ -28,9 +28,10 @@ public:
 private:
 	friend class ImGuiManager;
 
+
+protected:
 	const std::vector<BoneInfo>* _bones;
 	const std::vector<AnimClipInfo>* _animClips;
-
 	float							_updateTime = 0.f;
 	int32							_clipIndex = 0;
 	int32							_frame = 0;
@@ -40,7 +41,7 @@ private:
 	std::shared_ptr<Material>			_computeMaterial;
 	std::shared_ptr<StructuredBuffer>	_boneFinalMatrix;  // 특정 프레임의 최종 행렬
 	bool							_boneFinalUpdated = false;
-	bool paused = false;
+	bool _paused = false;
 
 	RTTR_REGISTRATION_FRIEND
 };

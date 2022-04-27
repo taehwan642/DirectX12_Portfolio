@@ -19,7 +19,7 @@ Animator::~Animator()
 
 void Animator::FinalUpdate()
 {
-	if (paused == true)
+	if (_paused == true)
 		return;
 
 	_updateTime += DELTA_TIME;

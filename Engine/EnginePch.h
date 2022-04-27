@@ -16,6 +16,7 @@
 #include <queue>
 #include <fstream>
 #include <random>
+#include <numeric>
 
 #include <filesystem>
 

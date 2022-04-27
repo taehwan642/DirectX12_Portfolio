@@ -1313,7 +1313,7 @@ void ImGuiManager::RenderInspector()
 
                 if (ImGui::Button("Play/Pause"))
                 {
-                    animator->paused = !animator->paused;
+                    animator->_paused = !animator->_paused;
                 }
 
 
@@ -1330,6 +1330,9 @@ void ImGuiManager::RenderInspector()
                     stringVec.push_back((*animator->_animClips)[i].animName);
                 }
 
+                // NierAnimator이라면?
+                // Selected Animation보다 Clip Index (InputInt)로 세팅.
+                
                 std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
                 std::string comboName = "Selected Animation";
                 if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))

@@ -368,6 +368,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 	object->SetName(s2ws(value.tag));
 
 	object->_hash = value.hashValue;
+	std::wstring objString;
 
 	if (value.componentOnValue[static_cast<uint8>(COMPONENT_TYPE::TRANSFORM)] == true)
 	{
@@ -417,7 +418,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 			// mesh = GET_SINGLE(Resources)->Get<Mesh>(meshTag);
 			// 앞에 fbx 가져오기
 			std::wstring name = s2ws(value.tag);
-			std::wstring objString = name;
+			objString = name;
 			if (size_t pos = name.find_last_of(L"."); pos != std::wstring::npos)
 			{
 				// .fbx 까지
@@ -535,10 +536,16 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		// 만약 애니메이션이 1개라면
 		if (mesh->GetAnimClip()->size() == 1)
 		{
+			// 파일 읽어오기
+			// objString이 메시파일 이름. 여기에 _anim.txt붙여서 불러오기
+			std::vector<int> vec;
+			vec.push_back(1);
+			vec.push_back(120);
 			std::shared_ptr<NierAnimator> animator = std::make_shared<NierAnimator>();
 			object->AddComponent(animator);
 			animator->SetBones(mesh->GetBones());
 			animator->SetAnimClip(mesh->GetAnimClip());
+			animator->SetAnimationFrames(vec);
 		}
 		else
 		{
