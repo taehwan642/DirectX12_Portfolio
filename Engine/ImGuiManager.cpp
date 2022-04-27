@@ -1332,27 +1332,40 @@ void ImGuiManager::RenderInspector()
 
                 // NierAnimator이라면?
                 // Selected Animation보다 Clip Index (InputInt)로 세팅.
-                
-                std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
-                std::string comboName = "Selected Animation";
-                if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                if (std::dynamic_pointer_cast<NierAnimator>(animator) != nullptr)
                 {
-                    for (int n = 0; n < stringVec.size(); n++)
+                    std::shared_ptr<NierAnimator> nierAnimator = std::static_pointer_cast<NierAnimator>(animator);
+                    if (ImGui::InputInt("Animation Index", &nierAnimator->_currentAnimIndex))
                     {
-                        const bool is_selected = (item_current_idx == n);
-                        if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                        if (nierAnimator->_currentAnimIndex >= nierAnimator->_animFrames.size())
                         {
-                            animator->_clipIndex = n;
-                            animator->Play(animator->_clipIndex);
-                            animator->_frame = 0;
+                            nierAnimator->_currentAnimIndex = nierAnimator->_animFrames.size() - 1;
                         }
-
-                        if (is_selected)
-                            ImGui::SetItemDefaultFocus();
                     }
-                    ImGui::EndCombo();
                 }
+                else
+                {
+                    std::string combo_preview_value = stringVec[item_current_idx];  // Pass in the preview value visible before opening the combo (it could be anything)
+                    std::string comboName = "Selected Animation";
+                    if (ImGui::BeginCombo(comboName.c_str(), combo_preview_value.c_str()))
+                    {
+                        for (int n = 0; n < stringVec.size(); n++)
+                        {
+                            const bool is_selected = (item_current_idx == n);
+                            if (ImGui::Selectable(stringVec[n].c_str(), is_selected))
+                            {
+                                animator->_clipIndex = n;
+                                animator->Play(animator->_clipIndex);
+                                animator->_frame = 0;
+                            }
 
+                            if (is_selected)
+                                ImGui::SetItemDefaultFocus();
+                        }
+                        ImGui::EndCombo();
+                    }
+                }
+                
                 const AnimClipInfo& animClip = animator->_animClips->at(animator->_clipIndex);
                 ImGui::SliderInt("Frame", &animator->_frame, 0, animClip.frameCount - 1);
                 ImGui::Text("Frame Ratio : %d", animator->_frameRatio);
