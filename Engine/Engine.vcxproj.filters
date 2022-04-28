@@ -189,7 +189,7 @@
     <ClCompile Include="GameManagerScript.cpp">
       <Filter>Script</Filter>
     </ClCompile>
-    <ClCompile Include="CubeCollider.cpp">
+    <ClCompile Include="BoxCollider.cpp">
       <Filter>Object\Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="TerrainScript.cpp">
@@ -413,7 +413,7 @@
     <ClInclude Include="GameManagerScript.h">
       <Filter>Script</Filter>
     </ClInclude>
-    <ClInclude Include="CubeCollider.h">
+    <ClInclude Include="BoxCollider.h">
       <Filter>Object\Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="TerrainScript.h">

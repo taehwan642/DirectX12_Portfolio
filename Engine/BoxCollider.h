@@ -1,11 +1,11 @@
 #pragma once
 #include "BaseCollider.h"
-class CubeCollider :
+class BoxCollider :
     public BaseCollider
 {
 public:
-	CubeCollider();
-	virtual ~CubeCollider();
+	BoxCollider();
+	virtual ~BoxCollider();
 
 	virtual void FinalUpdate() override;
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;

@@ -10,7 +10,7 @@
 #include "Mesh.h"
 #include "MeshData.h"
 #include "BaseCollider.h"
-#include "CubeCollider.h"
+#include "BoxCollider.h"
 #include "SphereCollider.h"
 #include "MeshCollider.h"
 #include "Camera.h"
@@ -567,11 +567,11 @@ RTTR_REGISTRATION
 		.property("_colliderType", &BaseCollider::_colliderType);
 
 	// CubeCollider
-	rttr::registration::class_<CubeCollider>("CubeCollider")
+	rttr::registration::class_<BoxCollider>("BoxCollider")
 		.constructor<>()
 		.property("_draw", &BaseCollider::_draw)
-		.property("_extents", &CubeCollider::_extents)
-		.property("_center", &CubeCollider::_center)
+		.property("_extents", &BoxCollider::_extents)
+		.property("_center", &BoxCollider::_center)
 		.property("_colliderType", &BaseCollider::_colliderType);
 
 	// MeshCollider
@@ -726,7 +726,7 @@ RTTR_REGISTRATION
 	rttr::registration::enumeration<ColliderType>("ColliderType")
 		(
 			rttr::value("Sphere", ColliderType::Sphere),
-			rttr::value("Cube", ColliderType::Cube),
+			rttr::value("Cube", ColliderType::Box),
 			rttr::value("Mesh", ColliderType::Mesh),
 			rttr::value("Bone", ColliderType::Bone)
 		);

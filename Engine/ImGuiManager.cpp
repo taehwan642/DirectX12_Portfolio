@@ -21,7 +21,7 @@
 #include "Material.h"
 #include "Shader.h"
 #include "SphereCollider.h"
-#include "CubeCollider.h"
+#include "BoxCollider.h"
 #include "Resources.h"
 #include "JsonManager.h"
 #include "MeshCollider.h"
@@ -455,7 +455,7 @@ void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphe
     }
 }
 
-void ImGuiManager::RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider)
+void ImGuiManager::RenderBoxColliderData(std::shared_ptr<BoxCollider> cubeCollider)
 {
     ImGui::Text("Type : Cube");
 
@@ -1268,10 +1268,10 @@ void ImGuiManager::RenderInspector()
                     RenderSphereColliderData(sphereCollider);
                     break;
                 }
-                case ColliderType::Cube:
+                case ColliderType::Box:
                 {
-                    std::shared_ptr<CubeCollider> cubeCollider = std::static_pointer_cast<CubeCollider>(collider);
-                    RenderCubeColliderData(cubeCollider);
+                    std::shared_ptr<BoxCollider> cubeCollider = std::static_pointer_cast<BoxCollider>(collider);
+                    RenderBoxColliderData(cubeCollider);
                     break;
                 }
                 case ColliderType::Mesh:
@@ -1544,9 +1544,9 @@ void ImGuiManager::RenderInspector()
                     _currentGameObject->AddComponent(std::make_shared<SphereCollider>());
                 }
 
-                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Cube Collider"))
+                if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Box Collider"))
                 {
-                    _currentGameObject->AddComponent(std::make_shared<CubeCollider>());
+                    _currentGameObject->AddComponent(std::make_shared<BoxCollider>());
                 }
 
                 if (_currentGameObject->GetCollider() == nullptr && ImGui::Button("Mesh Collider"))

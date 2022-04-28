@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CubeCollider.h"
+#include "BoxCollider.h"
 #include "GameObject.h"
 #include "TransformComponent.h"
 #include "Shader.h"
@@ -10,17 +10,17 @@
 #include "Scene.h"
 #include "Visualizer.h"
 
-CubeCollider::CubeCollider() : BaseCollider(ColliderType::Cube)
+BoxCollider::BoxCollider() : BaseCollider(ColliderType::Box)
 {
 	_colliderVisualizers.push_back(std::make_shared<Visualizer>());
 	_colliderVisualizers[0]->SetCubeMesh();
 }
 
-CubeCollider::~CubeCollider()
+BoxCollider::~BoxCollider()
 {
 }
 
-void CubeCollider::FinalUpdate()
+void BoxCollider::FinalUpdate()
 {
 	if (_draw)
 	{
@@ -31,7 +31,7 @@ void CubeCollider::FinalUpdate()
 	_boundingBox.Extents = _extents = GetGameObject()->GetTransform()->GetWorldScale();
 }
 
-bool CubeCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
+bool BoxCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)
 {
 	return _boundingBox.Intersects(rayOrigin, rayDir, OUT distance);
 }

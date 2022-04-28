@@ -197,7 +197,7 @@
     <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="CubeCollider.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
@@ -294,7 +294,7 @@
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="CubeCollider.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManagerScript.cpp" />

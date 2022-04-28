@@ -8,7 +8,7 @@ class Camera;
 class Mesh;
 class SphereCollider;
 class Texture;
-class CubeCollider;
+class BoxCollider;
 class MeshCollider;
 class Scene;
 class BoneCollider;
@@ -34,7 +34,7 @@ private:
 	void RenderMaterialData(int materialIndex, std::shared_ptr<Material> material);
 	void RenderCameraData(std::shared_ptr<Camera> camera);
 	void RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider);
-	void RenderCubeColliderData(std::shared_ptr<CubeCollider> cubeCollider);
+	void RenderBoxColliderData(std::shared_ptr<BoxCollider> cubeCollider);
 	void RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider);
 	void RenderBoneColliderData(std::shared_ptr<BoneCollider> boneCollider);
 	void RenderMatrixData(const Matrix& matrix);

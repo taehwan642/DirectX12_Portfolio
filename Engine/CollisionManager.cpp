@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CollisionManager.h"
 #include "GameObject.h"
-#include "CubeCollider.h"
+#include "BoxCollider.h"
 #include "SphereCollider.h"
 #include "MeshCollider.h"
 #include "BoneCollider.h"
@@ -64,7 +64,7 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					}
 					break;
 				}
-				case ColliderType::Cube:
+				case ColliderType::Box:
 					break;
 				case ColliderType::Mesh:
 					break;
@@ -177,7 +177,7 @@ bool CollisionManager::CheckCollisionSphere(const Vec3& srcPos, float srcRadius,
 	return length <= (srcRadius + dstRadius);
 }
 
-bool CollisionManager::CheckCollisionBox(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius)
+bool CollisionManager::CheckCollisionBox(const Vec3& srcPos, const Vec3& srcExt, const Vec3& dstPos, const Vec3& dstExt)
 {
     return false;
 }

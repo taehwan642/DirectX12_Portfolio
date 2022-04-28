@@ -9,7 +9,7 @@ class Visualizer;
 enum class ColliderType
 {
 	Sphere,
-	Cube,
+	Box,
 	Mesh,
 	Bone
 };

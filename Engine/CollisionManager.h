@@ -22,7 +22,7 @@ public:
 
 private:
 	bool CheckCollisionSphere(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
-	bool CheckCollisionBox(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
+	bool CheckCollisionBox(const Vec3& srcPos, const Vec3& srcExt, const Vec3& dstPos, const Vec3& dstExt);
 	bool CheckCollisionSphereBox(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
 	bool CheckCollisionSpherePoint(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
 

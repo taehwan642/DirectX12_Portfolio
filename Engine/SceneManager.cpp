@@ -11,7 +11,7 @@
 #include "Light.h"
 
 #include "ImGuiManager.h"
-#include "CubeCollider.h"
+#include "BoxCollider.h"
 #include "TerrainScript.h"
 #include "JsonManager.h"
 #include "Animator.h"
