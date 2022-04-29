@@ -17,7 +17,7 @@ private:
 	BoundingBox _boundingBox;
 
 	Vec3 _center;
-	Vec3 _extents;
+	Vec3 _extents = Vec3::One;
 
 	RTTR_REGISTRATION_FRIEND
 	RTTR_ENABLE()

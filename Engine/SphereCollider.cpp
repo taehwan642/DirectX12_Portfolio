@@ -28,8 +28,6 @@ void SphereCollider::FinalUpdate()
 	}
 
 	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
-
-	Vec3 scale = GetGameObject()->GetTransform()->GetWorldScale();
 	_boundingSphere.Radius = _radius;
 }
 
