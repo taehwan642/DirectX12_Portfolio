@@ -21,10 +21,9 @@ public:
 	void DeleteObject(CollisionObjectType eType);
 
 private:
-	bool CheckCollisionSphere(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
-	bool CheckCollisionBox(const Vec3& srcPos, const Vec3& srcExt, const Vec3& dstPos, const Vec3& dstExt);
-	bool CheckCollisionSphereBox(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
-	bool CheckCollisionSpherePoint(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius);
+	bool CheckCollisionSphere(const BoundingSphere& srcCollider, const BoundingSphere& dstCollider);
+	bool CheckCollisionBox(const BoundingBox& srcCollider, const BoundingBox& dstCollider);
+	bool CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingBox& dstCollider);
 
 private:
 	std::list<std::shared_ptr<GameObject>> _listObject[static_cast<int>(CollisionObjectType::END)];

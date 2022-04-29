@@ -49,7 +49,7 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					std::shared_ptr<SphereCollider> srcCollider = std::static_pointer_cast<SphereCollider>(srcObj->GetCollider());
 					std::shared_ptr<SphereCollider> dstCollider = std::static_pointer_cast<SphereCollider>(dstObj->GetCollider());
 				
-					bool result = CheckCollisionSphere(srcCollider->GetTransform()->GetWorldPosition(), srcCollider->GetRadius(), dstCollider->GetTransform()->GetWorldPosition(), dstCollider->GetRadius());
+					bool result = CheckCollisionSphere(srcCollider->_boundingSphere, dstCollider->_boundingSphere);
 					if (result == true)
 					{
 						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
@@ -65,6 +65,24 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					break;
 				}
 				case ColliderType::Box:
+				{
+					std::shared_ptr<BoxCollider> srcCollider = std::static_pointer_cast<BoxCollider>(srcObj->GetCollider());
+					std::shared_ptr<BoxCollider> dstCollider = std::static_pointer_cast<BoxCollider>(dstObj->GetCollider());
+
+					bool result = CheckCollisionBox(srcCollider->_boundingBox, dstCollider->_boundingBox);
+					if (result == true)
+					{
+						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
+						for (auto& iter : srcObj->_scripts)
+						{
+							iter->OnCollisionEnter(dstCollider);
+						}
+						for (auto& iter : dstObj->_scripts)
+						{
+							iter->OnCollisionEnter(srcCollider);
+						}
+					}
+				}
 					break;
 				case ColliderType::Mesh:
 					break;
@@ -81,7 +99,7 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 						{
 							const BoneColliderInfo& dstBCInfo = dstCollider->GetBoneColliders()[i];
 
-							bool result = CheckCollisionSphere(srcBCInfo.sphere.Center, srcBCInfo.sphere.Radius, dstBCInfo.sphere.Center, dstBCInfo.sphere.Radius);
+							bool result = CheckCollisionSphere(srcBCInfo.sphere, dstBCInfo.sphere);
 							if (result == true)
 							{
 								// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
@@ -123,8 +141,7 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 				{
 					const BoneColliderInfo& boneColliderInfo = boneCollider->GetBoneColliders()[i];
 
-					bool result = CheckCollisionSphere(boneColliderInfo.sphere.Center, boneColliderInfo.sphere.Radius, 
-						sphereCollider->GetTransform()->GetWorldPosition(), sphereCollider->GetRadius());
+					bool result = CheckCollisionSphere(boneColliderInfo.sphere, sphereCollider->_boundingSphere);
 					if (result == true)
 					{
 						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
@@ -154,6 +171,52 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					}
 				}
 			}
+
+			else if ((srcColliderType == ColliderType::Sphere && dstColliderType == ColliderType::Box)
+					|| (srcColliderType == ColliderType::Box && dstColliderType == ColliderType::Sphere))
+			{
+				std::shared_ptr<SphereCollider> sphereCollider = nullptr;
+				std::shared_ptr<BoxCollider> boxCollider = nullptr;
+				if (srcColliderType == ColliderType::Sphere)
+				{
+					sphereCollider = std::static_pointer_cast<SphereCollider>(srcObj->GetCollider());
+					boxCollider = std::static_pointer_cast<BoxCollider>(dstObj->GetCollider());
+				}
+				else if (srcColliderType == ColliderType::Box)
+				{
+					sphereCollider = std::static_pointer_cast<SphereCollider>(dstObj->GetCollider());
+					boxCollider = std::static_pointer_cast<BoxCollider>(srcObj->GetCollider());
+				}
+
+				bool result = CheckCollisionSphereBox(sphereCollider->_boundingSphere, boxCollider->_boundingBox);
+				if (result == true)
+				{
+					// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
+					if (srcColliderType == ColliderType::Sphere)
+					{
+						for (auto& iter : srcObj->_scripts)
+						{
+							iter->OnCollisionEnter(boxCollider);
+						}
+						for (auto& iter : dstObj->_scripts)
+						{
+							iter->OnCollisionEnter(sphereCollider);
+						}
+					}
+					else if (srcColliderType == ColliderType::Box)
+					{
+						for (auto& iter : srcObj->_scripts)
+						{
+							iter->OnCollisionEnter(sphereCollider);
+						}
+						for (auto& iter : dstObj->_scripts)
+						{
+							iter->OnCollisionEnter(boxCollider);
+						}
+					}
+
+				}
+			}
 		}
 	}
 }
@@ -169,25 +232,25 @@ void CollisionManager::DeleteObject(CollisionObjectType eType)
 	_listObject[static_cast<int>(eType)].clear();
 }
 
-bool CollisionManager::CheckCollisionSphere(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius)
+bool CollisionManager::CheckCollisionSphere(const BoundingSphere& srcCollider, const BoundingSphere& dstCollider)
 {
-	Vec3 dir = (srcPos - dstPos);
-	float length = dir.Length();
-
-	return length <= (srcRadius + dstRadius);
+	return srcCollider.Intersects(dstCollider);
 }
 
-bool CollisionManager::CheckCollisionBox(const Vec3& srcPos, const Vec3& srcExt, const Vec3& dstPos, const Vec3& dstExt)
+bool CollisionManager::CheckCollisionBox(const BoundingBox& srcCollider, const BoundingBox& dstCollider)
 {
-    return false;
+	// AABB
+	return srcCollider.Intersects(dstCollider);
 }
 
-bool CollisionManager::CheckCollisionSphereBox(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius)
+bool CollisionManager::CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingBox& dstCollider)
 {
-    return false;
-}
+	Vec3 pointOnRect;
+	pointOnRect.x = std::clamp(srcCollider.Center.x, (dstCollider.Center.x - dstCollider.Extents.x / 2.f), (dstCollider.Center.x + dstCollider.Extents.x / 2.f));
+	pointOnRect.y = std::clamp(srcCollider.Center.y, (dstCollider.Center.y - dstCollider.Extents.y / 2.f), (dstCollider.Center.y + dstCollider.Extents.y / 2.f));
+	pointOnRect.z = std::clamp(srcCollider.Center.z, (dstCollider.Center.z - dstCollider.Extents.z / 2.f), (dstCollider.Center.z + dstCollider.Extents.z / 2.f));
 
-bool CollisionManager::CheckCollisionSpherePoint(const Vec3& srcPos, float srcRadius, const Vec3& dstPos, float dstRadius)
-{
-    return false;
+	Vec3 circleToRectPoint = pointOnRect - srcCollider.Center;
+
+	return circleToRectPoint.LengthSquared() < srcCollider.Radius * srcCollider.Radius;
 }

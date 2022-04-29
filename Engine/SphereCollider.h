@@ -18,7 +18,8 @@ public:
 
 private:
 	friend class ImGuiManager;
-	
+	friend class CollisionManager;
+
 	// Local ±‚¡ÿ
 	float		_radius = 1.f;
 	Vec3		_center = Vec3(0, 0, 0);

@@ -34,7 +34,7 @@ private:
 	void RenderMaterialData(int materialIndex, std::shared_ptr<Material> material);
 	void RenderCameraData(std::shared_ptr<Camera> camera);
 	void RenderSphereColliderData(std::shared_ptr<SphereCollider> sphereCollider);
-	void RenderBoxColliderData(std::shared_ptr<BoxCollider> cubeCollider);
+	void RenderBoxColliderData(std::shared_ptr<BoxCollider> boxCollider);
 	void RenderMeshColliderData(std::shared_ptr<MeshCollider> meshCollider);
 	void RenderBoneColliderData(std::shared_ptr<BoneCollider> boneCollider);
 	void RenderMatrixData(const Matrix& matrix);

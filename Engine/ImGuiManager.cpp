@@ -455,29 +455,29 @@ void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphe
     }
 }
 
-void ImGuiManager::RenderBoxColliderData(std::shared_ptr<BoxCollider> cubeCollider)
+void ImGuiManager::RenderBoxColliderData(std::shared_ptr<BoxCollider> boxCollider)
 {
-    ImGui::Text("Type : Cube");
+    ImGui::Text("Type : Box");
 
-    ImGui::Text("Center : %f %f %f", cubeCollider->_boundingBox.Center.x, cubeCollider->_boundingBox.Center.y, cubeCollider->_boundingBox.Center.z);
+    ImGui::Text("Center : %f %f %f", boxCollider->_boundingBox.Center.x, boxCollider->_boundingBox.Center.y, boxCollider->_boundingBox.Center.z);
     ImGui::Text("Scale : %f %f %f", 
-        cubeCollider->_boundingBox.Extents.x, 
-        cubeCollider->_boundingBox.Extents.y,
-        cubeCollider->_boundingBox.Extents.z);
+        boxCollider->_boundingBox.Extents.x, 
+        boxCollider->_boundingBox.Extents.y,
+        boxCollider->_boundingBox.Extents.z);
 
-    ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&cubeCollider->_colliderVisualizers[0]->_transform->_worldTransform->_scale)));
+    ImGui::DragFloat3("Collider Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&boxCollider->_colliderVisualizers[0]->_transform->_worldTransform->_scale)));
 
     if (ImGui::CollapsingHeader("ColliderMeshData"))
     {
         if (ImGui::BeginMenu("Mesh"))
         {
-            RenderMeshData(cubeCollider->_colliderVisualizers[0]->_meshRenderer->_mesh);
+            RenderMeshData(boxCollider->_colliderVisualizers[0]->_meshRenderer->_mesh);
             ImGui::EndMenu();
         }
 
         if (ImGui::BeginMenu("Material"))
         {
-            RenderMaterialData(0, cubeCollider->_colliderVisualizers[0]->_meshRenderer->_materials[0]);
+            RenderMaterialData(0, boxCollider->_colliderVisualizers[0]->_meshRenderer->_materials[0]);
             ImGui::EndMenu();
         }
     }

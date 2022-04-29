@@ -12,6 +12,7 @@ public:
 
 private:
 	friend class ImGuiManager;
+	friend class CollisionManager;
 
 	BoundingBox _boundingBox;
 
