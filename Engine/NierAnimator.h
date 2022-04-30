@@ -17,6 +17,7 @@ public:
 private:
 	friend class ImGuiManager;
 
+	int _changedFrame = -1;
 	int _currentAnimIndex = 0; // _clipIndex¶û Çò°¥¸®¸é ¾ÈµÊ.
 	int _fullAnimFrame = 0;
 	std::vector<Vec2> _animFrames;

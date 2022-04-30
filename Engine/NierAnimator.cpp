@@ -21,8 +21,8 @@ void NierAnimator::SetAnimationFrames(const std::vector<Vec2>& animFrames)
 void NierAnimator::SetAnimationIndex(int index)
 {
 	_currentAnimIndex = index;
-	_frame = _animFrames[_currentAnimIndex].x;
-	_updateTime = _frame / 30.f; // frame / 30FPS
+	_nextFrame = _animFrames[_currentAnimIndex].x;
+	_changedFrame = _frame;
 }
 
 void NierAnimator::FinalUpdate()
@@ -37,15 +37,35 @@ void NierAnimator::FinalUpdate()
 		_updateTime = 0.f;
 
 	const int32 ratio = static_cast<int32>(animClip.frameCount / animClip.duration);
+	
 	_frame = static_cast<int32>(_updateTime * ratio);
 	_frame = min(_frame, animClip.frameCount - 1);
-	_nextFrame = min(_frame + 1, animClip.frameCount - 1);
-	_frameRatio = static_cast<float>(_frame - _frame);
+	if (_changedFrame != -1 )
+	{
+		if (_changedFrame != _frame)
+		{
+			_changedFrame = -1;
+			_frame = _nextFrame;
+			_updateTime = _frame / static_cast<float>(ratio);
+		}
+	}
+	else
+	{
+		if (_frame + 1 > animClip.frameCount - 1)
+			_nextFrame = 0;
+		else
+			_nextFrame = _frame + 1;
+	}
+	
+
+	
+	int32 nextFrameUpdateTime = (_frame + 1);
+	_frameRatio = static_cast<float>(1.f - (nextFrameUpdateTime - (_updateTime * ratio)));
 
 	// _clipIndex를 통해서 바꾸기
 	if (_frame >= _animFrames[_currentAnimIndex].y)
 	{
 		_frame = _animFrames[_currentAnimIndex].x;
-		_updateTime = _frame / 30.f; // frame / 30FPS
+		_updateTime = _frame / static_cast<float>(ratio); // frame / 30FPS
 	}
 }

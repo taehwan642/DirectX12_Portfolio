@@ -1362,7 +1362,8 @@ void ImGuiManager::RenderInspector()
                 
                 const AnimClipInfo& animClip = animator->_animClips->at(animator->_clipIndex);
                 ImGui::SliderInt("Frame", &animator->_frame, 0, animClip.frameCount - 1);
-                ImGui::Text("Frame Ratio : %d", animator->_frameRatio);
+                ImGui::Text("Next Frame : %d", animator->_nextFrame);
+                ImGui::Text("Frame Ratio : %f", animator->_frameRatio);
 
                 if (ImGui::Button("Delete Component"))
                 {

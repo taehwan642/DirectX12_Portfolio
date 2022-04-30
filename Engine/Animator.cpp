@@ -32,7 +32,8 @@ void Animator::FinalUpdate()
 	_frame = static_cast<int32>(_updateTime * ratio);
 	_frame = min(_frame, animClip.frameCount - 1);
 	_nextFrame = min(_frame + 1, animClip.frameCount - 1);
-	_frameRatio = static_cast<float>(_frame - _frame);
+	int32 nextFrameUpdateTime = (_frame + 1);
+	_frameRatio = static_cast<float>(1.f - (nextFrameUpdateTime - (_updateTime * ratio)));
 }
 
 void Animator::SetAnimClip(const std::vector<AnimClipInfo>* animClips)
