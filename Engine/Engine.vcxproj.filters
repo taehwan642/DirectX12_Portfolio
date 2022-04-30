@@ -261,6 +261,9 @@
     <ClCompile Include="NierAnimator.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectPool.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -487,6 +490,9 @@
     </ClInclude>
     <ClInclude Include="NierAnimator.h">
       <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

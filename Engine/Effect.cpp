@@ -56,7 +56,6 @@ void Effect::Spawn(const std::string& path, const Vec3& worldPosition)
 	GetMeshRenderer()->GetMaterial()->SetTexture(0, _animator->GetTexture(0));
 
 	GetTransform()->SetWorldPosition(worldPosition);
-	GetGameObject()->SetActive(true);
 }
 
 #ifdef TOOL

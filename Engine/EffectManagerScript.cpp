@@ -10,6 +10,7 @@
 #include "Resources.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "ObjectPool.h"
 
 EffectManagerScript::~EffectManagerScript()
 {
@@ -22,19 +23,11 @@ void EffectManagerScript::LateUpdate()
 
 void EffectManagerScript::SpawnEffect(const std::string& path, const Vec3& worldPosition)
 {
-	bool spawned = false;
-	for (int i = 0; i < GetTransform()->GetChildCount(); ++i)
+	if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Effect"); poolObj != nullptr)
 	{
-		std::shared_ptr<GameObject> childObject = GetTransform()->GetChild(i)->GetGameObject();
-		if (childObject->GetActive() == false)
-		{
-			childObject->GetComponent<Effect>()->Spawn(path, worldPosition);
-			spawned = true;
-			break;
-		}
+		poolObj->GetComponent<Effect>()->Spawn(path, worldPosition);
 	}
-
-	if (spawned == false)
+	else
 	{
 		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
 		object->AddComponent(std::make_shared<TransformComponent>());
@@ -53,6 +46,8 @@ void EffectManagerScript::SpawnEffect(const std::string& path, const Vec3& world
 		object->SetName(L"Child" + std::to_wstring(GetTransform()->GetChildCount()));
 		object->GenerateHash();
 		object->GetTransform()->SetParent(GetTransform());
+
+		GET_SINGLE(ObjectPool)->AddPoolObject("Effect", object);
 
 		GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 	}

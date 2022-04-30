@@ -226,6 +226,7 @@
     <ClInclude Include="MonoBehaviour.h" />
     <ClInclude Include="NierAnimator.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PathTraceCameraScript.h" />
     <ClInclude Include="pch.h" />
@@ -325,6 +326,7 @@
     <ClCompile Include="MonoBehaviour.cpp" />
     <ClCompile Include="NierAnimator.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectPool.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="PathTraceCameraScript.cpp" />
     <ClCompile Include="pch.cpp">
