@@ -294,15 +294,6 @@ extern std::unique_ptr<class Engine> GEngine;
 std::wstring s2ws(const std::string& s);
 std::string ws2s(const std::wstring& s);
 
-template <typename T>
-struct array_deleter
-{
-	void operator()(T const* p)
-	{
-		delete[] p;
-	}
-};
-
 #define TOOL
 #define TESTGAME
 
@@ -313,6 +304,6 @@ struct array_deleter
 struct FogData
 {
 	float fogStart = 50.f;
-	float fogRange = 100.f;
+	float fogRange = 200.f;
 	Vec4 fogColor = Vec4(0.3f, 0.3f, 0.3f, 1.f);
 };
