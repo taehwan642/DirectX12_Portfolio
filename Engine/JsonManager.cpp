@@ -537,7 +537,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 		if (mesh->GetAnimClip()->size() == 1)
 		{
 			// 파일 읽어오기
-			std::vector<int> vec;
+			std::vector<Vec2> vec;
 			// objString이 메시파일 이름. 여기에 _anim.txt붙여서 불러오기
 			std::ifstream valueFile;
 			valueFile.open("../Resources/FBX/" + ws2s(objString) + "_anim.txt");
@@ -550,8 +550,15 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 					std::string line = arr;
 					if (!line.empty())
 					{
-						int value = std::stoi(line);
-						vec.push_back(value);
+						if (size_t pos = line.find("~"); pos != std::string::npos)
+						{
+							// ~를 기준으로 앞 뒤 잘라서 넣기
+							std::string first = line.substr(0, pos);
+							std::string second = line.substr(pos + 1, line.size());
+							int firstValue = std::stoi(first);
+							int secondValue = std::stoi(second);
+							vec.push_back(Vec2(firstValue, secondValue));
+						}
 					}
 				}
 			}

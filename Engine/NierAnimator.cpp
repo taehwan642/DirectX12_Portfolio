@@ -11,11 +11,18 @@ NierAnimator::~NierAnimator()
 {
 }
 
-void NierAnimator::SetAnimationFrames(const std::vector<int>& animFrames)
+void NierAnimator::SetAnimationFrames(const std::vector<Vec2>& animFrames)
 {
 	// 받아온 animation Frame을 기준으로 animation 돌리기
 	_animFrames = animFrames;
 	_fullAnimFrame = (*_animClips)[0].frameCount;
+}
+
+void NierAnimator::SetAnimationIndex(int index)
+{
+	_currentAnimIndex = index;
+	_frame = _animFrames[_currentAnimIndex].x;
+	_updateTime = _frame / 30.f; // frame / 30FPS
 }
 
 void NierAnimator::FinalUpdate()
@@ -36,14 +43,9 @@ void NierAnimator::FinalUpdate()
 	_frameRatio = static_cast<float>(_frame - _frame);
 
 	// _clipIndex를 통해서 바꾸기
-	if (_frame >= _animFrames[_currentAnimIndex])
+	if (_frame >= _animFrames[_currentAnimIndex].y)
 	{
-		// 0번째 애니메이션 트랙 : 0 ~ [1]
-		// 1번째 애니메이션 트랙 : 1 ~ [120]
-		// 총 애니메이션 트랙 : 121
-		// 1번째 애니메이션 트랙이라면 1부터 시작해야 하기 때문에, 120을 더해서 _fullAnimTrack이랑 빼면 1이 나온다.
-		int sum = std::accumulate((_animFrames.begin() + _currentAnimIndex), _animFrames.end(), 0);
-		_frame = _fullAnimFrame - sum;
+		_frame = _animFrames[_currentAnimIndex].x;
 		_updateTime = _frame / 30.f; // frame / 30FPS
 	}
 }

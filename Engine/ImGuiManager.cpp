@@ -1329,12 +1329,14 @@ void ImGuiManager::RenderInspector()
                 if (std::dynamic_pointer_cast<NierAnimator>(animator) != nullptr)
                 {
                     std::shared_ptr<NierAnimator> nierAnimator = std::static_pointer_cast<NierAnimator>(animator);
-                    if (ImGui::InputInt("Animation Index", &nierAnimator->_currentAnimIndex))
+                    int animIndex = nierAnimator->_currentAnimIndex;
+                    if (ImGui::InputInt("Animation Index", &animIndex))
                     {
-                        if (nierAnimator->_currentAnimIndex >= nierAnimator->_animFrames.size())
-                        {
-                            nierAnimator->_currentAnimIndex = nierAnimator->_animFrames.size() - 1;
-                        }
+                        if (animIndex >= nierAnimator->_animFrames.size())
+                            animIndex = nierAnimator->_animFrames.size() - 1;
+                        if (animIndex < 0)
+                            animIndex = 0;
+                        nierAnimator->SetAnimationIndex(animIndex);
                     }
                 }
                 else
