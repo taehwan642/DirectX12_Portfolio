@@ -3,7 +3,6 @@
 class RenderTargetScript :
     public MonoBehaviour
 {
-	// 통로 옮기는 거
 public:
 	MONOBEHAVIOUR(RenderTargetScript)
 

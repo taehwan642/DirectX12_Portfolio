@@ -43,6 +43,12 @@
     <Filter Include="Object\Component\Math">
       <UniqueIdentifier>{126d38dd-9d80-485f-b20c-447ec4bc33b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script\Character">
+      <UniqueIdentifier>{3cfee8e4-e7e0-405a-8671-cbb60fee7e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Character\Enemy">
+      <UniqueIdentifier>{98e8f00b-d1c2-49fb-ab93-cdf23699e168}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -156,9 +162,6 @@
     <ClCompile Include="Animator.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="TestDragon.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
     <ClCompile Include="..\Library\Include\Imgui\imgui.cpp">
       <Filter>Utils\imgui</Filter>
     </ClCompile>
@@ -192,9 +195,6 @@
     <ClCompile Include="BoxCollider.cpp">
       <Filter>Object\Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="TerrainScript.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
     <ClCompile Include="JsonManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -218,9 +218,6 @@
     </ClCompile>
     <ClCompile Include="TextureAnimator.cpp">
       <Filter>Object\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBullet.cpp">
-      <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="EffectManagerScript.cpp">
       <Filter>Script\Effect</Filter>
@@ -263,6 +260,12 @@
     </ClCompile>
     <ClCompile Include="ObjectPool.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Script\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBullet.cpp">
+      <Filter>Script\Character\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,9 +383,6 @@
     <ClInclude Include="Animator.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="TestDragon.h">
-      <Filter>Script</Filter>
-    </ClInclude>
     <ClInclude Include="..\Library\Include\Imgui\imgui.h">
       <Filter>Utils\imgui</Filter>
     </ClInclude>
@@ -419,9 +419,6 @@
     <ClInclude Include="BoxCollider.h">
       <Filter>Object\Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="TerrainScript.h">
-      <Filter>Script</Filter>
-    </ClInclude>
     <ClInclude Include="JsonManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -448,9 +445,6 @@
     </ClInclude>
     <ClInclude Include="TextureAnimator.h">
       <Filter>Object\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBullet.h">
-      <Filter>Script</Filter>
     </ClInclude>
     <ClInclude Include="EffectManagerScript.h">
       <Filter>Script\Effect</Filter>
@@ -493,6 +487,12 @@
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
       <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Script\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBullet.h">
+      <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

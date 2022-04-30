@@ -26,9 +26,7 @@
 #include "NierAnimator.h"
 
 #include "MonoBehaviour.h"
-#include "TerrainScript.h"
 #include "TestCameraScript.h"
-#include "TestDragon.h"
 #include "GameManagerScript.h"
 #include "Sea.h"
 #include "EnemyBullet.h"
@@ -307,9 +305,7 @@ struct RTTRGameObjectValue
 		for (int i = 0; i < gameObject->_scripts.size(); ++i)
 		{
 			RTTRMONOSAVE(GameManagerScript)
-			RTTRMONOSAVE(TerrainScript)
 			RTTRMONOSAVE(TestCameraScript)
-			RTTRMONOSAVE(TestDragon)
 			RTTRMONOSAVE(Sea)
 			RTTRMONOSAVE(EnemyBullet)
 			RTTRMONOSAVE(EffectManagerScript)
@@ -870,13 +866,9 @@ RTTR_REGISTRATION
 	
 	RTTRMONOREGISTER(GameManagerScript);
 
-	RTTRMONOREGISTER(TerrainScript)
-		.property("_testObject", &TerrainScript::_testObject);
-
 	RTTRMONOREGISTER(TestCameraScript)
 		.property("_speed", &TestCameraScript::_speed);
 
-	RTTRMONOREGISTER(TestDragon);
 	RTTRMONOREGISTER(Sea);
 	RTTRMONOREGISTER(EnemyBullet)
 		.property("_testObject", &EnemyBullet::_testObject);

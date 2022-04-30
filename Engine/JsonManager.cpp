@@ -591,9 +591,7 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<GameObject> object)
 {
 	RTTRMONOLOAD(GameManagerScript)
-	RTTRMONOLOAD(TerrainScript)
 	RTTRMONOLOAD(TestCameraScript)
-	RTTRMONOLOAD(TestDragon)
 	RTTRMONOLOAD(Sea)
 	RTTRMONOLOAD(EnemyBullet)
 	RTTRMONOLOAD(EffectManagerScript)

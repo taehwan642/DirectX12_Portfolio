@@ -12,7 +12,6 @@
 
 #include "ImGuiManager.h"
 #include "BoxCollider.h"
-#include "TerrainScript.h"
 #include "JsonManager.h"
 #include "Animator.h"
 #include "MeshCollider.h"
@@ -25,7 +24,6 @@
 #include "Terrain.h"
 #include "SphereCollider.h"
 #include "MeshData.h"
-#include "TestDragon.h"
 
 void SceneManager::Init()
 {

@@ -193,6 +193,7 @@
     <ClInclude Include="BaseCollider.h" />
     <ClInclude Include="BoneCollider.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="Component.h" />
@@ -246,9 +247,7 @@
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="TableDescriptorHeap.h" />
     <ClInclude Include="Terrain.h" />
-    <ClInclude Include="TerrainScript.h" />
     <ClInclude Include="TestCameraScript.h" />
-    <ClInclude Include="TestDragon.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureAnimator.h" />
     <ClInclude Include="Timer.h" />
@@ -291,6 +290,7 @@
     <ClCompile Include="BaseCollider.cpp" />
     <ClCompile Include="BoneCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -350,9 +350,7 @@
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="TableDescriptorHeap.cpp" />
     <ClCompile Include="Terrain.cpp" />
-    <ClCompile Include="TerrainScript.cpp" />
     <ClCompile Include="TestCameraScript.cpp" />
-    <ClCompile Include="TestDragon.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureAnimator.cpp" />
     <ClCompile Include="Timer.cpp" />

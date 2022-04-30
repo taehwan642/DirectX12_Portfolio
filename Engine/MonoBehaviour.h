@@ -4,8 +4,6 @@
 enum class MonoBehaviourType
 {
 	TestCameraScript,
-	TestDragon,
-	TerrainScript,
 	GameManagerScript,
 	Sea,
 	EnemyBullet,

@@ -34,9 +34,7 @@
 
 #include "MonoBehaviour.h"
 #include "GameManagerScript.h"
-#include "TerrainScript.h"
 #include "TestCameraScript.h"
-#include "TestDragon.h"
 #include "Sea.h"
 #include "EnemyBullet.h"
 #include "EffectManagerScript.h"
@@ -1586,9 +1584,7 @@ void ImGuiManager::RenderInspector()
             if (ImGui::BeginMenu("MonoBehaviour"))
             {
                 IMGUIADDMONOBEHAVIOUR(GameManagerScript);
-                IMGUIADDMONOBEHAVIOUR(TerrainScript);
                 IMGUIADDMONOBEHAVIOUR(TestCameraScript);
-                IMGUIADDMONOBEHAVIOUR(TestDragon);
                 IMGUIADDMONOBEHAVIOUR(Sea);
                 IMGUIADDMONOBEHAVIOUR(EnemyBullet);
                 IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
