@@ -1583,19 +1583,22 @@ void ImGuiManager::RenderInspector()
                 _currentGameObject->AddComponent(audioSource);
             }
 
-            IMGUIADDMONOBEHAVIOUR(GameManagerScript);
-            IMGUIADDMONOBEHAVIOUR(TerrainScript);
-            IMGUIADDMONOBEHAVIOUR(TestCameraScript);
-            IMGUIADDMONOBEHAVIOUR(TestDragon);
-            IMGUIADDMONOBEHAVIOUR(Sea);
-            IMGUIADDMONOBEHAVIOUR(EnemyBullet);
-            IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
-            IMGUIADDMONOBEHAVIOUR(Effect);
-            IMGUIADDMONOBEHAVIOUR(InfinitePassage);
-            IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
-            IMGUIADDMONOBEHAVIOUR(PathTraceCameraScript);
-            IMGUIADDMONOBEHAVIOUR(LaserScript);
-
+            if (ImGui::BeginMenu("MonoBehaviour"))
+            {
+                IMGUIADDMONOBEHAVIOUR(GameManagerScript);
+                IMGUIADDMONOBEHAVIOUR(TerrainScript);
+                IMGUIADDMONOBEHAVIOUR(TestCameraScript);
+                IMGUIADDMONOBEHAVIOUR(TestDragon);
+                IMGUIADDMONOBEHAVIOUR(Sea);
+                IMGUIADDMONOBEHAVIOUR(EnemyBullet);
+                IMGUIADDMONOBEHAVIOUR(EffectManagerScript);
+                IMGUIADDMONOBEHAVIOUR(Effect);
+                IMGUIADDMONOBEHAVIOUR(InfinitePassage);
+                IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
+                IMGUIADDMONOBEHAVIOUR(PathTraceCameraScript);
+                IMGUIADDMONOBEHAVIOUR(LaserScript);
+                ImGui::EndMenu();
+            }
             ImGui::EndMenu();
         }
 
