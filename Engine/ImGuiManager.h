@@ -1,5 +1,7 @@
 #pragma once
 #ifdef TOOL
+#include "DebugLogger.h"
+
 class Device;
 class GraphicsCommandQueue;
 class GameObject;
@@ -29,6 +31,8 @@ public:
 
 	void DragAndDrop(const std::wstring& path);
 
+	std::shared_ptr<DebugLogger> GetDebugLogger() { return _debugLogger; }
+
 private:
 	void RenderMeshData(std::shared_ptr<Mesh> mesh);
 	void RenderMaterialData(int materialIndex, std::shared_ptr<Material> material);
@@ -46,6 +50,7 @@ private:
 	void RenderResources();
 	void RenderDragAndDrop();
 	void RenderCollisionManager();
+	void RenderDebugLog();
 
 	void RenderChild(std::shared_ptr<GameObject> parent, int i);
 
@@ -57,6 +62,7 @@ private:
 	std::string _inputPath = "";
 	ComPtr<ID3D12DescriptorHeap> _srvDescHeap;
 	std::queue<std::function<void()>> _functionQueue;
+	std::shared_ptr<DebugLogger> _debugLogger;
 };
 
 #endif

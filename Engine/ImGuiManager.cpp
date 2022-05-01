@@ -45,7 +45,7 @@
 #include "LaserScript.h"
 #include "Player.h"
 
-ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
+ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device) : _debugLogger(std::make_shared<DebugLogger>())
 {
     D3D12_DESCRIPTOR_HEAP_DESC desc = {};
     desc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
@@ -94,6 +94,7 @@ void ImGuiManager::Render()
     RenderResources();
     RenderDragAndDrop();
     RenderCollisionManager();
+    RenderDebugLog();
     ImGui::ShowDemoWindow();
 
     ImGui::Render();
@@ -1876,6 +1877,13 @@ void ImGuiManager::RenderCollisionManager()
 
 
     ImGui::End();
+}
+
+void ImGuiManager::RenderDebugLog()
+{
+    bool a = true;
+
+    _debugLogger->Draw("Debug Logger");
 }
 
 void ImGuiManager::RenderChild(std::shared_ptr<GameObject> parent, int i)

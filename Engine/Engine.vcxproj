@@ -201,6 +201,7 @@
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="d3dx12.h" />
+    <ClInclude Include="DebugLogger.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManagerScript.h" />
@@ -301,6 +302,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManagerScript.cpp" />

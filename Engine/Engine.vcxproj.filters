@@ -52,6 +52,9 @@
     <Filter Include="Script\Character\Player">
       <UniqueIdentifier>{615c7080-65da-4044-9733-4218782df4e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager\ImGui">
+      <UniqueIdentifier>{c7349eb2-e21f-4c07-b53b-63bd013ae2f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -186,9 +189,6 @@
     <ClCompile Include="..\Library\Include\Imgui\imgui_widgets.cpp">
       <Filter>Utils\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="ImGuiManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
     <ClCompile Include="RaycastManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -278,6 +278,12 @@
     </ClCompile>
     <ClCompile Include="AnimatorHelper.cpp">
       <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiManager.cpp">
+      <Filter>Manager\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugLogger.cpp">
+      <Filter>Manager\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +425,6 @@
     <ClInclude Include="..\Library\Include\imgui\imconfig.h">
       <Filter>Utils\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="RaycastManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -517,6 +520,12 @@
     </ClInclude>
     <ClInclude Include="AnimatorHelper.h">
       <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiManager.h">
+      <Filter>Manager\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugLogger.h">
+      <Filter>Manager\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

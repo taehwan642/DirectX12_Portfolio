@@ -5,6 +5,7 @@
 #include "TransformComponent.h"
 #include "GameObjectState.h"
 #include "PlayerState.h"
+#include "Engine.h"
 
 Player::Player()
 {
@@ -54,7 +55,10 @@ void Player::Move()
 	Vec3 pos = GetTransform()->GetWorldPosition();
 
 	if (INPUT->GetButton(KEY_TYPE::UP))
+	{
 		pos -= GetTransform()->GetWorldTransform()->GetLook() * _speed * DELTA_TIME;
+		ADDLOG("adf %d\n", 5);
+	}
 
 	if (INPUT->GetButton(KEY_TYPE::DOWN))
 		pos += GetTransform()->GetWorldTransform()->GetLook() * _speed * DELTA_TIME;

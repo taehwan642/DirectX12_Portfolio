@@ -234,6 +234,8 @@ public:								\
 
 #define CONST_BUFFER(type)	GEngine->GetConstantBuffer(type)
 
+#define ADDLOG(fmt, ...) IMGUIMANAGER->GetDebugLogger()->AddLog(fmt, ##__VA_ARGS__)
+
 // ÇÔ¼ö °´Ã¼ ClassNameToString
 template<typename T>
 struct ClassNameToString
