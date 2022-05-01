@@ -25,6 +25,8 @@ enum class KEY_TYPE
 	LBUTTON = VK_LBUTTON,
 	RBUTTON = VK_RBUTTON,
 
+	SPACE = VK_SPACE,
+
 	F1 = VK_F1,
 };
 

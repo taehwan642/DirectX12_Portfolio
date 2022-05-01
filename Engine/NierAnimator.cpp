@@ -20,6 +20,8 @@ void NierAnimator::SetAnimationFrames(const std::vector<Vec2>& animFrames)
 
 void NierAnimator::SetAnimationIndex(int index)
 {
+	if (index == _currentAnimIndex)
+		return;
 	_currentAnimIndex = index;
 	_nextFrame = _animFrames[_currentAnimIndex].x;
 	_changedFrame = _frame;
@@ -29,6 +31,8 @@ void NierAnimator::FinalUpdate()
 {
 	if (_paused == true)
 		return;
+
+	_isAnimEnd = false;
 
 	_updateTime += DELTA_TIME;
 
@@ -67,5 +71,6 @@ void NierAnimator::FinalUpdate()
 	{
 		_frame = _animFrames[_currentAnimIndex].x;
 		_updateTime = _frame / static_cast<float>(ratio); // frame / 30FPS
+		_isAnimEnd = true;
 	}
 }

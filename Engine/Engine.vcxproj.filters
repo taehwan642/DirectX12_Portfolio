@@ -276,6 +276,9 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>Script\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="AnimatorHelper.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -511,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="PlayerState.h">
       <Filter>Script\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatorHelper.h">
+      <Filter>Object\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
