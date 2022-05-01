@@ -36,6 +36,7 @@
 #include "RenderTargetScript.h"
 #include "PathTraceCameraScript.h"
 #include "LaserScript.h"
+#include "Player.h"
 
 // Load때 필요한 오브젝트.
 
@@ -314,6 +315,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(RenderTargetScript)
 			RTTRMONOSAVE(PathTraceCameraScript)
 			RTTRMONOSAVE(LaserScript)
+			RTTRMONOSAVE(Player)
 		}
 	}
 
@@ -879,6 +881,7 @@ RTTR_REGISTRATION
 	RTTRMONOREGISTER(PathTraceCameraScript)
 		.property("_objects", &PathTraceCameraScript::_objects);
 	RTTRMONOREGISTER(LaserScript);
+	RTTRMONOREGISTER(Player);
 
 #pragma endregion
 }

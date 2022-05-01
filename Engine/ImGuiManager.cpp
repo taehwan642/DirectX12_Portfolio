@@ -43,6 +43,7 @@
 #include "RenderTargetScript.h"
 #include "PathTraceCameraScript.h"
 #include "LaserScript.h"
+#include "Player.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device)
 {
@@ -1594,6 +1595,7 @@ void ImGuiManager::RenderInspector()
                 IMGUIADDMONOBEHAVIOUR(RenderTargetScript);
                 IMGUIADDMONOBEHAVIOUR(PathTraceCameraScript);
                 IMGUIADDMONOBEHAVIOUR(LaserScript);
+                IMGUIADDMONOBEHAVIOUR(Player);
                 ImGui::EndMenu();
             }
             ImGui::EndMenu();

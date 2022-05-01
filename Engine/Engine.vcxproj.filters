@@ -49,6 +49,9 @@
     <Filter Include="Script\Character\Enemy">
       <UniqueIdentifier>{98e8f00b-d1c2-49fb-ab93-cdf23699e168}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Script\Character\Player">
+      <UniqueIdentifier>{615c7080-65da-4044-9733-4218782df4e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -266,6 +269,12 @@
     </ClCompile>
     <ClCompile Include="EnemyBullet.cpp">
       <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Script\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Script\Character\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -493,6 +502,15 @@
     </ClInclude>
     <ClInclude Include="EnemyBullet.h">
       <Filter>Script\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Script\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectState.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Script\Character\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

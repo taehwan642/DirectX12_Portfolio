@@ -15,7 +15,7 @@ public:
 	virtual void LateUpdate() override;
 
 private:
-	float		_speed = 300.f;
+	float		_speed = 100.f;
 	Vec2 pressedPos{};
 
 	RTTR_ENABLE()

@@ -248,6 +248,7 @@ struct ClassNameToString
 };
 
 #define MONOBEHAVIOUR(type)	type() { _className = s2ws(ClassNameToString< type >()()); }
+#define MONOCLASSNAME(type) _className = s2ws(ClassNameToString< type >()());
 
 #define RTTRMONOSAVE(type)																\
 if (std::dynamic_pointer_cast<type>(gameObject->_scripts[i]) != nullptr)	\

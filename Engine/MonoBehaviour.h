@@ -13,6 +13,7 @@ enum class MonoBehaviourType
 	RenderTargetScript,
 	PathTraceCameraScript,
 	LaserScript,
+	Player,
 	END
 };
 

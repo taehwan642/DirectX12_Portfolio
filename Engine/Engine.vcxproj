@@ -211,6 +211,7 @@
     <ClInclude Include="Frustum.h" />
     <ClInclude Include="GameManagerScript.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectState.h" />
     <ClInclude Include="ImGuiManager.h" />
     <ClInclude Include="InfinitePassage.h" />
     <ClInclude Include="Input.h" />
@@ -231,6 +232,8 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="PathTraceCameraScript.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="RaycastManager.h" />
     <ClInclude Include="RenderTargetGroup.h" />
     <ClInclude Include="RenderTargetScript.h" />
@@ -335,6 +338,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="RaycastManager.cpp" />
     <ClCompile Include="RenderTargetGroup.cpp" />
     <ClCompile Include="RenderTargetScript.cpp" />
