@@ -285,6 +285,9 @@
     <ClCompile Include="DebugLogger.cpp">
       <Filter>Manager\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Script\Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -526,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="DebugLogger.h">
       <Filter>Manager\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Script\Character\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

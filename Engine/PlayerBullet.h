@@ -1,15 +1,13 @@
 #pragma once
-#include "Character.h"
 #include "MonoBehaviour.h"
-
-class StateManager;
-class Player :
+#include "Character.h"
+class PlayerBullet :
     public MonoBehaviour, public Character
 {
 public:
-	Player();
+	PlayerBullet();
 
-	virtual ~Player();
+	virtual ~PlayerBullet();
 
 	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override;
 	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
@@ -19,10 +17,7 @@ public:
 	virtual void LateUpdate() override;
 
 	virtual void Move() override;
-	virtual void Attack() override;
-
-public:
-	std::shared_ptr<StateManager> _stateManager;
+	virtual void Attack() override {};
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

@@ -1,0 +1,46 @@
+{
+    "tag": "",
+    "meshRenderValue": 1,
+    "meshValue": [
+        {
+            "tag": "0"
+        }
+    ],
+    "materialValues": [
+        [
+            {
+                "textureOnValue": [
+                    true,
+                    false,
+                    false,
+                    false
+                ],
+                "textureValues": [
+                    {
+                        "tag": "bullet.png"
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    },
+                    {
+                        "tag": ""
+                    }
+                ],
+                "shaderValue": {
+                    "tag": "Deferred"
+                },
+                "tag": "01 - Default"
+            }
+        ]
+    ],
+    "animationValue": [
+        {
+            "bones": [],
+            "keyframeRotValue": [],
+            "animClips": []
+        }
+    ]
+}

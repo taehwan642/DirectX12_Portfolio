@@ -50,12 +50,6 @@ void Player::LateUpdate()
 	_stateManager->UpdateState();
 }
 
-#ifdef TOOL
-void Player::DragAndDrop(size_t hash)
-{
-}
-#endif
-
 void Player::Move()
 {
 	Vec3 pos = GetTransform()->GetWorldPosition();
