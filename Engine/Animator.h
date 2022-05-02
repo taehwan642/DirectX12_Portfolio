@@ -20,6 +20,8 @@ public:
 	int32 GetAnimCount() { return static_cast<uint32>(_animClips->size()); }
 	int32 GetCurrentClipIndex() { return _clipIndex; }
 	int32 GetCurrentFrame() { return _frame; }
+	const Vec3& GetBonePosition(const std::string boneName);
+
 	void Play(uint32 idx);
 
 public:

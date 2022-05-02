@@ -1964,6 +1964,7 @@ void ImGuiManager::AddSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<G
 
 void ImGuiManager::RemoveSceneChild(std::shared_ptr<Scene> scene, std::shared_ptr<GameObject> parent)
 {
+    parent->GetTransform()->RemoveParent();
     scene->RemoveGameObject(parent);
     for (int i = 0; i < parent->GetTransform()->GetChildCount(); ++i)
     {

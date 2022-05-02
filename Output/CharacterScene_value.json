@@ -2,7 +2,8 @@
     "meshDataResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbx",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbx"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbx"
     ],
     "textureResources": [
         "..\\Resources\\Texture\\Tile.png",
@@ -52,10 +53,13 @@
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\483fba1b",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\5d6053bb",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\4619e6c0",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\f68a3e"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\f68a3e",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbm\\bullet.png"
     ],
     "audioResources": [
-        
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_30.wav"
     ],
     "gameObjects": [
         {
@@ -402,7 +406,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav"
+                "materialValue": "..\\Resources\\Audio\\player\\pl0010_30.wav"
             }
         },
         {
@@ -2366,6 +2370,86 @@
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
                     "tag": "LOD0_17__9S_Missile_mesh0017"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "materialValue": ""
+            }
+        },
+        {
+            "tag": "BulletParent",
+            "hashValue": 14083183314745745511,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
                 }
             },
             "colliderValue": {

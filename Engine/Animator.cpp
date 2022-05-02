@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "MeshRenderer.h"
 #include "StructuredBuffer.h"
+#include "TransformComponent.h"
 
 Animator::Animator() : Component(COMPONENT_TYPE::ANIMATOR)
 {
@@ -64,6 +65,38 @@ void Animator::PushData()
 
 	// Graphics Shader
 	_boneFinalMatrix->PushGraphicsData(SRV_REGISTER::t7);
+}
+
+const Vec3& Animator::GetBonePosition(const std::string boneName)
+{
+	Vec3 result = Vec3::Zero;
+
+	auto iter = std::find_if(_bones->begin(), _bones->end(), [&](const BoneInfo& info) {return boneName == info.boneName; });
+	assert(iter != _bones->end());
+
+	if ((*_animClips)[_clipIndex].keyFrames[std::distance(_bones->begin(), iter)].size() != 0)
+	{
+		const AnimClipInfo& animClipInfo = (*_animClips)[_clipIndex];
+		const std::vector<KeyFrameInfo>& keyFrames = animClipInfo.keyFrames[std::distance(_bones->begin(), iter)];
+		const KeyFrameInfo& keyFrame = keyFrames[_frame];
+
+		Matrix matBone = Matrix::CreateScale(keyFrame.scale.x, keyFrame.scale.y, keyFrame.scale.z);
+		matBone *= Matrix::CreateFromQuaternion(SimpleMath::Quaternion(
+			keyFrame.rotation.x,
+			keyFrame.rotation.y,
+			keyFrame.rotation.z,
+			keyFrame.rotation.w));
+		matBone *= Matrix::CreateTranslation(keyFrame.translate.x, keyFrame.translate.y, keyFrame.translate.z);
+
+		// Local -> World
+		matBone *= GetGameObject()->GetTransform()->GetWorldMatrix();
+
+		result.x = matBone._41;
+		result.y = matBone._42;
+		result.z = matBone._43;
+	}
+
+	return result;
 }
 
 void Animator::Play(uint32 idx)

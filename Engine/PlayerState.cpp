@@ -42,12 +42,10 @@ int FlightIdleState::handleInput()
 	{
 		return FLIGHT_DEAD;
 	}
-	if (INPUT->GetButtonDown(KEY_TYPE::E))
+	if (INPUT->GetButton(KEY_TYPE::E))
 	{
-		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_30.wav");
-		_object.lock()->GetAudioSource()->SetLoop(false);
-		_object.lock()->GetAudioSource()->SetVolume(1.f);
-		_object.lock()->GetAudioSource()->Play();
+		_object.lock()->GetComponent<Player>()->Attack();
+		return FLIGHT_FIRE;
 	}
 	return FLIGHT_IDLE;
 }
@@ -61,7 +59,8 @@ int CombatIdleState::handleInput()
 int FlightFireState::handleInput()
 {
 	_object.lock()->GetComponent<Player>()->Move();
-	return FLIGHT_FIRE;
+	
+	return FLIGHT_IDLE;
 }
 
 int CombatFireState::handleInput()
