@@ -9,7 +9,7 @@ public:
 	virtual void Load(const std::wstring& path) override;
 
 private:
-	void Play(bool loop);
+	void Play(float volume, bool loop);
 
 private:
 	friend class AudioSource;
@@ -28,7 +28,7 @@ public:
 	void LoadAudio(const std::wstring& path);
 
 	void SetLoop(bool loop);
-	//void SetLoopVolume(float volume);
+	void SetVolume(float volume);
 	//void SetPlayOnAwake(bool playOnAwake);
 
 	void Play();
@@ -41,6 +41,7 @@ private:
 
 	bool _loop = false;
 	bool _playOnAwake = false;
+	float _volume = 1.f;
 
 	std::shared_ptr<AudioClip> _audioClip = nullptr;
 

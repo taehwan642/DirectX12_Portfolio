@@ -24,6 +24,13 @@ void AudioSource::SetLoop(bool loop)
 	_loop = loop;
 }
 
+void AudioSource::SetVolume(float volume)
+{
+	_volume = volume;
+	if (_loop)
+		_audioClip->_loopInstance->SetVolume(volume);
+}
+
 //void AudioSource::SetLoopVolume(float volume)
 //{
 //	if (_loop == true)
@@ -43,7 +50,7 @@ void AudioSource::SetLoop(bool loop)
 
 void AudioSource::Play()
 {
-	_audioClip->Play(_loop);
+	_audioClip->Play(_volume, _loop);
 }
 
 void AudioSource::FinalUpdate()
@@ -69,10 +76,10 @@ void AudioClip::Load(const std::wstring& path)
 	}
 }
 
-void AudioClip::Play(bool loop)
+void AudioClip::Play(float volume, bool loop)
 {
 	if(loop == true)
 		_loopInstance->Play(true);
 	else
-		_audio->Play();
+		_audio->Play(volume, 0, 0);
 }

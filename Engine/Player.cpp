@@ -6,6 +6,8 @@
 #include "GameObjectState.h"
 #include "PlayerState.h"
 #include "Engine.h"
+#include "AudioSource.h"
+#include "GameObject.h"
 
 Player::Player()
 {
@@ -37,6 +39,10 @@ void Player::Awake()
 	_stateManager->AddState(FLIGHT_DODGE, std::make_shared<FlightDodgeState>(GetGameObject()));
 	_stateManager->AddState(FLIGHT_DEAD, std::make_shared<FlightDeadState>(GetGameObject()));
 	_stateManager->ChangeState(FLIGHT_IDLE);
+	GetGameObject()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_13.wav");
+	GetGameObject()->GetAudioSource()->SetLoop(true);
+	GetGameObject()->GetAudioSource()->SetVolume(0.06f);
+	GetGameObject()->GetAudioSource()->Play();
 }
 
 void Player::LateUpdate()

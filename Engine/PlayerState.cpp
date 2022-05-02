@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "NierAnimator.h"
+#include "AudioSource.h"
 
 /*
 Player Animation Index
@@ -40,6 +41,13 @@ int FlightIdleState::handleInput()
 	if (INPUT->GetButton(KEY_TYPE::SPACE))
 	{
 		return FLIGHT_DEAD;
+	}
+	if (INPUT->GetButtonDown(KEY_TYPE::E))
+	{
+		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_30.wav");
+		_object.lock()->GetAudioSource()->SetLoop(false);
+		_object.lock()->GetAudioSource()->SetVolume(1.f);
+		_object.lock()->GetAudioSource()->Play();
 	}
 	return FLIGHT_IDLE;
 }

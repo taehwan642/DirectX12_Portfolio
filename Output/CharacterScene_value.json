@@ -54,7 +54,9 @@
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\4619e6c0",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\f68a3e"
     ],
-    "audioResources": [],
+    "audioResources": [
+        
+    ],
     "gameObjects": [
         {
             "tag": "Main_Camera",
@@ -335,7 +337,7 @@
                 false,
                 false,
                 false,
-                false
+                true
             ],
             "monobehaviourOnValue": [
                 false,
@@ -400,7 +402,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "materialValue": "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav"
             }
         },
         {

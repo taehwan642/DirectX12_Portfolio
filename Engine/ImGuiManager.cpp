@@ -1424,6 +1424,12 @@ void ImGuiManager::RenderInspector()
                     ImGui::EndCombo();
                 }
 
+                static float volume = 1.f;
+                if (ImGui::DragFloat("Volume", &volume, 0.01f, 0, 1))
+                {
+                    _currentGameObject->_audioSource->SetVolume(volume);
+                }
+
                 if (ImGui::Button("Play"))
                 {
                     _currentGameObject->_audioSource->Play();
