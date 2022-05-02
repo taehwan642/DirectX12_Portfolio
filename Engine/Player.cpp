@@ -98,8 +98,8 @@ void Player::Attack()
 		{
 			// bone 006
 			// bone 010
-			Vec3 pos1 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(1)->GetAnimator()->GetBonePosition("bone006");
-			Vec3 pos2 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(1)->GetAnimator()->GetBonePosition("bone010");
+			Vec3 pos1 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone006");
+			Vec3 pos2 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone010");
 
 			for (int i = 0; i < 2; ++i)
 			{

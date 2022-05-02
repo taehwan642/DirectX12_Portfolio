@@ -25,6 +25,7 @@ public:
 	std::shared_ptr<StateManager> _stateManager;
 	float _fireSpeed = 0.1f;
 	float _deltaTime = 0.0f;
+	bool _9SMode = true;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
