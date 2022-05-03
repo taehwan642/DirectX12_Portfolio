@@ -434,8 +434,8 @@ void ImGuiManager::RenderSphereColliderData(std::shared_ptr<SphereCollider> sphe
 {
     ImGui::Text("Type : Sphere");
 
+    ImGui::DragFloat3("Center", &sphereCollider->_center.x);// sphereCollider->_boundingSphere.Center.x, sphereCollider->_boundingSphere.Center.y, sphereCollider->_boundingSphere.Center.z);
     ImGui::DragFloat("Radius", &sphereCollider->_radius);
-    ImGui::Text("Center : %f %f %f", sphereCollider->_boundingSphere.Center.x, sphereCollider->_boundingSphere.Center.y, sphereCollider->_boundingSphere.Center.z);
 
 
     if (ImGui::CollapsingHeader("ColliderMeshData"))
@@ -458,7 +458,8 @@ void ImGuiManager::RenderBoxColliderData(std::shared_ptr<BoxCollider> boxCollide
 {
     ImGui::Text("Type : Box");
 
-    ImGui::Text("Center : %f %f %f", boxCollider->_boundingBox.Center.x, boxCollider->_boundingBox.Center.y, boxCollider->_boundingBox.Center.z);
+   // ImGui::Text("Center : %f %f %f", boxCollider->_boundingBox.Center.x, boxCollider->_boundingBox.Center.y, boxCollider->_boundingBox.Center.z);
+    ImGui::DragFloat3("Center", &boxCollider->_center.x);
     ImGui::DragFloat3("Scale", reinterpret_cast<float*>(&boxCollider->_extents.x));
 
     if (ImGui::CollapsingHeader("ColliderMeshData"))

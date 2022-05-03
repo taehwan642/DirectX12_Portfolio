@@ -139,7 +139,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -246,7 +246,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -326,7 +326,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -339,7 +339,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 false,
                 true
             ],
@@ -368,7 +368,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0
@@ -406,7 +406,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": "..\\Resources\\Audio\\player\\pl0010_30.wav"
+                "tag": "..\\Resources\\Audio\\player\\pl0010_13.wav"
             }
         },
         {
@@ -486,7 +486,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -593,7 +593,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -700,7 +700,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -807,7 +807,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -914,7 +914,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1021,7 +1021,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1128,7 +1128,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1235,7 +1235,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1342,7 +1342,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1449,7 +1449,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1556,7 +1556,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1663,7 +1663,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1770,7 +1770,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1877,7 +1877,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -1984,7 +1984,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -2091,7 +2091,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -2198,7 +2198,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -2305,7 +2305,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -2412,7 +2412,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -2492,7 +2492,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         }
     ],
@@ -2574,7 +2574,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         }
     ],
@@ -2656,7 +2656,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         }
     ]

@@ -24,6 +24,7 @@ Player Animation Index
 
 int FlightIdleState::handleInput()
 {
+	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
 	
 	if (INPUT->GetButton(KEY_TYPE::RIGHT) || INPUT->GetButton(KEY_TYPE::LEFT))
@@ -57,11 +58,24 @@ int FlightIdleState::handleInput()
 		_object.lock()->GetComponent<Player>()->Attack();
 		return FLIGHT_FIRE;
 	}
+
+	if (INPUT->GetButton(KEY_TYPE::Q))
+	{
+		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
+		_object.lock()->GetAudioSource()->SetLoop(false);
+		_object.lock()->GetAudioSource()->SetVolume(0.2f);
+		_object.lock()->GetAudioSource()->Play();
+		return FLIGHT_DODGE;
+	}
+
 	return FLIGHT_IDLE;
 }
 
 int CombatIdleState::handleInput()
 {
+	// 마우스를 따라 보기
+	INPUT->GetMousePos();
+	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
 	
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
@@ -160,7 +174,7 @@ int CombatAttack2State::handleInput()
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(3);
 
-		if (anim->GetCurrentFrame() > 440)
+		if (anim->GetCurrentFrame() > 450)
 		{
 			if (INPUT->GetButtonDown(KEY_TYPE::C))
 			{
@@ -187,13 +201,9 @@ int CombatAttack2State::handleInput()
 
 int FlightToCombatState::handleInput()
 {
-	std::wstring findName = (_object.lock()->GetComponent<Player>()->Get9SMode() == true ? L"2B" : L"9S");
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
 		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
-		if (size_t pos = childTransform->GetGameObject()->GetName().find(findName); pos != std::wstring::npos)
-			continue;
-	
 		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(1);
@@ -209,13 +219,9 @@ int FlightToCombatState::handleInput()
 
 int CombatToFlightState::handleInput()
 {
-	std::wstring findName = (_object.lock()->GetComponent<Player>()->Get9SMode() == true ? L"2B" : L"9S");
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
 		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
-		if (size_t pos = childTransform->GetGameObject()->GetName().find(findName); pos != std::wstring::npos)
-			continue;
-		
 		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(0);

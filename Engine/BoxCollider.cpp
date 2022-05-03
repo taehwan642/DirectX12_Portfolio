@@ -24,10 +24,10 @@ void BoxCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), _extents);
+		_colliderVisualizers[0]->FinalUpdate(_center + GetTransform()->GetWorldPosition(), _extents);
 	}
 
-	_boundingBox.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
+	_boundingBox.Center = _center + GetGameObject()->GetTransform()->GetWorldPosition();
 	_boundingBox.Extents = _extents;
 }
 

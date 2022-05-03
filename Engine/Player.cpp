@@ -58,6 +58,36 @@ void Player::Awake()
 void Player::LateUpdate()
 {
 	_stateManager->UpdateState();
+
+	// 팔꿈치
+	// bone 008 왼쪽
+	// bone 012 오른쪽
+	// 손
+	// bone 013 왼쪽
+	// bone 009 오른쪽
+
+	// 수정 필요.
+	Vec3 leftElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone008");
+	Vec3 leftHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone013");
+
+	Vec3 leftHandToElbowDir = leftHand - leftElbow;
+	leftHandToElbowDir.Normalize();
+
+	Vec3 rightElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone012");
+	Vec3 rightHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone009");
+
+	Vec3 rightHandToElbowDir = rightHand - rightElbow;
+	rightHandToElbowDir.Normalize();
+
+	// 그 Object의 Collider의 center를 구하기
+	
+	Vec3 leftColliderCenter = leftHand + leftHandToElbowDir * 3;
+	Vec3 rightColliderCenter = rightHand + rightHandToElbowDir * 3;
+	
+	std::shared_ptr<BaseCollider> leftBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetGameObject()->GetCollider();
+	std::static_pointer_cast<SphereCollider>(leftBC)->SetCenter(leftColliderCenter);
+	std::shared_ptr<BaseCollider> rightBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetGameObject()->GetCollider();
+	std::static_pointer_cast<SphereCollider>(rightBC)->SetCenter(rightColliderCenter);
 }
 
 void Player::Move()
@@ -93,8 +123,8 @@ void Player::Attack()
 		GetGameObject()->GetAudioSource()->Play();
 		_deltaTime = 0.f;
 
-		// bone 006
-		// bone 010
+		// bone 006 왼쪽
+		// bone 010 오른쪽
 		Vec3 pos1 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone006");
 		Vec3 pos2 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone010"); 
 

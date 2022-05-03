@@ -426,6 +426,7 @@ RTTR_REGISTRATION
 		.property("_terrain", &GameObject::_terrain)
 		.property("_baseCollider", &GameObject::_baseCollider)
 		.property("_animator", &GameObject::_animator)
+		.property("_audioSource", &GameObject::_audioSource)
 		.property("_scripts", &GameObject::_scripts);
 
 	// Transform
@@ -675,6 +676,7 @@ RTTR_REGISTRATION
 			rttr::value("MESH_DATA", OBJECT_TYPE::MESH_DATA),
 			rttr::value("SHADER", OBJECT_TYPE::SHADER),
 			rttr::value("TEXTURE", OBJECT_TYPE::TEXTURE),
+			rttr::value("AUDIOCLIP", OBJECT_TYPE::AUDIOCLIP),
 			rttr::value("END", OBJECT_TYPE::END)
 		);
 
@@ -724,7 +726,7 @@ RTTR_REGISTRATION
 	rttr::registration::enumeration<ColliderType>("ColliderType")
 		(
 			rttr::value("Sphere", ColliderType::Sphere),
-			rttr::value("Cube", ColliderType::Box),
+			rttr::value("Box", ColliderType::Box),
 			rttr::value("Mesh", ColliderType::Mesh),
 			rttr::value("Bone", ColliderType::Bone)
 		);
@@ -749,7 +751,8 @@ RTTR_REGISTRATION
 	// AudioSource
 	rttr::registration::class_<AudioSource>("AudioSource")
 		.constructor<>()
-		.property("_loop", &AudioSource::_loop);
+		.property("_loop", &AudioSource::_loop)
+		.property("_volume", &AudioSource::_volume);
 
 #pragma region RTTRValue
 	rttr::registration::class_<RTTRGameObjectValue>("RTTRGameObjectValue")
@@ -836,7 +839,7 @@ RTTR_REGISTRATION
 	rttr::registration::class_<RTTRAudioSourceValue>("RTTRAudioSourceValue")
 		.constructor<>()
 		.constructor<std::shared_ptr<AudioSource>>()
-		.property("materialValue", &RTTRAudioSourceValue::tag);
+		.property("tag", &RTTRAudioSourceValue::tag);
 
 	rttr::registration::class_<RTTRMeshRendererValue>("RTTRMeshRendererValue")
 		.constructor<>()

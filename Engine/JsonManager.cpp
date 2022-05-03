@@ -582,7 +582,8 @@ void JsonManager::LoadGameObject(RTTRGameObjectValue value, std::shared_ptr<Game
 	{
 		std::shared_ptr<AudioSource> audioSource = std::make_shared<AudioSource>();
 		object->AddComponent(audioSource);
-		audioSource->LoadAudio(s2ws(value.audioSourceValue.tag));
+		if (!value.audioSourceValue.tag.empty())
+			audioSource->LoadAudio(s2ws(value.audioSourceValue.tag));
 	}
 	
 	LoadMonobehaviour(value, object);

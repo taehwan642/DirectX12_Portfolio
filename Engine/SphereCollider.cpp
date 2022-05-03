@@ -24,10 +24,10 @@ void SphereCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(GetTransform()->GetWorldPosition(), Vec3(_radius));
+		_colliderVisualizers[0]->FinalUpdate(_center + GetTransform()->GetWorldPosition(), Vec3(_radius));
 	}
 
-	_boundingSphere.Center = _center = GetGameObject()->GetTransform()->GetWorldPosition();
+	_boundingSphere.Center = _center + GetGameObject()->GetTransform()->GetWorldPosition();
 	_boundingSphere.Radius = _radius;
 }
 
