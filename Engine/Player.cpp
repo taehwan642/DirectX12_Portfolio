@@ -145,7 +145,7 @@ void Player::Attack()
 	}
 }
 
-void Player::ChangeCurrentMode()
+void Player::Change9S2BMode()
 {
 	_9SMode = !_9SMode;
 	std::wstring findName = (_9SMode == true ? L"2B" : L"9S");
@@ -161,4 +161,13 @@ void Player::ChangeCurrentMode()
 			GetGameObject()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject()->SetActive(true);
 		}
 	}
+}
+
+int Player::ChangeFlightCombatMode()
+{
+	_flightMode = !_flightMode;
+	if (_flightMode == true)
+		return COMBAT_TO_FLIGHT;
+	else
+		return FLIGHT_TO_COMBAT;
 }

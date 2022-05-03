@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "NierAnimator.h"
 #include "AudioSource.h"
-
+#include "Engine.h"
 /*
 Player Animation Index
 0 = COMBAT -> FLIGHT
@@ -44,7 +44,7 @@ int FlightIdleState::handleInput()
 	}
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
 	{
-		_object.lock()->GetComponent<Player>()->ChangeCurrentMode();
+		return FLIGHT_TO_COMBAT;//_object.lock()->GetComponent<Player>()->ChangeFlightCombatMode();
 	}
 	if (INPUT->GetButton(KEY_TYPE::E))
 	{
@@ -57,6 +57,20 @@ int FlightIdleState::handleInput()
 int CombatIdleState::handleInput()
 {
 	_object.lock()->GetComponent<Player>()->Move();
+	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	{
+		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+		std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(7);
+	}
+	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
+	{
+		return COMBAT_TO_FLIGHT;//_object.lock()->GetComponent<Player>()->ChangeFlightCombatMode();
+	}
+	if (INPUT->GetButton(KEY_TYPE::E))
+	{
+		_object.lock()->GetComponent<Player>()->Attack();
+		return COMBAT_FIRE;
+	}
 	return COMBAT_IDLE;
 }
 
@@ -70,7 +84,7 @@ int FlightFireState::handleInput()
 int CombatFireState::handleInput()
 {
 	_object.lock()->GetComponent<Player>()->Move();
-	return COMBAT_FIRE;
+	return COMBAT_IDLE;
 }
 
 int CombatAttack1State::handleInput()
@@ -87,11 +101,43 @@ int CombatAttack2State::handleInput()
 
 int FlightToCombatState::handleInput()
 {
+	std::wstring findName = (_object.lock()->GetComponent<Player>()->Get9SMode() == true ? L"2B" : L"9S");
+	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	{
+		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
+		if (size_t pos = childTransform->GetGameObject()->GetName().find(findName); pos != std::wstring::npos)
+			continue;
+	
+		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
+		std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(1);
+
+		if (std::static_pointer_cast<NierAnimator>(object->GetAnimator())->GetAnimationEnd())
+		{
+			ADDLOG("FLIGHT TO COMBAT END\n");
+			return COMBAT_IDLE;
+		}
+	}
 	return FLIGHT_TO_COMBAT;
 }
 
 int CombatToFlightState::handleInput()
 {
+	std::wstring findName = (_object.lock()->GetComponent<Player>()->Get9SMode() == true ? L"2B" : L"9S");
+	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	{
+		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
+		if (size_t pos = childTransform->GetGameObject()->GetName().find(findName); pos != std::wstring::npos)
+			continue;
+		
+		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
+		std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(0);
+
+		if (std::static_pointer_cast<NierAnimator>(object->GetAnimator())->GetAnimationEnd())
+		{
+			ADDLOG("COMBAT TO FLIGHT END\n");
+			return FLIGHT_IDLE;
+		}
+	}
 	return COMBAT_TO_FLIGHT;
 }
 
@@ -113,7 +159,6 @@ int FlightDeadState::handleInput()
 			_object.lock()->SetActive(false);
 		}
 	}
-
 
 	return FLIGHT_DEAD;
 }
