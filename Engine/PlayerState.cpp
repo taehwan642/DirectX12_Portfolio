@@ -25,11 +25,7 @@ Player Animation Index
 int FlightIdleState::handleInput()
 {
 	_object.lock()->GetComponent<Player>()->Move();
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
-	{
-		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
-		std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(5);
-	}
+	
 	if (INPUT->GetButton(KEY_TYPE::RIGHT) || INPUT->GetButton(KEY_TYPE::LEFT))
 	{
 		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
@@ -38,9 +34,17 @@ int FlightIdleState::handleInput()
 			std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(6);
 		}
 	}
-	if (INPUT->GetButton(KEY_TYPE::SPACE))
+	else
 	{
-		return FLIGHT_DEAD;
+		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+		{
+			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+			std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(5);
+		}
+	}
+	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
+	{
+		_object.lock()->GetComponent<Player>()->ChangeCurrentMode();
 	}
 	if (INPUT->GetButton(KEY_TYPE::E))
 	{

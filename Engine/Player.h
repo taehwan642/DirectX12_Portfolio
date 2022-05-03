@@ -21,6 +21,8 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override;
 
+	void ChangeCurrentMode();
+
 public:
 	std::shared_ptr<StateManager> _stateManager;
 	float _fireSpeed = 0.1f;

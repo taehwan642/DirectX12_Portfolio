@@ -133,3 +133,21 @@ void Player::Attack()
 		}
 	}
 }
+
+void Player::ChangeCurrentMode()
+{
+	_9SMode = !_9SMode;
+	std::wstring findName = (_9SMode == true ? L"2B" : L"9S");
+	for (int i = 0; i < GetGameObject()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	{
+		std::shared_ptr<TransformComponent> childTransform = GetGameObject()->GetTransform()->GetChild(0)->GetChild(i);
+		if (size_t pos = childTransform->GetGameObject()->GetName().find(findName); pos != std::wstring::npos)
+		{
+			GetGameObject()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject()->SetActive(false);
+		}
+		else
+		{
+			GetGameObject()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject()->SetActive(true);
+		}
+	}
+}
