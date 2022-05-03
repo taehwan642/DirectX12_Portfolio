@@ -59,7 +59,9 @@
     "audioResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav",
         "..\\Resources\\Audio\\player\\pl0010_13.wav",
-        "..\\Resources\\Audio\\player\\pl0010_30.wav"
+        "..\\Resources\\Audio\\player\\pl0010_30.wav",
+        "..\\Resources\\Audio\\player\\pl0010_21.wav",
+        "..\\Resources\\Audio\\player\\pl0010_8.wav"
     ],
     "gameObjects": [
         {
@@ -406,7 +408,7 @@
                 }
             },
             "audioSourceValue": {
-                "tag": "..\\Resources\\Audio\\player\\pl0010_13.wav"
+                "tag": "..\\Resources\\Audio\\player\\pl0010_30.wav"
             }
         },
         {
@@ -1355,7 +1357,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 true,
                 false
             ],
@@ -1411,7 +1413,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0
@@ -1462,7 +1464,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 true,
                 false
             ],
@@ -1518,7 +1520,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0
@@ -2104,7 +2106,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 true,
                 false
             ],
@@ -2160,7 +2162,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0
@@ -2211,7 +2213,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 true,
                 false
             ],
@@ -2267,7 +2269,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0
