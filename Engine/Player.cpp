@@ -21,8 +21,8 @@ Player::Player()
 {
 	MONOCLASSNAME(Player);
 	_speed = 50.f;
-	_hp = 1.f;
-	_damage = 0.f;
+	_hp = 1;
+	_damage = 1;
 	_stateManager = std::make_shared<StateManager>();
 }
 
@@ -87,37 +87,40 @@ void Player::Attack()
 	{
 		GetGameObject()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_30.wav");
 		GetGameObject()->GetAudioSource()->SetLoop(false);
-		GetGameObject()->GetAudioSource()->SetVolume(1.f);
+		GetGameObject()->GetAudioSource()->SetVolume(0.2f);
 		GetGameObject()->GetAudioSource()->Play();
 		_deltaTime = 0.f;
-		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Bullet"); poolObj != nullptr)
-		{
-			poolObj->GetComponent<PlayerBullet>()->Spawn();
-		}
-		else
-		{
-			// bone 006
-			// bone 010
-			Vec3 pos1 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone006");
-			Vec3 pos2 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone010");
 
-			for (int i = 0; i < 2; ++i)
+		// bone 006
+		// bone 010
+		Vec3 pos1 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone006");
+		Vec3 pos2 = GetGameObject()->GetTransform()->GetChild(0)->GetChild(static_cast<int>(_9SMode))->GetAnimator()->GetBonePosition("bone010"); 
+
+		for (int i = 0; i < 2; ++i)
+		{
+			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Bullet"); poolObj != nullptr)
+			{
+				if (i == 0)
+					poolObj->GetComponent<PlayerBullet>()->Spawn(pos1);
+				else
+					poolObj->GetComponent<PlayerBullet>()->Spawn(pos2);
+			}
+			else
 			{
 				std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
 				std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
 				object->AddComponent(std::make_shared<TransformComponent>());
 
-				if(i == 0)
-					object->GetTransform()->SetWorldPosition(pos1);
+				std::shared_ptr<PlayerBullet> pb = std::make_shared<PlayerBullet>();
+				object->AddComponent(pb);
+
+				if (i == 0)
+					pb->Spawn(pos1);
 				else
-					object->GetTransform()->SetWorldPosition(pos2);
+					pb->Spawn(pos2);
 
 				std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
 				object->AddComponent(mr);
-
-				std::shared_ptr<PlayerBullet> pb = std::make_shared<PlayerBullet>();
-				object->AddComponent(pb);
-				pb->Spawn();
 
 				std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"BulletParent");
 
@@ -131,6 +134,8 @@ void Player::Attack()
 				GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 			}
 		}
+
+
 	}
 }
 

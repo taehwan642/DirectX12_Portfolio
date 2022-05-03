@@ -9,7 +9,7 @@ public:
 
 	virtual ~PlayerBullet();
 
-	void Spawn();
+	void Spawn(const Vec3& worldPosition);
 
 	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override;
 	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
@@ -20,6 +20,8 @@ public:
 
 	virtual void Move() override;
 	virtual void Attack() override {};
+
+	float _aliveTime = 0.f;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
