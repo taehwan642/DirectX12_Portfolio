@@ -4,6 +4,7 @@ enum class CollisionObjectType
 {
 	PLAYER,
 	PLAYER_WEAPON,
+	PLAYER_BULLET,
 	ENEMY,
 	END
 };

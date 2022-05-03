@@ -16,6 +16,8 @@
 #include "Resources.h"
 #include "Scene.h"
 #include "Animator.h"
+#include "CollisionManager.h"
+#include "SphereCollider.h"
 
 Player::Player()
 {
@@ -122,6 +124,10 @@ void Player::Attack()
 				std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
 				object->AddComponent(mr);
 
+				std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
+				object->AddComponent(sc);
+				sc->SetRadius(1.5f);
+
 				std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"BulletParent");
 
 				object->SetName(L"BulletChild" + std::to_wstring(bulletParent->GetTransform()->GetChildCount()));
@@ -131,11 +137,11 @@ void Player::Attack()
 
 				GET_SINGLE(ObjectPool)->AddPoolObject("Bullet", object);
 
+				GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_BULLET, object);
+
 				GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 			}
 		}
-
-
 	}
 }
 
