@@ -108,6 +108,9 @@ Vec3 Transform::DecomposeRotationMatrix(const Matrix& rotation)
 		}
 	}
 
+	ret.x = RadianToDegree(ret.x);
+	ret.y = RadianToDegree(ret.y);
+	ret.z = RadianToDegree(ret.z);
 	return ret;
 }
 

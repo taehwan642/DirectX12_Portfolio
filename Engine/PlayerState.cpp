@@ -73,9 +73,7 @@ int FlightIdleState::handleInput()
 
 int CombatIdleState::handleInput()
 {
-	// 마우스를 따라 보기
-	INPUT->GetMousePos();
-	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
+	//_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
 	
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))

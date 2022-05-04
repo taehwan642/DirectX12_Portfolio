@@ -18,6 +18,7 @@
 #include "Animator.h"
 #include "CollisionManager.h"
 #include "SphereCollider.h"
+#include "RaycastManager.h"
 
 Player::Player()
 {
@@ -53,50 +54,25 @@ void Player::Awake()
 	GetGameObject()->GetAudioSource()->SetLoop(true);
 	GetGameObject()->GetAudioSource()->SetVolume(0.06f);
 	GetGameObject()->GetAudioSource()->Play();
+	_p = SimpleMath::Plane(GetTransform()->GetWorldPosition(), Vec3(0, 1, 0));
 }
 
 void Player::LateUpdate()
 {
+	POINT mousePos = INPUT->GetMousePos();
+	GET_SINGLE(RaycastManager)->SetRayOriginRayDir(mousePos.x, mousePos.y);
+	Vec3 rayOrigin = Vec3(GET_SINGLE(RaycastManager)->_rayOrigin);
+	Vec3 rayDir = Vec3(GET_SINGLE(RaycastManager)->_rayDir);
+	
+	// plane 위 v = rayOrigin + t * rayDir
+	float t = (-_p.D() - (_p.Normal().Dot(rayOrigin)))/ _p.Normal().Dot(rayDir);
+
+	Vec3 point = rayOrigin + t * rayDir;
+
+	GetTransform()->SetLookAtWorldRotation(GetTransform()->GetWorldPosition() - point);
+
 	_stateManager->UpdateState();
-
-	// 팔꿈치
-	// bone 008 왼쪽
-	// bone 012 오른쪽
-	// 손
-	// bone 013 왼쪽
-	// bone 009 오른쪽
-
-	int leftObjectIndex = (_9SMode == true) ? 15 : 8;
-	int rightObjectIndex = (_9SMode == true) ? 16 : 9;
-
-	Vec3 leftElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone008");
-	Vec3 leftHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone013");
-	
-	Vec3 leftHandToElbowDir = leftHand - leftElbow;
-	leftHandToElbowDir.Normalize();
-	
-	Vec3 rightElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone012");
-	Vec3 rightHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone009");
-	
-	Vec3 rightHandToElbowDir = rightHand - rightElbow;
-	rightHandToElbowDir.Normalize();
-	
-	// 그 Object의 Collider의 center를 구하기
-	
-	Vec3 leftColliderCenter = leftHand + leftHandToElbowDir * 1.5f;
-	Vec3 rightColliderCenter = rightHand + rightHandToElbowDir * 1.5f;
-
-	// BonePosition에는 이미 GameObject의 WorldPosition이 더해진 상태.
-	// 이 때 Collider의 center의 공식은 center + WorldPosition.
-	// 그럼 BonePosition + WorldPosition은 WorldPosition을 두번 더하는 것.
-	// 그렇기 때문에 GetWorldPosition으로 WorldPosition을 빼줘서, BonePosition만 남기게 한다.
-	leftColliderCenter -= GetGameObject()->GetTransform()->GetWorldPosition();
-	rightColliderCenter -= GetGameObject()->GetTransform()->GetWorldPosition();
-	
-	std::shared_ptr<BaseCollider> leftBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetGameObject()->GetCollider();
-	std::static_pointer_cast<SphereCollider>(leftBC)->SetCenter(leftColliderCenter);
-	std::shared_ptr<BaseCollider> rightBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetGameObject()->GetCollider();
-	std::static_pointer_cast<SphereCollider>(rightBC)->SetCenter(rightColliderCenter);
+	SetSwordCollider();
 }
 
 void Player::Move()
@@ -182,6 +158,48 @@ void Player::Attack()
 			}
 		}
 	}
+}
+
+void Player::SetSwordCollider()
+{
+	// 팔꿈치
+	// bone 008 왼쪽
+	// bone 012 오른쪽
+	// 손
+	// bone 013 왼쪽
+	// bone 009 오른쪽
+
+	int leftObjectIndex = (_9SMode == true) ? 15 : 8;
+	int rightObjectIndex = (_9SMode == true) ? 16 : 9;
+
+	Vec3 leftElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone008");
+	Vec3 leftHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone013");
+
+	Vec3 leftHandToElbowDir = leftHand - leftElbow;
+	leftHandToElbowDir.Normalize();
+
+	Vec3 rightElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone012");
+	Vec3 rightHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone009");
+
+	Vec3 rightHandToElbowDir = rightHand - rightElbow;
+	rightHandToElbowDir.Normalize();
+
+	// 그 Object의 Collider의 center를 구하기
+
+	Vec3 leftColliderCenter = leftHand + leftHandToElbowDir * 1.5f;
+	Vec3 rightColliderCenter = rightHand + rightHandToElbowDir * 1.5f;
+
+	// BonePosition에는 이미 GameObject의 WorldPosition이 더해진 상태.
+	// 이 때 Collider의 center의 공식은 center + WorldPosition.
+	// 그럼 BonePosition + WorldPosition은 WorldPosition을 두번 더하는 것.
+	// 그렇기 때문에 GetWorldPosition으로 WorldPosition을 빼줘서, BonePosition만 남기게 한다.
+	leftColliderCenter -= GetGameObject()->GetTransform()->GetWorldPosition();
+	rightColliderCenter -= GetGameObject()->GetTransform()->GetWorldPosition();
+
+	std::shared_ptr<BaseCollider> leftBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetGameObject()->GetCollider();
+	std::static_pointer_cast<SphereCollider>(leftBC)->SetCenter(leftColliderCenter);
+	std::shared_ptr<BaseCollider> rightBC = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetGameObject()->GetCollider();
+	std::static_pointer_cast<SphereCollider>(rightBC)->SetCenter(rightColliderCenter);
 }
 
 void Player::Change9S2BMode()

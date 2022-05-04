@@ -104,7 +104,7 @@ void TransformComponent::SetWorldScale(const Vec3& scale)
 	UpdateLocal();
 }
 
-void TransformComponent::SetLookAtRotation(const Vec3& direction)
+void TransformComponent::SetLookAtWorldRotation(const Vec3& direction)
 {
 	_worldTransform->LookAt(direction);
 	UpdateLocal();

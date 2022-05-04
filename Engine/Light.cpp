@@ -73,7 +73,7 @@ void Light::SetLightDirection(Vec3 direction)
 
 	_lightInfo.direction = direction;
 
-	GetTransform()->GetWorldTransform()->LookAt(direction);
+	GetTransform()->SetLookAtWorldRotation(direction);
 }
 
 void Light::SetLightType(LIGHT_TYPE type)

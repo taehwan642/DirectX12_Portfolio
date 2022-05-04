@@ -21,6 +21,8 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override;
 
+	void SetSwordCollider();
+
 	bool Get9SMode() { return _9SMode; }
 	bool GetFlightMode() { return _flightMode; }
 
@@ -33,6 +35,8 @@ public:
 	float _deltaTime = 0.0f;
 	bool _9SMode = true;
 	bool _flightMode = true;
+
+	SimpleMath::Plane _p;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

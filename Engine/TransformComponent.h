@@ -49,7 +49,7 @@ public: // 월드 트랜스폼 관련 함수
 
 	Matrix GetWorldMatrix() const { return _worldTransform->GetMatrix(); }
 
-	void SetLookAtRotation(const Vec3& direction);
+	void SetLookAtWorldRotation(const Vec3& direction);
 
 public: // 계층 구조 관련 함수
 	bool HasParent() const { return _parent.lock() != nullptr; }
