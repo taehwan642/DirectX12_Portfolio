@@ -2,14 +2,14 @@
 #include "MonoBehaviour.h"
 #include "Character.h"
 class PlayerBullet :
-    public MonoBehaviour, public Character
+    public MonoBehaviour, public Bullet
 {
 public:
 	PlayerBullet();
 
 	virtual ~PlayerBullet();
 
-	void Spawn(const Vec3& worldPosition);
+	virtual void Spawn(const Vec3& worldPosition) override;
 
 	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override;
 	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}

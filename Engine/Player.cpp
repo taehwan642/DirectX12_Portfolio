@@ -130,6 +130,7 @@ void Player::Attack()
 
 				std::shared_ptr<PlayerBullet> pb = std::make_shared<PlayerBullet>();
 				object->AddComponent(pb);
+				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
 
 				if (i == 0)
 					pb->Spawn(pos1);

@@ -288,6 +288,12 @@
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>Script\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -532,6 +538,12 @@
     </ClInclude>
     <ClInclude Include="PlayerBullet.h">
       <Filter>Script\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

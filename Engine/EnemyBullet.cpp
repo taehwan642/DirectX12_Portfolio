@@ -38,23 +38,9 @@ void EnemyBullet::LateUpdate()
 			// Spawn Effect
 			obj->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());
 		}
-		//GetGameObject()->GetAudioSource()->LoadAudio(L"../Resources/Audio/media_Explo1.wav");
-		//GetGameObject()->GetAudioSource()->Play();
 	}
 
 	Vec3 pos = GetTransform()->GetWorldPosition();
-
-	//if (INPUT->GetButton(KEY_TYPE::Z))
-	//	pos += GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
-	//
-	//if (INPUT->GetButton(KEY_TYPE::C))
-	//	pos -= GetTransform()->GetWorldTransform()->GetRight() * 100.f * DELTA_TIME;
-	//
-	//if (INPUT->GetButton(KEY_TYPE::Q))
-	//	pos += GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
-	//
-	//if (INPUT->GetButton(KEY_TYPE::E))
-	//	pos -= GetTransform()->GetWorldTransform()->GetLook() * 100.f * DELTA_TIME;
 
 	GetTransform()->SetWorldPosition(pos);
 

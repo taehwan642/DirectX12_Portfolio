@@ -46,6 +46,6 @@ void PlayerBullet::LateUpdate()
 void PlayerBullet::Move()
 {
 	Vec3 pos = GetTransform()->GetWorldPosition();
-	pos -= GetTransform()->GetWorldTransform()->GetLook() * _speed * DELTA_TIME;
+	pos -= _direction * _speed * DELTA_TIME;
 	GetTransform()->SetWorldPosition(pos);
 }
