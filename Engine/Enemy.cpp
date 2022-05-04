@@ -33,6 +33,10 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::Spawn(const Vec3& worldPosition)
+{
+}
+
 void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 {
 }
@@ -69,8 +73,12 @@ void Enemy::Attack()
 		else
 		{
 			std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
-			std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
 			object->AddComponent(std::make_shared<TransformComponent>());
+
+			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
+			object->AddComponent(mr);
+			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
+			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
 
 			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
 			object->AddComponent(eb);
@@ -79,7 +87,7 @@ void Enemy::Attack()
 
 			std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
 			object->AddComponent(sc);
-			sc->SetRadius(1.f);
+			sc->SetRadius(object->GetTransform()->GetWorldScale().x);
 
 			std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyBulletParent");
 

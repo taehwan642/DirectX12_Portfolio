@@ -33,6 +33,10 @@ Player::~Player()
 {
 }
 
+void Player::Spawn(const Vec3& worldPosition)
+{
+}
+
 void Player::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 {
 }
@@ -117,10 +121,14 @@ void Player::Attack()
 		{
 			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Bullet"); poolObj != nullptr)
 			{
+				std::shared_ptr<PlayerBullet> pb = poolObj->GetComponent<PlayerBullet>();
 				if (i == 0)
-					poolObj->GetComponent<PlayerBullet>()->Spawn(pos1);
+					pb->Spawn(pos1);
 				else
-					poolObj->GetComponent<PlayerBullet>()->Spawn(pos2);
+					pb->Spawn(pos2);
+
+				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
+				poolObj->GetTransform()->SetWorldRotation(GetTransform()->GetWorldRotation());
 			}
 			else
 			{
@@ -131,6 +139,7 @@ void Player::Attack()
 				std::shared_ptr<PlayerBullet> pb = std::make_shared<PlayerBullet>();
 				object->AddComponent(pb);
 				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
+				object->GetTransform()->SetWorldRotation(GetTransform()->GetWorldRotation());
 
 				if (i == 0)
 					pb->Spawn(pos1);

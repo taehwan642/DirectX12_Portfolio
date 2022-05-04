@@ -2,7 +2,7 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 82761,
+            "_id": 145089,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -54,11 +54,12 @@
             "_terrain": {},
             "_baseCollider": {},
             "_animator": {},
+            "_audioSource": {},
             "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 82766,
+            "_id": 145094,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -110,11 +111,12 @@
             "_terrain": {},
             "_baseCollider": {},
             "_animator": {},
+            "_audioSource": {},
             "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 82771,
+            "_id": 216,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -348,12 +350,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 82747,
+                                "_id": 207,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 82748,
+                                "_id": 208,
                                 "_name": ""
                             },
                             {},
@@ -363,7 +365,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 82759,
+                    "_id": 214,
                     "_name": ""
                 }
             },
@@ -376,13 +378,13 @@
                 "_computeMaterial": {
                     "_params": {
                         "intParams": [
-                            0,
-                            0,
-                            0,
+                            212,
+                            842,
+                            843,
                             0
                         ],
                         "floatParams": [
-                            0.0,
+                            0.37109375,
                             0.0,
                             0.0,
                             0.0
@@ -565,11 +567,12 @@
                     ]
                 }
             },
+            "_audioSource": {},
             "_scripts": []
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 82778,
+            "_id": 223,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -803,12 +806,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 82749,
+                                "_id": 209,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 82750,
+                                "_id": 210,
                                 "_name": ""
                             },
                             {},
@@ -818,7 +821,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 82760,
+                    "_id": 215,
                     "_name": ""
                 }
             },
@@ -831,13 +834,13 @@
                 "_computeMaterial": {
                     "_params": {
                         "intParams": [
-                            0,
-                            0,
-                            0,
+                            212,
+                            842,
+                            843,
                             0
                         ],
                         "floatParams": [
-                            0.0,
+                            0.37109375,
                             0.0,
                             0.0,
                             0.0
@@ -1020,6 +1023,7 @@
                     ]
                 }
             },
+            "_audioSource": {},
             "_scripts": []
         }
     ],

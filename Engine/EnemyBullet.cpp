@@ -14,8 +14,23 @@
 #include "SphereCollider.h"
 #include "AudioSource.h"
 
+EnemyBullet::EnemyBullet()
+{
+	MONOCLASSNAME(EnemyBullet);
+	_speed = 10.f;
+	_hp = 1;
+	_damage = 1;
+}
+
 EnemyBullet::~EnemyBullet()
 {
+}
+
+void EnemyBullet::Spawn(const Vec3& worldPosition)
+{
+	_hp = 1;
+	GetTransform()->SetWorldPosition(worldPosition);
+	_aliveTime = 0.f;
 }
 
 void EnemyBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
@@ -30,24 +45,24 @@ void EnemyBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 
 void EnemyBullet::LateUpdate()
 {
-	if (INPUT->GetButtonDown(KEY_TYPE::KEY_3))
-	{
-		std::shared_ptr<GameObject> obj = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(_testObject);
-		if (obj != nullptr)
-		{
-			// Spawn Effect
-			obj->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());
-		}
-	}
-
-	Vec3 pos = GetTransform()->GetWorldPosition();
-
-	GetTransform()->SetWorldPosition(pos);
-
 	static float inputTime = 0;
 	inputTime += DELTA_TIME;
 	GetMeshRenderer()->GetMaterial()->SetFloat(0, inputTime);
 	GetMeshRenderer()->GetMaterial()->SetInt(3, static_cast<int32>(_state));
+
+	_aliveTime += DELTA_TIME;
+	if (_aliveTime > 2.f)
+	{
+		GetGameObject()->SetActive(false);
+	}
+	Move();
+}
+
+void EnemyBullet::Move()
+{
+	Vec3 pos = GetTransform()->GetWorldPosition();
+	pos -= _direction * _speed * DELTA_TIME;
+	GetTransform()->SetWorldPosition(pos);
 }
 
 #ifdef TOOL

@@ -1,7 +1,9 @@
 {
     "meshDataResources": [
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbx",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbx"
     ],
     "textureResources": [
         "..\\Resources\\Texture\\Tile.png",
@@ -43,9 +45,24 @@
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\370479b7",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\2c7dcccc",
         "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\3fb1ad5d",
-        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826"
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\5e9211a4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\3477ceb4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\276d0cfa",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\3c14b981",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\483fba1b",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\5d6053bb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\4619e6c0",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\f68a3e",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbm\\bullet.png"
     ],
-    "audioResources": [],
+    "audioResources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_30.wav",
+        "..\\Resources\\Audio\\player\\pl0010_21.wav",
+        "..\\Resources\\Audio\\player\\pl0010_8.wav"
+    ],
     "gameObjects": [
         {
             "tag": "em0030.fbx",
@@ -62,6 +79,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -123,7 +142,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -141,6 +160,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -202,7 +223,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -220,6 +241,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -308,7 +331,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         },
         {
@@ -326,6 +349,8 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
                 false,
                 false,
                 false,
@@ -414,7 +439,7 @@
                 }
             },
             "audioSourceValue": {
-                "materialValue": ""
+                "tag": ""
             }
         }
     ],

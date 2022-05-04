@@ -17,5 +17,6 @@ public:
 class Bullet : public Character
 {
 public:
+	float _aliveTime = 0.f;
 	Vec3 _direction = Vec3::Zero;
 };

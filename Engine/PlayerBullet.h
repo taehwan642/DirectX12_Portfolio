@@ -21,7 +21,7 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override {};
 
-	float _aliveTime = 0.f;
+private:
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

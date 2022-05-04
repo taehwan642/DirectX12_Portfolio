@@ -11,7 +11,10 @@
 
 int EnemyIdleState::handleInput()
 {
-	_object.lock()->GetComponent<Enemy>()->Move();
+	std::shared_ptr<Enemy> enemy = _object.lock()->GetComponent<Enemy>();
+	enemy->Move();
+	if (enemy->GetEnemyType() == EnemyType::BULLET)
+		enemy->Attack();
 	return ENEMY_IDLE;
 }
 

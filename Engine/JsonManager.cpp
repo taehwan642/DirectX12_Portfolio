@@ -602,4 +602,5 @@ void JsonManager::LoadMonobehaviour(RTTRGameObjectValue value, std::shared_ptr<G
 	RTTRMONOLOAD(PathTraceCameraScript)
 	RTTRMONOLOAD(LaserScript)
 	RTTRMONOLOAD(Player)
+	RTTRMONOLOAD(Enemy)
 }

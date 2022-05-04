@@ -10,12 +10,14 @@ enum class EnemyType
 
 class StateManager;
 class Enemy :
-    public MonoBehaviour, public Character
+	public MonoBehaviour, public Character
 {
 public:
 	Enemy();
 
 	virtual ~Enemy();
+
+	virtual void Spawn(const Vec3& worldPosition) override;
 
 	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override;
 	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override {}
@@ -27,9 +29,11 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override;
 
+	EnemyType GetEnemyType() { return _enemyType; }
+
 public:
 	std::shared_ptr<StateManager> _stateManager;
-	float _fireSpeed = 0.1f;
+	float _fireSpeed = 0.4f;
 	float _deltaTime = 0.0f;
 
 	EnemyType _enemyType = EnemyType::BULLET;
