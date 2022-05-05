@@ -45,6 +45,9 @@ public:
 		fogMatrix._24 = fogData.fogColor.w;
 		return fogMatrix;
 	}
+
+	int GetCurrentSceneIndex() { return _currentSceneIndex; }
+
 	std::shared_ptr<GameObject> _boneVisualizerObject;
 
 private:
@@ -56,7 +59,6 @@ private:
 
 	std::shared_ptr<Scene> _activeScene;
 
-
 	std::array<std::wstring, MAX_LAYER> _layerNames;
 	std::map<std::wstring, uint8> _layerIndex;
 
@@ -66,5 +68,7 @@ private:
 	std::vector<std::wstring> _sceneTags;
 
 	FogData _fogData;
+
+	int _currentSceneIndex = 0;
 };
 

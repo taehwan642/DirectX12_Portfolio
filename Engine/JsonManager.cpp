@@ -6,6 +6,7 @@
 #include "Resources.h"
 #include "FBXLoader.h"
 #include "StructuredBuffer.h"
+#include "Engine.h"
 
 void JsonManager::Save(const std::string& path, std::shared_ptr<GameObject> object)
 {
@@ -21,9 +22,13 @@ void JsonManager::Save(const std::string& path, std::shared_ptr<GameObject> obje
 
 void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scene)
 {
-#ifndef TESTGAME
-	if (scene->GetMainCamera() != nullptr)
-		scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
+#ifdef TOOL
+	if (!GEngine->GetIsGamePlaying())
+	{
+		// Tool Camera »èÁ¦
+		if (scene->GetMainCamera() != nullptr)
+			scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
+	}
 #endif
 
 	std::string jsonString = io::to_json(*scene);
@@ -35,26 +40,29 @@ void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scen
 	std::ofstream ost2(path + "_value.json");
 	ost2 << jsonString2;
 
-#ifndef TESTGAME
-	std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
-	toolCamera->AddComponent(std::make_shared<TransformComponent>());
-	toolCamera->AddComponent(std::make_shared<Camera>());
-	toolCamera->AddComponent(std::make_shared<TestCameraScript>());
-	toolCamera->SetName(L"ToolCamera");
-	toolCamera->GenerateHash();
+#ifdef TOOL
+	if (!GEngine->GetIsGamePlaying())
+	{
+		std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
+		toolCamera->AddComponent(std::make_shared<TransformComponent>());
+		toolCamera->AddComponent(std::make_shared<Camera>());
+		toolCamera->AddComponent(std::make_shared<TestCameraScript>());
+		toolCamera->SetName(L"ToolCamera");
+		toolCamera->GenerateHash();
 
-	std::vector<std::shared_ptr<GameObject>> obj;
-	for (auto& iter : scene->_cameras)
-	{
-		obj.push_back(iter->GetGameObject());
+		std::vector<std::shared_ptr<GameObject>> obj;
+		for (auto& iter : scene->_cameras)
+		{
+			obj.push_back(iter->GetGameObject());
+		}
+		for (auto& iter : obj)
+		{
+			scene->RemoveGameObject(iter);
+		}
+		scene->AddGameObject(toolCamera);
+		for (auto& iter : obj)
+			scene->AddGameObject(iter);
 	}
-	for (auto& iter : obj)
-	{
-		scene->RemoveGameObject(iter);
-	}
-	scene->AddGameObject(toolCamera);
-	for (auto& iter : obj)
-		scene->AddGameObject(iter);
 #endif
 }
 
@@ -210,28 +218,31 @@ bool JsonManager::LoadScene(const std::string& path, std::shared_ptr<Scene> scen
 
 	io::from_json(dataString, scene);
 
-#ifndef TESTGAME
-	if (scene->_cameras.size() != 0)
+#ifdef TOOL
+	if (!GEngine->GetIsGamePlaying())
 	{
-		std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
-		toolCamera->AddComponent(std::make_shared<TransformComponent>());
-		toolCamera->AddComponent(std::make_shared<Camera>());
-		toolCamera->AddComponent(std::make_shared<TestCameraScript>());
-		toolCamera->SetName(L"ToolCamera");
-		toolCamera->GenerateHash();
+		if (scene->_cameras.size() != 0)
+		{
+			std::shared_ptr<GameObject> toolCamera = std::make_shared<GameObject>();
+			toolCamera->AddComponent(std::make_shared<TransformComponent>());
+			toolCamera->AddComponent(std::make_shared<Camera>());
+			toolCamera->AddComponent(std::make_shared<TestCameraScript>());
+			toolCamera->SetName(L"ToolCamera");
+			toolCamera->GenerateHash();
 
-		std::vector<std::shared_ptr<GameObject>> obj;
-		for (auto& iter : scene->_cameras)
-		{
-			obj.push_back(iter->GetGameObject());
+			std::vector<std::shared_ptr<GameObject>> obj;
+			for (auto& iter : scene->_cameras)
+			{
+				obj.push_back(iter->GetGameObject());
+			}
+			for (auto& iter : obj)
+			{
+				scene->RemoveGameObject(iter);
+			}
+			scene->AddGameObject(toolCamera);
+			for (auto& iter : obj)
+				scene->AddGameObject(iter);
 		}
-		for (auto& iter : obj)
-		{
-			scene->RemoveGameObject(iter);
-		}
-		scene->AddGameObject(toolCamera);
-		for (auto& iter : obj)
-			scene->AddGameObject(iter);
 	}
 #endif
 

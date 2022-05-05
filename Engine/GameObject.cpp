@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "Engine.h"
 #include "TransformComponent.h"
 #include "MeshRenderer.h"
 #include "Camera.h"
@@ -32,17 +33,30 @@ void GameObject::Awake()
 			component->Awake();
 	}
 
-#ifdef TESTGAME
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Awake();
 	}
 #else
-	if (GetName() == L"ToolCamera")
+	if (GEngine->GetIsGamePlaying())
 	{
-		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		if (GetName() != L"ToolCamera")
 		{
-			script->Awake();
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Awake();
+			}
+		}
+	}
+	else
+	{
+		if (GetName() == L"ToolCamera")
+		{
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Awake();
+			}
 		}
 	}
 #endif
@@ -58,17 +72,30 @@ void GameObject::Start()
 			component->Start();
 	}
 
-#ifdef TESTGAME
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Start();
 	}
 #else
-	if (GetName() == L"ToolCamera")
+	if (GEngine->GetIsGamePlaying())
 	{
-		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		if (GetName() != L"ToolCamera")
 		{
-			script->Start();
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Start();
+			}
+		}
+	}
+	else
+	{
+		if (GetName() == L"ToolCamera")
+		{
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Start();
+			}
 		}
 	}
 #endif
@@ -84,17 +111,30 @@ void GameObject::Update()
 			component->Update();
 	}
 
-#ifdef TESTGAME
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->Update();
 	}
 #else
-	if (GetName() == L"ToolCamera")
+	if (GEngine->GetIsGamePlaying())
 	{
-		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		if (GetName() != L"ToolCamera")
 		{
-			script->Update();
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Update();
+			}
+		}
+	}
+	else
+	{
+		if (GetName() == L"ToolCamera")
+		{
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->Update();
+			}
 		}
 	}
 #endif
@@ -110,17 +150,30 @@ void GameObject::LateUpdate()
 			component->LateUpdate();
 	}
 
-#ifdef TESTGAME
+#ifndef TOOL
 	for (std::shared_ptr<MonoBehaviour>& script : _scripts)
 	{
 		script->LateUpdate();
 	}
 #else
-	if (GetName() == L"ToolCamera")
+	if (GEngine->GetIsGamePlaying())
 	{
-		for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+		if (GetName() != L"ToolCamera")
 		{
-			script->LateUpdate();
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->LateUpdate();
+			}
+		}
+	}
+	else
+	{
+		if (GetName() == L"ToolCamera")
+		{
+			for (std::shared_ptr<MonoBehaviour>& script : _scripts)
+			{
+				script->LateUpdate();
+			}
 		}
 	}
 #endif

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "ImGuiManager.h"
 #ifdef TOOL
+#include "Engine.h"
 #include "imgui.h"
 #include "imgui_impl_win32.h"
 #include "imgui_impl_dx12.h"
@@ -576,6 +577,13 @@ void ImGuiManager::RenderClientData()
     ImGui::Text("Draw Calls : %d", _drawCall);
 
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
+    std::string s = (GEngine->GetIsGamePlaying() == true) ? "Pause" : "Play";
+    if (ImGui::Button(s.c_str()))
+    {
+        GEngine->SetIsGamePlaying(!GEngine->GetIsGamePlaying());
+        _functionQueue.push([=]() {   GET_SINGLE(SceneManager)->SetScene(GET_SINGLE(SceneManager)->GetCurrentSceneIndex()); });
+    }
 
     ImGui::End();
 }

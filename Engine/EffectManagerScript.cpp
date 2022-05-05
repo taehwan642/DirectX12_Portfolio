@@ -31,7 +31,7 @@ void EffectManagerScript::SpawnEffect(const std::string& path, const Vec3& world
 	{
 		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
 		object->AddComponent(std::make_shared<TransformComponent>());
-		object->GetTransform()->SetWorldScale(Vec3(10, 10, 10));
+		object->GetTransform()->SetWorldScale(Vec3::One);
 
 		std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
 		mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Effect")->Clone());

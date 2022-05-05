@@ -165,9 +165,12 @@ void Scene::RenderForward()
 		{
 			if (camera == mainCamera)
 				continue;
-#ifndef TESTGAME
-			if (camera->GetGameObject()->GetName() == L"Main_Camera")
-				continue;
+#ifdef TOOL
+			if (!GEngine->GetIsGamePlaying())
+			{
+				if (camera->GetGameObject()->GetName() == L"Main_Camera")
+					continue;
+			}
 #endif
 			camera->SortGameObject();
 			camera->Render_Forward();

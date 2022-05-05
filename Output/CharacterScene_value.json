@@ -65,87 +65,6 @@
     ],
     "gameObjects": [
         {
-            "tag": "Main_Camera",
-            "hashValue": 1652047311739494752,
-            "componentOnValue": [
-                true,
-                false,
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "monobehaviourOnValue": [
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "transformValue": {
-                "parentHashValue": 0
-            },
-            "meshRendererValue": {
-                "materialValues": [],
-                "meshRendererMaterialNumValue": 0,
-                "meshValue": {
-                    "tag": ""
-                }
-            },
-            "colliderValue": {
-                "type": "Sphere",
-                "visualizerSize": 0
-            },
-            "lightValue": {
-                "lightType": 0
-            },
-            "terrainValue": {
-                "sizeX": 0,
-                "sizeZ": 0
-            },
-            "particleSystemValue": {
-                "materialValue": {
-                    "textureOnValue": [
-                        false,
-                        false,
-                        false,
-                        false
-                    ],
-                    "textureValues": [
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        },
-                        {
-                            "tag": ""
-                        }
-                    ],
-                    "shaderValue": {
-                        "tag": ""
-                    },
-                    "tag": ""
-                }
-            },
-            "audioSourceValue": {
-                "tag": ""
-            }
-        },
-        {
             "tag": "SkyBox",
             "hashValue": 6209391560264195113,
             "componentOnValue": [
@@ -2935,6 +2854,168 @@
                 "meshRendererMaterialNumValue": 1,
                 "meshValue": {
                     "tag": "LOD0_1_body_mesh0001"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
+        },
+        {
+            "tag": "Main_Camera",
+            "hashValue": 1652047311739494752,
+            "componentOnValue": [
+                true,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
+        },
+        {
+            "tag": "EffectManager",
+            "hashValue": 3384872430648186473,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
                 }
             },
             "colliderValue": {

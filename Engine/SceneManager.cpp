@@ -53,9 +53,7 @@ void SceneManager::Init()
 	}
 	valueFile.close();
 
-#ifdef TESTGAME
 	SetScene(0);
-#endif
 
 	_boneVisualizerObject = std::make_shared<GameObject>();
 	_boneVisualizerObject->AddComponent(std::make_shared<TransformComponent>());
@@ -113,6 +111,7 @@ void SceneManager::SetScene(int index)
 {
 	if (_sceneTags.size() <= index)
 		return;
+	_currentSceneIndex = index;
 	LoadScene(_sceneTags[index]);
 }
 

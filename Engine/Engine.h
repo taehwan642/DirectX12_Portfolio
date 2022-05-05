@@ -34,10 +34,9 @@ public:
 
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> GetImGuiManager() { return _imguiManager; }
+	bool GetIsGamePlaying() { return _isGamePlaying; }
+	void SetIsGamePlaying(bool value) { _isGamePlaying = value; }
 #endif
-
-	// std::shared_ptr<DirectX::AudioEngine> GetAudioEngine() { return _audioEngine; };
-
 
 public:
 	void Render();
@@ -68,6 +67,7 @@ private:
 	std::array<std::shared_ptr<RenderTargetGroup>, RENDER_TARGET_GROUP_COUNT> _rtGroups;
 #ifdef TOOL
 	std::shared_ptr<ImGuiManager> _imguiManager;
+	bool _isGamePlaying = false;
 #endif
 };
 

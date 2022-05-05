@@ -298,7 +298,6 @@ std::wstring s2ws(const std::string& s);
 std::string ws2s(const std::wstring& s);
 
 #define TOOL
-#define TESTGAME
 
 #define PI ((FLOAT)  3.141592654f)
 #define RadianToDegree(radian) ((radian) * 180.f / PI)
