@@ -82,6 +82,11 @@ void Player::Awake()
 	GetGameObject()->GetAudioSource()->Play();
 	_p = SimpleMath::Plane(GetTransform()->GetWorldPosition(), Vec3(0, 1, 0));
 	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER, GetGameObject());
+
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_WEAPON, GetGameObject()->GetTransform()->GetChild(0)->GetChild(15)->GetGameObject());
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_WEAPON, GetGameObject()->GetTransform()->GetChild(0)->GetChild(16)->GetGameObject());
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_WEAPON, GetGameObject()->GetTransform()->GetChild(0)->GetChild(8)->GetGameObject());
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_WEAPON, GetGameObject()->GetTransform()->GetChild(0)->GetChild(9)->GetGameObject());
 }
 
 void Player::LateUpdate()

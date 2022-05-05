@@ -19,6 +19,8 @@
 #include "CollisionManager.h"
 #include "SphereCollider.h"
 #include "RaycastManager.h"
+#include "Player.h"
+#include "PlayerBullet.h"
 
 Enemy::Enemy()
 {
@@ -27,6 +29,7 @@ Enemy::Enemy()
 	_hp = 1;
 	_damage = 3;
 	_stateManager = std::make_shared<StateManager>();
+	_invincibleTime = 0.1f;
 }
 
 Enemy::~Enemy()
@@ -39,6 +42,34 @@ void Enemy::Spawn(const Vec3& worldPosition)
 
 void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 {
+	if (std::shared_ptr<Player> p = collider->GetGameObject()->GetComponent<Player>(); p != nullptr)
+	{
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			GetDamage(p->_damage);
+			ADDLOG("Player %d, HP LEFT : %d\n", p->_damage, _hp);
+		}
+	}
+	else if (std::shared_ptr<PlayerBullet> pb = collider->GetGameObject()->GetComponent<PlayerBullet>(); pb != nullptr)
+	{
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			GetDamage(pb->_damage);
+			ADDLOG("Player Bullet Damage %d, HP LEFT : %d\n", pb->_damage, _hp);
+		}
+	}
+	else
+	{
+		// 칼?
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			GetDamage(2);
+			ADDLOG("Player knife %d, HP LEFT : %d\n", 2, _hp);
+		}
+	}
 }
 
 void Enemy::Awake()
@@ -54,6 +85,7 @@ void Enemy::Awake()
 void Enemy::LateUpdate()
 {
 	_stateManager->UpdateState();
+	UpdateInvincibleTime();
 }
 
 void Enemy::Move()
