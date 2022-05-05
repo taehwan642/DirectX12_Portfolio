@@ -25,7 +25,7 @@ Enemy::Enemy()
 	MONOCLASSNAME(Enemy);
 	_speed = 50.f;
 	_hp = 1;
-	_damage = 1;
+	_damage = 3;
 	_stateManager = std::make_shared<StateManager>();
 }
 
@@ -48,6 +48,7 @@ void Enemy::Awake()
 	_stateManager->AddState(ENEMY_SHOOT_LASER, std::make_shared<EnemyShootLaserState>(GetGameObject()));
 	_stateManager->AddState(ENEMY_DEAD, std::make_shared<EnemyDeadState>(GetGameObject()));
 	_stateManager->ChangeState(ENEMY_IDLE);
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, GetGameObject());
 }
 
 void Enemy::LateUpdate()

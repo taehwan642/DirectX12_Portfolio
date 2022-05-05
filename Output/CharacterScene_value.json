@@ -412,7 +412,7 @@
                 }
             },
             "audioSourceValue": {
-                "tag": "..\\Resources\\Audio\\player\\pl0010_30.wav"
+                "tag": "..\\Resources\\Audio\\player\\pl0010_13.wav"
             }
         },
         {
@@ -2612,7 +2612,7 @@
                 false,
                 false,
                 false,
-                false,
+                true,
                 false,
                 false
             ],
@@ -2642,7 +2642,7 @@
             },
             "colliderValue": {
                 "type": "Sphere",
-                "visualizerSize": 0
+                "visualizerSize": 1
             },
             "lightValue": {
                 "lightType": 0

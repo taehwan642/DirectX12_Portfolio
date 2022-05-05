@@ -19,14 +19,17 @@
 #include "CollisionManager.h"
 #include "SphereCollider.h"
 #include "RaycastManager.h"
+#include "Enemy.h"
+#include "EnemyBullet.h"
 
 Player::Player()
 {
 	MONOCLASSNAME(Player);
 	_speed = 50.f;
-	_hp = 1;
+	_hp = 10;
 	_damage = 1;
 	_stateManager = std::make_shared<StateManager>();
+	_invincibleTime = 0.3f;
 }
 
 Player::~Player()
@@ -39,6 +42,25 @@ void Player::Spawn(const Vec3& worldPosition)
 
 void Player::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 {
+	if (std::shared_ptr<EnemyBullet> eb = collider->GetGameObject()->GetComponent<EnemyBullet>(); eb != nullptr)
+	{
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			GetDamage(eb->_damage);
+			ADDLOG("Enemy Bullet Damage %d, HP LEFT : %d\n", eb->_damage, _hp);
+		}
+	}
+
+	if (std::shared_ptr<Enemy> e = collider->GetGameObject()->GetComponent<Enemy>(); e != nullptr)
+	{
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			GetDamage(e->_damage);
+			ADDLOG("Enemy Damage %d, HP LEFT : %d\n", e->_damage, _hp);
+		}
+	}
 }
 
 void Player::Awake()
@@ -59,6 +81,7 @@ void Player::Awake()
 	GetGameObject()->GetAudioSource()->SetVolume(0.06f);
 	GetGameObject()->GetAudioSource()->Play();
 	_p = SimpleMath::Plane(GetTransform()->GetWorldPosition(), Vec3(0, 1, 0));
+	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER, GetGameObject());
 }
 
 void Player::LateUpdate()
@@ -77,6 +100,8 @@ void Player::LateUpdate()
 
 	_stateManager->UpdateState();
 	SetSwordCollider();
+
+	UpdateInvincibleTime();
 }
 
 void Player::Move()

@@ -1,0 +1,178 @@
+{
+    "meshDataResources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbx",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbx"
+    ],
+    "textureResources": [
+        "..\\Resources\\Texture\\Tile.png",
+        "..\\Resources\\Texture\\Leather.jpg",
+        "..\\Resources\\Texture\\Leather_Normal.jpg",
+        "..\\Resources\\Texture\\Terrain\\terrain.png",
+        "..\\Resources\\Texture\\Fabric.jpg",
+        "..\\Resources\\Texture\\Fabric_Normal.jpg",
+        "..\\Resources\\Texture\\Sci-Fi.jpg",
+        "..\\Resources\\Texture\\Sci-Fi_Normal.jpg",
+        "..\\Resources\\Texture\\Sea.jpg",
+        "..\\Resources\\Texture\\Sea_Normal.jpg",
+        "..\\Resources\\Texture\\EnemyBullet.png",
+        "..\\Resources\\Texture\\LaserLock.png",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\5e641fb8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\165be1cb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\lamp",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\bayoflatnormal",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\7239a9bb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3a0657c8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\74233c7",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4f7dcdb4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\67f606a8",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3228344f",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\1c787f0a",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\54478179",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4e7d0a23",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\642f450",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\3fdbdcb3",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\77e422c0",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\417bffd1",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\94401a2",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\31079f27",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\79386154",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\266e25d6",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\6e51dba5",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\5725ebc4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\ba4210.fbm\\4c5c5ebf",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\370479b7",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\2c7dcccc",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\3fb1ad5d",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\em0030.fbm\\24c81826",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\5e9211a4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\3477ceb4",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\276d0cfa",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\3c14b981",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\483fba1b",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\5d6053bb",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\4619e6c0",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\pl0010.fbm\\f68a3e",
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\FBX\\bullet.fbm\\bullet.png"
+    ],
+    "audioResources": [
+        "C:\\Users\\OWNER\\Desktop\\DirectX12_Portfolio\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_13.wav",
+        "..\\Resources\\Audio\\player\\pl0010_30.wav",
+        "..\\Resources\\Audio\\player\\pl0010_21.wav",
+        "..\\Resources\\Audio\\player\\pl0010_8.wav"
+    ],
+    "gameObjects": [
+        {
+            "tag": "BulletChild",
+            "hashValue": 9862569087714946873,
+            "componentOnValue": [
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 14083183314745745511
+            },
+            "meshRendererValue": {
+                "materialValues": [
+                    {
+                        "textureOnValue": [
+                            true,
+                            false,
+                            false,
+                            false
+                        ],
+                        "textureValues": [
+                            {
+                                "tag": "bullet.png"
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            },
+                            {
+                                "tag": ""
+                            }
+                        ],
+                        "shaderValue": {
+                            "tag": "Deferred"
+                        },
+                        "tag": "01 - Default"
+                    }
+                ],
+                "meshRendererMaterialNumValue": 1,
+                "meshValue": {
+                    "tag": "0"
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 1
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
+        }
+    ],
+    "cameraObjects": [],
+    "lightObjects": []
+}
