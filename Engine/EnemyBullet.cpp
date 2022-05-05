@@ -6,7 +6,6 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "GameObject.h"
-#include "EffectManagerScript.h"
 #include "MeshRenderer.h"
 #include "Material.h"
 #include "BaseCollider.h"

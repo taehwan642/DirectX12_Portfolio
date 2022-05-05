@@ -21,6 +21,7 @@
 #include "RaycastManager.h"
 #include "Enemy.h"
 #include "EnemyBullet.h"
+#include "EffectManagerScript.h"
 
 Player::Player()
 {
@@ -49,6 +50,8 @@ void Player::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 			// 만약 현재 dodge중이 아니라면;
 			GetDamage(eb->_damage);
 			ADDLOG("Enemy Bullet Damage %d, HP LEFT : %d\n", eb->_damage, _hp);
+			std::shared_ptr<GameObject> effectManager = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EffectManager");
+			effectManager->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());
 		}
 	}
 
