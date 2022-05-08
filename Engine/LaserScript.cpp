@@ -29,6 +29,14 @@ LaserScript::~LaserScript()
 {
 }
 
+void LaserScript::Spawn(const Vec3& worldPosition)
+{
+	_hp = 1;
+	GetTransform()->SetWorldPosition(worldPosition);
+	SetFireTime(5.0f);
+	_laserState = LaserState::LOCKON;
+}
+
 void LaserScript::LateUpdate()
 {
 	// 만약 Lock 상태일 때?
@@ -45,8 +53,8 @@ void LaserScript::LateUpdate()
 		GetMeshRenderer()->GetMaterial()->SetTexture(0, _animator->GetTexture(1));
 		_scrollSpeed = 7.f;
 
-		_fireTime -= DELTA_TIME;
-		if (_fireTime < 0.f)
+		_aliveTime -= DELTA_TIME;
+		if (_aliveTime < 0.f)
 		{
 			_laserState = LaserState::END;
 		}
