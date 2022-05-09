@@ -18,6 +18,7 @@
 #include "Animator.h"
 #include "CollisionManager.h"
 #include "SphereCollider.h"
+#include "BoxCollider.h"
 #include "RaycastManager.h"
 #include "Player.h"
 #include "PlayerBullet.h"
@@ -39,6 +40,7 @@ Enemy::~Enemy()
 
 void Enemy::Spawn(const Vec3& worldPosition)
 {
+	_deltaTime = 0.f;
 }
 
 void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
@@ -143,41 +145,50 @@ void Enemy::Attack()
 	}
 	else if (_enemyType == EnemyType::LASER)
 	{
-		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyLaser"); poolObj != nullptr)
+		_deltaTime += DELTA_TIME;
+		if (_deltaTime > 0)
 		{
-			std::shared_ptr<LaserScript> laser = poolObj->GetComponent<LaserScript>();
-			laser->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
-		}
-		else
-		{
-			std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
-			object->AddComponent(std::make_shared<TransformComponent>());
+			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyLaser"); poolObj != nullptr)
+			{
+				std::shared_ptr<LaserScript> laser = poolObj->GetComponent<LaserScript>();
+				laser->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+				laser->_attachedObject = GetGameObject();
+			}
+			else
+			{
+				std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+				object->AddComponent(std::make_shared<TransformComponent>());
+				object->GetTransform()->SetWorldScale(Vec3(2, 2, 10));
+				object->SetCheckFrustum(false);
 
-			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
-			object->AddComponent(mr);
-			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
-			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
+				std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
+				std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
+				object->AddComponent(mr);
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Laser"));
 
-			std::shared_ptr<LaserScript> eb = std::make_shared<LaserScript>();
-			object->AddComponent(eb);
-			eb->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+				std::shared_ptr<LaserScript> laser = std::make_shared<LaserScript>();
+				object->AddComponent(laser);
+				laser->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+				laser->_attachedObject = GetGameObject();
 
-			std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
-			object->AddComponent(sc);
-			sc->SetRadius(object->GetTransform()->GetWorldScale().x);
+				std::shared_ptr<BoxCollider> bc = std::make_shared<BoxCollider>();
+				object->AddComponent(bc);
+				bc->SetExtent(object->GetTransform()->GetWorldScale());
 
-			std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyBulletParent");
+				std::shared_ptr<GameObject> laserParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"LaserParent");
 
-			object->SetName(L"EnemyBulletChild" + std::to_wstring(bulletParent->GetTransform()->GetChildCount()));
-			object->GenerateHash();
+				object->SetName(L"LaserChild" + std::to_wstring(laserParent->GetTransform()->GetChildCount()));
+				object->GenerateHash();
 
-			object->GetTransform()->SetParent(bulletParent->GetTransform());
+				object->GetTransform()->SetParent(laserParent->GetTransform());
 
-			GET_SINGLE(ObjectPool)->AddPoolObject("EnemyLaser", object);
+				GET_SINGLE(ObjectPool)->AddPoolObject("EnemyLaser", object);
 
-			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, object);
+				GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, object);
 
-			GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
+				GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
+			}
+			_deltaTime = -999999.f;
 		}
 	}
 }

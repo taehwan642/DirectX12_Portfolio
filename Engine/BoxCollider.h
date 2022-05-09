@@ -10,6 +10,9 @@ public:
 	virtual void FinalUpdate() override;
 	virtual bool Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance) override;
 
+	void SetExtent(Vec3 extent) { _extents = extent; }
+	void SetCenter(Vec3 center) { _center = center; }
+
 private:
 	friend class ImGuiManager;
 	friend class CollisionManager;

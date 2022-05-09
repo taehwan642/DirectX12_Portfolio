@@ -36,7 +36,7 @@ public:
 	float _fireSpeed = 0.4f;
 	float _deltaTime = 0.0f;
 
-	EnemyType _enemyType = EnemyType::BULLET;
+	EnemyType _enemyType = EnemyType::LASER;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND

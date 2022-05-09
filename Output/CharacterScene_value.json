@@ -2900,12 +2900,12 @@
             }
         },
         {
-            "tag": "Main_Camera",
-            "hashValue": 1652047311739494752,
+            "tag": "EffectManager",
+            "hashValue": 3384872430648186473,
             "componentOnValue": [
                 true,
                 false,
-                true,
+                false,
                 false,
                 false,
                 false,
@@ -2914,7 +2914,88 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
                 true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
+        },
+        {
+            "tag": "LaserParent",
+            "hashValue": 10155298288298478736,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2981,12 +3062,12 @@
             }
         },
         {
-            "tag": "EffectManager",
-            "hashValue": 3384872430648186473,
+            "tag": "Main_Camera",
+            "hashValue": 1652047311739494752,
             "componentOnValue": [
                 true,
                 false,
-                false,
+                true,
                 false,
                 false,
                 false,
@@ -2995,11 +3076,11 @@
                 false
             ],
             "monobehaviourOnValue": [
-                false,
-                false,
-                false,
-                false,
                 true,
+                false,
+                false,
+                false,
+                false,
                 false,
                 false,
                 false,
