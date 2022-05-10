@@ -294,6 +294,9 @@
     <ClCompile Include="EnemyState.cpp">
       <Filter>Script\Character\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyMovement.cpp">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -543,6 +546,9 @@
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyState.h">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyMovement.h">
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
