@@ -16,6 +16,7 @@ public:
 	int GetCurrentAnimationIndex() { return _currentAnimIndex; }
 
 public:
+	virtual void Update() override;
 	virtual void FinalUpdate() override;
 
 private:

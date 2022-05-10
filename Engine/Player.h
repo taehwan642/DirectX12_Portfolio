@@ -18,6 +18,7 @@ public:
 	virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) override {}
 
 	virtual void Awake() override;
+	virtual void Update() override;
 	virtual void LateUpdate() override;
 
 	virtual void Move() override;

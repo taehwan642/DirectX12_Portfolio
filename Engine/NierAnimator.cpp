@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "NierAnimator.h"
 #include "Timer.h"
+#include "Engine.h"
+#include "GameObject.h"
 
 NierAnimator::NierAnimator() : Animator()
 {
@@ -23,10 +25,33 @@ void NierAnimator::SetAnimationIndex(int index)
 	if (index == _currentAnimIndex)
 		return;
 
+	if (!GetGameObject()->GetActive())
+		return;
+
 	_isAnimEnd = false;
 	_currentAnimIndex = index;
 	_nextFrame = _animFrames[_currentAnimIndex].x;
 	_changedFrame = _frame;
+
+	ADDLOG("CHANGE ANI! frame : %d, nextframe : %d, changedframe : %d, animindex : %d\n", _frame, _nextFrame, _changedFrame, index);
+}
+
+void NierAnimator::Update()
+{
+	if (_paused == true)
+		return;
+
+	_isAnimEnd = false;
+
+	const AnimClipInfo& animClip = _animClips->at(_clipIndex);
+	const int32 ratio = static_cast<int32>(animClip.frameCount / animClip.duration);
+	// _clipIndex를 통해서 바꾸기
+	if (_frame >= _animFrames[_currentAnimIndex].y)
+	{
+		if (_changedFrame == -1)
+			_isAnimEnd = true;
+		ADDLOG("END\n");
+	}
 }
 
 void NierAnimator::FinalUpdate()
@@ -37,15 +62,13 @@ void NierAnimator::FinalUpdate()
 	const AnimClipInfo& animClip = _animClips->at(_clipIndex);
 	const int32 ratio = static_cast<int32>(animClip.frameCount / animClip.duration);
 
-	// _clipIndex를 통해서 바꾸기
-	if (_frame > _animFrames[_currentAnimIndex].y)
+	if (_frame >= _animFrames[_currentAnimIndex].y)
 	{
 		_frame = _animFrames[_currentAnimIndex].x;
 		_nextFrame = _animFrames[_currentAnimIndex].x + 1;
 		_updateTime = _frame / static_cast<float>(ratio); // frame / 30FPS
+		ADDLOG("FRAME RELOAD\n");
 	}
-
-	_isAnimEnd = false;
 
 	_updateTime += DELTA_TIME;
 
@@ -61,7 +84,14 @@ void NierAnimator::FinalUpdate()
 		{
 			_changedFrame = -1;
 			_frame = _nextFrame;
-			_nextFrame = _frame + 1;
+
+			if (_frame + 1 > animClip.frameCount - 1)
+				_nextFrame = 0;
+			else if (_frame + 1 > _animFrames[_currentAnimIndex].y)
+				_nextFrame = _animFrames[_currentAnimIndex].x + 1;
+			else
+				_nextFrame = _frame + 1;
+
 			_updateTime = _frame / static_cast<float>(ratio);
 		}
 	}
@@ -78,6 +108,5 @@ void NierAnimator::FinalUpdate()
 	int32 nextFrameUpdateTime = (_frame + 1);
 	_frameRatio = static_cast<float>(1.f - (nextFrameUpdateTime - (_updateTime * ratio)));
 
-	if (_frame >= _animFrames[_currentAnimIndex].y)
-		_isAnimEnd = true;
+	ADDLOG("frame : %d, nextframe : %d, changedframe : %d\n", _frame, _nextFrame, _changedFrame);
 }

@@ -53,7 +53,7 @@ void SceneManager::Init()
 	}
 	valueFile.close();
 
-	SetScene(0);
+	///SetScene(0);
 
 	_boneVisualizerObject = std::make_shared<GameObject>();
 	_boneVisualizerObject->AddComponent(std::make_shared<TransformComponent>());

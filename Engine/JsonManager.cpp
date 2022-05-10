@@ -26,7 +26,7 @@ void JsonManager::SaveScene(const std::string& path, std::shared_ptr<Scene> scen
 	if (!GEngine->GetIsGamePlaying())
 	{
 		// Tool Camera »èÁ¦
-		if (scene->GetMainCamera() != nullptr)
+		if (scene->FindGameObject(L"ToolCamera") != nullptr)
 			scene->RemoveGameObject(scene->GetMainCamera()->GetGameObject());
 	}
 #endif

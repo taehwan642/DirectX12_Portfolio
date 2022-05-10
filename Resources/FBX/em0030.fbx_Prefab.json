@@ -2,7 +2,7 @@
     "_gameObjects": [
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 145089,
+            "_id": 277994,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -59,7 +59,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 145094,
+            "_id": 277999,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -116,7 +116,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 216,
+            "_id": 278004,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -350,12 +350,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 207,
+                                "_id": 277985,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 208,
+                                "_id": 277986,
                                 "_name": ""
                             },
                             {},
@@ -365,7 +365,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 214,
+                    "_id": 277992,
                     "_name": ""
                 }
             },
@@ -378,13 +378,13 @@
                 "_computeMaterial": {
                     "_params": {
                         "intParams": [
-                            212,
-                            842,
-                            843,
+                            0,
+                            0,
+                            0,
                             0
                         ],
                         "floatParams": [
-                            0.37109375,
+                            0.0,
                             0.0,
                             0.0,
                             0.0
@@ -572,7 +572,7 @@
         },
         {
             "_objectType": "GAMEOBJECT",
-            "_id": 223,
+            "_id": 278011,
             "_name": "",
             "_isActive": true,
             "_checkFrustum": true,
@@ -806,12 +806,12 @@
                         "_textures": [
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 209,
+                                "_id": 277987,
                                 "_name": ""
                             },
                             {
                                 "_objectType": "TEXTURE",
-                                "_id": 210,
+                                "_id": 277988,
                                 "_name": ""
                             },
                             {},
@@ -821,7 +821,7 @@
                 ],
                 "_mesh": {
                     "_objectType": "MESH",
-                    "_id": 215,
+                    "_id": 277993,
                     "_name": ""
                 }
             },
@@ -834,13 +834,13 @@
                 "_computeMaterial": {
                     "_params": {
                         "intParams": [
-                            212,
-                            842,
-                            843,
+                            0,
+                            0,
+                            0,
                             0
                         ],
                         "floatParams": [
-                            0.37109375,
+                            0.0,
                             0.0,
                             0.0,
                             0.0

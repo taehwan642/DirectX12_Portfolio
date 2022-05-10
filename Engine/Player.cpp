@@ -92,15 +92,20 @@ void Player::Awake()
 	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER_WEAPON, GetGameObject()->GetTransform()->GetChild(0)->GetChild(9)->GetGameObject());
 }
 
+void Player::Update()
+{
+
+}
+
 void Player::LateUpdate()
 {
 	POINT mousePos = INPUT->GetMousePos();
 	GET_SINGLE(RaycastManager)->SetRayOriginRayDir(mousePos.x, mousePos.y);
 	Vec3 rayOrigin = Vec3(GET_SINGLE(RaycastManager)->_rayOrigin);
 	Vec3 rayDir = Vec3(GET_SINGLE(RaycastManager)->_rayDir);
-	
+
 	// plane À§ v = rayOrigin + t * rayDir
-	float t = (-_p.D() - (_p.Normal().Dot(rayOrigin)))/ _p.Normal().Dot(rayDir);
+	float t = (-_p.D() - (_p.Normal().Dot(rayOrigin))) / _p.Normal().Dot(rayDir);
 
 	Vec3 point = rayOrigin + t * rayDir;
 

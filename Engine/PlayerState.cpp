@@ -8,6 +8,7 @@
 #include "NierAnimator.h"
 #include "AudioSource.h"
 #include "Engine.h"
+
 /*
 Player Animation Index
 0 = COMBAT -> FLIGHT
@@ -26,7 +27,7 @@ int FlightIdleState::handleInput()
 {
 	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
-	
+
 	if (INPUT->GetButton(KEY_TYPE::RIGHT) || INPUT->GetButton(KEY_TYPE::LEFT))
 	{
 		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
@@ -37,6 +38,7 @@ int FlightIdleState::handleInput()
 	}
 	else
 	{
+		ADDLOG("Idle\n");
 		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
 			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
@@ -73,9 +75,8 @@ int FlightIdleState::handleInput()
 
 int CombatIdleState::handleInput()
 {
-	//_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
-	
+
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
 	{
 		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_21.wav");
@@ -118,6 +119,7 @@ int CombatIdleState::handleInput()
 
 int FlightFireState::handleInput()
 {
+	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
 	return FLIGHT_IDLE;
 }
@@ -130,6 +132,7 @@ int CombatFireState::handleInput()
 
 int CombatAttack1State::handleInput()
 {
+	bool isEnd = false;
 	_object.lock()->GetComponent<Player>()->Move();
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
@@ -156,15 +159,18 @@ int CombatAttack1State::handleInput()
 
 		if (anim->GetAnimationEnd())
 		{
-			return COMBAT_IDLE;
+			anim->SetAnimationIndex(7);
+			isEnd = true;
 		}
 	}
-
+	if (isEnd == true)
+		return COMBAT_IDLE;
 	return COMBAT_ATTACK1;
 }
 
 int CombatAttack2State::handleInput()
 {
+	bool isEnd = false;
 	_object.lock()->GetComponent<Player>()->Move();
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
@@ -191,14 +197,20 @@ int CombatAttack2State::handleInput()
 
 		if (anim->GetAnimationEnd())
 		{
-			return COMBAT_IDLE;
+			anim->SetAnimationIndex(7);
+			isEnd = true;
 		}
 	}
+
+	if (isEnd == true)
+		return COMBAT_IDLE;
+
 	return COMBAT_ATTACK2;
 }
 
 int FlightToCombatState::handleInput()
 {
+	bool isEnd = false;
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
 		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
@@ -209,14 +221,20 @@ int FlightToCombatState::handleInput()
 		if (anim->GetAnimationEnd())
 		{
 			ADDLOG("FLIGHT TO COMBAT END\n");
-			return COMBAT_IDLE;
+			anim->SetAnimationIndex(7);
+			isEnd = true;
 		}
 	}
+
+	if (isEnd == true)
+		return COMBAT_IDLE;
+	
 	return FLIGHT_TO_COMBAT;
 }
 
 int CombatToFlightState::handleInput()
 {
+	bool isEnd = false;
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
 		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
@@ -227,14 +245,21 @@ int CombatToFlightState::handleInput()
 		if (anim->GetAnimationEnd())
 		{
 			ADDLOG("COMBAT TO FLIGHT END\n");
-			return FLIGHT_IDLE;
+			anim->SetAnimationIndex(5);
+			isEnd = true;
 		}
 	}
+
+	if (isEnd == true)
+		return FLIGHT_IDLE;
+
 	return COMBAT_TO_FLIGHT;
 }
 
 int FlightDodgeState::handleInput()
 {
+	bool isEnd = false;
+	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
 	_object.lock()->GetComponent<Player>()->Move();
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
@@ -244,9 +269,14 @@ int FlightDodgeState::handleInput()
 
 		if (anim->GetAnimationEnd())
 		{
-			return FLIGHT_IDLE;
+			anim->SetAnimationIndex(5);
+			isEnd = true;
 		}
 	}
+
+	if (isEnd == true)
+		return FLIGHT_IDLE;
+
 	return FLIGHT_DODGE;
 }
 
