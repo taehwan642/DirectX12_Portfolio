@@ -23,8 +23,9 @@
 #include "Player.h"
 #include "PlayerBullet.h"
 #include "LaserScript.h"
+#include "EnemyMovement.h"
 
-Enemy::Enemy()
+Enemy::Enemy() : _stateManager(std::make_shared<StateManager>())
 {
 	MONOCLASSNAME(Enemy);
 	_speed = 50.f;
@@ -32,6 +33,7 @@ Enemy::Enemy()
 	_damage = 3;
 	_stateManager = std::make_shared<StateManager>();
 	_invincibleTime = 0.1f;
+	SetEnemyMovementType(EnemyMovmentType::LERP);
 }
 
 Enemy::~Enemy()
@@ -97,7 +99,7 @@ void Enemy::Move()
 
 void Enemy::Attack()
 {
-	if (_enemyType == EnemyType::BULLET)
+	if (_enemyType == EnemyShootingType::BULLET)
 	{
 		_deltaTime += DELTA_TIME;
 		if (_deltaTime > _fireSpeed)
@@ -143,7 +145,7 @@ void Enemy::Attack()
 			_deltaTime = 0.f;
 		}
 	}
-	else if (_enemyType == EnemyType::LASER)
+	else if (_enemyType == EnemyShootingType::LASER)
 	{
 		_deltaTime += DELTA_TIME;
 		if (_deltaTime > 0)
@@ -190,5 +192,20 @@ void Enemy::Attack()
 			}
 			_deltaTime = -999999.f;
 		}
+	}
+}
+
+void Enemy::SetEnemyMovementType(EnemyMovmentType type)
+{
+	switch (type)
+	{
+	case EnemyMovmentType::LERP:
+		_enemyMovement = std::make_shared<EnemyLerpMovement>(Vec3::Zero, Vec3::One * 30);
+		break;
+	case EnemyMovmentType::CATMULLROM:
+		_enemyMovement = std::make_shared<EnemyCatmullRomMovement>(std::array<Vec3,4>{ Vec3::Zero, Vec3::One * 30, Vec3::One * 5, Vec3::One });
+		break;
+	default:
+		break;
 	}
 }

@@ -2,13 +2,20 @@
 #include "MonoBehaviour.h"
 #include "Character.h"
 
-enum class EnemyType
+enum class EnemyShootingType
 {
 	BULLET,
 	LASER
 };
 
+enum class EnemyMovmentType
+{
+	LERP,
+	CATMULLROM
+};
+
 class StateManager;
+class EnemyMovement;
 class Enemy :
 	public MonoBehaviour, public Character
 {
@@ -29,14 +36,16 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override;
 
-	EnemyType GetEnemyType() { return _enemyType; }
+	EnemyShootingType GetEnemyType() { return _enemyType; }
+	void SetEnemyMovementType(EnemyMovmentType type);
 
-public:
+private:
 	std::shared_ptr<StateManager> _stateManager;
+	std::shared_ptr<EnemyMovement> _enemyMovement;
 	float _fireSpeed = 0.4f;
 	float _deltaTime = 0.0f;
 
-	EnemyType _enemyType = EnemyType::LASER;
+	EnemyShootingType _enemyType = EnemyShootingType::LASER;
 
 	RTTR_ENABLE()
 	RTTR_REGISTRATION_FRIEND
