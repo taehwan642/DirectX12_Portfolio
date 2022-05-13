@@ -11,30 +11,13 @@
 #include "SceneManager.h"
 #include "PathTraceCameraScript.h"
 
-void LaserScript::Init()
-{
-	// 애니메이션 불러오기
-	if (_animator == nullptr)
-	{
-		_animator = std::make_shared<TextureAnimator>();
-		_animator->LoadAnimation("LaserTextures");
-		_animator->SetLoop(false);
-	}
-	SetFireTime(3.f);
-	_camera = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"Main_Camera");
-	_cameraScript = _camera.lock()->GetComponent<PathTraceCameraScript>();
-}
-
 LaserScript::~LaserScript()
 {
 }
 
-void LaserScript::Spawn(const Vec3& worldPosition)
+void LaserScript::Spawn(int hp, float speed, int damage)
 {
-	_hp = 1;
-	_damage = 1;
 	// -0.683
-	GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * GetTransform()->GetWorldScale().z) + worldPosition.z));
 	SetFireTime(5.0f);
 	SetLockOnTime(2.0f);
 	_laserState = LaserState::LOCKON;
@@ -49,6 +32,7 @@ void LaserScript::Spawn(const Vec3& worldPosition)
 	_cameraScript = _camera.lock()->GetComponent<PathTraceCameraScript>();
 	_maxSizeX = GetTransform()->GetWorldScale().x;
 	_originalScaleZ = GetTransform()->GetWorldScale().z;
+	Character::Spawn(hp, speed, damage);
 }
 
 void LaserScript::LateUpdate()

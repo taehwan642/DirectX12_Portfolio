@@ -28,9 +28,7 @@
 Enemy::Enemy() : _stateManager(std::make_shared<StateManager>())
 {
 	MONOCLASSNAME(Enemy);
-	_speed = 50.f;
-	_hp = 1;
-	_damage = 3;
+	Spawn(1, 50.f, 3);
 	_stateManager = std::make_shared<StateManager>();
 	_invincibleTime = 0.1f;
 	SetEnemyMovementType(EnemyMovmentType::LERP);
@@ -40,9 +38,10 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::Spawn(const Vec3& worldPosition)
+void Enemy::Spawn(int hp, float speed, int damage)
 {
 	_deltaTime = 0.f;
+	Character::Spawn(hp, speed, damage);
 }
 
 void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
@@ -107,7 +106,10 @@ void Enemy::Attack()
 			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
 			{
 				std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
-				eb->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+
+				eb->Spawn(1, 10.f, 1);
+
+				eb->GetTransform()->SetWorldPosition(GetGameObject()->GetTransform()->GetWorldPosition());
 				eb->_direction = GetTransform()->GetWorldTransform()->GetLook();
 			}
 			else
@@ -122,8 +124,11 @@ void Enemy::Attack()
 
 				std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
 				object->AddComponent(eb);
+
+				eb->Spawn(1, 10.f, 1);
+
 				eb->_direction = GetTransform()->GetWorldTransform()->GetLook();
-				eb->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+				eb->GetTransform()->SetWorldPosition(GetGameObject()->GetTransform()->GetWorldPosition());
 
 				std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
 				object->AddComponent(sc);
@@ -153,7 +158,11 @@ void Enemy::Attack()
 			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyLaser"); poolObj != nullptr)
 			{
 				std::shared_ptr<LaserScript> laser = poolObj->GetComponent<LaserScript>();
-				laser->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+
+				laser->Spawn(1, 1.f, 1);
+
+				Vec3 worldPosition = GetTransform()->GetWorldPosition();
+				laser->GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * laser->GetTransform()->GetWorldScale().z) + worldPosition.z));
 				laser->_attachedObject = GetGameObject();
 			}
 			else
@@ -170,7 +179,11 @@ void Enemy::Attack()
 
 				std::shared_ptr<LaserScript> laser = std::make_shared<LaserScript>();
 				object->AddComponent(laser);
-				laser->Spawn(GetGameObject()->GetTransform()->GetWorldPosition());
+
+				laser->Spawn(1, 1.f, 1);
+
+				Vec3 worldPosition = GetTransform()->GetWorldPosition();
+				laser->GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * laser->GetTransform()->GetWorldScale().z) + worldPosition.z));
 				laser->_attachedObject = GetGameObject();
 
 				std::shared_ptr<BoxCollider> bc = std::make_shared<BoxCollider>();

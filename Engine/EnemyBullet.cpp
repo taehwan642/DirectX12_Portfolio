@@ -16,20 +16,17 @@
 EnemyBullet::EnemyBullet()
 {
 	MONOCLASSNAME(EnemyBullet);
-	_speed = 10.f;
-	_hp = 1;
-	_damage = 1;
+	Spawn(1, 10.f, 1);
 }
 
 EnemyBullet::~EnemyBullet()
 {
 }
 
-void EnemyBullet::Spawn(const Vec3& worldPosition)
+void EnemyBullet::Spawn(int hp, float speed, int damage)
 {
-	_hp = 1;
-	GetTransform()->SetWorldPosition(worldPosition);
 	_aliveTime = 0.f;
+	Character::Spawn(hp, speed, damage);
 }
 
 void EnemyBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)

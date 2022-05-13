@@ -12,7 +12,7 @@ public:
 	}
 	virtual void Move() = 0;
 	virtual void Attack() = 0;
-	virtual void Spawn(const Vec3& worldPosition) = 0;
+	virtual void Spawn(int hp, float speed, int damage) { _hp = hp; _speed = speed; _damage = damage; };
 
 	bool IsInvincible()
 	{

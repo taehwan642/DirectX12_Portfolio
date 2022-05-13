@@ -8,21 +8,18 @@
 PlayerBullet::PlayerBullet()
 {
 	MONOCLASSNAME(PlayerBullet);
-	_speed = 50.f;
-	_hp = 1;
-	_damage = 1;
+	Spawn(1, 50.f, 1);
 }
 
 PlayerBullet::~PlayerBullet()
 {
 }
 
-void PlayerBullet::Spawn(const Vec3& worldPosition)
+void PlayerBullet::Spawn(int hp, float speed, int damage)
 {
 	ADDLOG("BulletSpawn\n");
-	_hp = 1;
-	GetTransform()->SetWorldPosition(worldPosition);
 	_aliveTime = 0.f;
+	Character::Spawn(hp, speed, damage);
 }
 
 void PlayerBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)

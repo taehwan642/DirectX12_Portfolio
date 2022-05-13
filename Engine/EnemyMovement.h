@@ -1,7 +1,8 @@
 #pragma once
 
-__interface EnemyMovement
+class EnemyMovement
 {
+public:
 	virtual Vec3 GetMovmentResult() = 0;
 };
 

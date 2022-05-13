@@ -26,18 +26,12 @@
 Player::Player()
 {
 	MONOCLASSNAME(Player);
-	_speed = 50.f;
-	_hp = 10;
-	_damage = 1;
+	Spawn(10, 50.f, 1);
 	_stateManager = std::make_shared<StateManager>();
 	_invincibleTime = 0.3f;
 }
 
 Player::~Player()
-{
-}
-
-void Player::Spawn(const Vec3& worldPosition)
 {
 }
 
@@ -160,10 +154,13 @@ void Player::Attack()
 			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Bullet"); poolObj != nullptr)
 			{
 				std::shared_ptr<PlayerBullet> pb = poolObj->GetComponent<PlayerBullet>();
+
+				pb->Spawn(1, 50.f, 1);
+
 				if (i == 0)
-					pb->Spawn(pos1);
+					pb->GetTransform()->SetWorldPosition(pos1);
 				else
-					pb->Spawn(pos2);
+					pb->GetTransform()->SetWorldPosition(pos2);
 
 				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
 				poolObj->GetTransform()->SetWorldRotation(GetTransform()->GetWorldRotation());
@@ -176,13 +173,16 @@ void Player::Attack()
 
 				std::shared_ptr<PlayerBullet> pb = std::make_shared<PlayerBullet>();
 				object->AddComponent(pb);
-				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
-				object->GetTransform()->SetWorldRotation(GetTransform()->GetWorldRotation());
+
+				pb->Spawn(1, 50.f, 1);
 
 				if (i == 0)
-					pb->Spawn(pos1);
+					pb->GetTransform()->SetWorldPosition(pos1);
 				else
-					pb->Spawn(pos2);
+					pb->GetTransform()->SetWorldPosition(pos2);
+
+				pb->_direction = GetTransform()->GetWorldTransform()->GetLook();
+				pb->GetTransform()->SetWorldRotation(GetTransform()->GetWorldRotation());
 
 				std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
 				object->AddComponent(mr);
