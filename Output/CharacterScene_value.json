@@ -90,6 +90,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -198,6 +199,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -279,6 +281,7 @@
                 false,
                 false,
                 true,
+                false,
                 false
             ],
             "transformValue": {
@@ -360,6 +363,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -430,6 +434,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -549,6 +554,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -646,6 +652,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -765,6 +772,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -862,6 +870,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -981,6 +990,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1078,6 +1088,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1197,6 +1208,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1294,6 +1306,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1413,6 +1426,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1510,6 +1524,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1629,6 +1644,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1726,6 +1742,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -1845,6 +1862,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -1942,6 +1960,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2061,6 +2080,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -2158,6 +2178,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2277,6 +2298,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -2385,6 +2407,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -2455,6 +2478,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2547,7 +2571,8 @@
                 false,
                 false,
                 false,
-                true
+                true,
+                false
             ],
             "transformValue": {
                 "parentHashValue": 0
@@ -2617,6 +2642,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2698,6 +2724,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -2817,6 +2844,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -2925,6 +2953,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -2995,6 +3024,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -3087,6 +3117,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -3157,6 +3188,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -3249,6 +3281,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -3319,6 +3352,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -3411,6 +3445,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -3481,6 +3516,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -3573,6 +3609,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -3643,6 +3680,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,
@@ -3735,10 +3773,93 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
                 "parentHashValue": 3401846245266528831
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
+        },
+        {
+            "tag": "EnemySpawner",
+            "hashValue": 4611117483419354315,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "monobehaviourOnValue": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true
+            ],
+            "transformValue": {
+                "parentHashValue": 0
             },
             "meshRendererValue": {
                 "materialValues": [],
@@ -3806,6 +3927,7 @@
             ],
             "monobehaviourOnValue": [
                 true,
+                false,
                 false,
                 false,
                 false,
@@ -3899,6 +4021,7 @@
                 false,
                 false,
                 false,
+                false,
                 false
             ],
             "transformValue": {
@@ -3971,6 +4094,7 @@
                 false
             ],
             "monobehaviourOnValue": [
+                false,
                 false,
                 false,
                 false,

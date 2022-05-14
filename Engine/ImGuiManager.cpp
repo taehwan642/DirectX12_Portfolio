@@ -46,6 +46,7 @@
 #include "LaserScript.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "EnemySpawner.h"
 
 ImGuiManager::ImGuiManager(HWND hwnd, std::shared_ptr<Device> device) : _debugLogger(std::make_shared<DebugLogger>())
 {
@@ -1614,6 +1615,7 @@ void ImGuiManager::RenderInspector()
                 IMGUIADDMONOBEHAVIOUR(LaserScript);
                 IMGUIADDMONOBEHAVIOUR(Player);
                 IMGUIADDMONOBEHAVIOUR(Enemy);
+                IMGUIADDMONOBEHAVIOUR(EnemySpawner);
                 ImGui::EndMenu();
             }
             ImGui::EndMenu();

@@ -9,6 +9,11 @@
 #include "SphereCollider.h"
 #include "CollisionManager.h"
 
+EnemySpawner::EnemySpawner()
+{
+	MONOCLASSNAME(EnemySpawner);
+}
+
 void EnemySpawner::Spawn()
 {
 	if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("Enemy"); poolObj != nullptr)
@@ -97,9 +102,9 @@ void EnemySpawner::Spawn()
 		// ÀûÀÇ ÃÑ ½î´Â ¹æ½Ä
 
 		// SphereCollider
-		// std::shared_ptr<BoxCollider> bc = std::make_shared<BoxCollider>();
-		// object->AddComponent(bc);
-		// bc->SetExtent(object->GetTransform()->GetWorldScale());
+		std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
+		object->AddComponent(sc);
+		sc->SetRadius(object->GetTransform()->GetWorldScale().x);
 
 		std::shared_ptr<GameObject> enemyParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyParent");
 
@@ -114,11 +119,21 @@ void EnemySpawner::Spawn()
 
 		GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 	}
-	
-
 }
 
 void EnemySpawner::LateUpdate()
 {
 
+}
+
+void EnemySpawner::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+{
+}
+
+void EnemySpawner::OnCollisionStay(std::shared_ptr<class BaseCollider> collider)
+{
+}
+
+void EnemySpawner::OnCollisionExit(std::shared_ptr<class BaseCollider> collider)
+{
 }

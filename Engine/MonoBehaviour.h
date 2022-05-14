@@ -15,6 +15,7 @@ enum class MonoBehaviourType
 	LaserScript,
 	Player,
 	Enemy,
+	EnemySpawner,
 	END
 };
 

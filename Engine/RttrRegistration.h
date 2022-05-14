@@ -38,6 +38,7 @@
 #include "LaserScript.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "EnemySpawner.h"
 
 // Load때 필요한 오브젝트.
 
@@ -318,6 +319,7 @@ struct RTTRGameObjectValue
 			RTTRMONOSAVE(LaserScript)
 			RTTRMONOSAVE(Player)
 			RTTRMONOSAVE(Enemy)
+			RTTRMONOSAVE(EnemySpawner)
 		}
 	}
 
@@ -888,6 +890,7 @@ RTTR_REGISTRATION
 	RTTRMONOREGISTER(LaserScript);
 	RTTRMONOREGISTER(Player);
 	RTTRMONOREGISTER(Enemy);
+	RTTRMONOREGISTER(EnemySpawner);
 
 #pragma endregion
 }
