@@ -3,5 +3,8 @@
 class EnemySpawner :
     public MonoBehaviour
 {
-};
+public:
+    void Spawn();
 
+    virtual void LateUpdate() override;
+};

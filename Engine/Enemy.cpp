@@ -31,7 +31,6 @@ Enemy::Enemy() : _stateManager(std::make_shared<StateManager>())
 	Spawn(1, 50.f, 3);
 	_stateManager = std::make_shared<StateManager>();
 	_invincibleTime = 0.1f;
-	SetEnemyMovementType(EnemyMovmentType::LERP);
 }
 
 Enemy::~Enemy()
@@ -94,6 +93,7 @@ void Enemy::LateUpdate()
 
 void Enemy::Move()
 {
+	GetTransform()->SetWorldPosition(_enemyMovement->GetMovmentResult());
 }
 
 void Enemy::Attack()
@@ -208,15 +208,15 @@ void Enemy::Attack()
 	}
 }
 
-void Enemy::SetEnemyMovementType(EnemyMovmentType type)
+void Enemy::SetEnemyMovementType(EnemyMovmentType type, const std::vector<Vec3>& positions)
 {
 	switch (type)
 	{
 	case EnemyMovmentType::LERP:
-		_enemyMovement = std::make_shared<EnemyLerpMovement>(Vec3::Zero, Vec3::One * 30);
+		_enemyMovement = std::make_shared<EnemyLerpMovement>(positions[0], positions[1]);
 		break;
 	case EnemyMovmentType::CATMULLROM:
-		_enemyMovement = std::make_shared<EnemyCatmullRomMovement>(std::array<Vec3,4>{ Vec3::Zero, Vec3::One * 30, Vec3::One * 5, Vec3::One });
+		_enemyMovement = std::make_shared<EnemyCatmullRomMovement>(std::array<Vec3,4>{ positions[0], positions[1], positions[2], positions[3] });
 		break;
 	default:
 		break;

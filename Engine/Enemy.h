@@ -37,7 +37,7 @@ public:
 	virtual void Attack() override;
 
 	EnemyShootingType GetEnemyType() { return _enemyType; }
-	void SetEnemyMovementType(EnemyMovmentType type);
+	void SetEnemyMovementType(EnemyMovmentType type, const std::vector<Vec3>& positions);
 
 private:
 	std::shared_ptr<StateManager> _stateManager;
