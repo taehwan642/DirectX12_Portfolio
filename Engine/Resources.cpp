@@ -2,6 +2,11 @@
 #include "Resources.h"
 #include "Engine.h"
 #include "MeshData.h"
+#include "SceneManager.h"
+#include "JsonManager.h"
+#include "Scene.h"
+#include "TransformComponent.h"
+#include "GameObject.h"
 
 void Resources::Init()
 {
@@ -374,6 +379,61 @@ std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path, bool json
 	Add(key, meshData);
 
 	return meshData;
+}
+
+std::shared_ptr<GameObject> Resources::LoadPrefab(const std::string& path)
+{
+	std::string finalInputPath = (path.substr(0, path.size() - 5));
+
+	int tempNum = 0;
+	std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
+
+	// 주소에서 obj 이름만 가져오려면, 맨 마지막 위치에서 //를 만나기 전까지.
+	std::string objString = finalInputPath;
+	if (size_t pos = finalInputPath.find_last_of("\\"); pos != std::string::npos)
+	{
+		objString = finalInputPath.substr(pos + 1, finalInputPath.size());
+	}
+
+	// obj 이름은 맨 처음 "_"를 만나기 전.
+	std::string objName = objString;
+	if (size_t pos = objString.find_last_of("_"); pos != std::string::npos)
+	{
+		objName = objString.substr(0, pos);
+	}
+
+	// 씬에 같은 이름이 존재한다면? tempNum을 ++해서 다시 찾기.
+	auto& vec = currentScene->GetGameObjects();
+	auto iter = std::find_if(vec.begin(), vec.end(), [=](std::shared_ptr<GameObject> obj) {return obj->GetName() == s2ws(objName + std::to_string(tempNum)); });
+	while (iter != vec.end())
+	{
+		++tempNum;
+		iter = std::find_if(vec.begin(), vec.end(), [=](std::shared_ptr<GameObject> obj) {return obj->GetName() == s2ws(objName + std::to_string(tempNum)); });
+	}
+
+	std::shared_ptr<Scene> sceneOnlyForLoad = std::make_shared<Scene>();
+	GET_SINGLE(JsonManager)->LoadScene(finalInputPath.c_str(), sceneOnlyForLoad);
+
+	// 불러온 임시 씬 속 프리팹 정보를 현재 씬에 넘겨주기
+	for (auto& iter : sceneOnlyForLoad->GetGameObjects())
+	{
+		iter->SetName(iter->GetName() + std::to_wstring(tempNum));
+		iter->GenerateHash();
+		currentScene->AddGameObject(iter);
+	}
+
+	// 불러온 임시 씬 속 프리팹 정보를 현재 씬에 넘겨주기
+	std::shared_ptr<GameObject> parent;
+	for (auto& iter : sceneOnlyForLoad->GetGameObjects())
+	{
+		if (iter->GetName().find(L"mesh_root") != std::wstring::npos)
+			parent = iter->GetTransform()->GetParent().lock()->GetGameObject();
+		iter->SetName(iter->GetName() + std::to_wstring(tempNum));
+		iter->GenerateHash();
+		currentScene->AddGameObject(iter);
+	}
+	
+	return parent;
 }
 
 void Resources::CreateDefaultShader()
