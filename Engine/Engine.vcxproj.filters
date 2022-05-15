@@ -300,6 +300,9 @@
     <ClCompile Include="InfinitePassage.cpp">
       <Filter>Script\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyShooting.cpp">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -555,6 +558,9 @@
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemySpawner.h">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyShooting.h">
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
