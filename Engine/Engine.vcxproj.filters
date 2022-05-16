@@ -297,11 +297,11 @@
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Script\Character\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="InfinitePassage.cpp">
-      <Filter>Script\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyShooting.cpp">
       <Filter>Script\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="InfinitePassage.cpp">
+      <Filter>Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

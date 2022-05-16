@@ -381,9 +381,9 @@ std::shared_ptr<MeshData> Resources::LoadFBX(const std::wstring& path, bool json
 	return meshData;
 }
 
-std::shared_ptr<GameObject> Resources::LoadPrefab(const std::string& path)
+std::shared_ptr<Scene> Resources::LoadPrefab(const std::string& path)
 {
-	std::string finalInputPath = (path.substr(0, path.size() - 5));
+	std::string finalInputPath = path;
 
 	int tempNum = 0;
 	std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
@@ -419,21 +419,9 @@ std::shared_ptr<GameObject> Resources::LoadPrefab(const std::string& path)
 	{
 		iter->SetName(iter->GetName() + std::to_wstring(tempNum));
 		iter->GenerateHash();
-		currentScene->AddGameObject(iter);
-	}
-
-	// 불러온 임시 씬 속 프리팹 정보를 현재 씬에 넘겨주기
-	std::shared_ptr<GameObject> parent;
-	for (auto& iter : sceneOnlyForLoad->GetGameObjects())
-	{
-		if (iter->GetName().find(L"mesh_root") != std::wstring::npos)
-			parent = iter->GetTransform()->GetParent().lock()->GetGameObject();
-		iter->SetName(iter->GetName() + std::to_wstring(tempNum));
-		iter->GenerateHash();
-		currentScene->AddGameObject(iter);
 	}
 	
-	return parent;
+	return sceneOnlyForLoad;
 }
 
 void Resources::CreateDefaultShader()

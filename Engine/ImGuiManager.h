@@ -47,7 +47,6 @@ private:
 	void RenderClientData();
 	void RenderHierarchy();
 	void RenderInspector();
-	void RenderResources();
 	void RenderDragAndDrop();
 	void RenderCollisionManager();
 	void RenderDebugLog();

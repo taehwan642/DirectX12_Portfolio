@@ -8,6 +8,8 @@
 #include "Enemy.h"
 #include "SphereCollider.h"
 #include "CollisionManager.h"
+#include "Resources.h"
+#include "MeshRenderer.h"
 
 EnemySpawner::EnemySpawner()
 {
@@ -55,16 +57,17 @@ void EnemySpawner::Spawn()
 	}
 	else
 	{
-		std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
-		object->AddComponent(std::make_shared<TransformComponent>());
-		object->GetTransform()->SetWorldScale(Vec3(2, 2, 10));
-		object->SetCheckFrustum(false);
-
+		std::shared_ptr<GameObject> object = nullptr;
 		// ImGui에서 Prefab 불러오는것처럼 불러오기
-		//std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
-		//std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
-		//object->AddComponent(mr);
-		//mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Laser"));
+		std::shared_ptr<Scene> enemyPrefabScene = GET_SINGLE(Resources)->LoadPrefab("../Resources/FBX/em0030.fbx_Prefab.json");
+		for (auto& iter : enemyPrefabScene->GetGameObjects())
+		{
+			if (iter->GetName().find(L"mesh_root") != std::wstring::npos)
+			{
+				object = iter->GetTransform()->GetParent().lock()->GetGameObject();
+				break;
+			}
+		}
 
 		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
 		object->AddComponent(enemy);
@@ -108,16 +111,17 @@ void EnemySpawner::Spawn()
 
 		std::shared_ptr<GameObject> enemyParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyParent");
 
-		object->SetName(L"EnemyChild" + std::to_wstring(enemyParent->GetTransform()->GetChildCount()));
-		object->GenerateHash();
-
 		object->GetTransform()->SetParent(enemyParent->GetTransform());
 
 		GET_SINGLE(ObjectPool)->AddPoolObject("Enemy", object);
 
 		GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, object);
 
-		GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
+		std::shared_ptr<Scene> currentScene = GET_SINGLE(SceneManager)->GetActiveScene();
+		for (auto& iter : enemyPrefabScene->GetGameObjects())
+		{
+			currentScene->AddGameObject(iter);
+		}
 	}
 }
 

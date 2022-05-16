@@ -41,7 +41,7 @@ public:
 	
 	std::shared_ptr<class MeshData> LoadFBX(const std::wstring& path, bool jsonLoad = true);
 
-	std::shared_ptr<GameObject> LoadPrefab(const std::string& path);
+	std::shared_ptr<class Scene> LoadPrefab(const std::string& path);
 
 
 private:
