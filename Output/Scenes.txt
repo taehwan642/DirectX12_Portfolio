@@ -1,1 +1,1 @@
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\CharacterScene
+C:\Users\OWNER\Desktop\DirectX12_Portfolio\Output\GameScene

@@ -10,6 +10,7 @@
 #include "CollisionManager.h"
 #include "Resources.h"
 #include "MeshRenderer.h"
+#include "Input.h"
 
 EnemySpawner::EnemySpawner()
 {
@@ -59,7 +60,7 @@ void EnemySpawner::Spawn()
 	{
 		std::shared_ptr<GameObject> object = nullptr;
 		// ImGui에서 Prefab 불러오는것처럼 불러오기
-		std::shared_ptr<Scene> enemyPrefabScene = GET_SINGLE(Resources)->LoadPrefab("../Resources/FBX/em0030.fbx_Prefab.json");
+		std::shared_ptr<Scene> enemyPrefabScene = GET_SINGLE(Resources)->LoadPrefab("../Resources/FBX/em0030.fbx_Prefab");
 		for (auto& iter : enemyPrefabScene->GetGameObjects())
 		{
 			if (iter->GetName().find(L"mesh_root") != std::wstring::npos)
@@ -75,7 +76,7 @@ void EnemySpawner::Spawn()
 		enemy->Spawn(1, 50.f, 3);
 
 		// 적의 Movement
-		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoints");
+		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoint");
 		// 몇 번인지 알려주기
 		int num = 0; // 인자로 받기
 		std::shared_ptr<GameObject> spawnPoint = spawnPoints->GetTransform()->GetChild(0)->GetGameObject();
@@ -109,9 +110,7 @@ void EnemySpawner::Spawn()
 		object->AddComponent(sc);
 		sc->SetRadius(object->GetTransform()->GetWorldScale().x);
 
-		std::shared_ptr<GameObject> enemyParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyParent");
-
-		object->GetTransform()->SetParent(enemyParent->GetTransform());
+		object->GetTransform()->SetParent(GetTransform());
 
 		GET_SINGLE(ObjectPool)->AddPoolObject("Enemy", object);
 
@@ -127,7 +126,10 @@ void EnemySpawner::Spawn()
 
 void EnemySpawner::LateUpdate()
 {
-
+	if (INPUT->GetButtonDown(KEY_TYPE::Z))
+	{
+		Spawn();
+	}
 }
 
 void EnemySpawner::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
