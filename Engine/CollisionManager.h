@@ -27,6 +27,6 @@ private:
 	bool CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingBox& dstCollider);
 
 private:
-	std::list<std::shared_ptr<GameObject>> _listObject[static_cast<int>(CollisionObjectType::END)];
+	std::array<std::list<std::shared_ptr<GameObject>>, static_cast<int>(CollisionObjectType::END)> _listObject;
 
 };

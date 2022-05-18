@@ -84,9 +84,8 @@ void LaserScript::LateUpdate()
 		_scrollSpeed = 1.f;
 	}
 	
-	static float inputTime = 0;
-	inputTime += DELTA_TIME;
-	GetMeshRenderer()->GetMaterial()->SetFloat(0, inputTime * _scrollSpeed);
+	_scrollTime += DELTA_TIME;
+	GetMeshRenderer()->GetMaterial()->SetFloat(0, _scrollTime * _scrollSpeed);
 }
 
 void LaserScript::Fire()

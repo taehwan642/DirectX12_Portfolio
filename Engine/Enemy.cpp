@@ -161,6 +161,7 @@ void Enemy::Attack()
 			if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyLaser"); poolObj != nullptr)
 			{
 				std::shared_ptr<LaserScript> laser = poolObj->GetComponent<LaserScript>();
+				poolObj->GetTransform()->SetWorldScale(Vec3(2, 2, 10));
 
 				laser->Spawn(1, 1.f, 1);
 
@@ -178,7 +179,7 @@ void Enemy::Attack()
 				std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
 				std::shared_ptr<MeshRenderer> mr = bulletPrefab->GetMeshRenderer()->Clone();
 				object->AddComponent(mr);
-				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Laser"));
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"Laser")->Clone());
 
 				std::shared_ptr<LaserScript> laser = std::make_shared<LaserScript>();
 				object->AddComponent(laser);

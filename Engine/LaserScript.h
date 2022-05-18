@@ -42,6 +42,7 @@ private:
     float _maxSizeX = -1.f;
     float _endSpeed = 4.f;
     float _originalScaleZ = 0.f;
+    float _scrollTime = 0.f;
 
     std::shared_ptr<TextureAnimator> _animator;
 

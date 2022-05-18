@@ -92,6 +92,8 @@ void SceneManager::LoadScene(const std::wstring& sceneName)
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::GAMEOBJECT)].clear();
 		GET_SINGLE(Resources)->_resources[static_cast<int>(OBJECT_TYPE::AUDIOCLIP)].clear();
 
+		GET_SINGLE(CollisionManager)->DeleteAllObject();
+
 #ifdef TOOL
 		IMGUIMANAGER->_currentGameObject = nullptr;
 #endif
