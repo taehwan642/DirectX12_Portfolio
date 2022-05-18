@@ -32,8 +32,6 @@ void NierAnimator::SetAnimationIndex(int index)
 	_currentAnimIndex = index;
 	_nextFrame = _animFrames[_currentAnimIndex].x;
 	_changedFrame = _frame;
-
-	ADDLOG("CHANGE ANI! frame : %d, nextframe : %d, changedframe : %d, animindex : %d\n", _frame, _nextFrame, _changedFrame, index);
 }
 
 void NierAnimator::Update()
@@ -50,7 +48,6 @@ void NierAnimator::Update()
 	{
 		if (_changedFrame == -1)
 			_isAnimEnd = true;
-		ADDLOG("END\n");
 	}
 }
 
@@ -67,7 +64,6 @@ void NierAnimator::FinalUpdate()
 		_frame = _animFrames[_currentAnimIndex].x;
 		_nextFrame = _animFrames[_currentAnimIndex].x + 1;
 		_updateTime = _frame / static_cast<float>(ratio); // frame / 30FPS
-		ADDLOG("FRAME RELOAD\n");
 	}
 
 	_updateTime += DELTA_TIME;
@@ -107,6 +103,4 @@ void NierAnimator::FinalUpdate()
 	
 	int32 nextFrameUpdateTime = (_frame + 1);
 	_frameRatio = static_cast<float>(1.f - (nextFrameUpdateTime - (_updateTime * ratio)));
-
-	ADDLOG("frame : %d, nextframe : %d, changedframe : %d\n", _frame, _nextFrame, _changedFrame);
 }

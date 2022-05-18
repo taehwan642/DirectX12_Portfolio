@@ -60,7 +60,7 @@ void EnemySpawner::Spawn()
 	{
 		std::shared_ptr<GameObject> object = nullptr;
 		// ImGui에서 Prefab 불러오는것처럼 불러오기
-		std::shared_ptr<Scene> enemyPrefabScene = GET_SINGLE(Resources)->LoadPrefab("../Resources/FBX/em0030.fbx_Prefab");
+		std::shared_ptr<Scene> enemyPrefabScene = GET_SINGLE(Resources)->LoadPrefab("..\\Resources\\FBX\\em0030.fbx_Prefab");
 		for (auto& iter : enemyPrefabScene->GetGameObjects())
 		{
 			if (iter->GetName().find(L"mesh_root") != std::wstring::npos)

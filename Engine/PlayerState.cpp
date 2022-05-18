@@ -38,7 +38,6 @@ int FlightIdleState::handleInput()
 	}
 	else
 	{
-		ADDLOG("Idle\n");
 		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
 			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();

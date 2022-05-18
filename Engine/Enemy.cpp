@@ -25,11 +25,10 @@
 #include "LaserScript.h"
 #include "EnemyMovement.h"
 
-Enemy::Enemy() : _stateManager(std::make_shared<StateManager>())
+Enemy::Enemy()
 {
 	MONOCLASSNAME(Enemy);
-	Spawn(1, 50.f, 3);
-	_stateManager = std::make_shared<StateManager>();
+	Character::Spawn(1, 50.f, 3);
 	_invincibleTime = 0.1f;
 }
 
@@ -39,6 +38,15 @@ Enemy::~Enemy()
 
 void Enemy::Spawn(int hp, float speed, int damage)
 {
+	if (_stateManager == nullptr)
+	{
+		_stateManager = std::make_shared<StateManager>();
+		_stateManager->AddState(ENEMY_IDLE, std::make_shared<EnemyIdleState>(GetGameObject()));
+		_stateManager->AddState(ENEMY_SHOOT_BULLET, std::make_shared<EnemyShootBulletState>(GetGameObject()));
+		_stateManager->AddState(ENEMY_SHOOT_LASER, std::make_shared<EnemyShootLaserState>(GetGameObject()));
+		_stateManager->AddState(ENEMY_DEAD, std::make_shared<EnemyDeadState>(GetGameObject()));
+		_stateManager->ChangeState(ENEMY_IDLE);
+	}
 	_deltaTime = 0.f;
 	Character::Spawn(hp, speed, damage);
 }
@@ -77,12 +85,7 @@ void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 
 void Enemy::Awake()
 {
-	_stateManager->AddState(ENEMY_IDLE, std::make_shared<EnemyIdleState>(GetGameObject()));
-	_stateManager->AddState(ENEMY_SHOOT_BULLET, std::make_shared<EnemyShootBulletState>(GetGameObject()));
-	_stateManager->AddState(ENEMY_SHOOT_LASER, std::make_shared<EnemyShootLaserState>(GetGameObject()));
-	_stateManager->AddState(ENEMY_DEAD, std::make_shared<EnemyDeadState>(GetGameObject()));
-	_stateManager->ChangeState(ENEMY_IDLE);
-	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, GetGameObject());
+	
 }
 
 void Enemy::LateUpdate()
