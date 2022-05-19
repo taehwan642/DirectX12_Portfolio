@@ -48,8 +48,6 @@ private:
 	std::shared_ptr<StateManager> _stateManager;
 	std::shared_ptr<EnemyMovement> _enemyMovement;
 	std::shared_ptr<EnemyShooting> _enemyShooting;
-	float _fireSpeed = 0.4f;
-	float _deltaTime = 0.0f;
 
 	EnemyShootingType _enemyType = EnemyShootingType::LASER;
 

@@ -54,7 +54,8 @@ void EnemySpawner::Spawn()
 		}
 
 		// ÀûÀÇ ÃÑ ½î´Â ¹æ½Ä
-
+		EnemyShootingType type = EnemyShootingType::RAPID;
+		enemy->SetEnemyShootingType(type);
 	}
 	else
 	{
@@ -104,11 +105,14 @@ void EnemySpawner::Spawn()
 		}
 
 		// ÀûÀÇ ÃÑ ½î´Â ¹æ½Ä
+		EnemyShootingType type = EnemyShootingType::RAPID;
+		enemy->SetEnemyShootingType(type);
 
 		// SphereCollider
 		std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
 		object->AddComponent(sc);
-		sc->SetRadius(object->GetTransform()->GetWorldScale().x);
+		sc->SetRadius(2);
+		sc->SetCenter(Vec3(0, 1, 0));
 
 		object->GetTransform()->SetParent(GetTransform());
 

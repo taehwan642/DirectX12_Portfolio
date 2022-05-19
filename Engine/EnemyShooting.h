@@ -1,14 +1,18 @@
 #pragma once
+class GameObject;
 class EnemyShooting
 {
 public:
 	virtual void Shoot() = 0;
 
-	void SetFireTime(float fireTime) { _fireTime = fireTime; }
+	void SetFireSpeed(float fireSpeed) { _fireSpeed = fireSpeed; }
+	void SetAttatchedObject(std::shared_ptr<GameObject> object) { _object = object; }
 
-private:
+protected:
 	float _deltaTime = 0.f;
-	float _fireTime = 0.3f;
+	float _fireSpeed = 0.3f;
+
+	std::weak_ptr<GameObject> _object;
 };
 
 class EnemyLaserShooting : public EnemyShooting

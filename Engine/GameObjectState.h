@@ -4,12 +4,12 @@
 class GameObject;
 class GameObjectState
 {
-protected:
-	std::weak_ptr<GameObject> _object;
-
 public:
 	explicit GameObjectState(std::weak_ptr<GameObject> obj) : _object(obj) {};
 	virtual ~GameObjectState() = default;
+
+protected:
+	std::weak_ptr<GameObject> _object;
 
 private:
 	friend class StateManager;
