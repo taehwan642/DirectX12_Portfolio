@@ -4,8 +4,10 @@
 
 enum class EnemyShootingType
 {
-	BULLET,
-	LASER
+	LASER,
+	RAPID,
+	HEAVY,
+	THREEWAY
 };
 
 enum class EnemyMovmentType
@@ -16,6 +18,7 @@ enum class EnemyMovmentType
 
 class StateManager;
 class EnemyMovement;
+class EnemyShooting;
 class Enemy :
 	public MonoBehaviour, public Character
 {
@@ -36,12 +39,15 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override;
 
-	EnemyShootingType GetEnemyType() { return _enemyType; }
+	EnemyShootingType GetEnemyShootingType() { return _enemyType; }
+	void SetEnemyShootingType(EnemyShootingType type);
+
 	void SetEnemyMovementType(EnemyMovmentType type, const std::vector<Vec3>& positions);
 
 private:
 	std::shared_ptr<StateManager> _stateManager;
 	std::shared_ptr<EnemyMovement> _enemyMovement;
+	std::shared_ptr<EnemyShooting> _enemyShooting;
 	float _fireSpeed = 0.4f;
 	float _deltaTime = 0.0f;
 
