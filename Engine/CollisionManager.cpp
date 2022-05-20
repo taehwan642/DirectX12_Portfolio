@@ -52,15 +52,19 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					bool result = CheckCollisionSphere(srcCollider->_boundingSphere, dstCollider->_boundingSphere);
 					if (result == true)
 					{
+						CollisionOutput srcObjOutput;
+						srcObjOutput.type = srcType;
+						srcObjOutput.collider = srcCollider;
+
+						CollisionOutput dstObjOutput;
+						dstObjOutput.type = dstType;
+						dstObjOutput.collider = dstCollider;
+
 						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
 						for (auto& iter : srcObj->_scripts)
-						{
-							iter->OnCollisionEnter(dstCollider);
-						}
+							iter->OnCollisionEnter(dstObjOutput);
 						for (auto& iter : dstObj->_scripts)
-						{
-							iter->OnCollisionEnter(srcCollider);
-						}
+							iter->OnCollisionEnter(srcObjOutput);
 					}
 					break;
 				}
@@ -72,15 +76,19 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					bool result = CheckCollisionBox(srcCollider->_boundingBox, dstCollider->_boundingBox);
 					if (result == true)
 					{
+						CollisionOutput srcObjOutput;
+						srcObjOutput.type = srcType;
+						srcObjOutput.collider = srcCollider;
+
+						CollisionOutput dstObjOutput;
+						dstObjOutput.type = dstType;
+						dstObjOutput.collider = dstCollider;
+
 						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
 						for (auto& iter : srcObj->_scripts)
-						{
-							iter->OnCollisionEnter(dstCollider);
-						}
+							iter->OnCollisionEnter(dstObjOutput);
 						for (auto& iter : dstObj->_scripts)
-						{
-							iter->OnCollisionEnter(srcCollider);
-						}
+							iter->OnCollisionEnter(srcObjOutput);
 					}
 				}
 					break;
@@ -102,15 +110,19 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 							bool result = CheckCollisionSphere(srcBCInfo.sphere, dstBCInfo.sphere);
 							if (result == true)
 							{
+								CollisionOutput srcObjOutput;
+								srcObjOutput.type = srcType;
+								srcObjOutput.collider = srcCollider;
+
+								CollisionOutput dstObjOutput;
+								dstObjOutput.type = dstType;
+								dstObjOutput.collider = dstCollider;
+
 								// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
 								for (auto& iter : srcObj->_scripts)
-								{
-									iter->OnCollisionEnter(dstCollider);
-								}
+									iter->OnCollisionEnter(dstObjOutput);
 								for (auto& iter : dstObj->_scripts)
-								{
-									iter->OnCollisionEnter(srcCollider);
-								}
+									iter->OnCollisionEnter(srcObjOutput);
 							}
 						}
 					}
@@ -147,25 +159,33 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 						// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
 						if (srcColliderType == ColliderType::Sphere)
 						{
+							CollisionOutput srcObjOutput;
+							srcObjOutput.type = srcType;
+							srcObjOutput.collider = sphereCollider;
+
+							CollisionOutput dstObjOutput;
+							dstObjOutput.type = dstType;
+							dstObjOutput.collider = boneCollider;
+
 							for (auto& iter : srcObj->_scripts)
-							{
-								iter->OnCollisionEnter(boneCollider);
-							}
+								iter->OnCollisionEnter(dstObjOutput);
 							for (auto& iter : dstObj->_scripts)
-							{
-								iter->OnCollisionEnter(sphereCollider);
-							}
+								iter->OnCollisionEnter(srcObjOutput);
 						}
 						else if (srcColliderType == ColliderType::Bone)
 						{
+							CollisionOutput srcObjOutput;
+							srcObjOutput.type = srcType;
+							srcObjOutput.collider = boneCollider;
+
+							CollisionOutput dstObjOutput;
+							dstObjOutput.type = dstType;
+							dstObjOutput.collider = sphereCollider;
+
 							for (auto& iter : srcObj->_scripts)
-							{
-								iter->OnCollisionEnter(sphereCollider);
-							}
+								iter->OnCollisionEnter(dstObjOutput);
 							for (auto& iter : dstObj->_scripts)
-							{
-								iter->OnCollisionEnter(boneCollider);
-							}
+								iter->OnCollisionEnter(srcObjOutput);
 						}
 						
 					}
@@ -194,25 +214,33 @@ void CollisionManager::CheckCollision(CollisionObjectType srcType, CollisionObje
 					// 충돌 했다면? srcObj dstObj Script를 모두 순회하며 OnCollision 호출.
 					if (srcColliderType == ColliderType::Sphere)
 					{
+						CollisionOutput srcObjOutput;
+						srcObjOutput.type = srcType;
+						srcObjOutput.collider = sphereCollider;
+
+						CollisionOutput dstObjOutput;
+						dstObjOutput.type = dstType;
+						dstObjOutput.collider = boxCollider;
+
 						for (auto& iter : srcObj->_scripts)
-						{
-							iter->OnCollisionEnter(boxCollider);
-						}
+							iter->OnCollisionEnter(dstObjOutput);
 						for (auto& iter : dstObj->_scripts)
-						{
-							iter->OnCollisionEnter(sphereCollider);
-						}
+							iter->OnCollisionEnter(srcObjOutput);
 					}
 					else if (srcColliderType == ColliderType::Box)
 					{
+						CollisionOutput srcObjOutput;
+						srcObjOutput.type = srcType;
+						srcObjOutput.collider = boxCollider;
+
+						CollisionOutput dstObjOutput;
+						dstObjOutput.type = dstType;
+						dstObjOutput.collider = sphereCollider;
+
 						for (auto& iter : srcObj->_scripts)
-						{
-							iter->OnCollisionEnter(sphereCollider);
-						}
+							iter->OnCollisionEnter(dstObjOutput);
 						for (auto& iter : dstObj->_scripts)
-						{
-							iter->OnCollisionEnter(boxCollider);
-						}
+							iter->OnCollisionEnter(srcObjOutput);
 					}
 
 				}

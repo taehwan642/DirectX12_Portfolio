@@ -136,14 +136,14 @@ void EnemySpawner::LateUpdate()
 	}
 }
 
-void EnemySpawner::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+void EnemySpawner::OnCollisionEnter(CollisionOutput collider)
 {
 }
 
-void EnemySpawner::OnCollisionStay(std::shared_ptr<class BaseCollider> collider)
+void EnemySpawner::OnCollisionStay(CollisionOutput collider)
 {
 }
 
-void EnemySpawner::OnCollisionExit(std::shared_ptr<class BaseCollider> collider)
+void EnemySpawner::OnCollisionExit(CollisionOutput collider)
 {
 }

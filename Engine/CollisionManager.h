@@ -1,14 +1,5 @@
 #pragma once
 
-enum class CollisionObjectType
-{
-	PLAYER,
-	PLAYER_WEAPON,
-	PLAYER_BULLET,
-	ENEMY,
-	END
-};
-
 class GameObject;
 class CollisionManager
 {
@@ -27,6 +18,6 @@ private:
 	bool CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingBox& dstCollider);
 
 private:
-	std::array<std::list<std::shared_ptr<GameObject>>, static_cast<int>(CollisionObjectType::END)> _listObject;
+	std::array< std::list< std::shared_ptr<GameObject> >, static_cast<int>(CollisionObjectType::END) > _listObject;
 
 };

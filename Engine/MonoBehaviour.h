@@ -25,9 +25,9 @@ public:
 	MonoBehaviour();
 	virtual ~MonoBehaviour();
 
-	virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) = 0;
-	virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) = 0;
-	virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) = 0;
+	virtual void OnCollisionEnter(CollisionOutput collider) = 0;
+	virtual void OnCollisionStay(CollisionOutput collider) = 0;
+	virtual void OnCollisionExit(CollisionOutput collider) = 0;
 
 protected:
 	friend class ImGuiManager;

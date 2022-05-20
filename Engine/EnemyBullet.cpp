@@ -29,12 +29,12 @@ void EnemyBullet::Spawn(int hp, float speed, int damage)
 	Character::Spawn(hp, speed, damage);
 }
 
-void EnemyBullet::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+void EnemyBullet::OnCollisionEnter(CollisionOutput collider)
 {
-	if (collider->GetColliderType() == ColliderType::Sphere)
+	if (collider.collider->GetColliderType() == ColliderType::Sphere)
 	{
 	}
-	else if (collider->GetColliderType() == ColliderType::Bone)
+	else if (collider.collider->GetColliderType() == ColliderType::Bone)
 	{
 	}
 }

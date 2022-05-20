@@ -43,35 +43,46 @@ void Enemy::Spawn(int hp, float speed, int damage)
 	Character::Spawn(hp, speed, damage);
 }
 
-void Enemy::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+void Enemy::OnCollisionEnter(CollisionOutput collider)
 {
-	if (std::shared_ptr<Player> p = collider->GetGameObject()->GetComponent<Player>(); p != nullptr)
+	std::shared_ptr<GameObject> obj = collider.collider->GetGameObject();
+	switch (collider.type)
+	{
+	case CollisionObjectType::PLAYER:
+	{
+
+		if (!IsInvincible())
+		{
+			// 만약 현재 dodge중이 아니라면;
+			int damage = obj->GetComponent<Player>()->_damage;
+			GetDamage(damage);
+			ADDLOG("Player %d, HP LEFT : %d\n", damage, _hp);
+		}	
+		break;
+	}
+	case CollisionObjectType::PLAYER_BULLET:
 	{
 		if (!IsInvincible())
 		{
 			// 만약 현재 dodge중이 아니라면;
-			GetDamage(p->_damage);
-			ADDLOG("Player %d, HP LEFT : %d\n", p->_damage, _hp);
+			int damage = obj->GetComponent<PlayerBullet>()->_damage;
+			GetDamage(damage); 
+			ADDLOG("Player Bullet Damage %d, HP LEFT : %d\n", damage, _hp);
 		}
+		break;
 	}
-	else if (std::shared_ptr<PlayerBullet> pb = collider->GetGameObject()->GetComponent<PlayerBullet>(); pb != nullptr)
+	case CollisionObjectType::PLAYER_WEAPON:
 	{
-		if (!IsInvincible())
-		{
-			// 만약 현재 dodge중이 아니라면;
-			GetDamage(pb->_damage);
-			ADDLOG("Player Bullet Damage %d, HP LEFT : %d\n", pb->_damage, _hp);
-		}
-	}
-	else
-	{
-		// 칼?
 		if (!IsInvincible())
 		{
 			// 만약 현재 dodge중이 아니라면;
 			GetDamage(2);
 			ADDLOG("Player knife %d, HP LEFT : %d\n", 2, _hp);
 		}
+		break;
+	}
+	default:
+		break;
 	}
 }
 

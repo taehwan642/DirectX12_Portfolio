@@ -10,7 +10,7 @@ public:
 
     virtual void LateUpdate() override;
 
-    virtual void OnCollisionEnter(std::shared_ptr<class BaseCollider> collider) override;
-    virtual void OnCollisionStay(std::shared_ptr<class BaseCollider> collider) override;
-    virtual void OnCollisionExit(std::shared_ptr<class BaseCollider> collider) override;
+    virtual void OnCollisionEnter(CollisionOutput collider) override;
+    virtual void OnCollisionStay(CollisionOutput collider) override;
+    virtual void OnCollisionExit(CollisionOutput collider) override;
 };

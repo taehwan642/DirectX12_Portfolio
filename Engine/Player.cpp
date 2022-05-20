@@ -35,9 +35,9 @@ Player::~Player()
 {
 }
 
-void Player::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
+void Player::OnCollisionEnter(CollisionOutput collider)
 {
-	if (std::shared_ptr<EnemyBullet> eb = collider->GetGameObject()->GetComponent<EnemyBullet>(); eb != nullptr)
+	if (std::shared_ptr<EnemyBullet> eb = collider.collider->GetGameObject()->GetComponent<EnemyBullet>(); eb != nullptr)
 	{
 		if (!IsInvincible())
 		{
@@ -49,7 +49,7 @@ void Player::OnCollisionEnter(std::shared_ptr<class BaseCollider> collider)
 		}
 	}
 
-	if (std::shared_ptr<Enemy> e = collider->GetGameObject()->GetComponent<Enemy>(); e != nullptr)
+	if (std::shared_ptr<Enemy> e = collider.collider->GetGameObject()->GetComponent<Enemy>(); e != nullptr)
 	{
 		if (!IsInvincible())
 		{

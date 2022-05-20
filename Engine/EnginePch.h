@@ -309,3 +309,19 @@ struct FogData
 	float fogRange = 200.f;
 	Vec4 fogColor = Vec4(0.3f, 0.3f, 0.3f, 1.f);
 };
+
+enum class CollisionObjectType
+{
+	PLAYER,
+	PLAYER_WEAPON,
+	PLAYER_BULLET,
+	ENEMY,
+	END
+};
+
+class BaseCollider;
+struct CollisionOutput
+{
+	CollisionObjectType type;
+	std::shared_ptr<BaseCollider> collider;
+};
