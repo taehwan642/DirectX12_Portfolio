@@ -65,7 +65,7 @@ void EnemyLaserShooting::Shoot()
 
 			GET_SINGLE(ObjectPool)->AddPoolObject("EnemyLaser", object);
 
-			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, object);
+			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY_LASER, object);
 
 			GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 		}
@@ -118,7 +118,7 @@ void EnemyRapidShooting::Shoot()
 
 			GET_SINGLE(ObjectPool)->AddPoolObject("EnemyBullet", object);
 
-			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY, object);
+			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY_BULLET, object);
 
 			GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
 		}

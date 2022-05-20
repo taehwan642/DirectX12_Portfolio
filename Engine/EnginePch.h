@@ -316,6 +316,8 @@ enum class CollisionObjectType
 	PLAYER_WEAPON,
 	PLAYER_BULLET,
 	ENEMY,
+	ENEMY_LASER,
+	ENEMY_BULLET,
 	END
 };
 

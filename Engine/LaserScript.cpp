@@ -10,6 +10,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "PathTraceCameraScript.h"
+#include "BoxCollider.h"
 
 LaserScript::~LaserScript()
 {
@@ -42,7 +43,7 @@ void LaserScript::LateUpdate()
 	GetTransform()->SetWorldScale(Vec3(worldScale.x, worldScale.y, laserScaleZ));
 	Vec3 worldPosition = _attachedObject.lock()->GetTransform()->GetWorldPosition();
 	GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * GetTransform()->GetWorldScale().z) + worldPosition.z));
-
+	std::static_pointer_cast<BoxCollider>(GetGameObject()->GetCollider())->SetExtent(GetTransform()->GetWorldScale());
 	// 만약 Lock 상태일 때?
 	if (_laserState == LaserState::LOCKON)
 	{

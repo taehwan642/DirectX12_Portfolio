@@ -67,6 +67,8 @@ void SceneManager::Update()
 	_activeScene->Update();
 	_activeScene->LateUpdate();
 	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER, CollisionObjectType::ENEMY);
+	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER, CollisionObjectType::ENEMY_BULLET);
+	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER, CollisionObjectType::ENEMY_LASER);
 	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER_WEAPON, CollisionObjectType::ENEMY);
 	GET_SINGLE(CollisionManager)->CheckCollision(CollisionObjectType::PLAYER_BULLET, CollisionObjectType::ENEMY);
 	_activeScene->FinalUpdate();

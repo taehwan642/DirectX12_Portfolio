@@ -50,7 +50,6 @@ void Enemy::OnCollisionEnter(CollisionOutput collider)
 	{
 	case CollisionObjectType::PLAYER:
 	{
-
 		if (!IsInvincible())
 		{
 			// 만약 현재 dodge중이 아니라면;
