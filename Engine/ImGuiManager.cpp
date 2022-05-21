@@ -462,7 +462,8 @@ void ImGuiManager::RenderBoxColliderData(std::shared_ptr<BoxCollider> boxCollide
 
    // ImGui::Text("Center : %f %f %f", boxCollider->_boundingBox.Center.x, boxCollider->_boundingBox.Center.y, boxCollider->_boundingBox.Center.z);
     ImGui::DragFloat3("Center", &boxCollider->_center.x);
-    ImGui::DragFloat3("Scale", reinterpret_cast<float*>(&boxCollider->_extents.x));
+    ImGui::DragFloat3("Scale", &boxCollider->_extents.x);
+    ImGui::DragFloat3("Rotation", &boxCollider->_orientation.x);
 
     if (ImGui::CollapsingHeader("ColliderMeshData"))
     {

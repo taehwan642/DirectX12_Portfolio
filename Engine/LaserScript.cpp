@@ -38,9 +38,9 @@ void LaserScript::Spawn(int hp, float speed, int damage)
 
 void LaserScript::LateUpdate()
 {
-	float laserScaleZ = _originalScaleZ + (GetTransform()->GetWorldPosition() - _camera.lock()->GetTransform()->GetWorldPosition()).Length();
+	//float laserScaleZ = _originalScaleZ + (GetTransform()->GetWorldPosition() - _camera.lock()->GetTransform()->GetWorldPosition()).Length();
 	Vec3 worldScale = GetTransform()->GetWorldScale();
-	GetTransform()->SetWorldScale(Vec3(worldScale.x, worldScale.y, laserScaleZ));
+	GetTransform()->SetWorldScale(Vec3(worldScale.x, worldScale.y, _originalScaleZ));
 
 	Vec3 worldPosition = _attachedObject.lock()->GetTransform()->GetWorldPosition();
 	GetTransform()->SetWorldPosition(worldPosition + 

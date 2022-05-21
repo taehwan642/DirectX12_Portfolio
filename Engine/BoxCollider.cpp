@@ -29,7 +29,10 @@ void BoxCollider::FinalUpdate()
 
 	_boundingBox.Center = _center + GetGameObject()->GetTransform()->GetWorldPosition();
 	_boundingBox.Extents = _extents;
-	_boundingBox.Orientation = SimpleMath::Quaternion::CreateFromYawPitchRoll(_orientation.y, _orientation.x, _orientation.z);
+	_boundingBox.Orientation = SimpleMath::Quaternion::CreateFromYawPitchRoll(
+		DegreeToRadian(_orientation.y), 
+		DegreeToRadian(_orientation.x), 
+		DegreeToRadian(_orientation.z));
 }
 
 bool BoxCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)

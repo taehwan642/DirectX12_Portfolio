@@ -8,6 +8,8 @@
 #include "TransformComponent.h"
 #include "MonoBehaviour.h"
 #include "Engine.h"
+#include "SceneManager.h"
+#include "Scene.h"
 
 void CollisionManager::AddObject(CollisionObjectType type, std::shared_ptr<GameObject> gameObject)
 {
@@ -283,7 +285,9 @@ bool CollisionManager::CheckCollisionSphereBox(const BoundingSphere& srcCollider
 	// box에서 sphere로 가는 dir
 	Vec3 dir = sphereCenter - boxCenter;
 
-	Matrix quatMatrix = SimpleMath::Matrix::CreateFromQuaternion(dstCollider.Orientation);
+	SimpleMath::Quaternion quat = dstCollider.Orientation;
+	quat.Normalize();
+	Matrix quatMatrix = SimpleMath::Matrix::CreateFromQuaternion(quat);
 
 	Vec3 xAxis = Vec3(quatMatrix._11, quatMatrix._12, quatMatrix._13);
 	xAxis.Normalize();
@@ -331,15 +335,4 @@ bool CollisionManager::CheckCollisionSphereBox(const BoundingSphere& srcCollider
 		ADDLOG("FALSE, %f\n", sqrt(distSquared));
 		return false;
 	}
-
-
-
-	//Vec3 pointOnRect;
-	//pointOnRect.x = std::clamp(srcCollider.Center.x, (dstCollider.Center.x - dstCollider.Extents.x / 2.f), (dstCollider.Center.x + dstCollider.Extents.x / 2.f));
-	//pointOnRect.y = std::clamp(srcCollider.Center.y, (dstCollider.Center.y - dstCollider.Extents.y / 2.f), (dstCollider.Center.y + dstCollider.Extents.y / 2.f));
-	//pointOnRect.z = std::clamp(srcCollider.Center.z, (dstCollider.Center.z - dstCollider.Extents.z / 2.f), (dstCollider.Center.z + dstCollider.Extents.z / 2.f));
-	//
-	//Vec3 circleToRectPoint = pointOnRect - srcCollider.Center;
-	//
-	//return circleToRectPoint.LengthSquared() < srcCollider.Radius * srcCollider.Radius;
 }

@@ -27,7 +27,7 @@ void EnemyLaserShooting::Shoot()
 		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyLaser"); poolObj != nullptr)
 		{
 			std::shared_ptr<LaserScript> laser = poolObj->GetComponent<LaserScript>();
-			poolObj->GetTransform()->SetWorldScale(Vec3(2, 2, 10));
+			poolObj->GetTransform()->SetWorldScale(Vec3(2, 2, 100));
 
 			laser->Spawn(1, 1.f, 1);
 
@@ -42,7 +42,7 @@ void EnemyLaserShooting::Shoot()
 		{
 			std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
 			object->AddComponent(std::make_shared<TransformComponent>());
-			object->GetTransform()->SetWorldScale(Vec3(2, 2, 10));
+			object->GetTransform()->SetWorldScale(Vec3(2, 2, 100));
 			object->SetCheckFrustum(false);
 
 			std::shared_ptr<GameObject> bulletPrefab = GET_SINGLE(Resources)->Get<GameObject>(L"bullet.fbx0");
