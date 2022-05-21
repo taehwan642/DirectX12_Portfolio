@@ -7,6 +7,7 @@
 #include "BoneCollider.h"
 #include "TransformComponent.h"
 #include "MonoBehaviour.h"
+#include "Engine.h"
 
 void CollisionManager::AddObject(CollisionObjectType type, std::shared_ptr<GameObject> gameObject)
 {
@@ -265,20 +266,80 @@ bool CollisionManager::CheckCollisionSphere(const BoundingSphere& srcCollider, c
 	return srcCollider.Intersects(dstCollider);
 }
 
-bool CollisionManager::CheckCollisionBox(const BoundingBox& srcCollider, const BoundingBox& dstCollider)
+bool CollisionManager::CheckCollisionBox(const BoundingOrientedBox& srcCollider, const BoundingOrientedBox& dstCollider)
 {
-	// AABB
+	// OBB
 	return srcCollider.Intersects(dstCollider);
 }
 
-bool CollisionManager::CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingBox& dstCollider)
+bool CollisionManager::CheckCollisionSphereBox(const BoundingSphere& srcCollider, const BoundingOrientedBox& dstCollider)
 {
-	Vec3 pointOnRect;
-	pointOnRect.x = std::clamp(srcCollider.Center.x, (dstCollider.Center.x - dstCollider.Extents.x / 2.f), (dstCollider.Center.x + dstCollider.Extents.x / 2.f));
-	pointOnRect.y = std::clamp(srcCollider.Center.y, (dstCollider.Center.y - dstCollider.Extents.y / 2.f), (dstCollider.Center.y + dstCollider.Extents.y / 2.f));
-	pointOnRect.z = std::clamp(srcCollider.Center.z, (dstCollider.Center.z - dstCollider.Extents.z / 2.f), (dstCollider.Center.z + dstCollider.Extents.z / 2.f));
+	bool isCollided = false;
 
-	Vec3 circleToRectPoint = pointOnRect - srcCollider.Center;
+	// 가장 가까운 점 찾기
+	Vec3 resultPoint = dstCollider.Center;
+	Vec3 sphereCenter = srcCollider.Center;
+	Vec3 boxCenter = dstCollider.Center;
+	// box에서 sphere로 가는 dir
+	Vec3 dir = sphereCenter - boxCenter;
 
-	return circleToRectPoint.LengthSquared() < srcCollider.Radius * srcCollider.Radius;
+	Matrix quatMatrix = SimpleMath::Matrix::CreateFromQuaternion(dstCollider.Orientation);
+
+	Vec3 xAxis = Vec3(quatMatrix._11, quatMatrix._12, quatMatrix._13);
+	xAxis.Normalize();
+	Vec3 yAxis = Vec3(quatMatrix._21, quatMatrix._22, quatMatrix._23);
+	yAxis.Normalize();
+	Vec3 zAxis = Vec3(quatMatrix._31, quatMatrix._32, quatMatrix._33);
+	zAxis.Normalize();
+
+	float xDistance = xAxis.Dot(dir);
+	float yDistance = yAxis.Dot(dir);
+	float zDistance = zAxis.Dot(dir);
+
+	if (xDistance >  dstCollider.Extents.x / 2)
+		xDistance =  dstCollider.Extents.x / 2;
+	if (xDistance < -dstCollider.Extents.x / 2)
+		xDistance = -dstCollider.Extents.x / 2;
+
+	resultPoint = resultPoint + (xAxis * xDistance);
+
+	if (yDistance >  dstCollider.Extents.y / 2)
+		yDistance =  dstCollider.Extents.y / 2;
+	if (yDistance < -dstCollider.Extents.y / 2)
+		yDistance = -dstCollider.Extents.y / 2;
+
+	resultPoint = resultPoint + (yAxis * yDistance);
+
+	if (zDistance >  dstCollider.Extents.z / 2)
+		zDistance =  dstCollider.Extents.z / 2;
+	if (zDistance < -dstCollider.Extents.z / 2)
+		zDistance = -dstCollider.Extents.z / 2;
+	
+	resultPoint = resultPoint + (zAxis * zDistance);
+
+	// 충돌 테스트
+	float distSquared = Vec3(sphereCenter - resultPoint).LengthSquared();
+	float radiusSquared = srcCollider.Radius * srcCollider.Radius;
+
+	if (distSquared < radiusSquared)
+	{
+		ADDLOG("TRUE, %f\n", sqrt(distSquared));
+		return true;
+	}
+	else
+	{
+		ADDLOG("FALSE, %f\n", sqrt(distSquared));
+		return false;
+	}
+
+
+
+	//Vec3 pointOnRect;
+	//pointOnRect.x = std::clamp(srcCollider.Center.x, (dstCollider.Center.x - dstCollider.Extents.x / 2.f), (dstCollider.Center.x + dstCollider.Extents.x / 2.f));
+	//pointOnRect.y = std::clamp(srcCollider.Center.y, (dstCollider.Center.y - dstCollider.Extents.y / 2.f), (dstCollider.Center.y + dstCollider.Extents.y / 2.f));
+	//pointOnRect.z = std::clamp(srcCollider.Center.z, (dstCollider.Center.z - dstCollider.Extents.z / 2.f), (dstCollider.Center.z + dstCollider.Extents.z / 2.f));
+	//
+	//Vec3 circleToRectPoint = pointOnRect - srcCollider.Center;
+	//
+	//return circleToRectPoint.LengthSquared() < srcCollider.Radius * srcCollider.Radius;
 }

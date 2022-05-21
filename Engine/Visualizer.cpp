@@ -41,8 +41,9 @@ void Visualizer::SetSquarePyramidMesh()
 	_meshRenderer->SetMesh(GET_SINGLE(Resources)->LoadSquarePyramidMesh());
 }
 
-void Visualizer::FinalUpdate(const Vec3& position, const Vec3& scale)
+void Visualizer::FinalUpdate(const Vec3& position, const Vec3& scale, const Vec3& rotation)
 {
 	_transform->SetWorldPosition(position);
 	_transform->SetWorldScale(scale);
+	_transform->SetWorldRotation(rotation);
 }

@@ -14,7 +14,7 @@ public:
 
 	void SetRadius(float radius) { _radius = radius; }
 	float GetRadius() { return _radius; }
-	void SetCenter(Vec3 center) { _center = center; }
+	void SetCenter(const Vec3& center) { _center = center; }
 
 private:
 	friend class ImGuiManager;

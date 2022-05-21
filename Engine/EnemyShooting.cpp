@@ -17,6 +17,10 @@
 
 void EnemyLaserShooting::Shoot()
 {
+	std::shared_ptr<GameObject> player = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"pl0010.fbx0");
+	Vec3 dir = _object.lock()->GetTransform()->GetWorldPosition() - player->GetTransform()->GetWorldPosition();
+	_object.lock()->GetTransform()->SetLookAtWorldRotation(dir);
+
 	_deltaTime += DELTA_TIME;
 	if (_deltaTime > 0)
 	{
@@ -28,7 +32,10 @@ void EnemyLaserShooting::Shoot()
 			laser->Spawn(1, 1.f, 1);
 
 			Vec3 worldPosition = _object.lock()->GetTransform()->GetWorldPosition();
-			laser->GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * laser->GetTransform()->GetWorldScale().z) + worldPosition.z));
+
+			laser->GetTransform()->SetWorldPosition(worldPosition +
+				(_object.lock()->GetTransform()->GetWorldTransform()->GetLook() * (-0.683f * laser->GetTransform()->GetWorldScale().z)));
+			
 			laser->_attachedObject = _object.lock();
 		}
 		else
@@ -49,7 +56,10 @@ void EnemyLaserShooting::Shoot()
 			laser->Spawn(1, 1.f, 1);
 
 			Vec3 worldPosition = _object.lock()->GetTransform()->GetWorldPosition();
-			laser->GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * laser->GetTransform()->GetWorldScale().z) + worldPosition.z));
+			
+			laser->GetTransform()->SetWorldPosition(worldPosition +
+				(_object.lock()->GetTransform()->GetWorldTransform()->GetLook() * (-0.683f * laser->GetTransform()->GetWorldScale().z)));
+
 			laser->_attachedObject = _object.lock();
 
 			std::shared_ptr<BoxCollider> bc = std::make_shared<BoxCollider>();
@@ -75,6 +85,10 @@ void EnemyLaserShooting::Shoot()
 
 void EnemyRapidShooting::Shoot()
 {
+	std::shared_ptr<GameObject> player = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"pl0010.fbx0");
+	Vec3 dir = _object.lock()->GetTransform()->GetWorldPosition() - player->GetTransform()->GetWorldPosition();
+	_object.lock()->GetTransform()->SetLookAtWorldRotation(dir);
+
 	_deltaTime += DELTA_TIME;
 	if (_deltaTime > _fireSpeed)
 	{

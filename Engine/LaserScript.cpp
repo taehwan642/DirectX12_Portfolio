@@ -41,9 +41,19 @@ void LaserScript::LateUpdate()
 	float laserScaleZ = _originalScaleZ + (GetTransform()->GetWorldPosition() - _camera.lock()->GetTransform()->GetWorldPosition()).Length();
 	Vec3 worldScale = GetTransform()->GetWorldScale();
 	GetTransform()->SetWorldScale(Vec3(worldScale.x, worldScale.y, laserScaleZ));
+
 	Vec3 worldPosition = _attachedObject.lock()->GetTransform()->GetWorldPosition();
-	GetTransform()->SetWorldPosition(Vec3(worldPosition.x, worldPosition.y, (-0.683f * GetTransform()->GetWorldScale().z) + worldPosition.z));
-	std::static_pointer_cast<BoxCollider>(GetGameObject()->GetCollider())->SetExtent(GetTransform()->GetWorldScale());
+	GetTransform()->SetWorldPosition(worldPosition + 
+		(_attachedObject.lock()->GetTransform()->GetWorldTransform()->GetLook() * (-0.683f * GetTransform()->GetWorldScale().z)));
+	
+	GetTransform()->SetWorldRotation(_attachedObject.lock()->GetTransform()->GetWorldRotation());
+	
+	std::shared_ptr<BoxCollider> collider = std::static_pointer_cast<BoxCollider>(GetGameObject()->GetCollider());
+	
+	worldScale = GetTransform()->GetWorldScale();
+	collider->SetExtent(Vec3(worldScale.x, worldScale.y, _originalScaleZ));
+	collider->SetOrientation(GetTransform()->GetWorldRotation());
+	
 	// 만약 Lock 상태일 때?
 	if (_laserState == LaserState::LOCKON)
 	{

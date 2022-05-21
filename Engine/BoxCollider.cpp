@@ -24,11 +24,12 @@ void BoxCollider::FinalUpdate()
 {
 	if (_draw)
 	{
-		_colliderVisualizers[0]->FinalUpdate(_center + GetTransform()->GetWorldPosition(), _extents);
+		_colliderVisualizers[0]->FinalUpdate(_center + GetTransform()->GetWorldPosition(), _extents, _orientation);
 	}
 
 	_boundingBox.Center = _center + GetGameObject()->GetTransform()->GetWorldPosition();
 	_boundingBox.Extents = _extents;
+	_boundingBox.Orientation = SimpleMath::Quaternion::CreateFromYawPitchRoll(_orientation.y, _orientation.x, _orientation.z);
 }
 
 bool BoxCollider::Intersects(const Vec4& rayOrigin, const Vec4& rayDir, OUT float& distance)

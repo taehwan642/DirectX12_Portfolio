@@ -28,5 +28,5 @@ public:
     std::shared_ptr<MeshRenderer> _meshRenderer;
     std::shared_ptr<TransformComponent> _transform;
 
-    void FinalUpdate(const Vec3& position, const Vec3& scale = Vec3(1, 1, 1));
+    void FinalUpdate(const Vec3& position, const Vec3& scale = Vec3(1, 1, 1), const Vec3& rotation = Vec3(0, 0, 0));
 };

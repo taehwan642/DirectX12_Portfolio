@@ -249,9 +249,6 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Object\Component\Math</Filter>
     </ClCompile>
-    <ClCompile Include="LaserScript.cpp">
-      <Filter>Script</Filter>
-    </ClCompile>
     <ClCompile Include="NierAnimator.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
@@ -302,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="InfinitePassage.cpp">
       <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserScript.cpp">
+      <Filter>Script\Character\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +512,6 @@
     <ClInclude Include="TransformComponent.h">
       <Filter>Object\Component\Math</Filter>
     </ClInclude>
-    <ClInclude Include="LaserScript.h">
-      <Filter>Script</Filter>
-    </ClInclude>
     <ClInclude Include="NierAnimator.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
@@ -561,6 +558,9 @@
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyShooting.h">
+      <Filter>Script\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserScript.h">
       <Filter>Script\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
