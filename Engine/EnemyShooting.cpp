@@ -142,8 +142,114 @@ void EnemyRapidShooting::Shoot()
 
 void EnemyHeavyShooting::Shoot()
 {
+	std::shared_ptr<GameObject> player = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"pl0010.fbx0");
+	Vec3 dir = _object.lock()->GetTransform()->GetWorldPosition() - player->GetTransform()->GetWorldPosition();
+	_object.lock()->GetTransform()->SetLookAtWorldRotation(dir);
+
+	_deltaTime += DELTA_TIME;
+	if (_deltaTime > _fireSpeed)
+	{
+		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
+		{
+			std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
+
+			eb->Spawn(1, 10.f, 1);
+
+			eb->GetTransform()->SetWorldPosition(_object.lock()->GetTransform()->GetWorldPosition());
+			eb->_direction = _object.lock()->GetTransform()->GetWorldTransform()->GetLook();
+		}
+		else
+		{
+			std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+			object->AddComponent(std::make_shared<TransformComponent>());
+
+			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
+			object->AddComponent(mr);
+			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
+			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
+
+			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
+			object->AddComponent(eb);
+
+			eb->Spawn(1, 10.f, 1);
+
+			eb->_direction = _object.lock()->GetTransform()->GetWorldTransform()->GetLook();
+			eb->GetTransform()->SetWorldPosition(_object.lock()->GetTransform()->GetWorldPosition());
+
+			std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
+			object->AddComponent(sc);
+			sc->SetRadius(object->GetTransform()->GetWorldScale().x);
+
+			std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyBulletParent");
+
+			object->SetName(L"EnemyBulletChild" + std::to_wstring(bulletParent->GetTransform()->GetChildCount()));
+			object->GenerateHash();
+
+			object->GetTransform()->SetParent(bulletParent->GetTransform());
+
+			GET_SINGLE(ObjectPool)->AddPoolObject("EnemyBullet", object);
+
+			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY_BULLET, object);
+
+			GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
+		}
+		_deltaTime = 0.f;
+	}
 }
 
 void EnemyThreeWayShooting::Shoot()
 {
+	std::shared_ptr<GameObject> player = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"pl0010.fbx0");
+	Vec3 dir = _object.lock()->GetTransform()->GetWorldPosition() - player->GetTransform()->GetWorldPosition();
+	_object.lock()->GetTransform()->SetLookAtWorldRotation(dir);
+
+	_deltaTime += DELTA_TIME;
+	if (_deltaTime > _fireSpeed)
+	{
+		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
+		{
+			std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
+
+			eb->Spawn(1, 10.f, 1);
+
+			eb->GetTransform()->SetWorldPosition(_object.lock()->GetTransform()->GetWorldPosition());
+			eb->_direction = _object.lock()->GetTransform()->GetWorldTransform()->GetLook();
+		}
+		else
+		{
+			std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+			object->AddComponent(std::make_shared<TransformComponent>());
+
+			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
+			object->AddComponent(mr);
+			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
+			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
+
+			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
+			object->AddComponent(eb);
+
+			eb->Spawn(1, 10.f, 1);
+
+			eb->_direction = _object.lock()->GetTransform()->GetWorldTransform()->GetLook();
+			eb->GetTransform()->SetWorldPosition(_object.lock()->GetTransform()->GetWorldPosition());
+
+			std::shared_ptr<SphereCollider> sc = std::make_shared<SphereCollider>();
+			object->AddComponent(sc);
+			sc->SetRadius(object->GetTransform()->GetWorldScale().x);
+
+			std::shared_ptr<GameObject> bulletParent = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemyBulletParent");
+
+			object->SetName(L"EnemyBulletChild" + std::to_wstring(bulletParent->GetTransform()->GetChildCount()));
+			object->GenerateHash();
+
+			object->GetTransform()->SetParent(bulletParent->GetTransform());
+
+			GET_SINGLE(ObjectPool)->AddPoolObject("EnemyBullet", object);
+
+			GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::ENEMY_BULLET, object);
+
+			GET_SINGLE(SceneManager)->GetActiveScene()->AddGameObject(object);
+		}
+		_deltaTime = 0.f;
+	}
 }

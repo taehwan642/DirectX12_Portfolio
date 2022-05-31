@@ -22,7 +22,7 @@ void PlayerBullet::Spawn(int hp, float speed, int damage)
 	Character::Spawn(hp, speed, damage);
 }
 
-void PlayerBullet::OnCollisionEnter(CollisionOutput collider)
+void PlayerBullet::OnCollisionEnter(const CollisionOutput& collider)
 {
 }
 

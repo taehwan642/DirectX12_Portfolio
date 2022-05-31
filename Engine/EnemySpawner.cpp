@@ -136,14 +136,14 @@ void EnemySpawner::LateUpdate()
 	}
 }
 
-void EnemySpawner::OnCollisionEnter(CollisionOutput collider)
+void EnemySpawner::OnCollisionEnter(const CollisionOutput& collider)
 {
 }
 
-void EnemySpawner::OnCollisionStay(CollisionOutput collider)
+void EnemySpawner::OnCollisionStay(const CollisionOutput& collider)
 {
 }
 
-void EnemySpawner::OnCollisionExit(CollisionOutput collider)
+void EnemySpawner::OnCollisionExit(const CollisionOutput& collider)
 {
 }

@@ -12,6 +12,7 @@
 #include "BoneCollider.h"
 #include "SphereCollider.h"
 #include "AudioSource.h"
+#include "PlayerBullet.h"
 
 EnemyBullet::EnemyBullet()
 {
@@ -29,13 +30,25 @@ void EnemyBullet::Spawn(int hp, float speed, int damage)
 	Character::Spawn(hp, speed, damage);
 }
 
-void EnemyBullet::OnCollisionEnter(CollisionOutput collider)
+void EnemyBullet::OnCollisionEnter(const CollisionOutput& collider)
 {
-	if (collider.collider->GetColliderType() == ColliderType::Sphere)
+	std::shared_ptr<GameObject> obj = collider.collider->GetGameObject();
+	switch (collider.type)
 	{
+	case CollisionObjectType::PLAYER_BULLET:
+	{
+		if (_state == EnemyBulletState::DESTROYABLE)
+		{
+			int damage = obj->GetComponent<PlayerBullet>()->_damage;
+			if (GetDamage(damage))
+			{
+				GetGameObject()->SetActive(false);
+			}
+		}
+		break;
 	}
-	else if (collider.collider->GetColliderType() == ColliderType::Bone)
-	{
+	default:
+		break;
 	}
 }
 

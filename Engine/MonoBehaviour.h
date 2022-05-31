@@ -25,9 +25,9 @@ public:
 	MonoBehaviour();
 	virtual ~MonoBehaviour();
 
-	virtual void OnCollisionEnter(CollisionOutput collider) = 0;
-	virtual void OnCollisionStay(CollisionOutput collider) = 0;
-	virtual void OnCollisionExit(CollisionOutput collider) = 0;
+	virtual void OnCollisionEnter(const CollisionOutput& collider) = 0;
+	virtual void OnCollisionStay(const CollisionOutput& collider) = 0;
+	virtual void OnCollisionExit(const CollisionOutput& collider) = 0;
 
 protected:
 	friend class ImGuiManager;

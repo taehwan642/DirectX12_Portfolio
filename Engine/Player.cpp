@@ -36,7 +36,7 @@ Player::~Player()
 {
 }
 
-void Player::OnCollisionEnter(CollisionOutput collider)
+void Player::OnCollisionEnter(const CollisionOutput& collider)
 {
 	std::shared_ptr<GameObject> obj = collider.collider->GetGameObject();
 	switch (collider.type)

@@ -43,7 +43,7 @@ void Enemy::Spawn(int hp, float speed, int damage)
 	Character::Spawn(hp, speed, damage);
 }
 
-void Enemy::OnCollisionEnter(CollisionOutput collider)
+void Enemy::OnCollisionEnter(const CollisionOutput& collider)
 {
 	std::shared_ptr<GameObject> obj = collider.collider->GetGameObject();
 	switch (collider.type)

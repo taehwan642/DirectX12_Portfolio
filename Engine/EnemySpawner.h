@@ -10,7 +10,7 @@ public:
 
     virtual void LateUpdate() override;
 
-    virtual void OnCollisionEnter(CollisionOutput collider) override;
-    virtual void OnCollisionStay(CollisionOutput collider) override;
-    virtual void OnCollisionExit(CollisionOutput collider) override;
+    virtual void OnCollisionEnter(const CollisionOutput& collider) override;
+    virtual void OnCollisionStay(const CollisionOutput& collider) override;
+    virtual void OnCollisionExit(const CollisionOutput& collider) override;
 };
