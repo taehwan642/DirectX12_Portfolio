@@ -95,6 +95,23 @@ void EnemyRapidShooting::Shoot()
 		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
 		{
 			std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
+			std::shared_ptr<MeshRenderer> mr = eb->GetMeshRenderer();
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 3);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
 
 			eb->Spawn(1, 10.f, 1);
 
@@ -109,10 +126,25 @@ void EnemyRapidShooting::Shoot()
 			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
 			object->AddComponent(mr);
 			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
-			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
 
 			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
 			object->AddComponent(eb);
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 3);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
 
 			eb->Spawn(1, 10.f, 1);
 
@@ -152,6 +184,23 @@ void EnemyHeavyShooting::Shoot()
 		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
 		{
 			std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
+			std::shared_ptr<MeshRenderer> mr = eb->GetMeshRenderer();
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 2);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
 
 			eb->Spawn(1, 10.f, 1);
 
@@ -166,10 +215,26 @@ void EnemyHeavyShooting::Shoot()
 			std::shared_ptr<MeshRenderer> mr = std::make_shared<MeshRenderer>();
 			object->AddComponent(mr);
 			mr->SetMesh(GET_SINGLE(Resources)->LoadSphereMesh());
-			mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet"));
 
 			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
 			object->AddComponent(eb);
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 2);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
+
 
 			eb->Spawn(1, 10.f, 1);
 
@@ -209,6 +274,23 @@ void EnemyThreeWayShooting::Shoot()
 		if (std::shared_ptr<GameObject> poolObj = GET_SINGLE(ObjectPool)->GetPoolObject("EnemyBullet"); poolObj != nullptr)
 		{
 			std::shared_ptr<EnemyBullet> eb = poolObj->GetComponent<EnemyBullet>();
+			std::shared_ptr<MeshRenderer> mr = eb->GetMeshRenderer();
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 3);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
 
 			eb->Spawn(1, 10.f, 1);
 
@@ -227,6 +309,22 @@ void EnemyThreeWayShooting::Shoot()
 
 			std::shared_ptr<EnemyBullet> eb = std::make_shared<EnemyBullet>();
 			object->AddComponent(eb);
+
+			std::random_device rd;
+			std::mt19937 generator(rd());
+			std::uniform_real_distribution<float> dist(0, 3);
+
+			int randNum = dist(generator);
+			if (randNum != 0)
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::DESTROYABLE);
+			}
+			else
+			{
+				mr->SetMaterial(GET_SINGLE(Resources)->Get<Material>(L"EnemyBullet_NON_DESTROYABLE"));
+				eb->SetEnemyBulletState(EnemyBulletState::NON_DESTROYABLE);
+			}
 
 			eb->Spawn(1, 10.f, 1);
 

@@ -27,6 +27,8 @@ public:
 	virtual void Move() override;
 	virtual void Attack() override {};
 
+	void SetEnemyBulletState(EnemyBulletState state) { _state = state; }
+
 #ifdef TOOL
 	virtual void DragAndDrop(size_t hash) override;
 #endif

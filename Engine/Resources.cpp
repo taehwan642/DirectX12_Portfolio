@@ -977,7 +977,16 @@ void Resources::CreateDefaultMaterial()
 		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"EnemyBullet", L"..\\Resources\\Texture\\EnemyBullet.png");
 		material->SetShader(shader);
 		material->SetTexture(0, texture);
-		Add<Material>(L"EnemyBullet", material);
+		Add<Material>(L"EnemyBullet_DESTROYABLE", material);
+	}
+
+	{
+		std::shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"EnemyBullet");
+		std::shared_ptr<Material> material = std::make_shared<Material>();
+		std::shared_ptr<Texture> texture = GET_SINGLE(Resources)->Load<Texture>(L"EnemyBullet", L"..\\Resources\\Texture\\EnemyBullet.png");
+		material->SetShader(shader);
+		material->SetTexture(0, texture);
+		Add<Material>(L"EnemyBullet_NON_DESTROYABLE", material);
 	}
 
 	{
