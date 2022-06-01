@@ -23,7 +23,7 @@ void EnemySpawner::Spawn()
 	{
 		std::shared_ptr<Enemy> enemy = poolObj->GetComponent<Enemy>();
 
-		enemy->Spawn(1, 50.f, 3);
+		enemy->Spawn(15, 50.f, 3);
 
 		// 적의 Movement
 		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoints");
@@ -74,7 +74,7 @@ void EnemySpawner::Spawn()
 		std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
 		object->AddComponent(enemy);
 
-		enemy->Spawn(1, 50.f, 3);
+		enemy->Spawn(15, 50.f, 3);
 
 		// 적의 Movement
 		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoint");

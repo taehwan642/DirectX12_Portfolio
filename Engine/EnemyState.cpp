@@ -17,23 +17,8 @@ int EnemyIdleState::handleInput()
 	return ENEMY_IDLE;
 }
 
-int EnemyShootBulletState::handleInput()
-{
-	std::shared_ptr<Enemy> enemy = _object.lock()->GetComponent<Enemy>();
-	enemy->Move();
-	enemy->Attack();
-	return ENEMY_SHOOT_BULLET;
-}
-
-int EnemyShootLaserState::handleInput()
-{
-	std::shared_ptr<Enemy> enemy = _object.lock()->GetComponent<Enemy>();
-	enemy->Move();
-	enemy->Attack();
-	return ENEMY_SHOOT_LASER;
-}
-
 int EnemyDeadState::handleInput()
 {
+	_object.lock()->SetActive(false);
 	return ENEMY_DEAD;
 }

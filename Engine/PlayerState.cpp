@@ -281,6 +281,7 @@ int FlightDodgeState::handleInput()
 
 int FlightDeadState::handleInput()
 {
+	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero); 
 	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
 		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();

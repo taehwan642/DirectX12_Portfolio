@@ -20,7 +20,7 @@
 Enemy::Enemy()
 {
 	MONOCLASSNAME(Enemy);
-	Character::Spawn(1, 50.f, 3);
+	Character::Spawn(15, 50.f, 3);
 	_invincibleTime = 0.1f;
 }
 
@@ -34,8 +34,6 @@ void Enemy::Spawn(int hp, float speed, int damage)
 	{
 		_stateManager = std::make_shared<StateManager>();
 		_stateManager->AddState(ENEMY_IDLE, std::make_shared<EnemyIdleState>(GetGameObject()));
-		_stateManager->AddState(ENEMY_SHOOT_BULLET, std::make_shared<EnemyShootBulletState>(GetGameObject()));
-		_stateManager->AddState(ENEMY_SHOOT_LASER, std::make_shared<EnemyShootLaserState>(GetGameObject()));
 		_stateManager->AddState(ENEMY_DEAD, std::make_shared<EnemyDeadState>(GetGameObject()));
 		_stateManager->ChangeState(ENEMY_IDLE);
 	}
@@ -54,7 +52,9 @@ void Enemy::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			// 만약 현재 dodge중이 아니라면;
 			int damage = obj->GetComponent<Player>()->_damage;
-			GetDamage(damage);
+			if (GetDamage(damage))
+				_stateManager->ChangeState(ENEMY_DEAD);
+
 			ADDLOG("Player %d, HP LEFT : %d\n", damage, _hp);
 		}	
 		break;
@@ -65,7 +65,9 @@ void Enemy::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			// 만약 현재 dodge중이 아니라면;
 			int damage = obj->GetComponent<PlayerBullet>()->_damage;
-			GetDamage(damage); 
+			if (GetDamage(damage))
+				_stateManager->ChangeState(ENEMY_DEAD);
+
 			ADDLOG("Player Bullet Damage %d, HP LEFT : %d\n", damage, _hp);
 		}
 		break;
