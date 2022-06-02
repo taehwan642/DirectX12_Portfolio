@@ -26,7 +26,7 @@ void EnemySpawner::Spawn()
 		enemy->Spawn(15, 50.f, 3);
 
 		// 적의 Movement
-		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoints");
+		std::shared_ptr<GameObject> spawnPoints = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EnemySpawnPoint");
 		// 몇 번인지 알려주기
 		int num = 0; // 인자로 받기
 		std::shared_ptr<GameObject> spawnPoint = spawnPoints->GetTransform()->GetChild(0)->GetGameObject();

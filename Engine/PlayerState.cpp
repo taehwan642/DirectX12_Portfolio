@@ -25,47 +25,53 @@ Player Animation Index
 
 int FlightIdleState::handleInput()
 {
-	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
-	_object.lock()->GetComponent<Player>()->Move();
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
+	obj->GetTransform()->SetWorldRotation(Vec3::Zero);
+	player->Move();
 
 	if (INPUT->GetButton(KEY_TYPE::RIGHT) || INPUT->GetButton(KEY_TYPE::LEFT))
 	{
-		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+		for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
-			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+			std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 			std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(6);
 		}
 	}
 	else
 	{
-		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+		for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
-			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+			std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 			std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(5);
 		}
 	}
 
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
 	{
-		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_21.wav");
-		_object.lock()->GetAudioSource()->SetLoop(false);
-		_object.lock()->GetAudioSource()->SetVolume(0.2f);
-		_object.lock()->GetAudioSource()->Play();
+		obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_21.wav");
+		obj->GetAudioSource()->SetLoop(false);
+		obj->GetAudioSource()->SetVolume(0.2f);
+		obj->GetAudioSource()->Play();
 		return FLIGHT_TO_COMBAT;//_object.lock()->GetComponent<Player>()->ChangeFlightCombatMode();
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::E))
 	{
-		_object.lock()->GetComponent<Player>()->Attack();
+		player->Attack();
 		return FLIGHT_FIRE;
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::Q))
 	{
-		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
-		_object.lock()->GetAudioSource()->SetLoop(false);
-		_object.lock()->GetAudioSource()->SetVolume(0.2f);
-		_object.lock()->GetAudioSource()->Play();
+		obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
+		obj->GetAudioSource()->SetLoop(false);
+		obj->GetAudioSource()->SetVolume(0.2f);
+		obj->GetAudioSource()->Play();
 		return FLIGHT_DODGE;
 	}
 
@@ -74,23 +80,29 @@ int FlightIdleState::handleInput()
 
 int CombatIdleState::handleInput()
 {
-	_object.lock()->GetComponent<Player>()->Move();
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
+	player->Move();
 
 	if (INPUT->GetButtonDown(KEY_TYPE::SPACE))
 	{
-		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_21.wav");
-		_object.lock()->GetAudioSource()->SetLoop(false);
-		_object.lock()->GetAudioSource()->SetVolume(0.2f);
-		_object.lock()->GetAudioSource()->Play();
+		obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_21.wav");
+		obj->GetAudioSource()->SetLoop(false);
+		obj->GetAudioSource()->SetVolume(0.2f);
+		obj->GetAudioSource()->Play();
 		return COMBAT_TO_FLIGHT;//_object.lock()->GetComponent<Player>()->ChangeFlightCombatMode();
 	}
 
 	if (INPUT->GetButton(KEY_TYPE::E))
 	{
-		_object.lock()->GetComponent<Player>()->Attack();
-		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+		obj->GetComponent<Player>()->Attack();
+		for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
-			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+			std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 			std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 			anim->SetAnimationIndex(8);
 		}
@@ -98,19 +110,19 @@ int CombatIdleState::handleInput()
 	}
 	else
 	{
-		for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+		for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 		{
-			std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+			std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 			std::static_pointer_cast<NierAnimator>(object->GetAnimator())->SetAnimationIndex(7);
 		}
 	}
 
 	if (INPUT->GetButtonDown(KEY_TYPE::C))
 	{
-		_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
-		_object.lock()->GetAudioSource()->SetLoop(false);
-		_object.lock()->GetAudioSource()->SetVolume(0.2f);
-		_object.lock()->GetAudioSource()->Play();
+		obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
+		obj->GetAudioSource()->SetLoop(false);
+		obj->GetAudioSource()->SetVolume(0.2f);
+		obj->GetAudioSource()->Play();
 		return COMBAT_ATTACK1;
 	}
 	return COMBAT_IDLE;
@@ -118,24 +130,42 @@ int CombatIdleState::handleInput()
 
 int FlightFireState::handleInput()
 {
-	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
-	_object.lock()->GetComponent<Player>()->Move();
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
+	obj->GetTransform()->SetWorldRotation(Vec3::Zero);
+	player->Move();
 	return FLIGHT_IDLE;
 }
 
 int CombatFireState::handleInput()
 {
-	_object.lock()->GetComponent<Player>()->Move();
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
+	player->Move();
 	return COMBAT_IDLE;
 }
 
 int CombatAttack1State::handleInput()
 {
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
 	bool isEnd = false;
-	_object.lock()->GetComponent<Player>()->Move();
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	obj->GetComponent<Player>()->Move();
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+		std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(2);
 
@@ -143,10 +173,10 @@ int CombatAttack1State::handleInput()
 		{
 			if (INPUT->GetButtonDown(KEY_TYPE::C))
 			{
-				_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
-				_object.lock()->GetAudioSource()->SetLoop(false);
-				_object.lock()->GetAudioSource()->SetVolume(0.2f);
-				_object.lock()->GetAudioSource()->Play();
+				obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
+				obj->GetAudioSource()->SetLoop(false);
+				obj->GetAudioSource()->SetVolume(0.2f);
+				obj->GetAudioSource()->Play();
 				return COMBAT_ATTACK2;
 			}
 
@@ -169,11 +199,17 @@ int CombatAttack1State::handleInput()
 
 int CombatAttack2State::handleInput()
 {
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
 	bool isEnd = false;
-	_object.lock()->GetComponent<Player>()->Move();
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	player->Move();
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+		std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(3);
 
@@ -181,10 +217,10 @@ int CombatAttack2State::handleInput()
 		{
 			if (INPUT->GetButtonDown(KEY_TYPE::C))
 			{
-				_object.lock()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
-				_object.lock()->GetAudioSource()->SetLoop(false);
-				_object.lock()->GetAudioSource()->SetVolume(0.2f);
-				_object.lock()->GetAudioSource()->Play();
+				obj->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_8.wav");
+				obj->GetAudioSource()->SetLoop(false);
+				obj->GetAudioSource()->SetVolume(0.2f);
+				obj->GetAudioSource()->Play();
 				return COMBAT_ATTACK1;
 			}
 
@@ -209,10 +245,16 @@ int CombatAttack2State::handleInput()
 
 int FlightToCombatState::handleInput()
 {
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
 	bool isEnd = false;
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
+		std::shared_ptr<TransformComponent> childTransform = obj->GetTransform()->GetChild(0)->GetChild(i);
 		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(1);
@@ -233,10 +275,16 @@ int FlightToCombatState::handleInput()
 
 int CombatToFlightState::handleInput()
 {
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
+	if (player->IsDead())
+		return FLIGHT_DEAD;
+
 	bool isEnd = false;
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<TransformComponent> childTransform = _object.lock()->GetTransform()->GetChild(0)->GetChild(i);
+		std::shared_ptr<TransformComponent> childTransform = obj->GetTransform()->GetChild(0)->GetChild(i);
 		std::shared_ptr<GameObject> object = childTransform->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(0);
@@ -257,12 +305,15 @@ int CombatToFlightState::handleInput()
 
 int FlightDodgeState::handleInput()
 {
+	std::shared_ptr<GameObject> obj = _object.lock();
+	std::shared_ptr<Player> player = obj->GetComponent<Player>();
+
 	bool isEnd = false;
-	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero);
-	_object.lock()->GetComponent<Player>()->Move();
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	obj->GetTransform()->SetWorldRotation(Vec3::Zero);
+	player->Move();
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+		std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(4);
 
@@ -281,16 +332,18 @@ int FlightDodgeState::handleInput()
 
 int FlightDeadState::handleInput()
 {
-	_object.lock()->GetTransform()->SetWorldRotation(Vec3::Zero); 
-	for (int i = 0; i < _object.lock()->GetTransform()->GetChild(0)->GetChildCount(); ++i)
+	std::shared_ptr<GameObject> obj = _object.lock();
+
+	obj->GetTransform()->SetWorldRotation(Vec3::Zero);
+	for (int i = 0; i < obj->GetTransform()->GetChild(0)->GetChildCount(); ++i)
 	{
-		std::shared_ptr<GameObject> object = _object.lock()->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
+		std::shared_ptr<GameObject> object = obj->GetTransform()->GetChild(0)->GetChild(i)->GetGameObject();
 		std::shared_ptr<NierAnimator> anim = std::static_pointer_cast<NierAnimator>(object->GetAnimator());
 		anim->SetAnimationIndex(9);
 
 		if (anim->GetAnimationEnd())
 		{
-			_object.lock()->SetActive(false);
+			obj->SetActive(false);
 		}
 	}
 

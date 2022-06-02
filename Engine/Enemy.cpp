@@ -52,8 +52,7 @@ void Enemy::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			// 만약 현재 dodge중이 아니라면;
 			int damage = obj->GetComponent<Player>()->_damage;
-			if (GetDamage(damage))
-				_stateManager->ChangeState(ENEMY_DEAD);
+			GetDamage(damage);
 
 			ADDLOG("Player %d, HP LEFT : %d\n", damage, _hp);
 		}	
@@ -65,8 +64,7 @@ void Enemy::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			// 만약 현재 dodge중이 아니라면;
 			int damage = obj->GetComponent<PlayerBullet>()->_damage;
-			if (GetDamage(damage))
-				_stateManager->ChangeState(ENEMY_DEAD);
+			GetDamage(damage);
 
 			ADDLOG("Player Bullet Damage %d, HP LEFT : %d\n", damage, _hp);
 		}

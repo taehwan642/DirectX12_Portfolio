@@ -14,6 +14,10 @@ int EnemyIdleState::handleInput()
 	std::shared_ptr<Enemy> enemy = _object.lock()->GetComponent<Enemy>();
 	enemy->Move();
 	enemy->Attack();
+
+	if (enemy->IsDead())
+		return ENEMY_DEAD;
+
 	return ENEMY_IDLE;
 }
 

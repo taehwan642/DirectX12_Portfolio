@@ -50,6 +50,8 @@ public:
 		}
 	};
 
+	int GetState() { return _currentKey; }
+
 private:
 	std::map<int, std::shared_ptr<GameObjectState>> _stateMap;
 	std::shared_ptr<GameObjectState> _currentState = nullptr;

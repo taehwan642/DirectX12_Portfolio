@@ -47,10 +47,9 @@ void Player::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			int damage = obj->GetComponent<Enemy>()->_damage;
 			// 만약 현재 dodge중이 아니라면;
-			if (GetDamage(damage))
-			{
-				_stateManager->ChangeState(FLIGHT_DEAD);
-			}
+			if (static_cast<PlayerState>(_stateManager->GetState()) == PlayerState::FLIGHT_DODGE)
+				break;
+			GetDamage(damage);
 			ADDLOG("Enemy Damage %d, HP LEFT : %d\n", damage, _hp);
 		}
 		break;
@@ -61,10 +60,9 @@ void Player::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			int damage = obj->GetComponent<EnemyBullet>()->_damage;
 			// 만약 현재 dodge중이 아니라면;
-			if (GetDamage(damage))
-			{
-				_stateManager->ChangeState(FLIGHT_DEAD);
-			}
+			if (static_cast<PlayerState>(_stateManager->GetState()) == PlayerState::FLIGHT_DODGE)
+				break;
+			GetDamage(damage);
 			ADDLOG("Enemy Bullet Damage %d, HP LEFT : %d\n", damage, _hp);
 			std::shared_ptr<GameObject> effectManager = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EffectManager");
 			effectManager->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());
@@ -77,10 +75,9 @@ void Player::OnCollisionEnter(const CollisionOutput& collider)
 		{
 			int damage = obj->GetComponent<LaserScript>()->_damage;
 			// 만약 현재 dodge중이 아니라면;
-			if (GetDamage(damage))
-			{
-				_stateManager->ChangeState(FLIGHT_DEAD);
-			}
+			if (static_cast<PlayerState>(_stateManager->GetState()) == PlayerState::FLIGHT_DODGE)
+				break;
+			GetDamage(damage);
 			ADDLOG("Laser Damage %d, HP LEFT : %d\n", damage, _hp);
 			std::shared_ptr<GameObject> effectManager = GET_SINGLE(SceneManager)->GetActiveScene()->FindGameObject(L"EffectManager");
 			effectManager->GetComponent<EffectManagerScript>()->SpawnEffect("Explosion3", GetTransform()->GetWorldPosition());

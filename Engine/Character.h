@@ -21,6 +21,11 @@ public:
 
 	void UpdateInvincibleTime();
 
+	bool IsDead()
+	{
+		return _hp <= 0;
+	}
+
 public:
 	int _hp = 1;
 	float _speed = 1.f;
