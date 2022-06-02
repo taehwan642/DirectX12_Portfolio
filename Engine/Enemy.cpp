@@ -35,8 +35,9 @@ void Enemy::Spawn(int hp, float speed, int damage)
 		_stateManager = std::make_shared<StateManager>();
 		_stateManager->AddState(ENEMY_IDLE, std::make_shared<EnemyIdleState>(GetGameObject()));
 		_stateManager->AddState(ENEMY_DEAD, std::make_shared<EnemyDeadState>(GetGameObject()));
-		_stateManager->ChangeState(ENEMY_IDLE);
 	}
+
+	_stateManager->ChangeState(ENEMY_IDLE);
 
 	Character::Spawn(hp, speed, damage);
 }
