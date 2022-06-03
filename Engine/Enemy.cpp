@@ -113,15 +113,19 @@ void Enemy::SetEnemyShootingType(EnemyShootingType type)
 	{
 	case EnemyShootingType::LASER:
 		_enemyShooting = std::make_shared<EnemyLaserShooting>();
+		_enemyShooting->SetFireSpeed(0.3f);
 		break;
 	case EnemyShootingType::RAPID:
 		_enemyShooting = std::make_shared<EnemyRapidShooting>();
+		_enemyShooting->SetFireSpeed(0.3f);
 		break;
 	case EnemyShootingType::HEAVY:
 		_enemyShooting = std::make_shared<EnemyHeavyShooting>();
+		_enemyShooting->SetFireSpeed(0.15f);
 		break;
 	case EnemyShootingType::THREEWAY:
 		_enemyShooting = std::make_shared<EnemyThreeWayShooting>();
+		_enemyShooting->SetFireSpeed(0.3f);
 		break;
 	default:
 		break;

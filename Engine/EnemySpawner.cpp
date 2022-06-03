@@ -105,7 +105,7 @@ void EnemySpawner::Spawn()
 		}
 
 		// ÀûÀÇ ÃÑ ½î´Â ¹æ½Ä
-		EnemyShootingType type = EnemyShootingType::RAPID;
+		EnemyShootingType type = EnemyShootingType::THREEWAY;
 		enemy->SetEnemyShootingType(type);
 
 		// SphereCollider
