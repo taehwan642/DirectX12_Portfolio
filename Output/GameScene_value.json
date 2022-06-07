@@ -3719,6 +3719,88 @@
             "audioSourceValue": {
                 "tag": ""
             }
+        },
+        {
+            "tag": "GameManager",
+            "hashValue": 10666958814004114912,
+            "componentOnValue": [
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true
+            ],
+            "monobehaviourOnValue": [
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "transformValue": {
+                "parentHashValue": 0
+            },
+            "meshRendererValue": {
+                "materialValues": [],
+                "meshRendererMaterialNumValue": 0,
+                "meshValue": {
+                    "tag": ""
+                }
+            },
+            "colliderValue": {
+                "type": "Sphere",
+                "visualizerSize": 0
+            },
+            "lightValue": {
+                "lightType": 0
+            },
+            "terrainValue": {
+                "sizeX": 0,
+                "sizeZ": 0
+            },
+            "particleSystemValue": {
+                "materialValue": {
+                    "textureOnValue": [
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "textureValues": [
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        },
+                        {
+                            "tag": ""
+                        }
+                    ],
+                    "shaderValue": {
+                        "tag": ""
+                    },
+                    "tag": ""
+                }
+            },
+            "audioSourceValue": {
+                "tag": ""
+            }
         }
     ],
     "cameraObjects": [

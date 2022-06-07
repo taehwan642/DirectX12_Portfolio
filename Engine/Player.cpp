@@ -102,10 +102,10 @@ void Player::Awake()
 	_stateManager->AddState(FLIGHT_DODGE, std::make_shared<FlightDodgeState>(GetGameObject()));
 	_stateManager->AddState(FLIGHT_DEAD, std::make_shared<FlightDeadState>(GetGameObject()));
 	_stateManager->ChangeState(FLIGHT_IDLE);
-	GetGameObject()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_13.wav");
-	GetGameObject()->GetAudioSource()->SetLoop(true);
-	GetGameObject()->GetAudioSource()->SetVolume(0.06f);
-	GetGameObject()->GetAudioSource()->Play();
+	//GetGameObject()->GetAudioSource()->LoadAudio(L"..\\Resources\\Audio\\player\\pl0010_13.wav");
+	//GetGameObject()->GetAudioSource()->SetLoop(true);
+	//GetGameObject()->GetAudioSource()->SetVolume(0.06f);
+	//GetGameObject()->GetAudioSource()->Play();
 	_p = SimpleMath::Plane(GetTransform()->GetWorldPosition(), Vec3(0, 1, 0));
 	GET_SINGLE(CollisionManager)->AddObject(CollisionObjectType::PLAYER, GetGameObject());
 

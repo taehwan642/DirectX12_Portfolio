@@ -223,7 +223,8 @@ struct RTTRAudioSourceValue
 	RTTRAudioSourceValue() = default;
 	RTTRAudioSourceValue(std::shared_ptr<AudioSource> audioSource)
 	{
-		tag = ws2s(audioSource->_audioClip->GetName());
+		if (audioSource->_audioClip != nullptr)
+			tag = ws2s(audioSource->_audioClip->GetName());
 	}
 
 	std::string tag = "";
