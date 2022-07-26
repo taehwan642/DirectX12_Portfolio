@@ -243,28 +243,28 @@ void Player::SetSwordCollider()
 	// bone 008 왼쪽
 	// bone 012 오른쪽
 	// 손
-	// bone 013 왼쪽
-	// bone 009 오른쪽
+	// bone 009 왼쪽
+	// bone 013 오른쪽
 
 	int leftObjectIndex = (_9SMode == true) ? 15 : 8;
 	int rightObjectIndex = (_9SMode == true) ? 16 : 9;
 
 	Vec3 leftElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone008");
-	Vec3 leftHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone013");
+	Vec3 leftHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(leftObjectIndex)->GetAnimator()->GetBonePosition("bone009");
 
-	Vec3 leftHandToElbowDir = leftHand - leftElbow;
-	leftHandToElbowDir.Normalize();
+	Vec3 leftElbowToHandDir = leftHand - leftElbow;
+	leftElbowToHandDir.Normalize();
 
 	Vec3 rightElbow = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone012");
-	Vec3 rightHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone009");
+	Vec3 rightHand = GetGameObject()->GetTransform()->GetChild(0)->GetChild(rightObjectIndex)->GetAnimator()->GetBonePosition("bone013");
 
-	Vec3 rightHandToElbowDir = rightHand - rightElbow;
-	rightHandToElbowDir.Normalize();
+	Vec3 rightElbowToHandDir = rightHand - rightElbow;
+	rightElbowToHandDir.Normalize();
 
 	// 그 Object의 Collider의 center를 구하기
 
-	Vec3 leftColliderCenter = leftHand + leftHandToElbowDir * 1.5f;
-	Vec3 rightColliderCenter = rightHand + rightHandToElbowDir * 1.5f;
+	Vec3 leftColliderCenter = leftHand + leftElbowToHandDir * 1.5f;
+	Vec3 rightColliderCenter = rightHand + rightElbowToHandDir * 1.5f;
 
 	// BonePosition에는 이미 GameObject의 WorldPosition이 더해진 상태.
 	// 이 때 Collider의 center의 공식은 center + WorldPosition.

@@ -576,6 +576,7 @@ RTTR_REGISTRATION
 		.property("_draw", &BaseCollider::_draw)
 		.property("_extents", &BoxCollider::_extents)
 		.property("_center", &BoxCollider::_center)
+		.property("_orientation", &BoxCollider::_orientation)
 		.property("_colliderType", &BaseCollider::_colliderType);
 
 	// MeshCollider

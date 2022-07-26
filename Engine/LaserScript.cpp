@@ -38,10 +38,6 @@ void LaserScript::Spawn(int hp, float speed, int damage)
 
 void LaserScript::LateUpdate()
 {
-	//float laserScaleZ = _originalScaleZ + (GetTransform()->GetWorldPosition() - _camera.lock()->GetTransform()->GetWorldPosition()).Length();
-	Vec3 worldScale = GetTransform()->GetWorldScale();
-	GetTransform()->SetWorldScale(Vec3(worldScale.x, worldScale.y, _originalScaleZ));
-
 	Vec3 worldPosition = _attachedObject.lock()->GetTransform()->GetWorldPosition();
 	GetTransform()->SetWorldPosition(worldPosition + 
 		(_attachedObject.lock()->GetTransform()->GetWorldTransform()->GetLook() * (-0.683f * GetTransform()->GetWorldScale().z)));
@@ -50,7 +46,7 @@ void LaserScript::LateUpdate()
 	
 	std::shared_ptr<BoxCollider> collider = std::static_pointer_cast<BoxCollider>(GetGameObject()->GetCollider());
 	
-	worldScale = GetTransform()->GetWorldScale();
+	Vec3 worldScale = GetTransform()->GetWorldScale();
 	collider->SetExtent(Vec3(worldScale.x, worldScale.y, _originalScaleZ));
 	collider->SetOrientation(GetTransform()->GetWorldRotation());
 	

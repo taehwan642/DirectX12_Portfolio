@@ -882,18 +882,18 @@ void ImGuiManager::RenderInspector()
                 std::shared_ptr<Transform> worldTrans = trans->GetWorldTransform();
                 std::shared_ptr<Transform> localTrans = trans->GetLocalTransform();
 
-                if (ImGui::DragFloat3("World Position", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_position))))
+                if (ImGui::DragFloat3("World Position", reinterpret_cast<float*>(&worldTrans->_position)))
                     trans->UpdateLocal();
-                if (ImGui::DragFloat3("World Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_rotation))))
+                if (ImGui::DragFloat3("World Rotation", reinterpret_cast<float*>(&worldTrans->_rotation)))
                     trans->UpdateLocal();
-                if (ImGui::DragFloat3("World Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&worldTrans->_scale))))
+                if (ImGui::DragFloat3("World Scale", reinterpret_cast<float*>(&worldTrans->_scale)))
                     trans->UpdateLocal();
 
-                if (ImGui::DragFloat3("Local Position", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_position))))
+                if (ImGui::DragFloat3("Local Position", reinterpret_cast<float*>(&localTrans->_position)))
                     trans->UpdateWorld();
-                if (ImGui::DragFloat3("Local Rotation", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_rotation))))
+                if (ImGui::DragFloat3("Local Rotation", reinterpret_cast<float*>(&localTrans->_rotation)))
                     trans->UpdateWorld();
-                if (ImGui::DragFloat3("Local Scale", reinterpret_cast<float*>(const_cast<Vec3*>(&localTrans->_scale))))
+                if (ImGui::DragFloat3("Local Scale", reinterpret_cast<float*>(&localTrans->_scale)))
                     trans->UpdateWorld();
 
 
@@ -1470,7 +1470,7 @@ void ImGuiManager::RenderInspector()
 
                     // Display preview (could be anything, e.g. when dragging an image we could decide to display
                     // the filename and a small preview of the image, etc.)
-                    ImGui::Text("Set Child %s", ws2s(script->GetName()).c_str());
+                    ImGui::Text("Send hash to %s", ws2s(script->GetName()).c_str());
                     ImGui::EndDragDropSource();
                 }
                 if (ImGui::BeginDragDropTarget())

@@ -54,9 +54,11 @@ public:
 	{
 		for (auto& iter : _scripts)
 		{
-			if (std::dynamic_pointer_cast<T>(iter) != nullptr)
+			std::shared_ptr<T> castedPtr = std::dynamic_pointer_cast<T>(iter);
+
+			if (castedPtr != nullptr)
 			{
-				return std::dynamic_pointer_cast<T>(iter);
+				return castedPtr;
 			}
 		}
 		return nullptr;

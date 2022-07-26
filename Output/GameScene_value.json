@@ -3639,22 +3639,22 @@
             }
         },
         {
-            "tag": "Main_Camera",
-            "hashValue": 1652047311739494752,
+            "tag": "GameManager",
+            "hashValue": 10666958814004114912,
             "componentOnValue": [
                 true,
                 false,
-                true,
                 false,
                 false,
                 false,
                 false,
                 false,
-                false
+                false,
+                true
             ],
             "monobehaviourOnValue": [
-                true,
                 false,
+                true,
                 false,
                 false,
                 false,
@@ -3721,22 +3721,22 @@
             }
         },
         {
-            "tag": "GameManager",
-            "hashValue": 10666958814004114912,
+            "tag": "Main_Camera",
+            "hashValue": 1652047311739494752,
             "componentOnValue": [
                 true,
                 false,
+                true,
                 false,
                 false,
                 false,
                 false,
                 false,
-                false,
-                true
+                false
             ],
             "monobehaviourOnValue": [
-                false,
                 true,
+                false,
                 false,
                 false,
                 false,
