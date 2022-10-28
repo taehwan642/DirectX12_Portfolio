@@ -1,2 +1,0 @@
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Resources\Texture\laserLock.png
-C:\Users\OWNER\Desktop\DirectX12_Portfolio\Resources\Texture\laserFire.png

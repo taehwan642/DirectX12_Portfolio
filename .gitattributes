@@ -1,5 +1,0 @@
-Library/Lib/FBX/debug/libfbxsdk-md.lib filter=lfs diff=lfs merge=lfs -text
-Library/Lib/FBX/debug/libfbxsdk-mt.lib filter=lfs diff=lfs merge=lfs -text
-Library/Lib/FBX/release/libfbxsdk-md.lib filter=lfs diff=lfs merge=lfs -text
-Library/Lib/FBX/release/libfbxsdk-mt.lib filter=lfs diff=lfs merge=lfs -text
-Resources/Audio/bgm/BGM.wav filter=lfs diff=lfs merge=lfs -text
